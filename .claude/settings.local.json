@@ -3,7 +3,8 @@
     "allow": [
       "Bash(tree:*)",
       "Bash(chmod +x \"C:\\Users\\jojo-\\Desktop\\angie\\.git\\hooks\\pre-commit\")",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Skill(example-skills:frontend-design)"
     ],
     "deny": [],
     "ask": []
