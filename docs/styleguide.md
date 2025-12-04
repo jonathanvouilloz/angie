@@ -29,43 +29,71 @@ Ce guide définit le système de design basé sur le template Angie, adapté pou
 
 ## Palette de Couleurs
 
-### Couleurs du template Angie
+### Palette "Lab Scientifique"
+
+Concept : Laboratoire moderne, expérimentation, innovation.
 
 ```css
 :root {
-  --main-bg: #FEFFF0;  /* Fond crème/beige clair */
-  --blue: #BAE6FF;     /* Bleu clair - boutons, highlights */
-  --yellow: #FFDC58;   /* Jaune vif - accents, hover */
+  /* Palette "Lab Scientifique" */
+  --main-bg: #FAFAFA;                  /* Blanc cassé - fond principal */
+  --blue: #00D9A3;                     /* Vert labo - accent principal, boutons */
+  --yellow: #00A87D;                   /* Vert foncé - hover boutons */
+  --accent: rgba(163, 0, 217, 0.35);   /* Magenta transparent - highlights texte */
+  --violet: #A300D9;                   /* Magenta vif - détails, accents secondaires */
+  --text: #0F172A;                     /* Noir charbon - texte principal */
 }
 ```
 
-### Utilisation
+### Utilisation des variables
 
-| Variable | Usage |
-|----------|-------|
-| `--main-bg` | Background principal de toutes les pages |
-| `--blue` | Boutons primaires, highlights de texte |
-| `--yellow` | Soulignements, états hover, accents |
+| Variable | Couleur | Usage |
+|----------|---------|-------|
+| `--main-bg` | Blanc cassé | Background principal de toutes les pages |
+| `--blue` | 🟢 Vert labo #00D9A3 | Boutons primaires, CTA, badges tech |
+| `--yellow` | 🟢 Vert foncé #00A87D | États hover des boutons |
+| `--accent` | 🟣 Magenta 35% | Soulignements texte, highlights, hover liens |
+| `--violet` | 🟣 Magenta #A300D9 | Détails, accents secondaires |
+| `--text` | Noir charbon | Texte principal, titres |
 
 ### Couleurs additionnelles
 
 | Couleur | Hex | Usage |
 |---------|-----|-------|
-| Noir | `#000000` | Texte principal, bordures |
+| Noir | `#000000` | Bordures |
 | Blanc | `#FFFFFF` | Backgrounds sections, cartes |
-| Gris clair | `#F5F5F5` | Backgrounds alternatifs |
+| Noir charbon | `#0F172A` | Texte principal (via `--text`) |
+
+### Logique des états
+
+| Élément | Default | Hover | Active/Focus |
+|---------|---------|-------|--------------|
+| Bouton CTA | `--blue` (vert) | `--yellow` (vert foncé) | `ring-2 ring-black` |
+| Lien navigation | `--text` | `--accent` (underline) | `--accent` (background) |
+| Highlight texte | `--accent` | - | - |
 
 ### Application en Tailwind
 
 ```html
 <!-- Background principal -->
-<body style="background: var(--main-bg)">
+<body style="background: var(--main-bg); color: var(--text)">
 
-<!-- Bouton primaire -->
-<button class="bg-[var(--blue)] hover:bg-[var(--yellow)]">
+<!-- Bouton primaire (vert → vert foncé au hover) -->
+<button class="bg-[var(--blue)] hover:bg-[var(--yellow)] transition-all">
+  Contact
+</button>
 
-<!-- Highlight texte -->
-<span class="bg-[var(--yellow)]">texte important</span>
+<!-- Highlight texte (bande magenta transparente) -->
+<span class="relative">
+  <span class="absolute bg-[var(--accent)] w-full h-[50%] left-0 bottom-0 z-1"></span>
+  <span class="relative z-5">texte important</span>
+</span>
+
+<!-- Soulignement hover (liens navigation) -->
+<a class="before:bg-[var(--accent)] hover:before:w-full">Lien</a>
+
+<!-- Badge avec accent violet -->
+<span class="bg-[var(--violet)] text-white">Nouveau</span>
 
 <!-- Carte sur fond blanc -->
 <div class="bg-white border-2 border-black">
@@ -176,7 +204,9 @@ Petits carrés décoratifs aux coins :
 
 ## Boutons
 
-### Bouton primaire
+### Bouton primaire (CTA)
+
+Effet "stamp" brutaliste : ombre qui se réduit au hover avec léger déplacement.
 
 ```html
 <a
@@ -186,12 +216,15 @@ Petits carrés décoratifs aux coins :
     border-2 border-black
     px-6 py-3
     text-md font-medium
-    shadow-[4px_4px_0px_rgba(0,0,0,0.3)]
-    hover:bg-[var(--yellow)]
+    shadow-[3px_3px_0px_rgba(0,0,0,1)]
     transition-all duration-200
+    hover:bg-[var(--yellow)]
+    hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+    hover:translate-x-[2px] hover:translate-y-[2px]
+    focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
   "
 >
-  Parlons de votre projet →
+  Contact
 </a>
 ```
 
@@ -205,22 +238,40 @@ Petits carrés décoratifs aux coins :
     border-2 border-black
     px-6 py-3
     text-md font-medium
-    hover:bg-[var(--yellow)]
     transition-all duration-200
+    hover:bg-[var(--yellow)]
   "
 >
   Voir mes projets →
 </a>
 ```
 
-### États
+### Bouton avec accent violet
 
-| État | Style |
-|------|-------|
-| Default | `bg-[var(--blue)]` |
-| Hover | `bg-[var(--yellow)]` |
-| Focus | `ring-2 ring-black ring-offset-2` |
-| Disabled | `opacity-50 cursor-not-allowed` |
+```html
+<a
+  href="/lab"
+  class="
+    bg-[var(--violet)]
+    border-2 border-black
+    px-6 py-3
+    text-white font-medium
+    transition-all duration-200
+    hover:opacity-90
+  "
+>
+  Découvrir le Lab
+</a>
+```
+
+### États des boutons
+
+| État | Bouton primaire | Bouton secondaire |
+|------|-----------------|-------------------|
+| Default | `bg-[var(--blue)]` (vert) | `bg-white` |
+| Hover | `bg-[var(--yellow)]` (vert foncé) + translation | `bg-[var(--yellow)]` |
+| Focus | `ring-2 ring-black ring-offset-2` | `ring-2 ring-black` |
+| Disabled | `opacity-50 cursor-not-allowed` | `opacity-50` |
 
 ---
 
@@ -317,36 +368,62 @@ Petits carrés décoratifs aux coins :
 
 ## Navigation
 
-### Header
+### Header (Navbar)
+
+Structure : container brutaliste avec corner boxes, logo à gauche, liens + CTA à droite.
 
 ```html
-<header class="
-  bg-[var(--main-bg)]
-  border-b-2 border-black
-  py-4 px-6
-  flex justify-between items-center
-">
-  <!-- Logo -->
-  <a href="/" class="text-2xl font-bold">Jon Labs</a>
+<header class="relative border-b-3 p-7 overflow-hidden">
+  <div class="flex border-3 border-black bg-white max-w-[360px] md:max-w-3xl m-auto relative z-10">
+    <!-- Corner boxes -->
+    <div class="size-2 bg-white border-2 border-black absolute -top-2 -right-2"></div>
+    <div class="size-2 bg-white border-2 border-black absolute -top-2 -left-2"></div>
+    <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -left-2"></div>
+    <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -right-2"></div>
 
-  <!-- Nav links (desktop) -->
-  <nav class="hidden md:flex gap-6">
-    <a href="/services" class="
-      text-lg font-medium
-      hover:border-b-2 hover:border-[var(--yellow)]
-    ">
-      Services
-    </a>
-    <a href="/portfolio" class="text-lg font-medium hover:border-b-2 hover:border-[var(--yellow)]">
-      Portfolio
-    </a>
-    <!-- ... -->
-  </nav>
+    <nav class="flex w-full items-center p-2 md:p-0">
+      <!-- Logo avec micro-interaction -->
+      <a href="/" class="flex items-center gap-2 pl-3 group">
+        <img src="logo.svg" alt="Jon Labs" class="transition-transform duration-300 group-hover:rotate-12" />
+        <span class="font-bold">Jon Labs</span>
+      </a>
 
-  <!-- Mobile menu button -->
-  <button class="md:hidden" id="menu-open">
-    <i class="ri-menu-2-line text-2xl"></i>
-  </button>
+      <!-- Liens desktop -->
+      <ul class="hidden md:flex items-center">
+        <li class="border-l-2 border-black p-2 py-3">
+          <a href="/services" class="
+            relative flex items-center whitespace-nowrap px-1
+            before:absolute before:left-0 before:bottom-1
+            before:h-[8px] before:w-0 before:bg-[var(--accent)]
+            before:transition-all before:duration-300
+            hover:before:w-full
+          ">
+            Services
+          </a>
+        </li>
+        <!-- ... autres liens ... -->
+
+        <!-- CTA Contact -->
+        <li class="border-l-2 border-black p-2 py-2 flex items-center">
+          <a href="/contact" class="
+            bg-[var(--blue)] border-2 border-black
+            px-4 py-1.5 font-medium text-sm
+            shadow-[3px_3px_0px_rgba(0,0,0,1)]
+            hover:bg-[var(--yellow)]
+            hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+            hover:translate-x-[2px] hover:translate-y-[2px]
+          ">
+            Contact
+          </a>
+        </li>
+      </ul>
+
+      <!-- Bouton hamburger mobile -->
+      <button class="flex md:hidden p-2" aria-label="Ouvrir le menu">
+        <i class="ri-menu-2-line text-2xl"></i>
+      </button>
+    </nav>
+  </div>
 </header>
 ```
 
@@ -354,9 +431,44 @@ Petits carrés décoratifs aux coins :
 
 | État | Style |
 |------|-------|
-| Default | `text-black` |
-| Hover | `border-b-2 border-[var(--yellow)]` |
-| Active | `bg-[var(--yellow)]` ou `border-b-2 border-black` |
+| Default | `text-[var(--text)]` |
+| Hover | Soulignement animé `before:bg-[var(--accent)]` (magenta transparent) |
+| Active | `bg-[var(--accent)]` (fond magenta transparent) |
+
+### Navigation mobile
+
+Menu slide-in avec liens centrés et CTA en bas :
+
+```html
+<div class="fixed left-0 top-0 h-full w-full bg-white z-20 transition-all duration-300">
+  <nav>
+    <ul class="flex flex-col justify-center items-center gap-2 mt-8">
+      <li class="py-2 w-full text-center">
+        <a href="/services" class="
+          block p-3 text-2xl font-bold
+          transition-colors duration-200
+          hover:bg-[var(--accent)]
+        ">
+          Services
+        </a>
+      </li>
+      <!-- ... autres liens ... -->
+
+      <!-- CTA mobile -->
+      <li class="py-6 mt-4">
+        <a href="/contact" class="
+          bg-[var(--blue)] border-3 border-black
+          px-10 py-4 text-xl font-bold
+          shadow-[4px_4px_0px_rgba(0,0,0,1)]
+          hover:bg-[var(--yellow)]
+        ">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+```
 
 ---
 
@@ -463,14 +575,20 @@ import pinkStar from '../assets/pink-star.svg';
 ### Highlight de texte
 
 ```html
-<!-- Avec background jaune -->
-<span class="bg-[var(--yellow)] px-2">texte important</span>
+<!-- Bande magenta transparente (style hero) -->
+<span class="relative">
+  <span class="absolute bg-[var(--accent)] w-full h-[50%] left-0 bottom-0 z-1"></span>
+  <span class="relative z-5">texte important</span>
+</span>
 
 <!-- Avec SVG underline -->
 <span class="relative">
   texte souligné
   <img src={underline.src} class="absolute -bottom-2 left-0 w-full" />
 </span>
+
+<!-- Badge inline violet -->
+<span class="bg-[var(--violet)] text-white px-2">nouveau</span>
 ```
 
 ---
@@ -590,7 +708,7 @@ Le template utilise Remix Icon (CDN) :
     bg-white
     text-lg
     focus:outline-none
-    focus:ring-2 focus:ring-[var(--yellow)]
+    focus:ring-2 focus:ring-[var(--blue)]
   "
 />
 ```
@@ -609,7 +727,7 @@ Le template utilise Remix Icon (CDN) :
     text-lg
     resize-none
     focus:outline-none
-    focus:ring-2 focus:ring-[var(--yellow)]
+    focus:ring-2 focus:ring-[var(--blue)]
   "
 ></textarea>
 ```
@@ -624,7 +742,7 @@ Le template utilise Remix Icon (CDN) :
   bg-white
   text-lg
   focus:outline-none
-  focus:ring-2 focus:ring-[var(--yellow)]
+  focus:ring-2 focus:ring-[var(--blue)]
 ">
   <option>Dev Web</option>
   <option>Automatisation</option>
@@ -642,12 +760,21 @@ Le template utilise Remix Icon (CDN) :
     class="
       w-5 h-5
       border-2 border-black
-      accent-[var(--yellow)]
+      accent-[var(--blue)]
     "
   />
   <span class="text-md">J'accepte d'être contacté</span>
 </label>
 ```
+
+### États des formulaires
+
+| État | Style |
+|------|-------|
+| Default | `border-2 border-black` |
+| Focus | `ring-2 ring-[var(--blue)]` (vert labo) |
+| Error | `ring-2 ring-red-500` |
+| Disabled | `opacity-50 bg-gray-100` |
 
 ---
 
@@ -669,7 +796,7 @@ Le template utilise Remix Icon (CDN) :
 ### Badge statut
 
 ```html
-<!-- En cours -->
+<!-- En cours (vert foncé) -->
 <span class="
   px-3 py-1
   bg-[var(--yellow)]
@@ -679,7 +806,17 @@ Le template utilise Remix Icon (CDN) :
   En cours
 </span>
 
-<!-- Bientôt -->
+<!-- Nouveau (violet) -->
+<span class="
+  px-3 py-1
+  bg-[var(--violet)]
+  border border-black
+  text-sm font-medium text-white
+">
+  Nouveau
+</span>
+
+<!-- Bientôt (gris) -->
 <span class="
   px-3 py-1
   bg-gray-200
@@ -689,6 +826,15 @@ Le template utilise Remix Icon (CDN) :
   Bientôt
 </span>
 ```
+
+### Récapitulatif badges
+
+| Type | Variable | Couleur |
+|------|----------|---------|
+| Technologie | `--blue` | Vert labo |
+| En cours | `--yellow` | Vert foncé |
+| Nouveau/Spécial | `--violet` | Magenta (texte blanc) |
+| Bientôt | `bg-gray-200` | Gris |
 
 ---
 
@@ -728,9 +874,27 @@ Le template utilise Remix Icon (CDN) :
 Avant de valider un composant/page :
 
 - [ ] Bordures noires épaisses (border-2 ou border-3)
-- [ ] Ombres décalées sur éléments interactifs
-- [ ] États hover avec couleur jaune
+- [ ] Ombres décalées sur éléments interactifs (effet "stamp")
+- [ ] Boutons : vert (`--blue`) → vert foncé (`--yellow`) au hover
+- [ ] Liens/textes : soulignement magenta transparent (`--accent`)
 - [ ] Typographie Space Grotesk
+- [ ] Couleur de texte `--text` (#0F172A)
 - [ ] Responsive mobile/desktop
 - [ ] Éléments décoratifs (SVGs, corner boxes)
+- [ ] Accessibilité : aria-labels, focus visible, navigation clavier
 - [ ] Cohérence avec le style brutaliste
+
+---
+
+## Récapitulatif Palette "Lab Scientifique"
+
+| Variable | Hex/RGBA | Aperçu | Usage |
+|----------|----------|--------|-------|
+| `--main-bg` | #FAFAFA | ⬜ Blanc cassé | Background pages |
+| `--blue` | #00D9A3 | 🟢 Vert labo | Boutons, CTA, badges |
+| `--yellow` | #00A87D | 🟢 Vert foncé | Hover boutons |
+| `--accent` | rgba(163,0,217,0.35) | 🟣 Magenta 35% | Highlights texte, hover liens |
+| `--violet` | #A300D9 | 🟣 Magenta vif | Accents spéciaux |
+| `--text` | #0F172A | ⬛ Noir charbon | Texte principal |
+
+**Concept :** Vert = croissance, tech moderne | Magenta = créativité, originalité | Contraste complémentaire vert/magenta

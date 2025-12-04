@@ -15,9 +15,13 @@
 <style>
 
 :root{
-	--main-bg: #FEFFF0;
-	--blue: #BAE6FF;
-	--yellow: #FFDC58;
+	/* Palette "Lab Scientifique" */
+	--main-bg: #FAFAFA;              /* Blanc cassé */
+	--blue: #00D9A3;                 /* Vert labo - accent principal */
+	--yellow: #00A87D;               /* Vert foncé - hover buttons */
+	--accent: rgba(163, 0, 217, 0.35);  /* Magenta/Violet transparent - soulignements texte */
+	--violet: #A300D9;                  /* Magenta/Violet vif - détails */
+	--text: #0F172A;                 /* Noir charbon */
 }
 
 html,
@@ -26,6 +30,7 @@ body {
 	width: 100%;
 	height: 100%;
 	background-color: var(--main-bg);
+	color: var(--text);
 	font-family: "Space Grotesk", sans-serif;
 	scroll-behavior: smooth;
 }
