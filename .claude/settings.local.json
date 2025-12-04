@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(chmod +x \"C:\\Users\\jojo-\\Desktop\\angie\\.git\\hooks\\pre-commit\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
