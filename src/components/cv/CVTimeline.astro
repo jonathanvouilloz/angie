@@ -1,0 +1,207 @@
+---
+// Timeline section - "Parcours Professionnel" - Section phare avec animations
+
+const experiences = [
+  {
+    id: 1,
+    title: "Fondateur & Développeur Full-Stack",
+    company: "Jon Labs - Freelance",
+    location: "Genève",
+    period: "2024 - Présent",
+    current: true,
+    missions: [
+      "Développement de sites web et applications sur-mesure pour entrepreneurs et PME",
+      "Automatisation de processus métiers (workflows, emails, intégrations)",
+      "Conseil stratégique digital et accompagnement de projets",
+      "Formation et vulgarisation technique"
+    ],
+    stack: ["Astro", "React", "Node.js", "Supabase", "Make", "Zapier", "MCP", "Claude Code"],
+    highlights: "App gestion camps CPV • Stratégie SEO cabinet juridique • Growth marketing Le Matin Dimanche"
+  },
+  {
+    id: 2,
+    title: "Employé Ludothèque",
+    company: "Secteur du jeu (Temps Partiel)",
+    location: "Genève",
+    period: "2025 - Présent",
+    current: true,
+    missions: [
+      "Gestion et animation d'activités ludiques",
+      "Conseil et recommandations jeux de société",
+      "Animation de communauté et gestion d'événements"
+    ],
+    stack: [],
+    highlights: null
+  },
+  {
+    id: 3,
+    title: "Co-fondateur & Développeur",
+    company: "Kusari Sàrl",
+    location: "Genève",
+    period: "2021 - 2024",
+    current: false,
+    missions: [
+      "Exploration et développement de projets blockchain/Web3",
+      "Formation approfondie sur l'écosystème crypto",
+      "Développement de prototypes et applications décentralisées",
+      "Veille technologique et analyse de projets innovants"
+    ],
+    stack: ["Solidity", "Web3.js", "Smart Contracts", "DeFi"],
+    stackType: "past"
+  },
+  {
+    id: 4,
+    title: "Développeur & Consultant Marketing",
+    company: "Barber Concept (Freelance)",
+    location: "Genève",
+    period: "2020 - Présent",
+    current: true,
+    missions: [
+      "Développement d'un système de prise de rendez-vous en ligne",
+      "Création du site web et de l'identité graphique",
+      "Support marketing digital et stratégie de croissance"
+    ],
+    stack: ["Node.js", "PostgreSQL", "APIs"],
+    results: {
+      users: "19'000",
+      salons: "6",
+      years: "5 ans"
+    }
+  },
+  {
+    id: 5,
+    title: "Moniteur de Camps de Vacances",
+    company: "Centre Protestant de Vacances (CPV)",
+    location: "Valais",
+    period: "2015 - Présent",
+    current: true,
+    missions: [
+      "Animation et encadrement de camps de vacances (10 ans d'ancienneté)",
+      "Identification de besoins terrain → développement d'une application",
+      "Collaboration officielle avec le CPV pour déploiement 2026"
+    ],
+    stack: []
+  }
+];
+---
+
+<section class="cv-section cv-timeline-section py-16 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+  <!-- Subtle dot pattern background -->
+  <div class="absolute inset-0 timeline-dots-bg opacity-[0.4]"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <!-- Section header -->
+    <div class="flex items-center gap-4 mb-10">
+      <div class="flex items-center justify-center w-12 h-12 bg-[var(--blue)] border-2 border-black">
+        <i class="ri-route-line text-2xl"></i>
+      </div>
+      <div>
+        <span class="text-xs font-mono text-gray-500 tracking-widest block">SECTION 03</span>
+        <h2 class="text-3xl md:text-4xl font-bold">Parcours Professionnel</h2>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Progress bar (animated via GSAP) -->
+      <div class="hidden md:block absolute left-[30px] top-0 bottom-0 w-1 bg-gray-200">
+        <div class="timeline-progress-bar absolute inset-0 bg-[var(--blue)] origin-top"></div>
+      </div>
+
+      <!-- Experiences -->
+      <div class="space-y-8 md:space-y-10">
+        {experiences.map((exp, index) => (
+          <div class="relative md:pl-20 group">
+            <!-- Timeline point -->
+            <div class="timeline-point hidden md:flex absolute left-[18px] top-[12px] w-[26px] h-[26px] bg-white border-3 border-[var(--blue)] rounded-full items-center justify-center z-10 group-hover:bg-[var(--blue)] transition-colors duration-300">
+              <div class={`w-2.5 h-2.5 rounded-full ${exp.current ? 'bg-[var(--blue)] group-hover:bg-white' : 'bg-gray-300'} transition-colors duration-300`}></div>
+            </div>
+
+            <!-- Card -->
+            <div class={`border-2 border-black p-6 bg-white transition-all duration-300 hover:shadow-[6px_6px_0px_rgba(0,0,0,0.15)] ${exp.current ? 'shadow-[4px_4px_0px_rgba(0,0,0,0.15)]' : ''}`}>
+              <!-- Header -->
+              <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
+                <div>
+                  <h3 class="text-xl md:text-2xl font-bold">{exp.title}</h3>
+                  <p class="text-gray-700 font-medium flex items-center gap-2">
+                    {exp.company}
+                    <span class="text-gray-400">|</span>
+                    <span class="text-gray-500 text-sm flex items-center gap-1">
+                      <i class="ri-map-pin-line"></i>
+                      {exp.location}
+                    </span>
+                  </p>
+                </div>
+                <div class={`px-4 py-2 border-2 border-black text-center ${exp.current ? 'bg-[var(--blue)]' : 'bg-gray-100'}`}>
+                  <span class="font-mono text-sm font-bold whitespace-nowrap">{exp.period}</span>
+                </div>
+              </div>
+
+              <!-- Missions -->
+              <ul class="space-y-2 mb-4">
+                {exp.missions.map((mission) => (
+                  <li class="flex items-start gap-2 text-gray-700">
+                    <span class="text-[var(--blue)] mt-1">→</span>
+                    <span>{mission}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Stack -->
+              {exp.stack && exp.stack.length > 0 && (
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {exp.stack.map((tech) => (
+                    <span class={`skill-badge px-2 py-1 border border-black text-xs font-medium ${exp.stackType === 'past' ? 'bg-gray-200' : 'bg-[var(--blue)]'}`}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <!-- Results (for Barber Concept) -->
+              {exp.results && (
+                <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-4 mt-4">
+                  <span class="text-sm font-bold block mb-2">Résultats</span>
+                  <div class="flex flex-wrap gap-4 text-sm">
+                    <span class="flex items-center gap-1">
+                      <span class="font-black text-lg text-[var(--blue)]">{exp.results.users}</span>
+                      utilisateurs
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <span class="font-black text-lg text-[var(--blue)]">{exp.results.salons}</span>
+                      salons
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <span class="font-black text-lg text-[var(--blue)]">{exp.results.years}</span>
+                      relation client
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              <!-- Highlights -->
+              {exp.highlights && (
+                <div class="text-sm text-gray-600 pt-3 mt-3 border-t border-dashed border-gray-300">
+                  <strong class="text-gray-800">Projets notables :</strong> {exp.highlights}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hidden md:flex items-center justify-center gap-2 mt-8 text-gray-400 text-sm">
+        <i class="ri-mouse-line"></i>
+        <span>Scroll pour explorer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline-dots-bg {
+    background-image: radial-gradient(circle, #000 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+</style>

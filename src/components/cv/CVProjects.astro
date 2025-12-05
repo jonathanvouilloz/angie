@@ -1,0 +1,190 @@
+---
+// Projects section - "Cas d'Étude Lab"
+
+const projects = [
+  {
+    id: "001",
+    title: "Application Gestion Camps",
+    client: "Centre Protestant de Vacances (CPV)",
+    year: "2025",
+    type: "Application sur-mesure",
+    description: "Application de gestion budgétaire pour optimiser la gestion administrative des camps de vacances. Prototype validé sur le terrain → collaboration officielle.",
+    results: [
+      { value: "-70%", label: "temps gestion" },
+      { value: "2026", label: "déploiement" }
+    ],
+    stack: ["Astro", "Supabase", "PostgreSQL"],
+    status: "active",
+    link: "https://camp-manager-three.vercel.app/"
+  },
+  {
+    id: "002",
+    title: "Système RDV & Site Web",
+    client: "Barber Concept",
+    year: "2020-2021",
+    type: "Web + Application métier",
+    description: "Système complet de prise de rendez-vous, site web et identité graphique pour une chaîne de salons de coiffure.",
+    results: [
+      { value: "19k", label: "utilisateurs" },
+      { value: "6", label: "salons" }
+    ],
+    stack: ["Node.js", "PostgreSQL", "APIs"],
+    status: null,
+    link: "https://www.barberconcept.ch/"
+  },
+  {
+    id: "003",
+    title: "Séquence Emailing Growth",
+    client: "Le Matin Dimanche",
+    year: "Mai 2025",
+    type: "Marketing digital",
+    description: "Conception et rédaction d'une séquence d'onboarding complète pour améliorer la rétention des nouveaux utilisateurs.",
+    results: [
+      { value: "+25%", label: "rétention" },
+      { value: "500+", label: "utilisateurs" }
+    ],
+    stack: ["Copywriting", "Email Marketing", "Growth"],
+    stackType: "marketing"
+  },
+  {
+    id: "004",
+    title: "Site & Stratégie SEO Cabinet Juridique",
+    client: "Lecureux Conseil",
+    year: "2024",
+    type: "Site web, Branding & SEO",
+    description: "Création du site web, identité visuelle et optimisation SEO complète pour générer des leads qualifiés via le référencement naturel.",
+    results: [
+      { value: "10+", label: "leads qualifiés" },
+      { value: "3-4", label: "mois mission" }
+    ],
+    stack: ["Webflow", "SEO", "Branding", "Analytics"],
+    stackType: "marketing",
+    link: "https://lecureux-conseil.ch/"
+  },
+  {
+    id: "005",
+    title: "Automatisation Club & Comité Badminton",
+    client: "Club local + ACGB (Association Cantonale Genevoise de Badminton)",
+    year: "2023-2024",
+    type: "Process, Automatisation & Comité",
+    description: "Membre du comité ACGB. Création de processus automatisés pour optimiser la gestion administrative d'un club sportif de 100 membres et amélioration côté informatique de l'association.",
+    results: [
+      { value: "100", label: "membres gérés" },
+      { value: "++", label: "heures économisées" }
+    ],
+    stack: ["Airtable", "Make", "n8n"],
+    status: "active",
+    link: "https://bcchenois.ch/"
+  },
+  {
+    id: "006",
+    title: "Présentation Tokenisation Actifs Réels",
+    client: "GEC (Geneva Event Crypto)",
+    year: "Été 2024",
+    type: "Conférence / Présentation",
+    description: "Présentation sur la tokenisation des actifs réels (Real World Assets) lors d'un événement crypto à Genève. Vulgarisation de concepts complexes pour un public mixte.",
+    results: [
+      { value: "50+", label: "participants" },
+      { value: "GEC", label: "événement" }
+    ],
+    stack: ["Blockchain", "Analyse fondamentale", "Présentation"],
+    stackType: "past",
+    link: "https://www.linkedin.com/posts/jonathan-vouilloz-3b5741139_crypto-blockchain-activity-7238834575546744832-xdEI"
+  }
+];
+---
+
+<section class="cv-section cv-projects py-16 px-4" style="background: var(--main-bg)">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header -->
+    <div class="flex items-center gap-4 mb-4">
+      <div class="flex items-center justify-center w-12 h-12 bg-[var(--blue)] border-2 border-black">
+        <i class="ri-flask-line text-2xl"></i>
+      </div>
+      <div>
+        <span class="text-xs font-mono text-gray-500 tracking-widest block">SECTION 04</span>
+        <h2 class="text-3xl md:text-4xl font-bold">Projets Marquants</h2>
+      </div>
+    </div>
+
+    <p class="text-lg text-gray-600 mb-10 max-w-3xl">
+      Sélection de projets illustrant mon approche : comprendre les besoins,
+      créer des solutions concrètes, générer des résultats mesurables.
+    </p>
+
+    <!-- Projects grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, index) => (
+        <div
+          class={`project-card bg-white border-2 border-black p-6 transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,0.15)] hover:-translate-y-1 relative group ${index === 0 ? 'md:col-span-2 lg:col-span-1' : ''}`}
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Project number -->
+          <div class="absolute -top-3 -left-3 bg-black text-white w-10 h-10 flex items-center justify-center font-mono text-sm font-bold">
+            {project.id}
+          </div>
+
+          <!-- Active badge -->
+          {project.status === "active" && (
+            <div class="absolute -top-2 -right-2 bg-[var(--violet)] text-white px-3 py-1 text-xs font-bold border-2 border-black rotate-3">
+              <span class="flex items-center gap-1">
+                <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                EN COURS
+              </span>
+            </div>
+          )}
+
+          <!-- Header -->
+          <div class="mb-4 pt-2">
+            <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--blue)] transition-colors">{project.title}</h3>
+            <p class="text-sm text-gray-500">
+              {project.client} • {project.year}
+            </p>
+            <span class="inline-block mt-2 text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1">
+              {project.type}
+            </span>
+          </div>
+
+          <!-- Description -->
+          <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+            {project.description}
+          </p>
+
+          <!-- Results -->
+          <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 mb-4">
+            <div class="flex flex-wrap gap-4">
+              {project.results.map((result) => (
+                <div class="text-center">
+                  <span class="block text-xl font-black text-[var(--blue)]">{result.value}</span>
+                  <span class="text-xs text-gray-600">{result.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Stack -->
+          <div class="flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <span class={`skill-badge px-2 py-1 border border-black text-xs font-medium ${project.stackType === 'marketing' ? 'bg-[var(--yellow)]' : project.stackType === 'past' ? 'bg-gray-200' : 'bg-[var(--blue)]'}`}>
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <!-- Link -->
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-[var(--blue)] transition-colors group/link"
+            >
+              <span class="border-b-2 border-transparent group-hover/link:border-[var(--blue)]">Voir le projet</span>
+              <i class="ri-external-link-line transition-transform group-hover/link:translate-x-1"></i>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

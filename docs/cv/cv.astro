@@ -1,0 +1,776 @@
+---
+// src/pages/cv.astro
+import Layout from '../layouts/Layout.astro';
+// Import des icônes si nécessaire (Remix Icon via CDN déjà dans Layout)
+---
+
+<Layout
+  title="CV - Jonathan Vouilloz | Développeur & Créateur Digital"
+  description="CV de Jonathan Vouilloz, informaticien de gestion et créateur digital. Développement web, automatisation, applications sur-mesure. Basé à Genève."
+>
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 px-4" style="background: var(--main-bg)">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header avec bordure brutaliste -->
+      <div class="bg-white border-3 border-black p-8 md:p-12 shadow-[6px_6px_0px_rgba(0,0,0,0.3)] mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <h1 class="text-4xl md:text-5xl font-black mb-2">
+              CV - Jonathan Vouilloz
+            </h1>
+            <p class="text-xl md:text-2xl font-medium text-gray-700 mb-4">
+              Informaticien de gestion & Créateur digital
+            </p>
+            <p class="text-lg text-gray-600">
+              Bachelor HES en Informatique de Gestion
+            </p>
+          </div>
+          
+          <!-- Badges -->
+          <div class="flex flex-col gap-2">
+            <span class="bg-[var(--blue)] border-2 border-black px-4 py-2 text-sm font-medium whitespace-nowrap">
+              ✓ Disponible pour opportunités
+            </span>
+            <span class="bg-white border-2 border-black px-4 py-2 text-sm font-medium whitespace-nowrap">
+              📍 Genève, Suisse
+            </span>
+          </div>
+        </div>
+
+        <!-- CTA Download + Liens -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-4 mt-8 pt-6 border-t-2 border-black">
+          <a
+            href="/cv-jonathan-vouilloz.pdf"
+            download
+            class="
+              bg-[var(--blue)] border-2 border-black
+              px-6 py-3 text-md font-medium
+              shadow-[3px_3px_0px_rgba(0,0,0,1)]
+              transition-all duration-200
+              hover:bg-[var(--yellow)]
+              hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+              hover:translate-x-[2px] hover:translate-y-[2px]
+              focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
+              inline-flex items-center gap-2
+            "
+          >
+            <i class="ri-download-line"></i>
+            Télécharger le CV (PDF)
+          </a>
+
+          <!-- Liens sociaux -->
+          <div class="flex items-center gap-3 ml-auto">
+            <a href="mailto:contact@jonlabs.ch" class="text-2xl hover:text-[var(--blue)] transition-colors" aria-label="Email">
+              <i class="ri-mail-line"></i>
+            </a>
+            <a href="https://linkedin.com/in/jonathan-vouilloz" target="_blank" class="text-2xl hover:text-[var(--blue)] transition-colors" aria-label="LinkedIn">
+              <i class="ri-linkedin-box-fill"></i>
+            </a>
+            <a href="https://github.com/jonathanvouilloz" target="_blank" class="text-2xl hover:text-[var(--blue)] transition-colors" aria-label="GitHub">
+              <i class="ri-github-fill"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Profil -->
+  <section class="py-16 px-4 bg-white border-y-2 border-black">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Profil</h2>
+      <div class="text-lg leading-relaxed space-y-4">
+        <p>
+          Informaticien de gestion avec <span class="bg-emerald-200 px-1 font-medium">8+ ans d'expérience</span> combinant développement web, 
+          automatisation et stratégie digitale. Parcours polyvalent alliant compétences 
+          techniques, vision business et capacité de transmission. Passionné par 
+          l'accompagnement de projets de A à Z, de la conception à la mise en production.
+        </p>
+        <p>
+          Approche pragmatique : créer des solutions concrètes qui génèrent des résultats 
+          mesurables. Formé aux nouvelles technologies (IA, blockchain, no-code) avec une 
+          veille active sur les tendances tech.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Formation -->
+  <section class="py-16 px-4" style="background: var(--main-bg)">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Formation</h2>
+      
+      <div class="space-y-6">
+        <!-- Formation 1 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+            <h3 class="text-xl md:text-2xl font-bold">Bachelor HES en Informatique de Gestion</h3>
+            <span class="bg-[var(--blue)] border border-black px-3 py-1 text-sm font-medium whitespace-nowrap">
+              2017 - 2020
+            </span>
+          </div>
+          <p class="text-lg text-gray-700">
+            Haute École de Gestion (HEG) - Genève
+          </p>
+        </div>
+
+        <!-- Formation 2 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+            <h3 class="text-xl md:text-2xl font-bold">CFC Informaticien de Gestion</h3>
+            <span class="bg-[var(--blue)] border border-black px-3 py-1 text-sm font-medium whitespace-nowrap">
+              2015 - 2017
+            </span>
+          </div>
+          <p class="text-lg text-gray-700">
+            École Supérieure d'Informatique de Gestion (ESIG) - Genève
+          </p>
+        </div>
+
+        <!-- Formations continues -->
+        <div class="bg-white border-2 border-black p-6">
+          <h4 class="text-lg font-bold mb-3">Formations continues</h4>
+          <ul class="space-y-2 text-md">
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--blue)]">•</span>
+              <span>Marketing Digital & Copywriting (autodidacte, 2023-2024)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--blue)]">•</span>
+              <span>SEO & Référencement Naturel (autodidacte, 2024)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--blue)]">•</span>
+              <span>Blockchain & Web3 (formation approfondie, 2021-2023)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[var(--blue)]">•</span>
+              <span>Intelligence Artificielle & Prompt Engineering (formation active, 2024-2025)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Expérience Professionnelle -->
+  <section class="py-16 px-4 bg-white border-y-2 border-black">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Parcours Professionnel</h2>
+      
+      <!-- Timeline -->
+      <div class="relative space-y-8 md:space-y-10">
+        <!-- Barre verticale (desktop uniquement) -->
+        <div class="hidden md:block absolute left-[30px] top-0 bottom-0 w-[3px] bg-[var(--blue)]"></div>
+
+        <!-- Expérience 1 -->
+        <div class="relative md:pl-20">
+          <!-- Point timeline -->
+          <div class="hidden md:block absolute left-[21px] top-[8px] w-[21px] h-[21px] bg-[var(--blue)] border-3 border-black rounded-full"></div>
+          
+          <div class="border-2 border-black p-6 bg-white shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold">Fondateur & Développeur Full-Stack</h3>
+                <p class="text-lg text-gray-700 font-medium">Jon Labs - Freelance | Genève</p>
+              </div>
+              <span class="bg-[var(--blue)] border border-black px-3 py-1 text-sm font-medium whitespace-nowrap self-start">
+                2024 - Présent
+              </span>
+            </div>
+            
+            <ul class="space-y-2 text-md mb-4">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Développement de sites web et applications sur-mesure pour entrepreneurs et PME</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Automatisation de processus métiers (workflows, emails, intégrations)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Conseil stratégique digital et accompagnement de projets</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Formation et vulgarisation technique</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="px-2 py-1 bg-[var(--blue)] border border-black text-sm">Astro</span>
+              <span class="px-2 py-1 bg-[var(--blue)] border border-black text-sm">React</span>
+              <span class="px-2 py-1 bg-[var(--blue)] border border-black text-sm">Node.js</span>
+              <span class="px-2 py-1 bg-[var(--blue)] border border-black text-sm">Supabase</span>
+              <span class="px-2 py-1 bg-[var(--blue)] border border-black text-sm">Make</span>
+              <span class="px-2 py-1 bg-[var(--blue)] border border-black text-sm">Zapier</span>
+            </div>
+
+            <div class="text-sm text-gray-600 pt-3 border-t border-gray-200">
+              <strong>Projets notables :</strong> App gestion camps CPV • Stratégie SEO cabinet juridique • Growth marketing Le Matin Dimanche
+            </div>
+          </div>
+        </div>
+
+        <!-- Expérience 2 -->
+        <div class="relative md:pl-20">
+          <div class="hidden md:block absolute left-[21px] top-[8px] w-[21px] h-[21px] bg-[var(--blue)] border-3 border-black rounded-full"></div>
+          
+          <div class="border-2 border-black p-6 bg-white">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold">Employé Ludothèque</h3>
+                <p class="text-lg text-gray-700 font-medium">Secteur du jeu (Temps Partiel) | Genève</p>
+              </div>
+              <span class="bg-[var(--blue)] border border-black px-3 py-1 text-sm font-medium whitespace-nowrap self-start">
+                2024 - Présent
+              </span>
+            </div>
+            
+            <ul class="space-y-2 text-md">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Gestion et animation d'activités ludiques</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Conseil et recommandations jeux de société</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Animation de communauté et gestion d'événements</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Expérience 3 -->
+        <div class="relative md:pl-20">
+          <div class="hidden md:block absolute left-[21px] top-[8px] w-[21px] h-[21px] bg-[var(--blue)] border-3 border-black rounded-full"></div>
+          
+          <div class="border-2 border-black p-6 bg-white">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold">Co-fondateur & Développeur</h3>
+                <p class="text-lg text-gray-700 font-medium">Kusari Sàrl | Genève</p>
+              </div>
+              <span class="bg-gray-200 border border-black px-3 py-1 text-sm font-medium whitespace-nowrap self-start">
+                2021 - 2024
+              </span>
+            </div>
+            
+            <ul class="space-y-2 text-md mb-4">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Exploration et développement de projets blockchain/Web3</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Formation approfondie sur l'écosystème crypto (analyse macro et micro)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Développement de prototypes et applications décentralisées</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Veille technologique et analyse de projets innovants</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-gray-200 border border-black text-sm">Solidity</span>
+              <span class="px-2 py-1 bg-gray-200 border border-black text-sm">Web3.js</span>
+              <span class="px-2 py-1 bg-gray-200 border border-black text-sm">Smart Contracts</span>
+              <span class="px-2 py-1 bg-gray-200 border border-black text-sm">DeFi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expérience 4 -->
+        <div class="relative md:pl-20">
+          <div class="hidden md:block absolute left-[21px] top-[8px] w-[21px] h-[21px] bg-[var(--blue)] border-3 border-black rounded-full"></div>
+          
+          <div class="border-2 border-black p-6 bg-white">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold">Développeur & Consultant Marketing</h3>
+                <p class="text-lg text-gray-700 font-medium">Barber Concept (Freelance, relation continue) | Genève</p>
+              </div>
+              <span class="bg-[var(--blue)] border border-black px-3 py-1 text-sm font-medium whitespace-nowrap self-start">
+                2020 - Présent
+              </span>
+            </div>
+            
+            <ul class="space-y-2 text-md mb-4">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Développement d'un système de prise de rendez-vous en ligne</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Création du site web et de l'identité graphique</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Support marketing digital et stratégie de croissance</span>
+              </li>
+            </ul>
+
+            <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 text-sm">
+              <strong>Résultats :</strong> 19'000 utilisateurs actifs • 6 salons équipés (GE, LS, Sion) • Relation client 5 ans
+            </div>
+          </div>
+        </div>
+
+        <!-- Expérience 5 -->
+        <div class="relative md:pl-20">
+          <div class="hidden md:block absolute left-[21px] top-[8px] w-[21px] h-[21px] bg-[var(--blue)] border-3 border-black rounded-full"></div>
+          
+          <div class="border-2 border-black p-6 bg-white">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold">Moniteur de Camps de Vacances</h3>
+                <p class="text-lg text-gray-700 font-medium">Centre de Perfectionnement Valaisan (CPV) | Valais</p>
+              </div>
+              <span class="bg-[var(--blue)] border border-black px-3 py-1 text-sm font-medium whitespace-nowrap self-start">
+                2015 - Présent
+              </span>
+            </div>
+            
+            <ul class="space-y-2 text-md">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Animation et encadrement de camps de vacances (10 ans d'ancienneté)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Identification de besoins terrain ayant mené au développement d'une application</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--blue)]">→</span>
+                <span>Collaboration officielle avec le CPV pour déploiement de l'outil en 2026</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Projets Clés -->
+  <section class="py-16 px-4" style="background: var(--main-bg)">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Projets Marquants</h2>
+      <p class="text-xl mb-10 max-w-3xl">
+        Sélection de projets illustrant mon approche : comprendre les besoins, 
+        créer des solutions concrètes, générer des résultats mesurables.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Projet 1 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
+          <div class="flex items-start justify-between mb-3">
+            <h3 class="text-xl font-bold">Application Gestion Camps</h3>
+            <span class="bg-[var(--violet)] text-white border border-black px-2 py-1 text-xs font-medium whitespace-nowrap">
+              En cours
+            </span>
+          </div>
+          <p class="text-sm text-gray-600 mb-3">CPV • 2025 • Application sur-mesure</p>
+          <p class="text-md mb-4">
+            Application de gestion budgétaire pour optimiser la gestion administrative 
+            des camps de vacances. Prototype validé terrain → collaboration officielle.
+          </p>
+          <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 text-sm mb-4">
+            <strong>Résultats :</strong> Prototype validé • Déploiement été 2026 • -70% temps gestion
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Astro</span>
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Supabase</span>
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Projet 2 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
+          <h3 class="text-xl font-bold mb-3">Système RDV & Site Web</h3>
+          <p class="text-sm text-gray-600 mb-3">Barber Concept • 2020-2021 • Web + App métier</p>
+          <p class="text-md mb-4">
+            Système complet de prise de rendez-vous, site web et identité graphique 
+            pour une chaîne de salons de coiffure.
+          </p>
+          <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 text-sm mb-4">
+            <strong>Résultats :</strong> 19'000 utilisateurs • 6 salons • Relation 5 ans
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Node.js</span>
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">PostgreSQL</span>
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Design</span>
+          </div>
+        </div>
+
+        <!-- Projet 3 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
+          <h3 class="text-xl font-bold mb-3">Séquence Emailing Growth</h3>
+          <p class="text-sm text-gray-600 mb-3">Le Matin Dimanche • Mai 2025 • Marketing digital</p>
+          <p class="text-md mb-4">
+            Conception et rédaction d'une séquence d'onboarding complète pour 
+            améliorer la rétention des nouveaux utilisateurs.
+          </p>
+          <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 text-sm mb-4">
+            <strong>Résultats :</strong> +25% rétention • 6 emails • 500+ utilisateurs touchés
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-[var(--yellow)] border border-black text-xs">Copywriting</span>
+            <span class="px-2 py-1 bg-[var(--yellow)] border border-black text-xs">Email Marketing</span>
+            <span class="px-2 py-1 bg-[var(--yellow)] border border-black text-xs">Growth</span>
+          </div>
+        </div>
+
+        <!-- Projet 4 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
+          <h3 class="text-xl font-bold mb-3">Stratégie SEO Cabinet Juridique</h3>
+          <p class="text-sm text-gray-600 mb-3">Client confidentiel • 2024 • SEO & Leads</p>
+          <p class="text-md mb-4">
+            Optimisation SEO complète pour générer des leads qualifiés via 
+            le référencement naturel.
+          </p>
+          <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 text-sm mb-4">
+            <strong>Résultats :</strong> 10+ leads qualifiés (4-5 mois) • Positionnement établi
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-[var(--yellow)] border border-black text-xs">SEO</span>
+            <span class="px-2 py-1 bg-[var(--yellow)] border border-black text-xs">Content Strategy</span>
+            <span class="px-2 py-1 bg-[var(--yellow)] border border-black text-xs">Analytics</span>
+          </div>
+        </div>
+
+        <!-- Projet 5 -->
+        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
+          <h3 class="text-xl font-bold mb-3">Automatisation Club Badminton</h3>
+          <p class="text-sm text-gray-600 mb-3">Club local • 2023-2024 • Process & Automatisation</p>
+          <p class="text-md mb-4">
+            Création de processus automatisés pour optimiser la gestion administrative 
+            d'un club sportif de 100 membres.
+          </p>
+          <div class="bg-emerald-50 border-l-4 border-[var(--blue)] p-3 text-sm mb-4">
+            <strong>Résultats :</strong> 100 membres gérés • Économie plusieurs heures/semaine
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Airtable</span>
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Make</span>
+            <span class="px-2 py-1 bg-[var(--blue)] border border-black text-xs">Zapier</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Compétences -->
+  <section class="py-16 px-4 bg-white border-y-2 border-black">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">Stack & Compétences</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Dev Web -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-code-line text-[var(--blue)]"></i>
+            Développement Web
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Astro</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">React</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Node.js</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">TypeScript</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">JavaScript</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">HTML/CSS</span>
+          </div>
+        </div>
+
+        <!-- Design -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-palette-line text-[var(--blue)]"></i>
+            Design & UI/UX
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Figma</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Tailwind CSS</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">UI/UX Design</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Responsive</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Identité graphique</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-database-2-line text-[var(--blue)]"></i>
+            Backend & Bases de données
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Supabase</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">PostgreSQL</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">APIs RESTful</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Auth</span>
+          </div>
+        </div>
+
+        <!-- Automatisation -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-settings-3-line text-[var(--blue)]"></i>
+            Automatisation & No-Code
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Make</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Zapier</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Airtable</span>
+            <span class="px-3 py-1 bg-[var(--blue)] border border-black text-sm font-medium">Scripts custom</span>
+          </div>
+        </div>
+
+        <!-- Marketing -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-megaphone-line text-[var(--yellow)]"></i>
+            Marketing Digital
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-[var(--yellow)] border border-black text-sm font-medium">SEO/SEM</span>
+            <span class="px-3 py-1 bg-[var(--yellow)] border border-black text-sm font-medium">Copywriting</span>
+            <span class="px-3 py-1 bg-[var(--yellow)] border border-black text-sm font-medium">Email Marketing</span>
+            <span class="px-3 py-1 bg-[var(--yellow)] border border-black text-sm font-medium">Growth Hacking</span>
+            <span class="px-3 py-1 bg-[var(--yellow)] border border-black text-sm font-medium">Analytics</span>
+          </div>
+        </div>
+
+        <!-- IA -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-brain-line text-[var(--violet)]"></i>
+            Intelligence Artificielle
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-[var(--violet)] text-white border border-black text-sm font-medium">Prompt Engineering</span>
+            <span class="px-3 py-1 bg-[var(--violet)] text-white border border-black text-sm font-medium">Claude</span>
+            <span class="px-3 py-1 bg-[var(--violet)] text-white border border-black text-sm font-medium">ChatGPT</span>
+            <span class="px-3 py-1 bg-[var(--violet)] text-white border border-black text-sm font-medium">Workflows IA</span>
+          </div>
+        </div>
+
+        <!-- Blockchain -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-money-dollar-circle-line text-gray-600"></i>
+            Blockchain & Web3
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">Solidity</span>
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">Web3.js</span>
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">Smart Contracts</span>
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">DeFi</span>
+          </div>
+        </div>
+
+        <!-- Outils -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i class="ri-tools-line text-gray-600"></i>
+            Outils & Workflow
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">Git/GitHub</span>
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">VS Code</span>
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">Vercel/Netlify</span>
+            <span class="px-3 py-1 bg-gray-200 border border-black text-sm font-medium">Markdown</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="mt-10 bg-white border-2 border-black p-6">
+        <h3 class="text-xl font-bold mb-4">Compétences transversales</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-md">
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--blue)] text-xl">✓</span>
+            <span><strong>Pédagogie & Formation</strong> - Vulgarisation de concepts techniques</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--blue)] text-xl">✓</span>
+            <span><strong>Gestion de projets</strong> - De la conception à la livraison</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--blue)] text-xl">✓</span>
+            <span><strong>Communication</strong> - Clients techniques et non-techniques</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--blue)] text-xl">✓</span>
+            <span><strong>Vision stratégique</strong> - Conseil au-delà de l'exécution</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--blue)] text-xl">✓</span>
+            <span><strong>Polyvalence</strong> - Approche globale (tech + business + design)</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--blue)] text-xl">✓</span>
+            <span><strong>Autonomie</strong> - Freelance depuis 2020, gestion complète</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Langues -->
+  <section class="py-12 px-4" style="background: var(--main-bg)">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Langues</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white border-2 border-black p-4">
+          <h3 class="text-lg font-bold mb-1">Français</h3>
+          <p class="text-md text-gray-600">Langue maternelle</p>
+        </div>
+        <div class="bg-white border-2 border-black p-4">
+          <h3 class="text-lg font-bold mb-1">Anglais</h3>
+          <p class="text-md text-gray-600">Technique B1 (lecture documentation, communication pro)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Centres d'intérêt -->
+  <section class="py-16 px-4 bg-white border-y-2 border-black">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Au-delà du code</h2>
+      <p class="text-lg mb-8 text-gray-700">
+        Mes passions enrichissent ma vision créative et ma capacité à penser différemment les projets.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="border-2 border-black p-5">
+          <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+            🸠Badminton
+          </h3>
+          <p class="text-md text-gray-700">
+            Pratique régulière + support technique et automatisation pour clubs sportifs.
+            <span class="block mt-1 text-sm text-gray-600">Gestion d'événements, travail d'équipe, process organisationnels</span>
+          </p>
+        </div>
+
+        <div class="border-2 border-black p-5">
+          <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+            📷 Photographie
+          </h3>
+          <p class="text-md text-gray-700">
+            Capturer des moments et raconter des histoires visuelles.
+            <span class="block mt-1 text-sm text-gray-600">Composition, storytelling visuel, design graphique</span>
+          </p>
+        </div>
+
+        <div class="border-2 border-black p-5">
+          <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+            🎲 Jeux de Société
+          </h3>
+          <p class="text-md text-gray-700">
+            Animation de communauté, newsletter, emploi actuel en ludothèque (temps partiel).
+            <span class="block mt-1 text-sm text-gray-600">Animation, curation de contenu, gestion de communauté</span>
+          </p>
+        </div>
+
+        <div class="border-2 border-black p-5">
+          <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+            💰 Cryptomonnaies & Blockchain
+          </h3>
+          <p class="text-md text-gray-700">
+            Exploration approfondie de l'écosystème (2021-2024), newsletter passée.
+            <span class="block mt-1 text-sm text-gray-600">Analyse macro/micro, veille technologique, innovation financière</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CV + CTA Final -->
+  <section class="py-16 px-4" style="background: var(--main-bg)">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="bg-white border-3 border-black p-10 shadow-[6px_6px_0px_rgba(0,0,0,0.3)]">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Prêt à discuter d'une opportunité ?
+        </h2>
+        
+        <!-- CTA Download -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+          <a
+            href="/cv-jonathan-vouilloz.pdf"
+            download
+            class="
+              bg-[var(--blue)] border-2 border-black
+              px-8 py-4 text-lg font-medium
+              shadow-[3px_3px_0px_rgba(0,0,0,1)]
+              transition-all duration-200
+              hover:bg-[var(--yellow)]
+              hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+              hover:translate-x-[2px] hover:translate-y-[2px]
+              inline-flex items-center gap-2
+            "
+          >
+            <i class="ri-download-line"></i>
+            Télécharger le CV (PDF)
+          </a>
+
+          <a
+            href="/contact"
+            class="
+              bg-white border-2 border-black
+              px-8 py-4 text-lg font-medium
+              transition-all duration-200
+              hover:bg-[var(--yellow)]
+              inline-flex items-center gap-2
+            "
+          >
+            Discuter d'une opportunité
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+
+        <!-- Infos contact -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-6 border-t-2 border-black">
+          <div class="text-center">
+            <i class="ri-mail-line text-2xl text-[var(--blue)] mb-1"></i>
+            <p class="text-sm font-medium">Email</p>
+            <a href="mailto:contact@jonlabs.ch" class="text-sm text-gray-600 hover:text-[var(--blue)]">
+              contact@jonlabs.ch
+            </a>
+          </div>
+          <div class="text-center">
+            <i class="ri-linkedin-box-fill text-2xl text-[var(--blue)] mb-1"></i>
+            <p class="text-sm font-medium">LinkedIn</p>
+            <a href="https://linkedin.com/in/jonathan-vouilloz" target="_blank" class="text-sm text-gray-600 hover:text-[var(--blue)]">
+              /jonathan-vouilloz
+            </a>
+          </div>
+          <div class="text-center">
+            <i class="ri-github-fill text-2xl text-[var(--blue)] mb-1"></i>
+            <p class="text-sm font-medium">GitHub</p>
+            <a href="https://github.com/jonathanvouilloz" target="_blank" class="text-sm text-gray-600 hover:text-[var(--blue)]">
+              /jonathanvouilloz
+            </a>
+          </div>
+          <div class="text-center">
+            <i class="ri-folder-3-line text-2xl text-[var(--blue)] mb-1"></i>
+            <p class="text-sm font-medium">Portfolio</p>
+            <a href="/portfolio" class="text-sm text-gray-600 hover:text-[var(--blue)]">
+              jonlabs.ch/portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Animations personnalisées si nécessaire */
+</style>

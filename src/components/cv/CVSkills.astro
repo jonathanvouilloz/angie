@@ -1,0 +1,182 @@
+---
+// Skills section - "Analyse des Compétences" - Section interactive
+
+const skillCategories = [
+  {
+    id: "dev",
+    title: "Développement Web",
+    icon: "ri-code-s-slash-line",
+    color: "blue",
+    skills: ["Astro", "React", "Node.js", "TypeScript", "JavaScript", "HTML/CSS", "Webflow", "Framer"]
+  },
+  {
+    id: "design",
+    title: "Design & UI/UX",
+    icon: "ri-palette-line",
+    color: "blue",
+    skills: ["Figma", "Tailwind CSS", "UI/UX Design", "Responsive", "Identité graphique"]
+  },
+  {
+    id: "backend",
+    title: "Backend & BDD",
+    icon: "ri-database-2-line",
+    color: "blue",
+    skills: ["Supabase", "PostgreSQL", "APIs RESTful", "Auth", "Architecture données"]
+  },
+  {
+    id: "automation",
+    title: "Automatisation",
+    icon: "ri-settings-3-line",
+    color: "blue",
+    skills: ["Make", "Airtable", "Scripts custom", "Intégrations API", "n8n"]
+  },
+  {
+    id: "marketing",
+    title: "Marketing Digital",
+    icon: "ri-megaphone-line",
+    color: "yellow",
+    skills: ["SEO/SEM", "Copywriting", "Email Marketing", "Analytics", "Content Strategy"]
+  },
+  {
+    id: "ai",
+    title: "Intelligence Artificielle",
+    icon: "ri-brain-line",
+    color: "violet",
+    skills: ["Prompt Engineering", "Claude", "MCP", "Claude Code", "Workflows IA", "Cursor"]
+  },
+  {
+    id: "blockchain",
+    title: "Blockchain & Web3",
+    icon: "ri-coin-line",
+    color: "gray",
+    skills: ["Analyse fondamentale", "Économie crypto", "Histoire blockchain", "Concepts DeFi", "Veille marché"]
+  },
+  {
+    id: "tools",
+    title: "Outils & Workflow",
+    icon: "ri-tools-line",
+    color: "gray",
+    skills: ["Git/GitHub", "VS Code", "Vercel/Netlify", "Markdown", "Documentation"]
+  }
+];
+
+const softSkills = [
+  { title: "Pédagogie & Formation", description: "Vulgarisation de concepts techniques", icon: "ri-presentation-line" },
+  { title: "Gestion de projets", description: "De la conception à la livraison", icon: "ri-task-line" },
+  { title: "Communication", description: "Clients techniques et non-techniques", icon: "ri-chat-3-line" },
+  { title: "Vision stratégique", description: "Conseil au-delà de l'exécution", icon: "ri-lightbulb-line" },
+  { title: "Polyvalence", description: "Tech + business + design", icon: "ri-apps-2-line" },
+  { title: "Autonomie", description: "Freelance depuis 2020", icon: "ri-user-star-line" }
+];
+
+const getColorClass = (color: string) => {
+  switch(color) {
+    case 'blue': return 'bg-[var(--blue)]';
+    case 'yellow': return 'bg-[var(--yellow)]';
+    case 'violet': return 'bg-[var(--violet)] text-white';
+    case 'gray': return 'bg-gray-200';
+    default: return 'bg-[var(--blue)]';
+  }
+};
+
+const getIconBgClass = (color: string) => {
+  switch(color) {
+    case 'blue': return 'bg-[var(--blue)]';
+    case 'yellow': return 'bg-[var(--yellow)]';
+    case 'violet': return 'bg-[var(--violet)] text-white';
+    case 'gray': return 'bg-gray-300';
+    default: return 'bg-[var(--blue)]';
+  }
+};
+---
+
+<section class="cv-section cv-skills-section py-16 px-4 bg-white border-y-2 border-black">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header -->
+    <div class="flex items-center gap-4 mb-10">
+      <div class="flex items-center justify-center w-12 h-12 bg-[var(--blue)] border-2 border-black">
+        <i class="ri-stack-line text-2xl"></i>
+      </div>
+      <div>
+        <span class="text-xs font-mono text-gray-500 tracking-widest block">SECTION 05</span>
+        <h2 class="text-3xl md:text-4xl font-bold">Stack & Compétences</h2>
+      </div>
+    </div>
+
+    <!-- Skills grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {skillCategories.map((category, catIndex) => (
+        <div
+          class="skill-category border-2 border-black p-5 bg-white transition-all duration-300 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.15)] group"
+          data-category={category.id}
+        >
+          <!-- Header -->
+          <div class="flex items-center gap-3 mb-4">
+            <div class={`w-10 h-10 flex items-center justify-center border-2 border-black transition-transform duration-300 group-hover:scale-110 ${getIconBgClass(category.color)}`}>
+              <i class={`${category.icon} text-xl`}></i>
+            </div>
+            <h3 class="text-sm font-bold leading-tight">{category.title}</h3>
+          </div>
+
+          <!-- Skills -->
+          <div class="flex flex-wrap gap-2">
+            {category.skills.map((skill, skillIndex) => (
+              <span
+                class={`skill-badge px-2 py-1 border border-black text-xs font-medium transition-all duration-200 hover:scale-105 cursor-default ${getColorClass(category.color)}`}
+                style={`animation-delay: ${catIndex * 0.1 + skillIndex * 0.05}s`}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="bg-[var(--main-bg)] border-2 border-black p-6">
+      <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+        <i class="ri-user-heart-line text-[var(--violet)]"></i>
+        Compétences transversales
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {softSkills.map((skill, index) => (
+          <div
+            class="flex items-start gap-3 p-3 bg-white border border-black transition-all duration-200 hover:border-[var(--blue)] hover:shadow-[2px_2px_0px_rgba(0,0,0,0.1)] group"
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <div class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-[var(--blue)] group-hover:bg-[var(--blue)] group-hover:text-white transition-colors">
+              <i class={`${skill.icon}`}></i>
+            </div>
+            <div>
+              <span class="font-bold text-sm block">{skill.title}</span>
+              <span class="text-xs text-gray-600">{skill.description}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap items-center gap-4 mt-6 pt-4 border-t border-dashed border-gray-300 text-xs text-gray-500">
+      <span class="font-medium">Légende :</span>
+      <span class="flex items-center gap-1">
+        <span class="w-3 h-3 bg-[var(--blue)] border border-black"></span>
+        Tech actuelle
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="w-3 h-3 bg-[var(--yellow)] border border-black"></span>
+        Marketing
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="w-3 h-3 bg-[var(--violet)] border border-black"></span>
+        IA
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="w-3 h-3 bg-gray-200 border border-black"></span>
+        Expérience passée
+      </span>
+    </div>
+  </div>
+</section>

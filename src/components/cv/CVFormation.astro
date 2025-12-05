@@ -1,0 +1,100 @@
+---
+// Formation section - "Certifications"
+
+const formations = [
+  {
+    title: "Bachelor HES en Informatique de Gestion",
+    school: "Haute École de Gestion (HEG) - Genève",
+    years: "2017 - 2020",
+    type: "diploma"
+  },
+  {
+    title: "CFC Informaticien de Gestion",
+    school: "École Supérieure d'Informatique de Gestion (ESIG) - Genève",
+    years: "2015 - 2017",
+    type: "diploma"
+  }
+];
+
+const continuousLearning = [
+  { label: "Marketing Digital & Copywriting", sublabel: "École des Copywriters (Stan Leloup)", period: "2024-2025", icon: "ri-megaphone-line", active: true },
+  { label: "SEO & Référencement Naturel", period: "2025", icon: "ri-search-eye-line", active: true },
+  { label: "Blockchain & Web3", period: "2021-2024", icon: "ri-coin-line" },
+  { label: "Intelligence Artificielle & Prompt Engineering", period: "2024-2025", icon: "ri-brain-line", active: true }
+];
+---
+
+<section class="cv-section cv-formation py-16 px-4" style="background: var(--main-bg)">
+  <div class="max-w-4xl mx-auto">
+    <!-- Section header -->
+    <div class="flex items-center gap-4 mb-10">
+      <div class="flex items-center justify-center w-12 h-12 bg-[var(--violet)] border-2 border-black">
+        <i class="ri-graduation-cap-line text-2xl text-white"></i>
+      </div>
+      <div>
+        <span class="text-xs font-mono text-gray-500 tracking-widest block">SECTION 02</span>
+        <h2 class="text-3xl md:text-4xl font-bold">Formation</h2>
+      </div>
+    </div>
+
+    <!-- Main diplomas -->
+    <div class="space-y-6 mb-10">
+      {formations.map((formation, index) => (
+        <div class="relative bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.2)] group hover:shadow-[6px_6px_0px_rgba(0,0,0,0.2)] transition-all duration-200">
+          <!-- Stamp effect -->
+          <div class="absolute -top-3 -right-3 bg-[var(--blue)] border-2 border-black px-3 py-1 rotate-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] z-10">
+            <span class="font-mono text-xs font-bold">VALIDÉ</span>
+          </div>
+
+          <!-- Corner markers -->
+          <div class="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-black opacity-30"></div>
+          <div class="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-black opacity-30"></div>
+          <div class="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-black opacity-30"></div>
+          <div class="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-black opacity-30"></div>
+
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold mb-2">{formation.title}</h3>
+              <p class="text-gray-600 flex items-center gap-2">
+                <i class="ri-building-line text-[var(--blue)]"></i>
+                {formation.school}
+              </p>
+            </div>
+            <div class="bg-[var(--main-bg)] border-2 border-black px-4 py-2 text-center min-w-[120px]">
+              <span class="font-mono text-sm font-bold">{formation.years}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Continuous learning -->
+    <div class="bg-white border-2 border-black p-6">
+      <h4 class="text-lg font-bold mb-5 flex items-center gap-2">
+        <i class="ri-book-open-line text-[var(--blue)]"></i>
+        Formations continues
+        <span class="text-xs font-normal text-gray-500 ml-2">(autodidacte & certifications)</span>
+      </h4>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {continuousLearning.map((item) => (
+          <div class={`flex items-center gap-3 p-3 border ${item.active ? 'border-[var(--violet)] bg-purple-50' : 'border-gray-200'} transition-all duration-200 hover:border-[var(--blue)] hover:bg-emerald-50 group`}>
+            <div class={`w-8 h-8 flex items-center justify-center ${item.active ? 'bg-[var(--violet)] text-white' : 'bg-gray-100'} group-hover:bg-[var(--blue)] group-hover:text-black transition-colors`}>
+              <i class={`${item.icon} text-lg`}></i>
+            </div>
+            <div class="flex-1">
+              <span class="text-sm font-medium block">{item.label}</span>
+              {item.sublabel && <span class="text-xs text-gray-600 block">{item.sublabel}</span>}
+              <span class="text-xs text-gray-500">{item.period}</span>
+            </div>
+            {item.active && (
+              <span class="px-2 py-0.5 bg-[var(--violet)] text-white text-xs font-bold">
+                EN COURS
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+---
+// Composant Modal réutilisable - Style brutaliste Lab
+
+interface Props {
+  id: string;
+  title: string;
+  message: string;
+  buttonText?: string;
+  icon?: string;
+  iconColor?: string;
+  cornerColor?: string;
+  spinning?: boolean;
+}
+
+const {
+  id,
+  title,
+  message,
+  buttonText = "Compris",
+  icon = "ri-loader-4-line",
+  iconColor = "var(--violet)",
+  cornerColor = "var(--yellow)",
+  spinning = true
+} = Astro.props;
+---
+
+<div id={id} class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-close-modal></div>
+
+  <!-- Modal content -->
+  <div class="modal-content relative bg-white border-3 border-black p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] max-w-md mx-4">
+    <!-- Corner markers -->
+    <div class="absolute -top-1.5 -left-1.5 w-3 h-3 border-2 border-black" style={`background: ${cornerColor}`}></div>
+    <div class="absolute -top-1.5 -right-1.5 w-3 h-3 border-2 border-black" style={`background: ${cornerColor}`}></div>
+    <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 border-2 border-black" style={`background: ${cornerColor}`}></div>
+    <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 border-2 border-black" style={`background: ${cornerColor}`}></div>
+
+    <!-- Header -->
+    <div class="flex items-center gap-3 mb-4">
+      <i class={`${icon} text-2xl ${spinning ? 'animate-spin' : ''}`} style={`color: ${iconColor}`}></i>
+      <span class="font-mono text-sm tracking-wider text-gray-500">STATUT</span>
+    </div>
+
+    <!-- Content -->
+    <h3 class="text-2xl font-black mb-3">{title}</h3>
+    <p class="text-gray-600 mb-6">{message}</p>
+
+    <!-- Button -->
+    <button
+      data-close-modal
+      class="bg-[var(--blue)] border-2 border-black px-6 py-3 font-bold shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all hover:bg-[var(--yellow)]"
+    >
+      {buttonText}
+    </button>
+  </div>
+</div>
+
+<style>
+  .modal-content {
+    animation: modalEnter 0.2s ease-out;
+  }
+
+  @keyframes modalEnter {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
