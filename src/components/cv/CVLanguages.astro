@@ -1,0 +1,91 @@
+---
+// Languages section - "Communication"
+
+const languages = [
+  {
+    name: "Français",
+    level: "Langue maternelle",
+    sublevel: "Rédaction, communication client, documentation",
+    percentage: 100,
+    flagCode: "ch"
+  },
+  {
+    name: "Anglais",
+    level: "Technique B1",
+    sublevel: "Lecture documentation, communication professionnelle",
+    percentage: 60,
+    flagCode: "gb"
+  }
+];
+---
+
+<section class="cv-section cv-languages py-12 px-4" style="background: var(--main-bg)">
+  <div class="max-w-4xl mx-auto">
+    <!-- Section header -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center justify-center w-10 h-10 bg-white border-2 border-black">
+        <i class="ri-translate-2 text-xl"></i>
+      </div>
+      <div>
+        <span class="text-xs font-mono text-gray-500 tracking-widest block">SECTION 06</span>
+        <h2 class="text-2xl md:text-3xl font-bold">Langues</h2>
+      </div>
+    </div>
+
+    <!-- Languages grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {languages.map((lang) => (
+        <div class="bg-white border-2 border-black p-5 transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-6 border border-black overflow-hidden flex-shrink-0">
+              {lang.flagCode === "ch" && (
+                <svg viewBox="0 0 32 24" class="w-full h-full">
+                  <rect width="32" height="24" fill="#FF0000"/>
+                  <rect x="13" y="6" width="6" height="12" fill="#FFFFFF"/>
+                  <rect x="10" y="9" width="12" height="6" fill="#FFFFFF"/>
+                </svg>
+              )}
+              {lang.flagCode === "gb" && (
+                <svg viewBox="0 0 60 30" class="w-full h-full">
+                  <rect width="60" height="30" fill="#012169"/>
+                  <path d="M0,0 L60,30 M60,0 L0,30" stroke="#FFFFFF" stroke-width="6"/>
+                  <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#clip)"/>
+                  <path d="M30,0 V30 M0,15 H60" stroke="#FFFFFF" stroke-width="10"/>
+                  <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/>
+                </svg>
+              )}
+            </div>
+            <div>
+              <h3 class="text-lg font-bold">{lang.name}</h3>
+              <p class="text-sm text-gray-600">{lang.level}</p>
+            </div>
+          </div>
+
+          {lang.sublevel && (
+            <p class="text-xs text-gray-500 mb-3">{lang.sublevel}</p>
+          )}
+
+          <!-- Progress bar -->
+          <div class="h-2 bg-gray-200 border border-black overflow-hidden">
+            <div
+              class="h-full bg-[var(--blue)] transition-all duration-1000 ease-out language-bar"
+              style={`width: ${lang.percentage}%`}
+            ></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .language-bar {
+    transform-origin: left;
+    animation: fillBar 1s ease-out forwards;
+  }
+
+  @keyframes fillBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+</style>

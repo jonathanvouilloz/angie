@@ -1,0 +1,165 @@
+---
+import { author } from '../../sample'
+---
+
+<section class="cv-hero py-16 md:py-24 px-4 relative" style="background: var(--main-bg); overflow: clip;">
+  <!-- Decorative background elements - contained within section -->
+  <div class="absolute top-20 right-0 w-64 md:w-96 h-64 md:h-96 bg-[var(--blue)] opacity-5 rounded-full blur-3xl pointer-events-none" style="max-width: 50vw;"></div>
+  <div class="absolute bottom-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-[var(--violet)] opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Grid pattern overlay -->
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+  <div class="max-w-4xl mx-auto relative">
+    <!-- Dossier Label -->
+    <div class="cv-hero-animate mb-6">
+      <div class="inline-flex items-center gap-3 bg-white border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+        <span class="font-mono text-xs tracking-widest text-gray-500">DOSSIER</span>
+        <span class="font-mono text-sm font-bold">N°001</span>
+        <div class="w-2 h-2 bg-[var(--blue)] rounded-full animate-pulse"></div>
+      </div>
+    </div>
+
+    <!-- Main Hero Card -->
+    <div class="cv-hero-animate bg-white border-3 border-black p-8 md:p-12 shadow-[8px_8px_0px_rgba(0,0,0,0.2)] relative">
+      <!-- Corner markers -->
+      <div class="absolute -top-1.5 -left-1.5 w-3 h-3 border-2 border-black bg-white"></div>
+      <div class="absolute -top-1.5 -right-1.5 w-3 h-3 border-2 border-black bg-white"></div>
+      <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 border-2 border-black bg-white"></div>
+      <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 border-2 border-black bg-white"></div>
+
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <div class="flex-1">
+          <!-- Name -->
+          <h1 class="cv-hero-animate text-4xl md:text-5xl lg:text-6xl font-black mb-3 tracking-tight">
+            Jonathan Vouilloz
+          </h1>
+
+          <!-- Title with highlight -->
+          <p class="cv-hero-animate text-xl md:text-2xl font-medium text-gray-700 mb-2">
+            <span class="relative inline-block">
+              <span class="relative z-10">Informaticien de gestion</span>
+              <span class="absolute bottom-0 left-0 w-full h-[40%] bg-[var(--accent)] -z-0"></span>
+            </span>
+            <span class="text-gray-400 mx-2">&</span>
+            <span class="relative inline-block">
+              <span class="relative z-10">Créateur digital</span>
+              <span class="absolute bottom-0 left-0 w-full h-[40%] bg-[var(--accent)] -z-0"></span>
+            </span>
+          </p>
+
+          <!-- Diploma -->
+          <p class="cv-hero-animate text-lg text-gray-600 flex items-center gap-2">
+            <i class="ri-graduation-cap-line text-[var(--blue)]"></i>
+            Bachelor HES en Informatique de Gestion
+          </p>
+        </div>
+
+        <!-- Badges -->
+        <div class="cv-hero-animate flex flex-col gap-3">
+          <!-- Disponible badge -->
+          <div class="inline-flex items-center gap-2 bg-[var(--blue)] border-2 border-black px-4 py-2.5 shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+            </span>
+            <span class="text-sm font-bold">Disponible pour opportunités</span>
+          </div>
+
+          <!-- Location badge -->
+          <div class="inline-flex items-center gap-2 bg-white border-2 border-black px-4 py-2.5">
+            <i class="ri-map-pin-2-fill text-[var(--violet)]"></i>
+            <span class="text-sm font-medium">Genève, Suisse</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA & Social Links -->
+      <div class="cv-hero-animate flex flex-col md:flex-row items-start md:items-center gap-6 mt-10 pt-8 border-t-2 border-black border-dashed">
+        <!-- Download CTA -->
+        <button
+          data-open-cv-modal
+          class="
+            inline-flex items-center gap-3
+            bg-[var(--blue)] border-2 border-black
+            px-6 py-3.5
+            font-bold text-base
+            shadow-[4px_4px_0px_rgba(0,0,0,1)]
+            transition-all duration-200
+            hover:bg-[var(--yellow)]
+            hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+            hover:translate-x-[2px] hover:translate-y-[2px]
+            focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
+            group
+            cursor-pointer
+          "
+        >
+          <i class="ri-download-2-line text-xl group-hover:animate-bounce"></i>
+          Télécharger le CV (PDF)
+        </button>
+
+        <!-- Social Links -->
+        <div class="flex items-center gap-4 md:ml-auto">
+          <span class="text-sm text-gray-500 font-medium hidden md:block">Me contacter</span>
+          <div class="flex gap-2">
+            <a
+              href={`mailto:${author.email}`}
+              class="
+                w-11 h-11 flex items-center justify-center
+                border-2 border-black bg-white
+                transition-all duration-200
+                hover:bg-[var(--blue)] hover:translate-y-[-2px] hover:shadow-[0_4px_0px_rgba(0,0,0,1)]
+                focus:ring-2 focus:ring-black focus:outline-none
+              "
+              aria-label="Email"
+            >
+              <i class="ri-mail-fill text-lg"></i>
+            </a>
+            <a
+              href={author.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                w-11 h-11 flex items-center justify-center
+                border-2 border-black bg-white
+                transition-all duration-200
+                hover:bg-[var(--blue)] hover:translate-y-[-2px] hover:shadow-[0_4px_0px_rgba(0,0,0,1)]
+                focus:ring-2 focus:ring-black focus:outline-none
+              "
+              aria-label="LinkedIn"
+            >
+              <i class="ri-linkedin-fill text-lg"></i>
+            </a>
+            <a
+              href={author.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="
+                w-11 h-11 flex items-center justify-center
+                border-2 border-black bg-white
+                transition-all duration-200
+                hover:bg-[var(--blue)] hover:translate-y-[-2px] hover:shadow-[0_4px_0px_rgba(0,0,0,1)]
+                focus:ring-2 focus:ring-black focus:outline-none
+              "
+              aria-label="GitHub"
+            >
+              <i class="ri-github-fill text-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative scan line - hidden on smaller screens to prevent overflow -->
+    <div class="cv-hero-animate absolute right-4 top-1/2 -translate-y-1/2 hidden xl:block">
+      <div class="w-1 h-32 bg-gradient-to-b from-transparent via-[var(--blue)] to-transparent opacity-50 animate-pulse"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scan {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+</style>

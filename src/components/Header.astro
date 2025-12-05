@@ -1,5 +1,5 @@
 ---
-import logoStar from '../assets/logo-star.svg'
+import logoBottle from '../assets/bottle-lab.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 import { author, cta } from '../sample'
 
@@ -16,6 +16,7 @@ const links: NavLink[] = [
     { name: 'Lab', path: '/lab/', target: '_self' },
     { name: 'Blog', path: '/blog/', target: '_self' },
     { name: 'About', path: '/about/', target: '_self' },
+    { name: 'CV', path: '/cv/', target: '_self' },
 ]
 
 const { pathname } = Astro.url
@@ -26,7 +27,7 @@ const { pathname } = Astro.url
     <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -left-8 -bottom-5 hidden md:block" />
 
 
-    <div class="flex border-3 border-black bg-white max-w-[360px] md:max-w-3xl m-auto relative z-10">
+    <div class="flex border-3 border-black bg-white max-w-[360px] md:max-w-6xl m-auto relative z-10">
         <!-- top boxes -->
         <div class="size-2 bg-white border-2 border-black absolute -top-2 -right-2"></div>
         <div class="size-2 bg-white border-2 border-black absolute -top-2 -left-2"></div>
@@ -39,7 +40,7 @@ const { pathname } = Astro.url
             <div class="flex-1 font-bold">
                 <a href="/" class="flex items-center gap-2 pl-3 group">
                     <img
-                        src={logoStar.src}
+                        src={logoBottle.src}
                         alt="Jon Labs logo"
                         width="26"
                         class="transition-transform duration-300 group-hover:rotate-12"
@@ -58,25 +59,25 @@ const { pathname } = Astro.url
             </button>
             <ul class="hidden md:flex items-center">
                 {links.map((item) => (
-                    <li class="border-l-2 border-black p-2 py-3">
+                    <li class="relative px-1 py-3 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[2px] before:bg-black">
                         <a
                             href={item.path}
                             target={item.target}
-                            class={`
-                                relative flex items-center whitespace-nowrap px-1
-                                before:absolute before:left-0 before:bottom-1
-                                before:h-[8px] before:w-0 before:bg-[var(--accent)]
-                                before:transition-all before:duration-300
-                                hover:before:w-full
-                                ${pathname === item.path ? 'bg-[var(--accent)]' : ''}
-                            `}
+                            class="relative flex items-center whitespace-nowrap px-5 py-1 group"
                         >
-                            <span class="relative z-10">{item.name}</span>
+                            <span class={`
+                                relative
+                                before:absolute before:left-0 before:-bottom-1
+                                before:h-[6px] before:w-0 before:bg-[var(--accent)]
+                                before:transition-all before:duration-300
+                                group-hover:before:w-full
+                                ${pathname === item.path ? 'before:w-full' : ''}
+                            `}>{item.name}</span>
                         </a>
                     </li>
                 ))}
                 {/* CTA Contact avec effet "stamp" */}
-                <li class="border-l-2 border-black p-2 py-2 flex items-center">
+                <li class="relative px-2 py-2 flex items-center">
                     <a
                         href="/contact/"
                         class="
@@ -100,7 +101,7 @@ const { pathname } = Astro.url
   </header>
 
   <div
-    class="block md:hidden fixed left-0 top-0 h-full w-full bg-white z-20 p-3 transition-all duration-300 -translate-x-[100%]"
+    class="block md:hidden fixed inset-0 bg-white z-50 p-3 transition-all duration-300 -translate-x-[100%] overflow-y-auto"
     id="menu-content"
     role="dialog"
     aria-modal="true"

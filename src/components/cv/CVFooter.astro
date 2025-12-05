@@ -1,0 +1,116 @@
+---
+// CV Footer section - "Contact Protocol"
+
+import { author } from '../../sample'
+---
+
+<section class="cv-section cv-footer py-16 px-4" style="background: var(--main-bg)">
+  <div class="max-w-4xl mx-auto">
+    <!-- Main CTA Card -->
+    <div class="bg-white border-3 border-black p-10 shadow-[8px_8px_0px_rgba(0,0,0,0.2)] text-center relative" id="contact-card">
+      <!-- Pixel explosion container -->
+      <div class="pixel-explosion-container absolute inset-0 pointer-events-none overflow-visible z-20" id="pixel-explosion"></div>
+      <!-- Corner markers -->
+      <div class="absolute -top-1.5 -left-1.5 w-3 h-3 border-2 border-black bg-[var(--blue)]"></div>
+      <div class="absolute -top-1.5 -right-1.5 w-3 h-3 border-2 border-black bg-[var(--blue)]"></div>
+      <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 border-2 border-black bg-[var(--blue)]"></div>
+      <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 border-2 border-black bg-[var(--blue)]"></div>
+
+      <!-- Protocol label -->
+      <div class="inline-flex items-center gap-2 bg-[var(--main-bg)] border-2 border-black px-4 py-2 mb-6">
+        <span class="font-mono text-xs tracking-widest text-gray-500">PROTOCOLE</span>
+        <span class="font-mono text-sm font-bold">CONTACT</span>
+      </div>
+
+      <h2 class="text-3xl md:text-4xl font-black mb-4">
+        Prêt à collaborer ?
+      </h2>
+
+      <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
+        Que ce soit pour un projet, une opportunité ou simplement échanger, je suis disponible.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <!-- Primary CTA -->
+        <a
+          href="/contact"
+          class="
+            inline-flex items-center gap-3
+            bg-[var(--blue)] border-2 border-black
+            px-8 py-4
+            font-bold text-lg
+            shadow-[4px_4px_0px_rgba(0,0,0,1)]
+            transition-all duration-200
+            hover:bg-[var(--yellow)]
+            hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+            hover:translate-x-[2px] hover:translate-y-[2px]
+            focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
+            group
+          "
+        >
+          Discuter d'une opportunité
+          <i class="ri-arrow-right-line text-xl group-hover:translate-x-1 transition-transform"></i>
+        </a>
+
+        <!-- Secondary CTA -->
+        <button
+          data-open-cv-modal
+          class="
+            inline-flex items-center gap-2
+            bg-white border-2 border-black
+            px-6 py-4
+            font-medium text-base
+            transition-all duration-200
+            hover:bg-gray-100
+            focus:ring-2 focus:ring-black focus:outline-none
+            cursor-pointer
+          "
+        >
+          <i class="ri-download-2-line"></i>
+          Télécharger le CV (PDF)
+        </button>
+      </div>
+
+      <!-- Contact info grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t-2 border-black border-dashed">
+        <a href={`mailto:${author.email}`} class="group text-center p-3 hover:bg-emerald-50 transition-colors">
+          <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center border-2 border-black bg-white group-hover:bg-[var(--blue)] transition-colors">
+            <i class="ri-mail-line text-2xl"></i>
+          </div>
+          <span class="text-sm font-medium block">Email</span>
+          <span class="text-xs text-gray-500 group-hover:text-[var(--blue)] transition-colors">contact@jonlabs.ch</span>
+        </a>
+
+        <a href={author.linkedin} target="_blank" class="group text-center p-3 hover:bg-emerald-50 transition-colors">
+          <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center border-2 border-black bg-white group-hover:bg-[var(--blue)] transition-colors">
+            <i class="ri-linkedin-box-fill text-2xl"></i>
+          </div>
+          <span class="text-sm font-medium block">LinkedIn</span>
+          <span class="text-xs text-gray-500 group-hover:text-[var(--blue)] transition-colors">/jonathan-vouilloz</span>
+        </a>
+
+        <a href={author.github} target="_blank" class="group text-center p-3 hover:bg-emerald-50 transition-colors">
+          <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center border-2 border-black bg-white group-hover:bg-[var(--blue)] transition-colors">
+            <i class="ri-github-fill text-2xl"></i>
+          </div>
+          <span class="text-sm font-medium block">GitHub</span>
+          <span class="text-xs text-gray-500 group-hover:text-[var(--blue)] transition-colors">/jonathanvouilloz</span>
+        </a>
+
+        <a href="/portfolio" class="group text-center p-3 hover:bg-emerald-50 transition-colors">
+          <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center border-2 border-black bg-white group-hover:bg-[var(--blue)] transition-colors">
+            <i class="ri-folder-3-line text-2xl"></i>
+          </div>
+          <span class="text-sm font-medium block">Portfolio</span>
+          <span class="text-xs text-gray-500 group-hover:text-[var(--blue)] transition-colors">jonlabs.ch/portfolio</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer note -->
+    <p class="text-center text-sm text-gray-400 mt-6">
+      CV interactif — Dernière mise à jour : Décembre 2024
+    </p>
+  </div>
+</section>
