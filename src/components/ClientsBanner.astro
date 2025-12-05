@@ -1,0 +1,27 @@
+---
+// Placeholder clients/partners
+const clients = [
+    { name: 'Startup Alpha' },
+    { name: 'TechCorp' },
+    { name: 'Agence Beta' },
+    { name: 'Studio Gamma' },
+    { name: 'Conseil Delta' },
+]
+---
+
+<section class="py-8 border-y border-gray-200">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+            <span class="text-sm text-gray-400 font-medium uppercase tracking-wider shrink-0">
+                Ils m'ont fait confiance
+            </span>
+            <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:gap-x-12">
+                {clients.map((client) => (
+                    <span class="text-gray-400 font-medium text-sm md:text-base tracking-wide hover:text-gray-600 transition-colors duration-200">
+                        {client.name}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
