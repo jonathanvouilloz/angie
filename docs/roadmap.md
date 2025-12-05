@@ -9,23 +9,23 @@
 
 ## Phase 1 : Setup & Configuration
 
-**Statut** : En cours
+**Statut** : ✅ Terminé
 
 ### Tâches
 
 - [x] Fork du repo template Angie
 - [x] Achat du domaine jonlabs.ch
-- [ ] Configuration locale du projet
-  - [ ] Cloner le repo
-  - [ ] `npm install`
-  - [ ] `npm run dev` - vérifier que tout fonctionne
-- [ ] Analyse de la structure du template
-- [ ] Création de la documentation projet
-  - [ ] context.md
-  - [ ] roadmap.md
-  - [ ] guidelines.md
-  - [ ] content.md
-  - [ ] styleguide.md
+- [x] Configuration locale du projet
+  - [x] Cloner le repo
+  - [x] `npm install`
+  - [x] `npm run dev` - vérifier que tout fonctionne
+- [x] Analyse de la structure du template
+- [x] Création de la documentation projet
+  - [x] context.md
+  - [x] roadmap.md
+  - [x] guidelines.md
+  - [x] content.md
+  - [x] styleguide.md
 - [ ] Configuration du déploiement
   - [ ] Créer compte Vercel/Netlify
   - [ ] Connecter le repo GitHub
@@ -34,50 +34,59 @@
 
 ### Livrables
 
-- Environnement de développement fonctionnel
-- Site accessible en local sur `localhost:4321`
-- Documentation projet complète
-- Pipeline CI/CD configuré
+- ✅ Environnement de développement fonctionnel
+- ✅ Site accessible en local sur `localhost:4321`
+- ✅ Documentation projet complète
+- ⏳ Pipeline CI/CD configuré
 
 ---
 
 ## Phase 2 : Homepage
 
-**Statut** : À faire
+**Statut** : ✅ Terminé
 
 ### Tâches
 
-- [ ] **Hero Section**
-  - [ ] Remplacer le contenu texte
-  - [ ] Intégrer photo de Jon (ou visuel créatif)
-  - [ ] Adapter les CTAs
-  - [ ] Conserver les éléments graphiques (SVGs, highlights)
-- [ ] **Section Services** (3 cartes)
-  - [ ] Développement Web
-  - [ ] Automatisation & Processus
-  - [ ] Applications Sur-Mesure
-- [ ] **Section Portfolio Highlight** (3 projets vedettes)
-  - [ ] Définir les 3 projets à mettre en avant
-  - [ ] Créer les cartes avec screenshots/mockups
-- [ ] **Section Lab** (grid mini-cartes)
-  - [ ] App Gestion Camps
-  - [ ] Jeux de Société
-  - [ ] Photographie
-  - [ ] Badminton
-  - [ ] Blog
-- [ ] **Section About condensée**
-  - [ ] Texte de présentation court
-  - [ ] CTA vers page About complète
-- [ ] **Footer**
-  - [ ] Barre tech stack animée
-  - [ ] Liens sociaux (LinkedIn, GitHub, Email)
-  - [ ] Mentions légales
+- [x] **Hero Section**
+  - [x] Remplacer le contenu texte (titre accrocheur + sous-titre)
+  - [x] Intégrer photo de Jon (`jonathan-vouilloz.jpg`)
+  - [x] Adapter les CTAs (primaire + ghost secondary avec hover violet)
+  - [x] Éléments graphiques (SVGs, underline stylo `arrow-3.svg`)
+  - [x] Badge "Disponible" repositionné sur la photo (incliné)
+  - [x] Badge location avec violet clair (#DCA3EF)
+- [x] **Section Clients Banner** (ajoutée)
+  - [x] Banner minimaliste "Ils m'ont fait confiance"
+- [x] **Section Services** (3 cartes)
+  - [x] Développement Web
+  - [x] Automatisation & Processus
+  - [x] Applications Sur-Mesure
+  - [x] Alignement "En savoir plus" en bas des cartes
+- [x] **Section Portfolio Highlight** (3 projets vedettes)
+  - [x] Cartes avec placeholders (à remplacer par vrais projets)
+  - [x] Design brutaliste avec hover effects
+- [x] **Section Lab** (Bento grid - atmosphère Blueprint)
+  - [x] App Gestion Camps (carte large)
+  - [x] Jeux de Société
+  - [x] Photographie
+  - [x] Badminton
+  - [x] Blog
+  - [x] Font custom Komigo3D pour titre "Le Lab"
+  - [x] Fond sombre avec grille technique cyan
+- [x] **Section About condensée**
+  - [x] Citation + texte de présentation
+  - [x] CTA vers page About complète
+- [x] **Section TechStack** (marquee animé)
+  - [x] Logos technologies avec défilement GSAP
+- [x] **Footer**
+  - [x] Liens sociaux (LinkedIn, GitHub, Email)
+  - [x] Mentions légales
 
 ### Livrables
 
-- Homepage complète et fonctionnelle
-- Responsive (mobile/tablet/desktop)
-- Tous les liens internes fonctionnels
+- ✅ Homepage complète et fonctionnelle
+- ✅ Responsive (mobile/tablet/desktop)
+- ✅ Tous les liens internes fonctionnels
+- ✅ Typographie ajustée (font-normal/medium, tracking-tight)
 
 ---
 

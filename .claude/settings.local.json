@@ -4,7 +4,10 @@
       "Bash(tree:*)",
       "Bash(chmod +x \"C:\\Users\\jojo-\\Desktop\\angie\\.git\\hooks\\pre-commit\")",
       "Bash(npm run build:*)",
-      "Skill(example-skills:frontend-design)"
+      "Skill(example-skills:frontend-design)",
+      "Bash(if not exist \"C:/Users/jojo-/Desktop/angie/public/fonts\" mkdir \"C:/Users/jojo-/Desktop/angie/public/fonts\")",
+      "Bash(copy:*)",
+      "Bash(powershell -Command:*)"
     ],
     "deny": [],
     "ask": []

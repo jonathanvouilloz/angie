@@ -1,29 +1,139 @@
 ---
 import logoStar from '../assets/logo-star.svg'
+import svgPinkStar from '../assets/pink-star.svg'
 import { author } from '../sample'
 
 const socials = [
-  { icon: 'ri-tiktok-fill', link: author.tiktok },
-	{ icon: 'ri-instagram-line', link: author.ig },
-  { icon: 'ri-twitter-x-line', link: author.x },
+    { icon: 'ri-linkedin-fill', link: author.linkedin, label: 'LinkedIn' },
+    { icon: 'ri-github-fill', link: author.github, label: 'GitHub' },
+    { icon: 'ri-mail-fill', link: author.email, label: 'Email' },
 ]
 
+const footerLinks = [
+    { name: 'Services', path: '/services/' },
+    { name: 'Portfolio', path: '/portfolio/' },
+    { name: 'Lab', path: '/lab/' },
+    { name: 'Blog', path: '/blog/' },
+    { name: 'À propos', path: '/about/' },
+    { name: 'Contact', path: '/contact/' },
+]
 ---
 
-<footer class="border-t-4 px-5 md:px-0 py-10 mt-30">
-    <div class="max-w-3xl mx-auto flex justify-center flex-col gap-5 md:gap-0 md:grid md:grid-cols-3 items-center">
-      <div class="flex-1 font-bold">
-        <a href="/" class="flex items-center gap-3 text-xl">
-            <img src={logoStar.src} alt="logo" width="30" /> {author.nickname}
-        </a>
-      </div>
-      <div class="text-center">
-        <p>© {new Date().getFullYear()} {author.nickname}. All rights reserved.</p>
-      </div>
-      <div class="flex md:justify-end gap-5">
-        {socials.map(item => ( 
-          <a href={item.link} target="_blank" class="transition-all duration-200 hover:translate-y-[2px]"><i class={`${item.icon} text-2xl`}></i></a>
-        ))}
-      </div>
+<footer class="border-t-3 border-black bg-white relative overflow-hidden">
+    <!-- Decorative elements -->
+    <img src={svgPinkStar.src} alt="" width="60" class="absolute top-8 right-8 opacity-40" aria-hidden="true" />
+
+    <div class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+        <!-- Main footer content -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-12">
+
+            <!-- Brand column -->
+            <div class="md:col-span-2">
+                <a href="/" class="inline-flex items-center gap-3 text-2xl font-black mb-4 group">
+                    <img
+                        src={logoStar.src}
+                        alt="Jon Labs logo"
+                        width="32"
+                        class="transition-transform duration-300 group-hover:rotate-12"
+                    />
+                    <span>{author.nickname}</span>
+                </a>
+                <p class="text-gray-600 leading-relaxed max-w-sm mb-6">
+                    Développement web, automatisation, applications sur-mesure.
+                    J'accompagne entrepreneurs et petites équipes dans leurs projets digitaux.
+                </p>
+
+                <!-- Social links -->
+                <div class="flex gap-3">
+                    {socials.map(item => (
+                        <a
+                            href={item.link}
+                            target={item.link.startsWith('mailto') ? '_self' : '_blank'}
+                            rel="noopener noreferrer"
+                            aria-label={item.label}
+                            class="
+                                w-10 h-10
+                                flex items-center justify-center
+                                bg-white border-2 border-black
+                                shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                                transition-all duration-200
+                                hover:bg-[var(--blue)]
+                                hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+                                hover:translate-x-[1px] hover:translate-y-[1px]
+                            "
+                        >
+                            <i class={`${item.icon} text-lg`}></i>
+                        </a>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Navigation links -->
+            <div>
+                <h3 class="font-bold text-sm uppercase tracking-wider mb-4 text-gray-500">Navigation</h3>
+                <ul class="space-y-2">
+                    {footerLinks.slice(0, 3).map(link => (
+                        <li>
+                            <a
+                                href={link.path}
+                                class="
+                                    text-gray-700 font-medium
+                                    transition-colors duration-200
+                                    hover:text-[var(--yellow)]
+                                    relative
+                                    before:absolute before:left-0 before:bottom-0
+                                    before:h-[2px] before:w-0 before:bg-[var(--accent)]
+                                    before:transition-all before:duration-200
+                                    hover:before:w-full
+                                "
+                            >
+                                {link.name}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-sm uppercase tracking-wider mb-4 text-gray-500">Plus</h3>
+                <ul class="space-y-2">
+                    {footerLinks.slice(3).map(link => (
+                        <li>
+                            <a
+                                href={link.path}
+                                class="
+                                    text-gray-700 font-medium
+                                    transition-colors duration-200
+                                    hover:text-[var(--yellow)]
+                                    relative
+                                    before:absolute before:left-0 before:bottom-0
+                                    before:h-[2px] before:w-0 before:bg-[var(--accent)]
+                                    before:transition-all before:duration-200
+                                    hover:before:w-full
+                                "
+                            >
+                                {link.name}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="pt-8 border-t-2 border-dashed border-black flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-500">
+                © {new Date().getFullYear()} {author.nickname}. Tous droits réservés.
+            </p>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-500 hover:text-black transition-colors duration-200">
+                    Mentions légales
+                </a>
+                <a href="#" class="text-gray-500 hover:text-black transition-colors duration-200">
+                    Confidentialité
+                </a>
+            </div>
+        </div>
     </div>
-   </footer>
+</footer>

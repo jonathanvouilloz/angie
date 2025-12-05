@@ -1,74 +1,193 @@
 ---
-import Button from "./Button.astro"
 import Bars from "./Bars.astro"
 
-import svgheroContent from '../assets/hero-content.svg'
 import svgRedStar from '../assets/red-star.svg'
 import svgIdea from '../assets/idea.svg'
 import svgArrow from '../assets/arrow.svg'
-
 import svgPinkStar from '../assets/pink-star.svg'
-import svgString from '../assets/string.svg'
+import svgArrowHero from '../assets/arrow-3.svg'
+import imgJonathan from '../assets/jonathan-vouilloz.jpg'
 
-import { author, buy } from '../sample'
-
+import { author, cta } from '../sample'
 ---
 
+<section class="pb-20 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute top-20 right-0 w-96 h-96 bg-[var(--blue)] opacity-5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-[var(--violet)] opacity-5 rounded-full blur-3xl"></div>
 
-<section class="pb-20 relative">
-    <div class="max-w-4xl mx-auto p-4 pt-20 md:pt-30">
-      <div class="grid grid-cols-1 md:grid-cols-[60%_40%] items-center">
-        <div class="flex flex-col gap-4 pr-0 md:pr-10">
-          <img src={svgheroContent.src} alt="logo" width="80" />
+    <div class="max-w-5xl mx-auto p-4 pt-16 md:pt-24">
+      <div class="grid grid-cols-1 md:grid-cols-[60%_40%] items-center gap-8">
 
-            <h1 class="text-5xl font-medium">
-              <span>I build top <br> notch</span>
-              <span class="relative">
-                <span class="absolute bg-[var(--accent)] w-full h-[50%] left-0 bottom-0 z-1"></span>
-                <span class="relative z-5">websites</span>
+        <!-- Left: Text Content -->
+        <div class="flex flex-col gap-6 pr-0 md:pr-10 order-2 md:order-1">
+
+          <!-- Main heading -->
+          <h1 class="text-4xl md:text-5xl lg:text-5xl font-normal tracking-tight">
+            <span>L'idée que tu repoussais depuis des mois ?</span>
+            <span class="block">
+              Elle peut
+              <span class="relative inline-block">
+                <span class="relative z-10">exister demain.</span>
+                <img
+                  src={svgArrowHero.src}
+                  alt=""
+                  class="absolute -bottom-0 left-0 w-full h-8 pointer-events-none"
+                  aria-hidden="true"
+                />
               </span>
-            </h1>
-            <p class="text-xl">Passionate UX Engineer & Designer crafting intuitive, user-centered experiences.</p>
-           <div class="flex mt-5">
-             <Button text="See portfolio" link="/#work" target="_self" />
-           </div>
+            </span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-md md:text-md text-gray-700 max-w-lg leading-relaxed">
+            Développement web, site e-commerce, portfolio, application, système de productivité, automatisations.
+            <br class="hidden md:block" />
+            De l'idée au produit fini, j'accompagne entrepreneurs et petites équipes dans leurs projets digitaux.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-6 mt-4">
+            <a
+              href={cta.primary.link}
+              class="
+                inline-flex items-center justify-center gap-2
+                bg-[var(--blue)] border-2 border-black
+                px-6 py-3
+                font-bold text-base
+                shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                transition-all duration-200
+                hover:bg-[var(--yellow)]
+                hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                hover:translate-x-[2px] hover:translate-y-[2px]
+                focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
+              "
+            >
+              {cta.primary.text}
+              <i class="ri-arrow-right-line"></i>
+            </a>
+            <a
+              href={cta.secondary.link}
+              class="
+                inline-flex items-center justify-center gap-2
+                px-2 py-3
+                font-medium text-base
+                transition-all duration-200
+                relative
+                before:absolute before:left-2 before:bottom-2
+                before:h-[2px] before:w-0 before:bg-[var(--accent)]
+                before:transition-all before:duration-300
+                hover:before:w-[calc(100%-16px)]
+                hover:text-[var(--violet)]
+              "
+            >
+              {cta.secondary.text}
+              <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex items-center gap-4 mt-6 pt-6 border-t-2 border-black border-dashed">
+            <span class="text-sm text-gray-500 font-medium">Me retrouver</span>
+            <div class="flex gap-3">
+              <a
+                href={author.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="
+                  w-10 h-10 flex items-center justify-center
+                  border-2 border-black bg-white
+                  transition-all duration-200
+                  hover:bg-[var(--blue)] hover:translate-y-[-2px]
+                  focus:ring-2 focus:ring-black focus:outline-none
+                "
+                aria-label="LinkedIn"
+              >
+                <i class="ri-linkedin-fill text-lg"></i>
+              </a>
+              <a
+                href={author.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="
+                  w-10 h-10 flex items-center justify-center
+                  border-2 border-black bg-white
+                  transition-all duration-200
+                  hover:bg-[var(--blue)] hover:translate-y-[-2px]
+                  focus:ring-2 focus:ring-black focus:outline-none
+                "
+                aria-label="GitHub"
+              >
+                <i class="ri-github-fill text-lg"></i>
+              </a>
+              <a
+                href={author.email}
+                class="
+                  w-10 h-10 flex items-center justify-center
+                  border-2 border-black bg-white
+                  transition-all duration-200
+                  hover:bg-[var(--blue)] hover:translate-y-[-2px]
+                  focus:ring-2 focus:ring-black focus:outline-none
+                "
+                aria-label="Email"
+              >
+                <i class="ri-mail-fill text-lg"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="relative mt-40 md:mt-0">
-          <div class="flex absolute -top-20 left-0 z-10">
-            <!-- name with smile icon -->
-            <div class="flex transform -rotate-30 translate-y-3">
-              <svg class="size-5" viewBox="0 0 37 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Right: Image -->
+        <div class="relative order-1 md:order-2">
+          <!-- Name tag with arrow -->
+          <div class="flex absolute -top-20 md:-top-18 z-20">
+            <div class="flex items-center transform -rotate-12">
+              <svg class="size-5 mr-1" viewBox="0 0 37 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.5479 4.4031C18.6713 5.80238 19.9271 9.81219 21.7001 11.2897C23.0602 12.3947 24.0665 11.888 24.3315 9.94798C24.6359 7.90326 23.1377 5.00064 21.4323 4.27109C20.1328 3.70088 19.9764 3.72964 19.5479 4.4031Z" fill="black"/>
                 <path d="M7.84038 5.33376C6.96374 6.73304 8.21957 10.7429 9.99262 12.2204C11.3527 13.3254 12.359 12.8186 12.624 10.8786C12.9284 8.83392 11.4302 5.9313 9.72476 5.20175C8.42528 4.63154 8.26883 4.66031 7.84038 5.33376Z" fill="black"/>
                 <path d="M2.88193 16.7075C3.24136 18.9226 7.35405 23.0018 11.0101 24.7375C12.1376 25.3003 14.0826 25.7031 15.8021 25.7769C18.5025 25.8751 18.8859 25.7851 22.3741 24.1786C25.7215 22.637 26.2387 22.2689 27.844 20.4042C29.889 17.9907 31.8424 12.8058 31.2223 11.3601C30.6796 10.095 29.8918 10.7176 28.3133 13.8252C26.5656 17.2272 25.5918 18.4981 23.558 19.9541C21.6144 21.3254 17.9796 22.3934 15.6935 22.2776C12.9776 22.1433 7.87127 19.3874 5.0947 16.5541C3.68105 15.1275 2.64514 15.1717 2.88193 16.7075Z" fill="black"/>
               </svg>
-              <span class="uppercase font-black">{author.name}</span>
+              <span class="uppercase font-black text-sm">Jonathan</span>
             </div>
-
-            <img src={svgArrow.src} width="80" class="-translate-x-10" alt="arrow icon" />
+            <img src={svgArrow.src} width="70" class="-translate-x-1" alt="" aria-hidden="true" />
           </div>
 
-          <div class="relative p-8 bg-white">
-            <img src={svgRedStar.src} width="80" alt="red-star" class="absolute bottom-1 right-1 z-10" />
-            <img src={svgIdea.src} width="60" alt="idea" class="absolute top-16 -left-3 z-10" />   
-            <img src={svgString.src} width="50" alt="string" class="absolute -top-6 -right-2 z-10" />             
-          
-             <div id="me" class="w-full h-[310px] border-2"></div>
-             <Bars />
+          <!-- Photo container -->
+          <div class="relative p-4 md:p-5 bg-white border-black">
+            <!-- Badge disponible -->
+            <div class="absolute -top-4 -right-12 z-30 rotate-6">
+              <div class="inline-flex items-center gap-2 bg-white border-2 border-black px-3 py-1.5 shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                <span class="w-2 h-2 bg-[var(--blue)] rounded-full animate-pulse"></span>
+                <span class="text-xs font-medium">Disponible pour de nouveaux projets</span>
+              </div>
+            </div>
+
+            <!-- Decorative elements -->
+            <img src={svgRedStar.src} width="70" alt="" class="absolute -bottom-4 -right-4 z-20" aria-hidden="true" />
+            <img src={svgIdea.src} width="50" alt="" class="absolute top-12 -left-6 z-20" aria-hidden="true" />
+
+            <!-- Photo -->
+            <img
+              src={imgJonathan.src}
+              alt="Jonathan Vouilloz"
+              class="w-full aspect-[4/5] md:h-[280px] border-2 border-black object-cover object-top"
+            />
+            <Bars />
+          </div>
+
+          <!-- Location badge -->
+          <div class="absolute -bottom-2 left-4 bg-[#DCA3EF] px-4 py-2 border-2 -rotate-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,1)] z-10">
+            <span class="flex items-center gap-2 text-xs font-regular">
+              <i class="ri-map-pin-fill"></i>
+              {author.location}
+            </span>
           </div>
         </div>
 
       </div>
     </div>
 
-    <img src={svgPinkStar.src} alt="start" width="50" class="absolute -bottom-4" />
-  </section>
+    <!-- Bottom decoration -->
+    <img src={svgPinkStar.src} alt="" width="50" class="absolute -bottom-4 left-8" aria-hidden="true" />
+</section>
 
-
-  <style>
-    #me{
-     background-image: url('https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
-     background-position: top;
-     background-size: cover;
-    }
-   </style>

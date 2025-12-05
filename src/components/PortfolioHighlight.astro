@@ -1,0 +1,163 @@
+---
+import svgArrowCard from '../assets/arrow-card.svg'
+import svgRedStar from '../assets/red-star.svg'
+
+// Placeholder projects data
+const projects = [
+    {
+        id: 'ecommerce',
+        title: 'Boutique E-commerce',
+        description: 'Site de vente en ligne complet avec gestion de stock, paiements Stripe et tableau de bord admin.',
+        image: 'https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=800',
+        technologies: ['React', 'Node.js', 'Stripe'],
+        category: 'Dev Web',
+        link: '#'
+    },
+    {
+        id: 'dashboard',
+        title: 'Dashboard Analytics',
+        description: 'Tableau de bord temps réel pour visualiser les métriques clés et générer des rapports automatisés.',
+        image: 'https://images.pexels.com/photos/7947541/pexels-photo-7947541.jpeg?auto=compress&cs=tinysrgb&w=800',
+        technologies: ['Astro', 'Supabase', 'Chart.js'],
+        category: 'Application',
+        link: '#'
+    },
+    {
+        id: 'pwa',
+        title: 'App Mobile PWA',
+        description: 'Application progressive installable sur mobile pour la gestion de tâches et la collaboration d\'équipe.',
+        image: 'https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=800',
+        technologies: ['React', 'Tailwind', 'PWA'],
+        category: 'Application',
+        link: '#'
+    }
+]
+---
+
+<section class="py-16 md:py-24 bg-[var(--main-bg)] relative" id="portfolio">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23000000\" fill-opacity=\"1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative">
+
+        <!-- Section header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div class="relative">
+                <img src={svgRedStar.src} alt="" width="50" class="absolute -top-8 -left-8 opacity-80" aria-hidden="true" />
+                <span class="inline-block bg-[var(--violet)] text-white border-2 border-black px-3 py-1 text-sm font-bold mb-4 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    Portfolio
+                </span>
+                <h2 class="text-3xl md:text-4xl font-medium tracking-tight">
+                    Projets
+                    <span class="relative inline-block">
+                        <span class="absolute bg-[var(--accent)] w-full h-[40%] left-0 bottom-1 z-0"></span>
+                        <span class="relative z-10">récents</span>
+                    </span>
+                </h2>
+            </div>
+            <a
+                href="/portfolio/"
+                class="
+                    inline-flex items-center gap-2
+                    bg-white border-2 border-black
+                    px-5 py-2
+                    font-bold text-sm
+                    shadow-[3px_3px_0px_rgba(0,0,0,1)]
+                    transition-all duration-200
+                    hover:bg-[var(--blue)]
+                    hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+                    hover:translate-x-[2px] hover:translate-y-[2px]
+                "
+            >
+                Voir tout le portfolio
+                <i class="ri-arrow-right-line"></i>
+            </a>
+        </div>
+
+        <!-- Projects grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+                <article
+                    class="
+                        group
+                        bg-white border-2 border-black
+                        shadow-[4px_4px_0px_rgba(0,0,0,0.3)]
+                        transition-all duration-300
+                        hover:shadow-[8px_8px_0px_rgba(0,0,0,0.3)]
+                        hover:translate-y-[-4px]
+                        overflow-hidden
+                        relative
+                    "
+                >
+                    <!-- Image -->
+                    <div class="relative aspect-video overflow-hidden border-b-2 border-black">
+                        <img
+                            src={project.image}
+                            alt={project.title}
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                        <!-- Category badge -->
+                        <span class="
+                            absolute top-3 left-3
+                            bg-[var(--blue)] border-2 border-black
+                            px-2 py-1 text-xs font-bold
+                            shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                        ">
+                            {project.category}
+                        </span>
+                        <!-- Arrow decoration -->
+                        <img
+                            src={svgArrowCard.src}
+                            alt=""
+                            width="40"
+                            class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                            aria-hidden="true"
+                        />
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--yellow)] transition-colors duration-200">
+                            {project.title}
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            {project.description}
+                        </p>
+
+                        <!-- Technologies -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {project.technologies.map((tech) => (
+                                <span class="
+                                    px-2 py-1
+                                    bg-gray-100 border border-black
+                                    text-xs font-medium
+                                ">
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+
+                        <!-- Link -->
+                        <a
+                            href={project.link}
+                            class="
+                                inline-flex items-center gap-2
+                                text-sm font-bold
+                                relative
+                                before:absolute before:left-0 before:bottom-0
+                                before:h-[2px] before:w-0 before:bg-[var(--yellow)]
+                                before:transition-all before:duration-300
+                                group-hover:before:w-full
+                            "
+                        >
+                            Voir le projet
+                            <i class="ri-arrow-right-line transition-transform duration-200 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </article>
+            ))}
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,89 @@
+---
+import { techStack } from '../sample'
+
+// Extended tech list with icons for marquee effect
+const technologies = [
+    { name: 'Astro', icon: 'ri-rocket-line' },
+    { name: 'React', icon: 'ri-reactjs-line' },
+    { name: 'Node.js', icon: 'ri-nodejs-line' },
+    { name: 'Tailwind', icon: 'ri-css3-line' },
+    { name: 'Figma', icon: 'ri-pencil-ruler-2-line' },
+    { name: 'Make', icon: 'ri-settings-3-line' },
+    { name: 'Zapier', icon: 'ri-flashlight-line' },
+    { name: 'Supabase', icon: 'ri-database-2-line' },
+    { name: 'PostgreSQL', icon: 'ri-database-line' },
+]
+---
+
+<section class="py-8 md:py-12 bg-black text-white border-y-3 border-black overflow-hidden">
+    <div class="relative">
+        <!-- Marquee container -->
+        <div class="flex items-center" id="tech-marquee">
+            <!-- Original set -->
+            <div class="flex items-center gap-8 md:gap-12 animate-marquee whitespace-nowrap">
+                {technologies.map((tech) => (
+                    <div class="flex items-center gap-3 px-4">
+                        <i class={`${tech.icon} text-2xl text-[var(--blue)]`}></i>
+                        <span class="text-lg md:text-xl font-bold tracking-wide">{tech.name}</span>
+                    </div>
+                ))}
+                <!-- Separator -->
+                <div class="flex items-center gap-3 px-4">
+                    <span class="w-2 h-2 bg-[var(--violet)] rounded-full"></span>
+                </div>
+            </div>
+
+            <!-- Duplicate for seamless loop -->
+            <div class="flex items-center gap-8 md:gap-12 animate-marquee whitespace-nowrap" aria-hidden="true">
+                {technologies.map((tech) => (
+                    <div class="flex items-center gap-3 px-4">
+                        <i class={`${tech.icon} text-2xl text-[var(--blue)]`}></i>
+                        <span class="text-lg md:text-xl font-bold tracking-wide">{tech.name}</span>
+                    </div>
+                ))}
+                <!-- Separator -->
+                <div class="flex items-center gap-3 px-4">
+                    <span class="w-2 h-2 bg-[var(--violet)] rounded-full"></span>
+                </div>
+            </div>
+
+            <!-- Third duplicate for extra smoothness -->
+            <div class="flex items-center gap-8 md:gap-12 animate-marquee whitespace-nowrap" aria-hidden="true">
+                {technologies.map((tech) => (
+                    <div class="flex items-center gap-3 px-4">
+                        <i class={`${tech.icon} text-2xl text-[var(--blue)]`}></i>
+                        <span class="text-lg md:text-xl font-bold tracking-wide">{tech.name}</span>
+                    </div>
+                ))}
+                <!-- Separator -->
+                <div class="flex items-center gap-3 px-4">
+                    <span class="w-2 h-2 bg-[var(--violet)] rounded-full"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gradient overlays for fade effect -->
+        <div class="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-black to-transparent pointer-events-none z-10"></div>
+        <div class="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-black to-transparent pointer-events-none z-10"></div>
+    </div>
+</section>
+
+<style>
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+    }
+
+    /* Pause on hover */
+    #tech-marquee:hover .animate-marquee {
+        animation-play-state: paused;
+    }
+</style>
