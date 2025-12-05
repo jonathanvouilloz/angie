@@ -1,103 +1,181 @@
 ---
 import svgPinkStar from '../assets/pink-star.svg'
+import svgArrow from '../assets/arrow.svg'
 import { services } from '../sample'
 ---
 
-<section class="py-16 md:py-24 relative" id="services">
+<section class="services-section py-20 md:py-32 relative overflow-hidden" id="services">
+    <!-- Subtle dot pattern background -->
+    <div class="absolute inset-0 services-dots-bg opacity-[0.4]"></div>
+
     <!-- Section decorations -->
-    <img src={svgPinkStar.src} alt="" width="40" class="absolute top-8 right-12 opacity-60" aria-hidden="true" />
+    <img src={svgPinkStar.src} alt="" width="40" class="absolute top-12 right-8 md:right-16 opacity-50 animate-pulse" style="animation-duration: 3s;" aria-hidden="true" />
+    <img src={svgArrow.src} alt="" width="60" class="absolute bottom-20 left-8 opacity-20 rotate-45 hidden md:block" aria-hidden="true" />
 
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
 
-        <!-- Section header -->
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-            <div>
-                <span class="inline-block bg-[var(--blue)] border-2 border-black px-3 py-1 text-sm font-bold mb-4 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                    Services
-                </span>
-                <h2 class="text-3xl md:text-4xl font-medium tracking-tight">
-                    Ce que je peux faire
-                    <span class="relative inline-block ml-2">
-                        <span class="absolute bg-[var(--accent)] w-full h-[40%] left-0 bottom-1 z-0"></span>
-                        <span class="relative z-10">pour vous</span>
+        <!-- Section header - Editorial style -->
+        <div class="relative mb-16 md:mb-20">
+            <!-- Oversized number watermark -->
+            <span class="
+                absolute -top-8 -left-2 md:-top-12 md:-left-6
+                text-[8rem] md:text-[12rem]
+                font-black
+                leading-none
+                text-black/[0.04]
+                select-none
+                pointer-events-none
+                z-0
+            " aria-hidden="true">01</span>
+
+            <div class="relative z-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <div>
+                    <!-- Small annotation -->
+                    <span class="
+                        inline-flex items-center gap-2
+                        text-xs font-mono uppercase tracking-[0.2em]
+                        text-gray-500
+                        mb-3
+                    ">
+                        <span class="w-8 h-px bg-gray-400"></span>
+                        services
                     </span>
-                </h2>
+
+                    <!-- Big expressive title -->
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[0.95]">
+                        Ce que je peux<br class="hidden md:block" />
+                        faire pour vous
+                    </h2>
+                </div>
+
+                <a
+                    href="/services/"
+                    class="
+                        inline-flex items-center gap-2
+                        text-sm font-bold uppercase tracking-wide
+                        border-b-2 border-black
+                        pb-1
+                        transition-all duration-200
+                        hover:border-[var(--blue)] hover:gap-3
+                    "
+                >
+                    Tout voir
+                    <i class="ri-arrow-right-line"></i>
+                </a>
             </div>
-            <a
-                href="/services/"
-                class="
-                    inline-flex items-center gap-2
-                    text-base font-bold
-                    border-b-2 border-black
-                    pb-1
-                    transition-all duration-200
-                    hover:border-[var(--blue)] hover:text-[var(--yellow)]
-                "
-            >
-                Voir tous les services
-                <i class="ri-arrow-right-line"></i>
-            </a>
         </div>
 
         <!-- Services grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => (
                 <article
                     class="
                         group
+                        service-card
                         flex flex-col
                         bg-white border-2 border-black
-                        p-6
-                        shadow-[4px_4px_0px_rgba(0,0,0,0.3)]
+                        p-6 pt-8
+                        shadow-[4px_4px_0px_rgba(0,0,0,0.25)]
                         transition-all duration-300
-                        hover:shadow-[8px_8px_0px_rgba(0,0,0,0.3)]
+                        hover:shadow-[8px_8px_0px_rgba(0,0,0,0.2)]
                         hover:translate-y-[-4px]
                         relative
                     "
-                    style={`animation-delay: ${index * 100}ms`}
                 >
-                    <!-- Corner decoration -->
-                    <div class="absolute top-0 right-0 w-8 h-8 bg-[var(--blue)] border-l-2 border-b-2 border-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                    <!-- Icon -->
-                    <div class="
-                        w-14 h-14
-                        flex items-center justify-center
-                        bg-[var(--blue)] border-2 border-black
-                        mb-5
-                        shadow-[3px_3px_0px_rgba(0,0,0,1)]
-                        group-hover:bg-[var(--yellow)]
-                        transition-colors duration-200
+                    <!-- Card number -->
+                    <span class="
+                        absolute top-3 right-4
+                        text-xs font-mono
+                        text-gray-300
+                        tracking-wider
                     ">
-                        <i class={`${service.icon} text-2xl`}></i>
+                        0{index + 1}
+                    </span>
+
+                    <!-- Icon with dashed container -->
+                    <div class="relative mb-6">
+                        <div class="
+                            w-14 h-14
+                            flex items-center justify-center
+                            bg-[var(--blue)] border-2 border-black
+                            shadow-[3px_3px_0px_rgba(0,0,0,1)]
+                            group-hover:bg-[var(--yellow)]
+                            group-hover:shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                            transition-all duration-200
+                            relative z-10
+                        ">
+                            <i class={`${service.icon} text-2xl`}></i>
+                        </div>
+                        <!-- Dashed outline decoration -->
+                        <div class="
+                            absolute -top-2 -left-2
+                            w-14 h-14
+                            border border-dashed border-gray-300
+                            opacity-0 group-hover:opacity-100
+                            transition-opacity duration-300
+                        "></div>
                     </div>
 
+                    <!-- Clickable card overlay -->
+                    <a href={service.link} class="absolute inset-0 z-10" aria-label={`En savoir plus sur ${service.title}`}></a>
+
                     <!-- Content -->
-                    <h3 class="text-xl font-bold mb-3">{service.title}</h3>
-                    <p class="text-gray-600 leading-relaxed mb-5 flex-grow">
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-[var(--yellow)] transition-colors duration-200">
+                        {service.title}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 flex-grow">
                         {service.description}
                     </p>
 
-                    <!-- Link - aligned bottom -->
-                    <a
-                        href={service.link}
-                        class="
-                            inline-flex items-center gap-2
+                    <!-- Link visual (not clickable, card handles it) -->
+                    <span class="mt-auto py-2 flex items-center gap-2">
+                        <span class="
                             text-sm font-bold
-                            mt-auto
                             relative
                             before:absolute before:left-0 before:bottom-0
-                            before:h-[2px] before:w-0 before:bg-[var(--yellow)]
+                            before:h-[2px] before:w-0 before:bg-[var(--blue)]
                             before:transition-all before:duration-300
                             group-hover:before:w-full
-                        "
-                    >
-                        En savoir plus
-                        <i class="ri-arrow-right-line transition-transform duration-200 group-hover:translate-x-1"></i>
-                    </a>
+                        ">
+                            En savoir plus
+                        </span>
+                        <i class="ri-arrow-right-line text-sm transition-transform duration-200 group-hover:translate-x-1"></i>
+                    </span>
+
+                    <!-- Bottom accent line on hover -->
+                    <div class="
+                        absolute bottom-0 left-0 right-0
+                        h-1 bg-[var(--blue)]
+                        transform scale-x-0 origin-left
+                        group-hover:scale-x-100
+                        transition-transform duration-300
+                    "></div>
                 </article>
             ))}
         </div>
 
     </div>
 </section>
+
+<style>
+    .services-dots-bg {
+        background-image: radial-gradient(circle, #000 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover::before {
+        opacity: 0;
+    }
+</style>

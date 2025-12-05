@@ -477,7 +477,7 @@ Menu slide-in avec liens centrés et CTA en bas :
 ### Section standard
 
 ```html
-<section class="py-16 md:py-24 px-6">
+<section class="py-20 md:py-32 px-4">
   <div class="max-w-6xl mx-auto">
     <!-- Section header -->
     <div class="mb-12">
@@ -575,7 +575,10 @@ import pinkStar from '../assets/pink-star.svg';
 ### Highlight de texte
 
 ```html
-<!-- Bande magenta transparente (style hero) -->
+<!-- Highlight inline pastel (recommandé pour texte body) -->
+<span class="bg-emerald-200 px-1 font-medium">texte important</span>
+
+<!-- Bande magenta transparente (style hero/titres) -->
 <span class="relative">
   <span class="absolute bg-[var(--accent)] w-full h-[50%] left-0 bottom-0 z-1"></span>
   <span class="relative z-5">texte important</span>
@@ -590,6 +593,8 @@ import pinkStar from '../assets/pink-star.svg';
 <!-- Badge inline violet -->
 <span class="bg-[var(--violet)] text-white px-2">nouveau</span>
 ```
+
+**Note :** Pour les highlights inline dans le texte body, préférer les couleurs pastel Tailwind (`emerald-200`, `sky-200`, `amber-200`) qui offrent un meilleur contraste avec le texte foncé. Éviter `--yellow` (#00A87D) qui est trop sombre pour du texte sur fond coloré.
 
 ---
 
@@ -682,7 +687,7 @@ Le template utilise Remix Icon (CDN) :
 <h1 class="text-4xl md:text-6xl">
 
 <!-- Padding adaptatif -->
-<section class="py-12 md:py-24 px-4 md:px-8">
+<section class="py-20 md:py-32 px-4">
 
 <!-- Cacher sur mobile -->
 <nav class="hidden md:flex">
@@ -845,7 +850,7 @@ Le template utilise Remix Icon (CDN) :
 | Usage | Classes |
 |-------|---------|
 | Card padding | `p-6` |
-| Section padding | `py-16 md:py-24 px-4 md:px-8` |
+| Section padding | `py-20 md:py-32 px-4` |
 | Button padding | `px-6 py-3` |
 | Input padding | `px-4 py-3` |
 | Badge padding | `px-3 py-1` |

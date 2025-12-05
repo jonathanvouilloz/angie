@@ -1,4 +1,6 @@
 ---
+import svgBottleLab from '../assets/bottle-lab.svg'
+
 // Lab projects data
 const labItems = [
     {
@@ -56,10 +58,25 @@ const labItems = [
 
         <!-- Section header -->
         <div class="text-center mb-16">
-            <!-- Title with Komigo3D font -->
-            <h2 class="lab-title text-5xl md:text-7xl lg:text-8xl mb-6 text-cyan-400">
-                Le Lab
-            </h2>
+            <!-- Title with bottle icon -->
+            <div class="flex items-center justify-center gap-4 md:gap-6 mb-6">
+                <!-- Bottle with glow effect -->
+                <div class="bottle-container relative">
+                    <img
+                        src={svgBottleLab.src}
+                        alt=""
+                        class="bottle-icon w-12 h-16 md:w-16 md:h-24 relative z-10"
+                        aria-hidden="true"
+                    />
+                    <!-- Glow layers -->
+                    <div class="bottle-glow"></div>
+                    <div class="bottle-glow-pulse"></div>
+                </div>
+
+                <h2 class="lab-title text-5xl md:text-7xl lg:text-8xl text-cyan-400">
+                    Le Lab
+                </h2>
+            </div>
 
             <!-- Subtitle -->
             <p class="text-xl md:text-2xl text-slate-300 font-light tracking-wide mb-3">
@@ -294,5 +311,66 @@ const labItems = [
     .lab-card-accent {
         background: rgba(34, 211, 238, 0.05);
         border-color: rgba(34, 211, 238, 0.2);
+    }
+
+    /* Bottle glow effect */
+    .bottle-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bottle-icon {
+        filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.4));
+        animation: bottle-float 4s ease-in-out infinite;
+    }
+
+    .bottle-glow {
+        position: absolute;
+        inset: -8px;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(34, 211, 238, 0.3) 0%,
+            rgba(34, 211, 238, 0.1) 40%,
+            transparent 70%
+        );
+        border-radius: 50%;
+        filter: blur(12px);
+        z-index: 0;
+    }
+
+    .bottle-glow-pulse {
+        position: absolute;
+        inset: -16px;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(34, 211, 238, 0.25) 0%,
+            transparent 60%
+        );
+        border-radius: 50%;
+        filter: blur(20px);
+        z-index: 0;
+        animation: glow-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+        0%, 100% {
+            opacity: 0.4;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+    }
+
+    @keyframes bottle-float {
+        0%, 100% {
+            transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+            transform: translateY(-6px) rotate(2deg);
+        }
     }
 </style>
