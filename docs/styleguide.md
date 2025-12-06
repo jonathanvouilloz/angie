@@ -117,10 +117,10 @@ Concept : Laboratoire moderne, expérimentation, innovation.
 
 | Élément | Classe Tailwind | Poids |
 |---------|-----------------|-------|
-| Hero H1 | `text-5xl` / `text-6xl` | `font-black` |
-| Section H2 | `text-4xl` | `font-bold` |
-| Card H3 | `text-2xl` / `text-3xl` | `font-bold` |
-| Sous-titre | `text-xl` | `font-medium` |
+| Hero H1 | `text-4xl` / `text-5xl` | `font-normal` |
+| Section H2 | `text-3xl` / `text-4xl` | `font-normal` |
+| Card H3 | `text-xl` / `text-2xl` | `font-bold` |
+| Sous-titre | `text-lg` / `text-xl` | `font-normal` |
 | Body text | `text-lg` | `font-normal` |
 | Small text | `text-sm` | `font-normal` |
 | Button | `text-md` | `font-medium` |
@@ -129,17 +129,17 @@ Concept : Laboratoire moderne, expérimentation, innovation.
 
 ```html
 <!-- Hero title -->
-<h1 class="text-5xl md:text-6xl font-black">
+<h1 class="text-4xl md:text-5xl font-normal tracking-tight">
   Je crée des solutions digitales
 </h1>
 
 <!-- Section title -->
-<h2 class="text-3xl md:text-4xl font-bold">
+<h2 class="text-3xl md:text-4xl font-normal">
   Mes Services
 </h2>
 
 <!-- Card title -->
-<h3 class="text-2xl font-bold">
+<h3 class="text-xl font-bold">
   Développement Web
 </h3>
 

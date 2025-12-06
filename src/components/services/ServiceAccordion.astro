@@ -1,0 +1,378 @@
+---
+// Section accordéon pour un service avec descriptions détaillées
+// Plus d'infos utiles, exemples sous forme de puces
+
+import { getScenarioById } from '../../data/scenarios';
+import webServiceIcon from '../../assets/services/web-service.svg';
+import processServiceIcon from '../../assets/services/process-service.svg';
+import appServiceIcon from '../../assets/services/app-service.svg';
+
+interface Props {
+  serviceId: 'dev-web' | 'automatisation' | 'applications';
+  title: string;
+  description: string;
+  scenarioIds: string[];
+  ctaText: string;
+  defaultOpen?: boolean;
+}
+
+const { serviceId, title, description, scenarioIds, ctaText, defaultOpen = false } = Astro.props;
+
+// Mapping serviceId → icône SVG
+const iconMap = {
+  'dev-web': webServiceIcon,
+  'automatisation': processServiceIcon,
+  'applications': appServiceIcon
+};
+
+const iconSrc = iconMap[serviceId];
+
+// Récupérer les scénarios pour ce service
+const serviceScenarios = scenarioIds
+  .map(id => getScenarioById(id))
+  .filter((s): s is NonNullable<typeof s> => s !== undefined);
+
+// Descriptions détaillées avec exemples concrets pour chaque scénario
+const details: Record<string, { summary: string; examples: string[] }> = {
+  'cash-flow': {
+    summary: 'Automatisation complète de la facturation et des relances pour améliorer ta trésorerie.',
+    examples: [
+      'Factures envoyées automatiquement à la création du projet',
+      'Relances programmées (J-7, J+3, J+10) sans intervention',
+      'Dashboard de suivi des paiements en temps réel',
+      'Alertes pour les retards importants'
+    ]
+  },
+  'tools-sync': {
+    summary: 'Connexion de tes outils existants pour que les données circulent automatiquement.',
+    examples: [
+      'Nouveau client Stripe → création auto dans ton CRM',
+      'Email de bienvenue déclenché sans action manuelle',
+      'Tâches de suivi créées automatiquement',
+      'Synchronisation bidirectionnelle des contacts'
+    ]
+  },
+  'time-lack': {
+    summary: 'Automatisation des tâches chronophages pour récupérer 10-20h par semaine.',
+    examples: [
+      'Rapports mensuels générés automatiquement',
+      'Tri et routage intelligent des emails entrants',
+      'Notifications consolidées (plus de 50 apps différentes)',
+      'Workflows de validation simplifiés'
+    ]
+  },
+  'data-scattered': {
+    summary: 'Dashboard centralisé qui agrège toutes tes données business en un seul endroit.',
+    examples: [
+      'Vue unifiée : ventes, dépenses, clients actifs',
+      'Mise à jour en temps réel depuis toutes tes sources',
+      'Graphiques et KPIs personnalisables',
+      'Export et partage facile pour ton équipe'
+    ]
+  },
+  'launch-fast': {
+    summary: 'Développement rapide d\'un MVP fonctionnel pour valider ton idée.',
+    examples: [
+      'Wireframes et maquettes en 1-2 semaines',
+      'Focus sur LA feature principale qui compte',
+      'Tests avec 5 beta utilisateurs avant le lancement',
+      'Itérations rapides basées sur les retours'
+    ]
+  },
+  'website-old': {
+    summary: 'Refonte moderne de ton site avec focus sur la conversion et la performance.',
+    examples: [
+      'Design responsive adapté à tous les écrans',
+      'Chargement rapide (score performance 90+)',
+      'SEO optimisé dès le départ',
+      'Architecture évolutive pour ajouter du contenu'
+    ]
+  },
+  'email-fails': {
+    summary: 'Mise en place d\'un système d\'emailing fiable avec validations automatiques.',
+    examples: [
+      'Templates pré-testés et approuvés',
+      'Checklist automatique avant chaque envoi',
+      'Programmation des séquences à l\'avance',
+      'Analytics détaillés (ouvertures, clics, conversions)'
+    ]
+  },
+  'idea-validation': {
+    summary: 'Validation rapide de ton concept avec une landing page et une campagne test.',
+    examples: [
+      'Landing page simple avec proposition de valeur claire',
+      'Bouton de pré-commande pour tester l\'intérêt réel',
+      'Campagne pub ciblée avec budget minimal (100€)',
+      'Métriques claires : visiteurs, taux de conversion, panier'
+    ]
+  }
+};
+---
+
+<div class="service-category" id={serviceId}>
+  <!-- Header du service -->
+  <header class="service-header">
+    <div class="service-icon">
+      <img src={iconSrc.src} alt="" />
+    </div>
+    <div class="service-info">
+      <h3 class="service-title">{title}</h3>
+      <p class="service-description">{description}</p>
+    </div>
+  </header>
+
+  <!-- Accordéons des scénarios -->
+  <div class="accordions">
+    {serviceScenarios.map((scenario, index) => {
+      const detail = details[scenario.id];
+      const isFirstAndOpen = index === 0 && defaultOpen;
+      return (
+        <details class="accordion" data-accordion open={isFirstAndOpen}>
+          <summary class="accordion-trigger">
+            <span class="accordion-title">
+              {scenario.title}
+            </span>
+            <span class="accordion-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </span>
+          </summary>
+
+          <div class="accordion-content">
+            {detail && (
+              <>
+                <p class="content-summary">{detail.summary}</p>
+
+                <ul class="content-examples">
+                  {detail.examples.map((example) => (
+                    <li>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M20 6L9 17l-5-5"/>
+                      </svg>
+                      {example}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        </details>
+      );
+    })}
+  </div>
+
+  <!-- CTA du service -->
+  <a href="/contact" class="service-cta">
+    {ctaText}
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .service-category {
+    padding: 2rem 0;
+    scroll-margin-top: 100px;
+  }
+
+  /* Header */
+  .service-header {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid black;
+  }
+
+  .service-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue, #00D9A3);
+    border: 2px solid black;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .service-icon img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  .service-info {
+    flex: 1;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.375rem;
+    color: var(--text, #0F172A);
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Accordions */
+  .accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .accordion {
+    border: 2px solid black;
+    background: white;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .accordion[open] {
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .accordion-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .accordion-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+    color: #666;
+  }
+
+  .accordion[open] .accordion-icon {
+    transform: rotate(180deg);
+    color: var(--blue, #00D9A3);
+  }
+
+  /* Content */
+  .accordion-content {
+    padding: 0 1rem 1rem;
+    animation: slideDown 0.25s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .content-summary {
+    font-size: 0.875rem;
+    color: #444;
+    margin: 0 0 0.875rem;
+    line-height: 1.5;
+    padding-left: 0.25rem;
+  }
+
+  .content-examples {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .content-examples li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .content-examples li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--blue, #00D9A3);
+  }
+
+  /* Service CTA */
+  .service-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.25rem;
+    background: var(--blue, #00D9A3);
+    border: 2px solid black;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: black;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .service-cta:hover {
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+    transform: translate(2px, 2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .service-header {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      font-size: 1.5rem;
+    }
+
+    .service-title {
+      font-size: 1.1rem;
+    }
+
+    .accordion-trigger {
+      padding: 0.75rem;
+    }
+
+    .accordion-title {
+      font-size: 0.85rem;
+    }
+
+    .service-cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

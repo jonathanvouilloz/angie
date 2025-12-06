@@ -1,0 +1,246 @@
+---
+// NotesAnimation.astro - Carnet de notes avec effet typewriter
+---
+
+<div class="notes-container relative w-full max-w-md">
+    <!-- Notes window -->
+    <div class="bg-[#FFFEF5] border-3 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+        <!-- Corner boxes -->
+        <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black z-10"></div>
+        <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black z-10"></div>
+        <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black z-10"></div>
+        <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black z-10"></div>
+
+        <!-- Header -->
+        <div class="flex items-center justify-between px-4 py-3 border-b-2 border-black bg-[#F5F0DC]">
+            <div class="flex items-center gap-2">
+                <i class="ri-sticky-note-line text-lg"></i>
+                <span class="font-bold text-sm">Notes</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="ri-more-2-fill text-gray-500"></i>
+            </div>
+        </div>
+
+        <!-- Notes content -->
+        <div class="notes-content p-5 min-h-[280px] font-mono text-sm leading-relaxed" id="notes-content">
+            <!-- Title -->
+            <h3 class="text-lg font-bold mb-4 pb-2 border-b border-dashed border-gray-300" id="note-title"></h3>
+
+            <!-- Lines -->
+            <div class="space-y-3" id="note-lines">
+                <!-- Lines will be inserted here by JS -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-4 py-2 border-t-2 border-black bg-[#F5F0DC] text-xs text-gray-500 flex justify-between">
+            <span>Dernière modif: aujourd'hui</span>
+            <span class="flex items-center gap-1">
+                <i class="ri-folder-line"></i>
+                Perso
+            </span>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Lined paper effect */
+    .notes-content {
+        background-image: repeating-linear-gradient(
+            transparent,
+            transparent 27px,
+            rgba(0, 0, 0, 0.05) 27px,
+            rgba(0, 0, 0, 0.05) 28px
+        );
+        background-position: 0 0;
+    }
+
+    /* Cursor blink */
+    .typewriter-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background-color: black;
+        margin-left: 2px;
+        animation: cursorBlink 0.8s infinite;
+        vertical-align: text-bottom;
+    }
+
+    @keyframes cursorBlink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+
+    /* Line appear animation */
+    .note-line {
+        opacity: 0;
+        animation: lineAppear 0.3s ease-out forwards;
+    }
+
+    @keyframes lineAppear {
+        to { opacity: 1; }
+    }
+
+    /* Highlight for action line */
+    .action-line {
+        background: linear-gradient(transparent 60%, var(--accent) 60%);
+        display: inline;
+    }
+</style>
+
+<script>
+    // Plusieurs notes qui tournent
+    const notes = [
+        {
+            title: "Idées de projets",
+            lines: [
+                { type: 'item', text: "• App de gestion pour mon équipe" },
+                { type: 'item', text: "• Automatiser mes emails clients" },
+                { type: 'item', text: "• Site web pour mon activité" },
+                { type: 'item', text: "• Dashboard pour suivre mes KPIs" },
+                { type: 'spacer', text: "" },
+                { type: 'action', text: "→ Contacter un dev ?" }
+            ]
+        },
+        {
+            title: "Problèmes à résoudre",
+            lines: [
+                { type: 'item', text: "• Excel devient ingérable..." },
+                { type: 'item', text: "• Trop de tâches manuelles" },
+                { type: 'item', text: "• Clients qui attendent mes réponses" },
+                { type: 'item', text: "• Pas de visibilité sur mes données" },
+                { type: 'spacer', text: "" },
+                { type: 'action', text: "→ Il me faut de l'aide !" }
+            ]
+        },
+        {
+            title: "Objectifs 2025",
+            lines: [
+                { type: 'item', text: "• Lancer mon site pro" },
+                { type: 'item', text: "• Automatiser 50% de mon admin" },
+                { type: 'item', text: "• Créer une app pour mes clients" },
+                { type: 'item', text: "• Gagner 10h/semaine" },
+                { type: 'spacer', text: "" },
+                { type: 'action', text: "→ Trouver le bon partenaire tech" }
+            ]
+        },
+        {
+            title: "Notes réunion client",
+            lines: [
+                { type: 'item', text: "• Besoin d'un outil de réservation" },
+                { type: 'item', text: "• Intégration avec Google Calendar" },
+                { type: 'item', text: "• Paiement en ligne Stripe" },
+                { type: 'item', text: "• Design simple et moderne" },
+                { type: 'spacer', text: "" },
+                { type: 'action', text: "→ Demander un devis à Jon Labs" }
+            ]
+        }
+    ];
+
+    let currentNote = 0;
+
+    const titleElement = document.getElementById('note-title');
+    const linesContainer = document.getElementById('note-lines');
+
+    let isAnimating = false;
+
+    async function typeText(element: HTMLElement, text: string, speed = 50): Promise<void> {
+        return new Promise((resolve) => {
+            let index = 0;
+            element.textContent = '';
+
+            // Add cursor
+            const cursor = document.createElement('span');
+            cursor.className = 'typewriter-cursor';
+            element.appendChild(cursor);
+
+            const interval = setInterval(() => {
+                if (index < text.length) {
+                    const charSpan = document.createTextNode(text[index]);
+                    element.insertBefore(charSpan, cursor);
+                    index++;
+                } else {
+                    clearInterval(interval);
+                    resolve();
+                }
+            }, speed);
+        });
+    }
+
+    async function showNotes() {
+        if (isAnimating || !titleElement || !linesContainer) return;
+        isAnimating = true;
+
+        const note = notes[currentNote];
+
+        // Clear previous content
+        titleElement.textContent = '';
+        linesContainer.innerHTML = '';
+
+        // Type title
+        await typeText(titleElement, note.title, 50);
+        await delay(400);
+
+        // Remove cursor from title
+        const titleCursor = titleElement.querySelector('.typewriter-cursor');
+        if (titleCursor) titleCursor.remove();
+
+        // Type each line
+        for (const line of note.lines) {
+            if (line.type === 'spacer') {
+                await delay(250);
+                continue;
+            }
+
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'note-line';
+
+            if (line.type === 'action') {
+                lineDiv.innerHTML = `<span class="action-line font-medium"></span>`;
+                linesContainer.appendChild(lineDiv);
+                const actionSpan = lineDiv.querySelector('.action-line');
+                if (actionSpan) {
+                    await typeText(actionSpan as HTMLElement, line.text, 35);
+                }
+            } else {
+                linesContainer.appendChild(lineDiv);
+                await typeText(lineDiv, line.text, 30);
+            }
+
+            // Remove cursor after typing line (except last)
+            const lineCursor = lineDiv.querySelector('.typewriter-cursor');
+            if (lineCursor && line !== note.lines[note.lines.length - 1]) {
+                await delay(150);
+                lineCursor.remove();
+            }
+
+            await delay(300);
+        }
+
+        // Wait, switch to next note, and restart
+        await delay(3500);
+        currentNote = (currentNote + 1) % notes.length;
+        isAnimating = false;
+        showNotes();
+    }
+
+    function delay(ms: number): Promise<void> {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Start animation when visible
+    const notesContainer = document.querySelector('.notes-container');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                showNotes();
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    if (notesContainer) {
+        observer.observe(notesContainer);
+    }
+</script>

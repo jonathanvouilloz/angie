@@ -1,0 +1,105 @@
+---
+// ContactInfo.astro - Cartes de contact direct
+import { author } from '../sample'
+
+const contactMethods = [
+    {
+        icon: 'ri-mail-line',
+        label: 'Email',
+        value: 'contact@jonlabs.ch',
+        link: 'mailto:contact@jonlabs.ch',
+        description: 'Pour les demandes détaillées'
+    },
+    {
+        icon: 'ri-linkedin-box-fill',
+        label: 'LinkedIn',
+        value: 'Jonathan Vouilloz',
+        link: author.linkedin,
+        description: 'Connectons-nous',
+        external: true
+    },
+    {
+        icon: 'ri-github-fill',
+        label: 'GitHub',
+        value: 'Voir mes projets',
+        link: author.github,
+        description: 'Code open-source',
+        external: true
+    }
+]
+---
+
+<div class="contact-info space-y-4">
+    <!-- Section title -->
+    <div class="mb-6">
+        <h3 class="text-lg font-bold mb-1">Contact direct</h3>
+        <p class="text-sm text-gray-500">Besoin d'une réponse rapide ?</p>
+    </div>
+
+    <!-- Contact cards -->
+    {contactMethods.map((method) => (
+        <a
+            href={method.link}
+            target={method.external ? '_blank' : undefined}
+            rel={method.external ? 'noopener noreferrer' : undefined}
+            class="
+                contact-card
+                group
+                flex items-center gap-4
+                bg-white border-2 border-black
+                p-4
+                shadow-[3px_3px_0px_rgba(0,0,0,0.8)]
+                transition-all duration-200
+                hover:shadow-[5px_5px_0px_rgba(0,0,0,0.6)]
+                hover:translate-x-[-2px] hover:translate-y-[-2px]
+                hover:bg-gray-50
+            "
+        >
+            <!-- Icon -->
+            <div class="
+                w-12 h-12
+                bg-[var(--blue)]
+                border-2 border-black
+                flex items-center justify-center
+                transition-colors duration-200
+                group-hover:bg-[var(--yellow)]
+            ">
+                <i class={`${method.icon} text-xl`}></i>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold">{method.label}</span>
+                    {method.external && (
+                        <i class="ri-external-link-line text-sm text-gray-400"></i>
+                    )}
+                </div>
+                <p class="text-sm text-gray-600 truncate">{method.value}</p>
+            </div>
+
+            <!-- Arrow -->
+            <i class="ri-arrow-right-line text-lg opacity-0 group-hover:opacity-100 transition-opacity"></i>
+        </a>
+    ))}
+
+    <!-- Availability status -->
+    <div class="mt-6 p-4 bg-emerald-50 border-2 border-emerald-200 border-dashed">
+        <div class="flex items-center gap-3">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            <div>
+                <p class="font-medium text-emerald-800">Disponible</p>
+                <p class="text-xs text-emerald-600">Réponse sous 24-48h</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location info -->
+    <div class="flex items-center gap-2 text-sm text-gray-500 pt-2">
+        <i class="ri-map-pin-line"></i>
+        <span>{author.location}</span>
+    </div>
+</div>

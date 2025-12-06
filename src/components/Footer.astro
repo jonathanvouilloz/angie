@@ -1,5 +1,5 @@
 ---
-import logoStar from '../assets/logo-star.svg'
+import logo from '../assets/logo.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 import { author } from '../sample'
 
@@ -29,14 +29,12 @@ const footerLinks = [
 
             <!-- Brand column -->
             <div class="md:col-span-2">
-                <a href="/" class="inline-flex items-center gap-3 text-2xl font-black mb-4 group">
+                <a href="/" class="inline-flex items-center mb-4 group">
                     <img
-                        src={logoStar.src}
-                        alt="Jon Labs logo"
-                        width="32"
-                        class="transition-transform duration-300 group-hover:rotate-12"
+                        src={logo.src}
+                        alt="Jon Labs"
+                        class="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
                     />
-                    <span>{author.nickname}</span>
                 </a>
                 <p class="text-gray-600 leading-relaxed max-w-sm mb-6">
                     Développement web, automatisation, applications sur-mesure.

@@ -1,0 +1,92 @@
+---
+import svgPinkStar from '../assets/pink-star.svg'
+import svgArrow from '../assets/arrow-3.svg'
+import ChatAnimation from './ChatAnimation.astro'
+import NotesAnimation from './NotesAnimation.astro'
+
+// Choisir l'animation : 'chat' ou 'notes'
+const animationType = 'notes'
+---
+
+<section class="contact-hero pt-16 pb-24 md:pt-20 md:pb-32 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 contact-grid-bg opacity-[0.03]"></div>
+
+    <!-- Floating decorations -->
+    <img
+        src={svgPinkStar.src}
+        alt=""
+        width="50"
+        class="absolute top-16 right-8 md:right-20 opacity-60 animate-pulse hidden lg:block"
+        style="animation-duration: 3s;"
+        aria-hidden="true"
+    />
+    <img
+        src={svgArrow.src}
+        alt=""
+        width="80"
+        class="absolute bottom-12 left-8 md:left-16 opacity-20 hidden md:block"
+        aria-hidden="true"
+    />
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+
+        <!-- Two column layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+            <!-- Left: Text content -->
+            <div class="relative">
+                <div class="relative z-10">
+                    <!-- Main title -->
+                    <h1 class="text-4xl md:text-5xl lg:text-5xl font-normal tracking-tight leading-[1.05] mb-6">
+                        Une idée ?<br class="hidden sm:block" />
+                        On la concrétise ensemble,<br class="hidden sm:block" />
+                        <span class="relative inline-block">
+                            <span class="relative z-10">étape par étape</span>
+                            <img
+                                src={svgArrow.src}
+                                alt=""
+                                class="absolute -bottom-0 left-0 w-full h-8 pointer-events-none"
+                                aria-hidden="true"
+                            />
+                        </span>
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed">
+                        Développement web, automatisation, applications sur-mesure.<br class="hidden md:block" />
+                        Je suis disponible pour vous accompagner.
+                    </p>
+
+                    <!-- Availability badge -->
+                    <div class="mt-6 inline-flex items-center gap-2 bg-white border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                        </span>
+                        <span class="text-sm font-medium">Disponible pour nouveaux projets</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Animation -->
+            <div class="hidden lg:flex justify-center lg:justify-end">
+                {animationType === 'chat' ? (
+                    <ChatAnimation />
+                ) : (
+                    <NotesAnimation />
+                )}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact-grid-bg {
+        background-image:
+            linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+</style>
