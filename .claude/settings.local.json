@@ -7,7 +7,9 @@
       "Skill(example-skills:frontend-design)",
       "Bash(if not exist \"C:/Users/jojo-/Desktop/angie/public/fonts\" mkdir \"C:/Users/jojo-/Desktop/angie/public/fonts\")",
       "Bash(copy:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\data\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\data\")",
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\services\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\services\")"
     ],
     "deny": [],
     "ask": []

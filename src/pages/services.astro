@@ -1,0 +1,220 @@
+---
+// Page Services - Jon Labs
+// Expérience interactive avec caméléon mascotte, bulles de scénarios, et conversations animées
+
+import '../styles/global.css'
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import HeroScenarios from '../components/services/HeroScenarios.astro'
+import ConversationModal from '../components/services/ConversationModal.astro'
+import ServiceAccordion from '../components/services/ServiceAccordion.astro'
+import ServicesCTA from '../components/services/ServicesCTA.astro'
+---
+
+<Layout
+  title="Services - Jon Labs | Développement Web, Automatisation, Applications"
+  description="Découvrez comment Jon Labs peut résoudre vos problématiques business. Développement web, automatisation des processus, et applications sur-mesure. Explorez les solutions adaptées à votre situation."
+>
+  <Header />
+
+  <main>
+    <!-- Section Hero avec caméléon et bulles constellation -->
+    <HeroScenarios />
+
+    <!-- Section Services Détaillés -->
+    <section class="services-detail" id="services-detail">
+      <div class="services-container">
+        <header class="section-header">
+          <div class="header-content">
+            <div>
+              <!-- Title -->
+              <h2 class="section-title">
+                Mes Services<br/>
+                en Détail
+              </h2>
+            </div>
+
+            <!-- CTA link -->
+            <a href="/contact" class="section-cta">
+              Me contacter
+              <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </header>
+
+        <div class="services-grid">
+          <!-- Développement Web -->
+          <ServiceAccordion
+            serviceId="dev-web"
+            title="Développement Web"
+            description="Sites performants, web apps modernes, refonte complète. Du one-page qui convertit à la plateforme complexe."
+            scenarioIds={['website-old', 'launch-fast']}
+            ctaText="Lancer mon projet web"
+            defaultOpen={true}
+          />
+
+          <!-- Automatisation -->
+          <ServiceAccordion
+            serviceId="automatisation"
+            title="Automatisation & Processus"
+            description="Gagnez du temps en automatisant les tâches répétitives. Connectez vos outils, créez des workflows intelligents."
+            scenarioIds={['tools-sync', 'time-lack', 'cash-flow', 'email-fails']}
+            ctaText="Automatiser mes process"
+          />
+
+          <!-- Applications -->
+          <ServiceAccordion
+            serviceId="applications"
+            title="Applications Sur-Mesure"
+            description="Solutions uniques pour problèmes uniques. MVP, dashboards, outils internes, validation de concept."
+            scenarioIds={['data-scattered', 'launch-fast', 'idea-validation']}
+            ctaText="Créer mon application"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <ServicesCTA />
+  </main>
+
+  <!-- Modal pour les conversations -->
+  <ConversationModal />
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Section Services Detail */
+  .services-detail {
+    padding: 5rem 1rem;
+    background: white;
+    border-top: 3px solid black;
+  }
+
+  .services-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Section Header - Style Homepage */
+  .section-header {
+    position: relative;
+    margin-bottom: 4rem;
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-content {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    margin: 0;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .section-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text, #0F172A);
+    text-decoration: none;
+    border-bottom: 2px solid black;
+    padding-bottom: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .section-cta:hover {
+    gap: 0.75rem;
+    border-color: var(--blue, #00D9A3);
+  }
+
+  /* Services Grid */
+  .services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .services-detail {
+      padding: 3rem 1rem;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .services-grid {
+      gap: 2rem;
+    }
+  }
+</style>
+
+<script>
+  // Animation d'entrée au scroll pour les services
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observer les catégories de services
+  document.querySelectorAll('.service-category').forEach(el => {
+    el.classList.add('animate-on-scroll');
+    observer.observe(el);
+  });
+</script>
+
+<style is:global>
+  /* Animation au scroll */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Échelonnement des services */
+  .service-category:nth-child(1).animate-on-scroll {
+    transition-delay: 0s;
+  }
+
+  .service-category:nth-child(2).animate-on-scroll {
+    transition-delay: 0.15s;
+  }
+
+  .service-category:nth-child(3).animate-on-scroll {
+    transition-delay: 0.3s;
+  }
+</style>

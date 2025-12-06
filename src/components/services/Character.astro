@@ -1,0 +1,261 @@
+---
+// Caméléon mascotte simplifié avec yeux sur tiges qui suivent la souris
+// Le corps change de couleur au survol des bulles (via data attribute)
+---
+
+<div class="chameleon-container" id="chameleon">
+  <svg
+    class="chameleon"
+    viewBox="0 0 240 180"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-label="Caméléon mascotte Jon Labs"
+  >
+    <!-- Queue spirale améliorée (derrière le corps) -->
+    <path
+      class="chameleon-tail"
+      d="M175,100
+         C195,95 210,100 218,115
+         C228,135 218,155 200,162
+         C182,168 165,160 158,145
+         C152,132 158,122 168,118"
+      stroke="black"
+      stroke-width="3.5"
+      fill="white"
+      stroke-linecap="round"
+    />
+
+    <!-- Corps principal (ellipse) -->
+    <ellipse
+      class="chameleon-body"
+      cx="110"
+      cy="100"
+      rx="70"
+      ry="50"
+      fill="white"
+      stroke="black"
+      stroke-width="3"
+    />
+
+    <!-- Patte avant -->
+    <ellipse class="chameleon-paw" cx="75" cy="140" rx="12" ry="8" fill="white" stroke="black" stroke-width="2"/>
+
+    <!-- Patte arrière -->
+    <ellipse class="chameleon-paw" cx="145" cy="140" rx="12" ry="8" fill="white" stroke="black" stroke-width="2"/>
+
+    <!-- Tige oeil gauche -->
+    <path
+      class="eye-stem-left"
+      d="M55,75 Q35,50 25,35"
+      stroke="black"
+      stroke-width="4"
+      fill="none"
+      stroke-linecap="round"
+    />
+
+    <!-- Oeil gauche (globe) -->
+    <circle
+      class="eye-globe-left"
+      cx="22"
+      cy="30"
+      r="18"
+      fill="white"
+      stroke="black"
+      stroke-width="3"
+    />
+
+    <!-- Pupille gauche (suit la souris) -->
+    <circle
+      class="pupil-left"
+      cx="22"
+      cy="30"
+      r="7"
+      fill="black"
+    />
+
+    <!-- Reflet oeil gauche -->
+    <circle cx="17" cy="25" r="3" fill="white" opacity="0.8"/>
+
+    <!-- Tige oeil droit -->
+    <path
+      class="eye-stem-right"
+      d="M165,75 Q185,50 195,35"
+      stroke="black"
+      stroke-width="4"
+      fill="none"
+      stroke-linecap="round"
+    />
+
+    <!-- Oeil droit (globe) -->
+    <circle
+      class="eye-globe-right"
+      cx="198"
+      cy="30"
+      r="18"
+      fill="white"
+      stroke="black"
+      stroke-width="3"
+    />
+
+    <!-- Pupille droite (suit la souris) -->
+    <circle
+      class="pupil-right"
+      cx="198"
+      cy="30"
+      r="7"
+      fill="black"
+    />
+
+    <!-- Reflet oeil droit -->
+    <circle cx="193" cy="25" r="3" fill="white" opacity="0.8"/>
+
+    <!-- Bouche (sourire subtil) -->
+    <path
+      d="M65,110 Q80,120 95,110"
+      stroke="black"
+      stroke-width="2"
+      fill="none"
+      stroke-linecap="round"
+    />
+  </svg>
+</div>
+
+<style>
+  .chameleon-container {
+    width: 200px;
+    height: 150px;
+    position: relative;
+    transition: transform 0.3s ease-out;
+  }
+
+  .chameleon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chameleon-body,
+  .chameleon-paw {
+    transition: fill 0.35s ease-out;
+  }
+
+  /* Animation idle - léger mouvement de respiration */
+  .chameleon-container {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  /* Queue qui bouge légèrement */
+  .chameleon-tail {
+    transform-origin: 168px 118px;
+    animation: tailWag 5s ease-in-out infinite;
+  }
+
+  @keyframes tailWag {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(4deg); }
+    75% { transform: rotate(-3deg); }
+  }
+
+  /* Pupilles avec transition smooth */
+  .pupil-left,
+  .pupil-right {
+    transition: transform 0.1s ease-out;
+  }
+
+  /* États de couleur selon le service survolé - plus visible */
+  .chameleon-container[data-color="automatisation"] .chameleon-body,
+  .chameleon-container[data-color="automatisation"] .chameleon-paw {
+    fill: rgba(0, 217, 163, 0.35);
+  }
+
+  .chameleon-container[data-color="applications"] .chameleon-body,
+  .chameleon-container[data-color="applications"] .chameleon-paw {
+    fill: rgba(163, 0, 217, 0.3);
+  }
+
+  .chameleon-container[data-color="dev-web"] .chameleon-body,
+  .chameleon-container[data-color="dev-web"] .chameleon-paw {
+    fill: rgba(0, 150, 255, 0.35);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .chameleon-container {
+      width: 140px;
+      height: 105px;
+    }
+  }
+</style>
+
+<script>
+  // Eye tracking - les deux yeux suivent la souris indépendamment comme un vrai caméléon
+  document.addEventListener('DOMContentLoaded', () => {
+    const chameleon = document.getElementById('chameleon');
+    if (!chameleon) return;
+
+    const leftPupil = chameleon.querySelector('.pupil-left') as SVGCircleElement;
+    const rightPupil = chameleon.querySelector('.pupil-right') as SVGCircleElement;
+
+    if (!leftPupil || !rightPupil) return;
+
+    // Centres des yeux dans le SVG viewBox
+    const leftEyeCenter = { x: 22, y: 30 };
+    const rightEyeCenter = { x: 198, y: 30 };
+    const maxPupilOffset = 8; // Limite de mouvement en pixels SVG
+
+    function updatePupils(mouseX: number, mouseY: number) {
+      const rect = chameleon.getBoundingClientRect();
+      const svgWidth = 240;
+      const svgHeight = 180;
+
+      // Convertir position souris en coordonnées SVG
+      const scaleX = svgWidth / rect.width;
+      const scaleY = svgHeight / rect.height;
+
+      const svgMouseX = (mouseX - rect.left) * scaleX;
+      const svgMouseY = (mouseY - rect.top) * scaleY;
+
+      // Calculer offset pour chaque oeil indépendamment
+      function calculatePupilOffset(eyeCenter: {x: number, y: number}) {
+        const dx = svgMouseX - eyeCenter.x;
+        const dy = svgMouseY - eyeCenter.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Normaliser et limiter
+        const scale = Math.min(maxPupilOffset / distance, 1);
+        return {
+          x: dx * scale,
+          y: dy * scale
+        };
+      }
+
+      const leftOffset = calculatePupilOffset(leftEyeCenter);
+      const rightOffset = calculatePupilOffset(rightEyeCenter);
+
+      // Appliquer les transformations
+      leftPupil.style.transform = `translate(${leftOffset.x}px, ${leftOffset.y}px)`;
+      rightPupil.style.transform = `translate(${rightOffset.x}px, ${rightOffset.y}px)`;
+    }
+
+    // Throttle pour performance
+    let ticking = false;
+    document.addEventListener('mousemove', (e) => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updatePupils(e.clientX, e.clientY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Reset au centre quand la souris quitte la page
+    document.addEventListener('mouseleave', () => {
+      leftPupil.style.transform = 'translate(0, 0)';
+      rightPupil.style.transform = 'translate(0, 0)';
+    });
+  });
+</script>

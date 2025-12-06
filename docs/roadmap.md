@@ -92,17 +92,33 @@
 
 ## Phase 3 : Pages Services & Portfolio
 
-**Statut** : À faire
+**Statut** : 🔄 En cours
 
 ### Tâches
 
-- [ ] **Page Services** (`/services`)
-  - [ ] Hero/Intro
-  - [ ] Section Développement Web détaillée
-  - [ ] Section Automatisation détaillée
-  - [ ] Section Applications Sur-Mesure détaillée
-  - [ ] Badges technologies pour chaque service
-  - [ ] CTAs vers contact
+- [x] **Page Services** (`/services`)
+  - [x] Hero interactif "hub-and-spoke"
+    - [x] Hub central avec logo Jon Labs
+    - [x] 8 cartes scénarios (situations client)
+    - [x] Lignes SVG animées (traitillés en mouvement hub → cartes)
+    - [x] Système de particules en arrière-plan
+    - [x] Animations d'apparition et de flottement
+  - [x] Modal conversation immersif
+    - [x] Style iMessage avec header "Jonathan V."
+    - [x] Messages animés avec typing indicator
+    - [x] Apparition fluide du CTA (slide-up + fade)
+    - [x] Scroll automatique vers derniers messages
+  - [x] Section Services détaillés (accordéons)
+    - [x] Développement Web (2 scénarios)
+    - [x] Automatisation & Processus (4 scénarios)
+    - [x] Applications Sur-Mesure (3 scénarios)
+    - [x] Premier accordéon ouvert par défaut
+    - [x] Descriptions + exemples concrets par scénario
+  - [x] CTA final style hero
+    - [x] Background sombre avec grille pattern
+    - [x] Bouton "Discutons..." semi-transparent avec blur
+    - [x] Bouton email style terminal (→ hello@jonlabs.ch)
+    - [x] Trust indicators
 - [ ] **Page Portfolio** (`/portfolio`)
   - [ ] Hero
   - [ ] Filtres par catégorie (optionnel)
@@ -112,9 +128,10 @@
 
 ### Livrables
 
-- 2 nouvelles pages complètes
-- Navigation mise à jour
-- Liens inter-pages fonctionnels
+- ✅ Page Services complète et fonctionnelle
+- ⏳ Page Portfolio à créer
+- ✅ Navigation mise à jour
+- ✅ Liens inter-pages fonctionnels
 
 ---
 
@@ -140,12 +157,12 @@
   - [ ] Section Badminton
   - [ ] Section Blog & Réflexions
   - [ ] Section Idées en vrac
-- [ ] **Page Contact** (`/contact`)
-  - [ ] Hero
-  - [ ] Formulaire de contact
-  - [ ] Infos directes (email, LinkedIn, GitHub)
-  - [ ] Section FAQ
-  - [ ] CTA alternatif (LinkedIn)
+- [x] **Page Contact** (`/contact`)
+  - [x] Hero
+  - [x] Formulaire de contact (Web3Forms)
+  - [x] Infos directes (email, LinkedIn, GitHub)
+  - [x] Section FAQ (accordion)
+  - [x] CTA alternatif (LinkedIn)
 
 ### Livrables
 

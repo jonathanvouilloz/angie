@@ -1,5 +1,5 @@
 ---
-import logoBottle from '../assets/bottle-lab.svg'
+import logo from '../assets/logo.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 import { author, cta } from '../sample'
 
@@ -38,14 +38,12 @@ const { pathname } = Astro.url
     
         <nav class="flex w-full items-center p-2 md:p-0">
             <div class="flex-1 font-bold">
-                <a href="/" class="flex items-center gap-2 pl-3 group">
+                <a href="/" class="flex items-center pl-3 group">
                     <img
-                        src={logoBottle.src}
-                        alt="Jon Labs logo"
-                        width="26"
-                        class="transition-transform duration-300 group-hover:rotate-12"
+                        src={logo.src}
+                        alt="Jon Labs"
+                        class="h-6 md:h-7 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
                     />
-                    <span>{author.nickname}</span>
                 </a>
             </div>
             <button

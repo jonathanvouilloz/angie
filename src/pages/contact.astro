@@ -1,0 +1,66 @@
+---
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ContactHero from "../components/ContactHero.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ContactInfo from "../components/ContactInfo.astro";
+import ContactFAQ from "../components/ContactFAQ.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import Modal from "../components/Modal.astro";
+---
+
+<Layout
+  title="Contact - Jon Labs"
+  description="Discutons de votre projet. Développement web, automatisation, applications sur-mesure. Je suis disponible pour de nouvelles collaborations."
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <ContactHero />
+
+    <!-- Main Content: Form + Info -->
+    <section class="pb-16 md:pb-24 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-12">
+          <!-- Formulaire -->
+          <ContactForm />
+
+          <!-- Infos directes -->
+          <ContactInfo />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <ContactFAQ />
+
+    <!-- CTA Alternatif -->
+    <ContactCTA />
+  </main>
+
+  <Footer />
+
+  <!-- Success Modal -->
+  <Modal
+    id="contact-success"
+    title="Message envoyé !"
+    message="Merci de m'avoir contacté. Je vous répondrai sous 24-48h."
+    buttonText="Parfait"
+    icon="ri-check-line"
+    iconColor="var(--blue)"
+    cornerColor="var(--blue)"
+    spinning={false}
+  />
+</Layout>
+
+<script>
+  // Modal close handlers
+  document.querySelectorAll('[data-close-modal]').forEach(el => {
+    el.addEventListener('click', () => {
+      document.getElementById('contact-success')?.classList.add('hidden');
+    });
+  });
+</script>
