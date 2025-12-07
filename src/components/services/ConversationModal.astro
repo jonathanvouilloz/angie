@@ -58,8 +58,16 @@ import { scenarios } from '../../data/scenarios';
       </div>
     </div>
 
-    <!-- Footer CTAs -->
-    <footer class="modal-footer hidden" id="modal-footer">
+    <!-- Badge nouveaux messages -->
+    <button class="new-messages-badge hidden" id="new-messages-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+      Nouveaux messages
+    </button>
+
+    <!-- Footer CTAs - état réduit par défaut -->
+    <footer class="modal-footer" id="modal-footer">
       <a href="/contact" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
@@ -278,22 +286,56 @@ import { scenarios } from '../../data/scenarios';
     30% { transform: translateY(-4px); opacity: 1; }
   }
 
-  /* Footer */
+  /* Badge nouveaux messages */
+  .new-messages-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--blue, #00D9A3);
+    border: 2px solid black;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 black;
+    z-index: 10;
+    animation: badgeBounce 0.3s ease;
+    transition: all 0.15s ease;
+  }
+
+  .new-messages-badge:hover {
+    box-shadow: 1px 1px 0 black;
+    transform: translateX(-50%) translate(1px, 1px);
+  }
+
+  .new-messages-badge.hidden {
+    display: none;
+  }
+
+  @keyframes badgeBounce {
+    0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Footer - état réduit par défaut */
   .modal-footer {
     display: flex;
     gap: 0.75rem;
-    padding: 1rem;
+    padding: 0;
+    height: 6px;
     border-top: 2px solid black;
     background: #f8f8f8;
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    transition: all 0.4s ease;
   }
 
-  .modal-footer.hidden {
-    opacity: 0;
-    transform: translateY(10px);
-    pointer-events: none;
+  .modal-footer.expanded {
+    height: auto;
+    padding: 1rem;
   }
 
   /* Buttons */
@@ -424,7 +466,7 @@ import { scenarios } from '../../data/scenarios';
     id: string;
     emoji: string;
     title: string;
-    service: string;
+    pillar: string;
     scrollTo: string;
     messages: Message[];
   }
@@ -436,9 +478,47 @@ import { scenarios } from '../../data/scenarios';
   const typingIndicator = document.getElementById('typing-indicator');
   const footer = document.getElementById('modal-footer');
   const btnLearnMore = document.getElementById('btn-learn-more');
+  const newMessagesBadge = document.getElementById('new-messages-badge');
 
   let currentScenario: Scenario | null = null;
   let animationTimeouts: number[] = [];
+
+  // Détecte si l'utilisateur est proche du bas du conteneur
+  function isNearBottom(container: HTMLElement, threshold = 100): boolean {
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    return scrollHeight - scrollTop - clientHeight < threshold;
+  }
+
+  // Affiche/cache le badge nouveaux messages
+  function updateNewMessagesBadge(show: boolean) {
+    if (!newMessagesBadge) return;
+    if (show) {
+      newMessagesBadge.classList.remove('hidden');
+    } else {
+      newMessagesBadge.classList.add('hidden');
+    }
+  }
+
+  // Scroll vers le bas et cache le badge
+  function scrollToBottom() {
+    if (messagesContainer) {
+      messagesContainer.scrollTo({
+        top: messagesContainer.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+    updateNewMessagesBadge(false);
+  }
+
+  // Écouter le scroll pour cacher le badge quand on arrive en bas
+  messagesContainer?.addEventListener('scroll', () => {
+    if (messagesContainer && isNearBottom(messagesContainer)) {
+      updateNewMessagesBadge(false);
+    }
+  });
+
+  // Clic sur le badge → scroll vers le bas
+  newMessagesBadge?.addEventListener('click', scrollToBottom);
 
   function openModal(scenarioId: string) {
     const scenario = scenarios.find(s => s.id === scenarioId);
@@ -452,8 +532,11 @@ import { scenarios } from '../../data/scenarios';
       existingMessages.forEach(msg => msg.remove());
     }
 
-    // Cacher le footer
-    if (footer) footer.classList.add('hidden');
+    // Reset footer (état réduit)
+    if (footer) footer.classList.remove('expanded');
+
+    // Cacher le badge
+    updateNewMessagesBadge(false);
 
     // Afficher le modal
     modal.classList.remove('hidden');
@@ -482,7 +565,16 @@ import { scenarios } from '../../data/scenarios';
 
         if (messagesContainer && typingIndicator) {
           messagesContainer.insertBefore(messageEl, typingIndicator);
-          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          // Scroll intelligent : ne scroller que si l'utilisateur est près du bas
+          if (isNearBottom(messagesContainer)) {
+            messagesContainer.scrollTo({
+              top: messagesContainer.scrollHeight,
+              behavior: 'smooth'
+            });
+          } else {
+            // Afficher le badge si l'utilisateur n'est pas en bas
+            updateNewMessagesBadge(true);
+          }
         }
 
         if (index === messages.length - 1) {
@@ -490,8 +582,9 @@ import { scenarios } from '../../data/scenarios';
             if (typingIndicator) typingIndicator.classList.remove('visible');
             const showFooter = window.setTimeout(() => {
               if (footer) {
-                footer.classList.remove('hidden');
-                // Scroll vers le bas pour voir les derniers messages
+                footer.classList.add('expanded');
+                // Cacher le badge et scroll vers le bas pour voir les CTAs
+                updateNewMessagesBadge(false);
                 setTimeout(() => {
                   if (messagesContainer) {
                     messagesContainer.scrollTo({

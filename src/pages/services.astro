@@ -8,7 +8,7 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import HeroScenarios from '../components/services/HeroScenarios.astro'
 import ConversationModal from '../components/services/ConversationModal.astro'
-import ServiceAccordion from '../components/services/ServiceAccordion.astro'
+import ServiceSection from '../components/services/ServiceSection.astro'
 import ServicesCTA from '../components/services/ServicesCTA.astro'
 ---
 
@@ -16,7 +16,7 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
   title="Services - Jon Labs | Développement Web, Automatisation, Applications"
   description="Découvrez comment Jon Labs peut résoudre vos problématiques business. Développement web, automatisation des processus, et applications sur-mesure. Explorez les solutions adaptées à votre situation."
 >
-  <Header />
+  <Header variant="transparent" />
 
   <main>
     <!-- Section Hero avec caméléon et bulles constellation -->
@@ -28,14 +28,12 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
         <header class="section-header">
           <div class="header-content">
             <div>
-              <!-- Title -->
               <h2 class="section-title">
                 Mes Services<br/>
                 en Détail
               </h2>
             </div>
 
-            <!-- CTA link -->
             <a href="/contact" class="section-cta">
               Me contacter
               <i class="ri-arrow-right-line"></i>
@@ -44,33 +42,9 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
         </header>
 
         <div class="services-grid">
-          <!-- Développement Web -->
-          <ServiceAccordion
-            serviceId="dev-web"
-            title="Développement Web"
-            description="Sites performants, web apps modernes, refonte complète. Du one-page qui convertit à la plateforme complexe."
-            scenarioIds={['website-old', 'launch-fast']}
-            ctaText="Lancer mon projet web"
-            defaultOpen={true}
-          />
-
-          <!-- Automatisation -->
-          <ServiceAccordion
-            serviceId="automatisation"
-            title="Automatisation & Processus"
-            description="Gagnez du temps en automatisant les tâches répétitives. Connectez vos outils, créez des workflows intelligents."
-            scenarioIds={['tools-sync', 'time-lack', 'cash-flow', 'email-fails']}
-            ctaText="Automatiser mes process"
-          />
-
-          <!-- Applications -->
-          <ServiceAccordion
-            serviceId="applications"
-            title="Applications Sur-Mesure"
-            description="Solutions uniques pour problèmes uniques. MVP, dashboards, outils internes, validation de concept."
-            scenarioIds={['data-scattered', 'launch-fast', 'idea-validation']}
-            ctaText="Créer mon application"
-          />
+          <ServiceSection sectionId="web-outils" />
+          <ServiceSection sectionId="automatisation" />
+          <ServiceSection sectionId="validation" />
         </div>
       </div>
     </section>
@@ -193,6 +167,11 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
 </script>
 
 <style is:global>
+  /* Background sombre pour la page services (header transparent) */
+  body {
+    background-color: #0a0a0f;
+  }
+
   /* Animation au scroll */
   .animate-on-scroll {
     opacity: 0;

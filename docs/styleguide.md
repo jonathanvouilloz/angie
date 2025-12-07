@@ -435,6 +435,34 @@ Structure : container brutaliste avec corner boxes, logo à gauche, liens + CTA 
 | Hover | Soulignement animé `before:bg-[var(--accent)]` (magenta transparent) |
 | Active | `bg-[var(--accent)]` (fond magenta transparent) |
 
+### Header transparent (pages avec hero sombre)
+
+Pour les pages avec un hero sombre, utiliser la variante `transparent` du header :
+
+```astro
+<Header variant="transparent" />
+```
+
+**Comportement :**
+- Header avec fond transparent, logo et liens en blanc
+- Bordures subtiles blanches (20-30% opacité)
+- Hover des liens en vert labo (`--blue`) au lieu de violet
+- Le hero remonte sous le header avec `margin-top: -100px`
+- Body de la page avec background sombre pour uniformité
+
+```css
+/* Dans la page avec hero sombre */
+body {
+  background-color: #0a0a0f;
+}
+
+/* Hero qui remonte sous le header */
+.hero {
+  margin-top: -100px;
+  padding-top: 100px;
+}
+```
+
 ### Navigation mobile
 
 Menu slide-in avec liens centrés et CTA en bas :
