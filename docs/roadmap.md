@@ -97,23 +97,30 @@
 ### Tâches
 
 - [x] **Page Services** (`/services`)
-  - [x] Hero interactif "hub-and-spoke"
+  - [x] Hero interactif "constellation"
     - [x] Hub central avec logo Jon Labs
-    - [x] 8 cartes scénarios (situations client)
+    - [x] 6 cartes scénarios en constellation libre (3 piliers)
     - [x] Lignes SVG animées (traitillés en mouvement hub → cartes)
     - [x] Système de particules en arrière-plan
     - [x] Animations d'apparition et de flottement
+    - [x] Hauteur ajustée pour être visible sans scroll
+  - [x] Header transparent intégré au hero
+    - [x] Variante `transparent` du Header (logo blanc, liens blancs)
+    - [x] Hero remonte sous le header (margin-top négatif)
+    - [x] Background sombre unifié (body + hero)
+    - [x] Hover des liens en vert labo (--blue) au lieu de violet
   - [x] Modal conversation immersif
     - [x] Style iMessage avec header "Jonathan V."
     - [x] Messages animés avec typing indicator
     - [x] Apparition fluide du CTA (slide-up + fade)
-    - [x] Scroll automatique vers derniers messages
-  - [x] Section Services détaillés (accordéons)
-    - [x] Développement Web (2 scénarios)
-    - [x] Automatisation & Processus (4 scénarios)
-    - [x] Applications Sur-Mesure (3 scénarios)
-    - [x] Premier accordéon ouvert par défaut
-    - [x] Descriptions + exemples concrets par scénario
+    - [x] Scroll intelligent (ne scroll que si utilisateur près du bas)
+    - [x] Badge flottant "Nouveaux messages" quand on rate des messages
+    - [x] Footer réduit pendant la conversation, s'agrandit à la fin
+  - [x] Section Services détaillés (cartes sous-services)
+    - [x] Web & Outils sur mesure (3 sous-services)
+    - [x] Automatisation (2 sous-services)
+    - [x] Validation d'idées (2 sous-services)
+    - [x] Cartes avec features en bullets + CTAs
   - [x] CTA final style hero
     - [x] Background sombre avec grille pattern
     - [x] Bouton "Discutons..." semi-transparent avec blur

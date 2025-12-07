@@ -1,0 +1,224 @@
+---
+// Section de services avec cartes de sous-services
+// Affiche titre, accroche, et liste de sous-services avec features
+
+import { getSectionById, type ServiceSection } from '../../data/scenarios';
+
+interface Props {
+  sectionId: 'web-outils' | 'automatisation' | 'validation';
+}
+
+const { sectionId } = Astro.props;
+const section = getSectionById(sectionId);
+
+if (!section) {
+  throw new Error(`Section ${sectionId} not found`);
+}
+---
+
+<section class="service-section" id={sectionId}>
+  <header class="section-header">
+    <h2 class="section-title">{section.title}</h2>
+    <p class="section-accroche">{section.accroche}</p>
+  </header>
+
+  <div class="subservices-grid">
+    {section.subServices.map((sub) => (
+      <article class="subservice-card" id={sub.id}>
+        <h3 class="card-title">{sub.title}</h3>
+        <p class="card-description">{sub.description}</p>
+
+        <ul class="card-features">
+          {sub.features.map((feature) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a href={`#${sub.id}`} class="card-cta">
+          {sub.ctaText}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </article>
+    ))}
+  </div>
+
+  <a href="/contact" class="section-cta">
+    {section.ctaText}
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
+</section>
+
+<style>
+  .service-section {
+    padding: 4rem 0;
+    scroll-margin-top: 100px;
+  }
+
+  .service-section:not(:last-of-type) {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Header */
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    color: var(--text, #0F172A);
+  }
+
+  .section-accroche {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  /* Grid de cartes */
+  .subservices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Carte sous-service */
+  .subservice-card {
+    background: white;
+    border: 2px solid black;
+    padding: 1.5rem;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    scroll-margin-top: 120px;
+  }
+
+  .subservice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.625rem;
+    color: var(--text, #0F172A);
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0 0 1.25rem;
+    line-height: 1.5;
+  }
+
+  /* Features list */
+  .card-features {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex: 1;
+  }
+
+  .card-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.4;
+  }
+
+  .card-features li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--blue, #00D9A3);
+  }
+
+  .card-features li span {
+    flex: 1;
+  }
+
+  /* CTA de la carte */
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text, #0F172A);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid var(--blue, #00D9A3);
+    transition: all 0.2s ease;
+    align-self: flex-start;
+  }
+
+  .card-cta:hover {
+    gap: 0.75rem;
+    color: var(--blue, #00D9A3);
+  }
+
+  /* CTA de la section */
+  .section-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem 1.5rem;
+    background: var(--blue, #00D9A3);
+    border: 2px solid black;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: black;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .section-cta:hover {
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+    transform: translate(2px, 2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .service-section {
+      padding: 3rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .subservices-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .subservice-card {
+      padding: 1.25rem;
+    }
+
+    .section-cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

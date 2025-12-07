@@ -7,20 +7,20 @@ interface Props {
   title: string;
   subtitle: string;
   scenarioId: string;
-  service: 'dev-web' | 'automatisation' | 'applications';
-  position: number; // 0-7 pour les 8 positions
+  service: 'web' | 'auto' | 'validation';
+  position: number; // 0-5 pour les 6 positions
 }
 
 const { title, subtitle, scenarioId, service, position } = Astro.props;
 
-// Couleurs par service
-const serviceColors = {
-  'automatisation': { primary: '#00D9A3', glow: 'rgba(0, 217, 163, 0.4)' },
-  'applications': { primary: '#A300D9', glow: 'rgba(163, 0, 217, 0.4)' },
-  'dev-web': { primary: '#0096FF', glow: 'rgba(0, 150, 255, 0.4)' }
+// Couleurs par pilier
+const pillarColors = {
+  'web': { primary: '#0096FF', glow: 'rgba(0, 150, 255, 0.4)' },
+  'auto': { primary: '#00D9A3', glow: 'rgba(0, 217, 163, 0.4)' },
+  'validation': { primary: '#A300D9', glow: 'rgba(163, 0, 217, 0.4)' }
 };
 
-const colors = serviceColors[service];
+const colors = pillarColors[service];
 ---
 
 <button
@@ -68,9 +68,9 @@ const colors = serviceColors[service];
     position: relative;
     display: flex;
     align-items: center;
-    padding: 1rem 1.25rem;
-    min-width: 220px;
-    max-width: 280px;
+    padding: 1.125rem 1.5rem;
+    min-width: 240px;
+    max-width: 310px;
 
     /* Interaction */
     cursor: pointer;
@@ -129,7 +129,7 @@ const colors = serviceColors[service];
   }
 
   .node-title {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: white;
     line-height: 1.2;
@@ -141,7 +141,7 @@ const colors = serviceColors[service];
   }
 
   .node-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.5);
     line-height: 1.3;
     transition: color 0.3s ease;

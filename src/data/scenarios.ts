@@ -1,5 +1,5 @@
-// Données des 8 scénarios pour la page Services
-// Chaque scénario représente une problématique client avec une conversation Jon ↔ Client
+// Données des 6 scénarios pour la page Services
+// Chaque scénario représente une problématique client avec une conversation Jon - Client
 
 export interface Message {
   speaker: 'client' | 'jon';
@@ -10,219 +10,280 @@ export interface Scenario {
   id: string;
   emoji: string;
   title: string;
-  subtitle: string; // Mini sous-texte explicatif
-  service: 'dev-web' | 'automatisation' | 'applications';
+  subtitle: string;
+  pillar: 'web' | 'auto' | 'validation';
   scrollTo: string;
-  color: string; // Couleur associée
+  color: string;
   messages: Message[];
 }
 
 export const scenarios: Scenario[] = [
-  // Scénario 1: Cash flow serré
-  {
-    id: 'cash-flow',
-    emoji: '💸',
-    title: 'Cash flow serré',
-    subtitle: 'Paiements en retard, charges immédiates',
-    service: 'automatisation',
-    scrollTo: 'automatisation',
-    color: 'rgba(0, 217, 163, 0.15)', // Vert doux
-    messages: [
-      { speaker: 'client', text: 'On grandit vite mais on est tout le temps à sec. Les paiements clients arrivent trop tard.' },
-      { speaker: 'jon', text: 'Cash flow problème numéro 1 pour 33% des petites boîtes. T\'as combien de délai de paiement en moyenne ?' },
-      { speaker: 'client', text: '30-45 jours... et on paie nos coûts tout de suite.' },
-      { speaker: 'jon', text: 'Classic. T\'as pensé à automatiser tes relances ? La plupart des retards c\'est juste parce que les gens oublient.' },
-      { speaker: 'client', text: 'On fait ça manuellement, mais on passe à côté de plein de trucs.' },
-      { speaker: 'jon', text: 'Automatise : facture envoyée automatiquement, relance à J-7, J+3, J+10. Tracking en temps réel de qui a payé, qui tarde. Plus besoin d\'y penser, ça tourne tout seul.' },
-      { speaker: 'client', text: 'Ça changerait vraiment la donne niveau trésorerie.' },
-      { speaker: 'jon', text: 'Exactement. Les startups qui automatisent leurs relances réduisent leurs délais de paiement de 40% en moyenne.' }
-    ]
-  },
-
-  // Scénario 2: Outils désynchronisés
-  {
-    id: 'tools-sync',
-    emoji: '🔗',
-    title: 'Outils désynchronisés',
-    subtitle: '12 apps qui ne se parlent pas',
-    service: 'automatisation',
-    scrollTo: 'automatisation',
-    color: 'rgba(0, 217, 163, 0.15)',
-    messages: [
-      { speaker: 'client', text: 'Jon, j\'ai 12 abonnements différents et mes outils ne parlent pas entre eux. C\'est le chaos.' },
-      { speaker: 'jon', text: 'Le syndrome du "app fatigue". Tu passes plus de temps à copier-coller entre tes outils qu\'à bosser sur ton business, c\'est ça ?' },
-      { speaker: 'client', text: 'Exactement ! J\'ai Stripe pour les paiements, Notion pour la gestion, Gmail pour les clients... je perds 2h par jour juste à synchroniser tout ça.' },
-      { speaker: 'jon', text: 'Je vois le truc. On va pas ajouter un 13ème outil. On va plutôt connecter ceux que t\'as déjà. Une automatisation bien foutue et tes données circulent toutes seules.' },
-      { speaker: 'client', text: 'Genre, mes nouveaux clients Stripe arrivent automatiquement dans mon CRM ?' },
-      { speaker: 'jon', text: 'Exactement. Avec les tâches de suivi créées automatiquement, l\'email de bienvenue envoyé, et même la facture générée. Tu récupères tes 2h par jour.' }
-    ]
-  },
-
-  // Scénario 3: Manque de temps
-  {
-    id: 'time-lack',
-    emoji: '⏰',
-    title: 'Manque de temps',
-    subtitle: '15 casquettes, 4h de sommeil',
-    service: 'automatisation',
-    scrollTo: 'automatisation',
-    color: 'rgba(0, 217, 163, 0.15)',
-    messages: [
-      { speaker: 'client', text: 'Jonathan, je porte 15 casquettes. Dev, commercial, compta, marketing... je dors 4h par nuit.' },
-      { speaker: 'jon', text: '60% des entrepreneurs disent avoir sous-estimé le nombre de "chapeaux" à porter. T\'es dans quelle phase là ?' },
-      { speaker: 'client', text: 'J\'ai des clients, ça grandit, mais je peux pas embaucher encore. Budget trop serré.' },
-      { speaker: 'jon', text: 'Ok, donc on va automatiser ce qui bouffe ton temps sans créer de valeur. C\'est quoi tes 3 tâches les plus chronophages ?' },
-      { speaker: 'client', text: 'Les relances clients, les rapports mensuels, et gérer les demandes de contact.' },
-      { speaker: 'jon', text: 'Facile à automatiser tout ça. Relances : workflow automatique. Rapports : dashboard qui se génère tout seul. Demandes de contact : formulaire qui trie et notifie directement.' },
-      { speaker: 'client', text: 'Je récupère combien de temps par semaine à ton avis ?' },
-      { speaker: 'jon', text: 'Conservateur ? 10-15h. Réaliste ? Plutôt 20h. C\'est presque un mi-temps.' }
-    ]
-  },
-
-  // Scénario 4: Données éparpillées
-  {
-    id: 'data-scattered',
-    emoji: '📊',
-    title: 'Données éparpillées',
-    subtitle: 'Excel, Sheets, CRM... le chaos',
-    service: 'applications',
-    scrollTo: 'applications',
-    color: 'rgba(163, 0, 217, 0.15)', // Violet doux
-    messages: [
-      { speaker: 'client', text: 'Nos données sont éparpillées : Excel ici, Google Sheets là, un vieux CRM qu\'on utilise plus... impossible de piloter.' },
-      { speaker: 'jon', text: 'Data silos. Le cauchemar des PME en croissance. Tu prends tes décisions sur quoi actuellement ?' },
-      { speaker: 'client', text: 'Honnêtement ? Mon feeling. J\'ai pas de vision claire de ce qui marche ou pas.' },
-      { speaker: 'jon', text: 'Dangereux. On va centraliser ça. Une source de vérité unique : dashboard qui agrège tout automatiquement.' },
-      { speaker: 'client', text: 'Genre je vois mes ventes, mes dépenses, mes clients actifs... en un coup d\'œil ?' },
-      { speaker: 'jon', text: 'Exactement. Mise à jour en temps réel. Plus besoin de passer 3h à faire un rapport pour savoir où t\'en es.' },
-      { speaker: 'client', text: 'Ça coûte une fortune ce genre de truc non ?' },
-      { speaker: 'jon', text: 'Moins cher que de prendre des mauvaises décisions parce que t\'as pas les bonnes données. Et ça se met en place en 2-3 semaines.' }
-    ]
-  },
-
-  // Scénario 5: Lancement urgent
-  {
-    id: 'launch-fast',
-    emoji: '🚀',
-    title: 'Lancement urgent',
-    subtitle: 'MVP en 6 semaines, investisseurs au salon',
-    service: 'applications',
-    scrollTo: 'applications',
-    color: 'rgba(163, 0, 217, 0.15)',
-    messages: [
-      { speaker: 'client', text: 'On a 6 semaines pour lancer notre MVP avant un salon où on a des investisseurs. C\'est jouable ?' },
-      { speaker: 'jon', text: '6 semaines c\'est serré mais faisable. La vraie question : c\'est quoi ton VRAI minimum viable ?' },
-      { speaker: 'client', text: 'On a listé 25 features qu\'on veut absolument...' },
-      { speaker: 'jon', text: 'Red flag numéro 2. On va couper 80% de ça. Quelle est LA feature qui résout LE problème principal ?' },
-      { speaker: 'client', text: 'La gestion automatisée de nos processus internes.' },
-      { speaker: 'jon', text: 'Parfait. On se concentre là-dessus. Interface ultra simple, une seule fonction, mais elle marche parfaitement. Le reste ? V2.' },
-      { speaker: 'client', text: 'Mais si c\'est trop basique, les investisseurs vont penser qu\'on est pas sérieux...' },
-      { speaker: 'jon', text: 'Au contraire. Les investisseurs kiffent voir quelqu\'un qui ship vite et teste. Plutôt qu\'un projet théorique parfait sur PowerPoint.' },
-      { speaker: 'client', text: 'Ok, on fait quoi concrètement ?' },
-      { speaker: 'jon', text: 'Semaine 1-2 : wireframes + validation avec 5 beta testeurs. Semaine 3-4 : dev de la feature core. Semaine 5-6 : tests + polish. Tu démontres au salon avec des vrais retours utilisateurs.' }
-    ]
-  },
-
-  // Scénario 6: Site obsolète
+  // Pilier 1: Web & Outils
   {
     id: 'website-old',
     emoji: '🎨',
     title: 'Site obsolète',
-    subtitle: 'Design 2015, pas responsive, zéro lead',
-    service: 'dev-web',
-    scrollTo: 'dev-web',
-    color: 'rgba(0, 150, 255, 0.15)', // Bleu doux
+    subtitle: 'Design 2015, pas responsive',
+    pillar: 'web',
+    scrollTo: 'web-outils',
+    color: 'rgba(0, 150, 255, 0.15)',
     messages: [
       { speaker: 'client', text: 'Mon site date de 2015, il est moche, pas responsive... mais refaire un site ça coûte une blinde non ?' },
-      { speaker: 'jon', text: 'Dépend de ce que tu veux. Site sur-mesure avec 50 pages et 200 animations ? Oui. Site propre qui convertit ? Non.' },
+      { speaker: 'jon', text: 'T\'as raison de te poser la question. Dépend de ce que tu veux. Site sur-mesure avec 50 pages et 200 animations ? Oui. Site propre qui convertit ? Non.' },
       { speaker: 'client', text: 'C\'est quoi la différence ?' },
       { speaker: 'jon', text: 'La plupart des sites ont 80% de contenu inutile. On garde l\'essentiel : qui t\'es, ce que tu fais, pourquoi te choisir, comment te contacter.' },
       { speaker: 'client', text: 'Mais j\'ai besoin d\'un portfolio, d\'un blog, de 15 pages services...' },
       { speaker: 'jon', text: 'Tu penses. En vrai, 90% de tes visiteurs vont sur 3 pages max. On lance avec ça, on itère après si vraiment besoin.' },
+      { speaker: 'client', text: 'Ok mais ça va m\'apporter quoi concrètement ?' },
+      { speaker: 'jon', text: 'Un site moderne et bien référencé, c\'est un commercial qui bosse 24/7. Les gens te trouvent sur Google, ils voient que t\'es pro, ils te contactent. Des prospects en automatique, sans démarcher.' },
       { speaker: 'client', text: 'Délai ?' },
-      { speaker: 'jon', text: '3 semaines. Site moderne, rapide, responsive, SEO friendly. Tu fournis le contenu, je gère le reste.' },
+      { speaker: 'jon', text: '3 semaines. Site moderne, rapide, responsive, optimisé pour Google. Tu fournis le contenu, je gère le reste.' },
       { speaker: 'client', text: 'Et si je veux ajouter des trucs après ?' },
       { speaker: 'jon', text: 'C\'est prévu dans l\'archi. Tu peux faire évoluer facilement. Mais on lance simple et efficace d\'abord.' }
     ]
   },
-
-  // Scénario 7: Campagnes ratées
   {
-    id: 'email-fails',
-    emoji: '📧',
-    title: 'Campagnes ratées',
-    subtitle: '2000 envois, CTA oublié',
-    service: 'automatisation',
-    scrollTo: 'automatisation',
-    color: 'rgba(0, 217, 163, 0.15)',
+    id: 'no-presence',
+    emoji: '🌐',
+    title: 'Pas de présence en ligne',
+    subtitle: 'Tout passe par le bouche-à-oreille',
+    pillar: 'web',
+    scrollTo: 'web-outils',
+    color: 'rgba(0, 150, 255, 0.15)',
     messages: [
-      { speaker: 'client', text: 'J\'ai envoyé un email de lancement hier... sans le bouton d\'achat. 2000 personnes, zéro conversions.' },
-      { speaker: 'jon', text: 'Aïe. Le CTA oublié. T\'es loin d\'être le seul, c\'est l\'erreur #1 en email marketing.' },
-      { speaker: 'client', text: 'J\'ai trop de trucs à gérer, je check vite fait et hop. Résultat : des conneries.' },
-      { speaker: 'jon', text: 'Tu gères ton emailing comment actuellement ?' },
-      { speaker: 'client', text: 'Mailchimp. Je fais tout à la main, je teste pas vraiment avant d\'envoyer.' },
-      { speaker: 'jon', text: 'On va te créer un workflow propre : template pré-testé, checklist automatique avant envoi, système de validation. Plus d\'emails partis sans CTA, sans lien, ou au mauvais moment.' },
-      { speaker: 'client', text: 'Genre un process bête et méchant qui m\'empêche de merder ?' },
-      { speaker: 'jon', text: 'Exactement. Et bonus : tu peux programmer tes séquences à l\'avance. Plus de stress de dernière minute.' }
+      { speaker: 'client', text: 'Je n\'ai pas de site, tout passe par le bouche-à-oreille... mais est-ce que j\'en ai vraiment besoin ?' },
+      { speaker: 'jon', text: 'Ça dépend. Tu veux rester dépendant de ton réseau ou que des gens te trouvent sans te connaître ?' },
+      { speaker: 'client', text: 'Les réseaux sociaux suffisent non ?' },
+      { speaker: 'jon', text: 'Pour exister, oui. Pour convertir, non. Un post LinkedIn disparaît en 48h. Un site, c\'est ta vitrine permanente qui bosse même quand tu dors.' },
+      { speaker: 'client', text: 'Je saurais pas quoi mettre dessus...' },
+      { speaker: 'jon', text: 'Personne ne sait au début. On commence par l\'essentiel : qui t\'es, ce que tu fais, comment te contacter. Le reste vient après.' },
+      { speaker: 'client', text: 'C\'est vraiment utile si je fais déjà du bouche-à-oreille ?' },
+      { speaker: 'jon', text: 'Le bouche-à-oreille c\'est bien, mais c\'est limité à ton réseau actuel. Un site bien référencé, c\'est des gens qui te trouvent sur Google sans te connaître. Surtout en local : quelqu\'un cherche "[ton métier] + Genève", tu apparais. Des prospects que t\'aurais jamais eus autrement.' },
+      { speaker: 'client', text: 'Ça va me prendre du temps à gérer ?' },
+      { speaker: 'jon', text: 'Zéro. Un site vitrine bien fait, tu n\'y touches plus pendant des mois. C\'est pas un blog à alimenter, c\'est une base solide.' },
+      { speaker: 'client', text: 'Délai et budget ?' },
+      { speaker: 'jon', text: '2-3 semaines, tarif adapté à ta structure. On fait simple, efficace, évolutif.' }
     ]
   },
 
-  // Scénario 8: Idée non validée
+  // Pilier 2: Automatisation
+  {
+    id: 'tools-sync',
+    emoji: '🔗',
+    title: 'Outils désynchronisés',
+    subtitle: 'Notion, Sheets, CRM... rien ne se parle',
+    pillar: 'auto',
+    scrollTo: 'automatisation',
+    color: 'rgba(0, 217, 163, 0.15)',
+    messages: [
+      { speaker: 'client', text: 'J\'ai Notion, Google Sheets, mon CRM, ma compta... rien ne se parle et je perds un temps fou.' },
+      { speaker: 'jon', text: 'Classique. T\'as empilé des outils au fil du temps, chacun fait son job, mais ensemble c\'est le chaos.' },
+      { speaker: 'client', text: 'Du coup faut tout changer ?' },
+      { speaker: 'jon', text: 'Non. On garde tes outils, on les fait communiquer. Une info rentrée une fois, elle se propage partout automatiquement.' },
+      { speaker: 'client', text: 'C\'est compliqué techniquement ?' },
+      { speaker: 'jon', text: 'Pour toi, non. Je m\'occupe des connexions. Toi tu continues à bosser comme avant, sauf que maintenant ça synchronise tout seul.' },
+      { speaker: 'client', text: 'Et si j\'ai besoin de tout voir au même endroit ?' },
+      { speaker: 'jon', text: 'On peut aussi créer un tableau de bord sur-mesure qui centralise toutes tes données importantes. Une seule interface, plus besoin de jongler entre 10 onglets. Tu vois tout d\'un coup d\'œil.' },
+      { speaker: 'client', text: 'Et si un outil change ou si j\'en ajoute un ?' },
+      { speaker: 'jon', text: 'C\'est prévu. Les automatisations sont modulaires, on peut ajuster sans tout reconstruire.' },
+      { speaker: 'client', text: 'Délai ?' },
+      { speaker: 'jon', text: '1-2 semaines pour une première automatisation fonctionnelle. On commence par le plus douloureux, on itère ensuite.' }
+    ]
+  },
+  {
+    id: 'time-lack',
+    emoji: '⏰',
+    title: 'Tâches chronophages',
+    subtitle: 'Relances, rapports, copier-coller...',
+    pillar: 'auto',
+    scrollTo: 'automatisation',
+    color: 'rgba(0, 217, 163, 0.15)',
+    messages: [
+      { speaker: 'client', text: 'Je passe des heures chaque semaine sur des trucs bêtes : relances, rapports, copier-coller...' },
+      { speaker: 'jon', text: 'Combien d\'heures exactement ? Parce que si c\'est 5h/semaine, ça fait 250h/an. Soit 6 semaines de boulot.' },
+      { speaker: 'client', text: 'Oui mais c\'est des petites tâches, ça se compte pas...' },
+      { speaker: 'jon', text: 'Justement, ça se compte. Et ça s\'automatise. Emails de relance, création de factures, mise à jour de tableaux, envoi de rappels — tout ça peut tourner sans toi.' },
+      { speaker: 'client', text: 'Mon process est trop spécifique, c\'est pas automatisable.' },
+      { speaker: 'jon', text: 'C\'est ce que tout le monde dit. En vrai, 80% des tâches répétitives suivent une logique simple : "Si X arrive, alors faire Y." C\'est exactement ce qu\'on automatise.' },
+      { speaker: 'client', text: 'Ça coûte cher à mettre en place ?' },
+      { speaker: 'jon', text: 'Moins cher que ton temps. Une automatisation bien faite se rentabilise en quelques semaines.' },
+      { speaker: 'client', text: 'Par où on commence ?' },
+      { speaker: 'jon', text: 'On identifie ensemble tes tâches les plus chronophages. On automatise la plus douloureuse d\'abord. Tu vois le résultat, on continue.' }
+    ]
+  },
+
+  // Pilier 3: Validation
   {
     id: 'idea-validation',
-    emoji: '❓',
-    title: 'Idée non validée',
-    subtitle: 'Super produit, zéro client',
-    service: 'applications',
-    scrollTo: 'applications',
+    emoji: '💡',
+    title: 'Idée à valider',
+    subtitle: 'Pas sûr que les gens vont payer',
+    pillar: 'validation',
+    scrollTo: 'validation',
     color: 'rgba(163, 0, 217, 0.15)',
     messages: [
-      { speaker: 'client', text: 'J\'ai un super produit mais je trouve pas mes premiers clients. Aucune visibilité.' },
-      { speaker: 'jon', text: 'Le problème à 42% : pas de market need VALIDÉ. Avant de parler visibilité, t\'as testé ton offre avec qui ?' },
-      { speaker: 'client', text: 'Quelques potes, ma famille... ils ont tous dit que c\'était cool.' },
-      { speaker: 'jon', text: 'Red flag. Ils vont jamais te dire que c\'est nul. T\'as demandé à quelqu\'un de PAYER ?' },
-      { speaker: 'client', text: 'Euh... pas encore.' },
-      { speaker: 'jon', text: 'Ok. Avant de te faire un site de ouf ou une stratégie marketing compliquée, on va valider ton concept. Landing page ultra simple, bouton pré-commande, pub ciblée à 100 balles.' },
-      { speaker: 'client', text: 'Pour voir si les gens sortent vraiment leur CB ?' },
-      { speaker: 'jon', text: 'Exactement. Si personne paie même avec 50% de réduc early bird, faut revoir ton concept. Si ça marche, tu lances pour de vrai avec tes premiers clients acquis.' }
+      { speaker: 'client', text: 'J\'ai une idée de produit/service mais je sais pas si les gens vont payer pour ça.' },
+      { speaker: 'jon', text: 'Bonne question à se poser AVANT de développer. Pas après 6 mois de travail.' },
+      { speaker: 'client', text: 'Donc faut que je construise un prototype ?' },
+      { speaker: 'jon', text: 'Non. Faut que tu testes l\'intérêt avant de construire quoi que ce soit. Une landing page qui explique ton offre + un peu de pub ciblée. Tu vois si les gens cliquent, s\'inscrivent, demandent plus d\'infos.' },
+      { speaker: 'client', text: 'Mais j\'ai rien à montrer...' },
+      { speaker: 'jon', text: 'T\'as pas besoin d\'un produit fini. Tu vends la promesse, tu mesures l\'intérêt. Si personne ne clique, t\'as économisé des mois de dev. Si ça mord, tu construis en confiance.' },
+      { speaker: 'client', text: 'C\'est pas un peu de la triche ?' },
+      { speaker: 'jon', text: 'C\'est du lean startup. Toutes les boîtes qui réussissent font ça. Valider avant d\'investir.' },
+      { speaker: 'client', text: 'Délai et budget ?' },
+      { speaker: 'jon', text: '1 semaine pour la landing page. Budget pub à définir ensemble (quelques centaines de francs suffisent pour un premier test).' }
+    ]
+  },
+  {
+    id: 'mvp-urgent',
+    emoji: '🚀',
+    title: 'MVP urgent',
+    subtitle: '3 semaines pour montrer quelque chose',
+    pillar: 'validation',
+    scrollTo: 'validation',
+    color: 'rgba(163, 0, 217, 0.15)',
+    messages: [
+      { speaker: 'client', text: 'J\'ai 3 semaines pour montrer quelque chose à des investisseurs / partenaires / premiers clients.' },
+      { speaker: 'jon', text: 'Faisable. Mais faut être clair sur ce qu\'on livre : un prototype fonctionnel qui prouve le concept, pas un produit fini.' },
+      { speaker: 'client', text: 'Ça va être bancal...' },
+      { speaker: 'jon', text: 'Non, ça va être ciblé. On identifie LA fonctionnalité clé qui démontre ta valeur. Le reste, c\'est du décor pour plus tard.' },
+      { speaker: 'client', text: 'Et si on me demande des features qui sont pas là ?' },
+      { speaker: 'jon', text: 'Tu réponds "c\'est prévu dans la roadmap." Tout le monde sait qu\'un MVP c\'est une V1. Ce qu\'on veut voir, c\'est que le cœur fonctionne.' },
+      { speaker: 'client', text: 'C\'est quoi le process ?' },
+      { speaker: 'jon', text: 'Semaine 1 : on définit le scope minimal ensemble. Semaine 2-3 : je développe, tu testes au fur et à mesure. À la fin t\'as un truc que tu peux montrer et utiliser.' },
+      { speaker: 'client', text: 'Et après le MVP ?' },
+      { speaker: 'jon', text: 'Soit on continue ensemble pour la vraie V1, soit tu repars avec une base solide et documentée. Pas de dépendance forcée.' }
     ]
   }
 ];
 
-// Services avec leurs détails pour les accordéons
-export interface ServiceCategory {
+// Structure des sections concrètes (PARTIE 2)
+export interface SubService {
   id: string;
-  icon: string;
   title: string;
   description: string;
-  scenarios: string[]; // IDs des scénarios liés
+  features: string[];
   ctaText: string;
 }
 
-export const serviceCategories: ServiceCategory[] = [
+export interface ServiceSection {
+  id: string;
+  title: string;
+  accroche: string;
+  subServices: SubService[];
+  ctaText: string;
+}
+
+export const serviceSections: ServiceSection[] = [
   {
-    id: 'dev-web',
-    icon: '🌐',
-    title: 'Développement Web',
-    description: 'Sites performants, web apps modernes, refonte complète. Du one-page qui convertit à la plateforme complexe.',
-    scenarios: ['website-old', 'launch-fast'],
+    id: 'web-outils',
+    title: 'Web & Outils sur mesure',
+    accroche: 'Sites performants, outils internes, tableaux de bord. Du one-page qui convertit à l\'application métier sur mesure.',
+    subServices: [
+      {
+        id: 'refonte-site',
+        title: 'Refonte de site',
+        description: 'Modernisation de ton site avec focus sur la conversion et la performance.',
+        features: [
+          'Design responsive adapté à tous les écrans',
+          'Temps de chargement optimisé (score 90+)',
+          'Référencement Google intégré dès le départ',
+          'Référencement local pour être trouvé dans ta région',
+          'Architecture évolutive pour grandir avec ton activité'
+        ],
+        ctaText: 'En savoir plus'
+      },
+      {
+        id: 'creation-site',
+        title: 'Création de site',
+        description: 'Un site professionnel qui travaille pour toi 24/7.',
+        features: [
+          'Structure claire : qui tu es, ce que tu fais, comment te contacter',
+          'Optimisé pour Google dès le jour 1',
+          'Référencement local pour capter les clients près de chez toi',
+          'Pas de maintenance complexe, tu te concentres sur ton métier',
+          'Évolutif : blog, portfolio, pages supplémentaires si besoin'
+        ],
+        ctaText: 'En savoir plus'
+      },
+      {
+        id: 'outils-mesure',
+        title: 'Outils sur mesure',
+        description: 'Applications et tableaux de bord adaptés à tes besoins spécifiques.',
+        features: [
+          'Tableau de bord centralisé : toutes tes données business en un coup d\'œil',
+          'Outils internes : gestion de projets, suivi clients, processus métier',
+          'Interface simple pensée pour toi et ton équipe',
+          'Connexion à tes outils existants (CRM, compta, emails...)'
+        ],
+        ctaText: 'En savoir plus'
+      }
+    ],
     ctaText: 'Lancer mon projet web'
   },
   {
     id: 'automatisation',
-    icon: '⚙️',
-    title: 'Automatisation & Processus',
-    description: 'Gagnez du temps en automatisant les tâches répétitives. Connectez vos outils, créez des workflows intelligents.',
-    scenarios: ['tools-sync', 'time-lack', 'cash-flow', 'email-fails'],
+    title: 'Automatisation',
+    accroche: 'Gagne du temps en automatisant ce qui peut l\'être. Connecte tes outils, libère-toi des tâches répétitives.',
+    subServices: [
+      {
+        id: 'connexion-outils',
+        title: 'Connexion d\'outils',
+        description: 'Fais communiquer tes applications pour que les données circulent toutes seules.',
+        features: [
+          'Nouveau client Stripe → création auto dans ton CRM',
+          'Email de bienvenue déclenché sans action manuelle',
+          'Synchronisation bidirectionnelle de tes contacts',
+          'Une info saisie une fois, propagée partout'
+        ],
+        ctaText: 'En savoir plus'
+      },
+      {
+        id: 'automatisation-taches',
+        title: 'Automatisation de tâches',
+        description: 'Récupère 5-10h par semaine sur les tâches répétitives.',
+        features: [
+          'Relances clients et factures envoyées automatiquement',
+          'Rapports générés sans intervention',
+          'Notifications consolidées (fini les 50 apps à checker)',
+          'Processus de validation simplifiés'
+        ],
+        ctaText: 'En savoir plus'
+      }
+    ],
     ctaText: 'Automatiser mes process'
   },
   {
-    id: 'applications',
-    icon: '📱',
-    title: 'Applications Sur-Mesure',
-    description: 'Solutions uniques pour problèmes uniques. MVP, dashboards, outils internes, validation de concept.',
-    scenarios: ['data-scattered', 'launch-fast', 'idea-validation'],
-    ctaText: 'Créer mon application'
+    id: 'validation',
+    title: 'Validation d\'idées',
+    accroche: 'Teste avant de construire. Valide ton concept rapidement et à moindre coût.',
+    subServices: [
+      {
+        id: 'test-concept',
+        title: 'Test de concept',
+        description: 'Vérifie que ton idée intéresse vraiment avant d\'investir.',
+        features: [
+          'Landing page claire avec ta proposition de valeur',
+          'Campagne pub ciblée avec budget minimal (dès 100 CHF)',
+          'Métriques concrètes : visiteurs, clics, inscriptions',
+          'Réponse en 1-2 semaines : ça mord ou pas ?'
+        ],
+        ctaText: 'En savoir plus'
+      },
+      {
+        id: 'mvp-rapide',
+        title: 'MVP rapide',
+        description: 'Un prototype fonctionnel en 2-3 semaines pour montrer et tester.',
+        features: [
+          'Focus sur LA fonctionnalité clé qui prouve ta valeur',
+          'Itérations rapides basées sur les retours terrain',
+          'Livrable démontrable à des investisseurs/partenaires/clients',
+          'Base solide pour continuer le développement'
+        ],
+        ctaText: 'En savoir plus'
+      }
+    ],
+    ctaText: 'Valider mon idée'
   }
 ];
 
@@ -231,9 +292,12 @@ export function getScenarioById(id: string): Scenario | undefined {
   return scenarios.find(s => s.id === id);
 }
 
-// Helper pour récupérer les scénarios d'un service
-export function getScenariosByService(serviceId: string): Scenario[] {
-  const category = serviceCategories.find(c => c.id === serviceId);
-  if (!category) return [];
-  return category.scenarios.map(id => getScenarioById(id)).filter((s): s is Scenario => s !== undefined);
+// Helper pour récupérer les scénarios d'un pilier
+export function getScenariosByPillar(pillar: 'web' | 'auto' | 'validation'): Scenario[] {
+  return scenarios.filter(s => s.pillar === pillar);
+}
+
+// Helper pour récupérer une section par ID
+export function getSectionById(id: string): ServiceSection | undefined {
+  return serviceSections.find(s => s.id === id);
 }

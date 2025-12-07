@@ -3,6 +3,14 @@ import logo from '../assets/logo.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 import { author, cta } from '../sample'
 
+// Interface Props pour variantes
+interface Props {
+    variant?: 'default' | 'transparent';
+}
+
+const { variant = 'default' } = Astro.props;
+const isTransparent = variant === 'transparent';
+
 // Interface typée pour les liens de navigation
 interface NavLink {
     name: string;
@@ -22,32 +30,36 @@ const links: NavLink[] = [
 const { pathname } = Astro.url
 ---
 
-<header class="relative border-b-3 p-7 overflow-hidden">
-    <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -right-9 -top-4" />
-    <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -left-8 -bottom-5 hidden md:block" />
+<header class={`relative p-7 overflow-hidden ${isTransparent ? 'bg-transparent border-b-0 z-10' : 'border-b-3'}`}>
+    {!isTransparent && (
+        <>
+            <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -right-9 -top-4" />
+            <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -left-8 -bottom-5 hidden md:block" />
+        </>
+    )}
 
 
-    <div class="flex border-3 border-black bg-white max-w-[360px] md:max-w-6xl m-auto relative z-10">
+    <div class={`flex border-3 max-w-[360px] md:max-w-6xl m-auto relative z-10 ${isTransparent ? 'border-white/20 bg-transparent' : 'border-black bg-white'}`}>
         <!-- top boxes -->
-        <div class="size-2 bg-white border-2 border-black absolute -top-2 -right-2"></div>
-        <div class="size-2 bg-white border-2 border-black absolute -top-2 -left-2"></div>
+        <div class={`size-2 border-2 absolute -top-2 -right-2 ${isTransparent ? 'bg-transparent border-white/30' : 'bg-white border-black'}`}></div>
+        <div class={`size-2 border-2 absolute -top-2 -left-2 ${isTransparent ? 'bg-transparent border-white/30' : 'bg-white border-black'}`}></div>
 
         <!-- bottom boxes -->
-        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -left-2"></div>
-        <div class="size-2 bg-white border-2 border-black absolute -bottom-2 -right-2"></div>
-    
+        <div class={`size-2 border-2 absolute -bottom-2 -left-2 ${isTransparent ? 'bg-transparent border-white/30' : 'bg-white border-black'}`}></div>
+        <div class={`size-2 border-2 absolute -bottom-2 -right-2 ${isTransparent ? 'bg-transparent border-white/30' : 'bg-white border-black'}`}></div>
+
         <nav class="flex w-full items-center p-2 md:p-0">
             <div class="flex-1 font-bold">
                 <a href="/" class="flex items-center pl-3 group">
                     <img
                         src={logo.src}
                         alt="Jon Labs"
-                        class="h-6 md:h-7 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                        class={`h-6 md:h-7 w-auto transition-transform duration-300 group-hover:scale-[1.02] ${isTransparent ? 'brightness-0 invert' : ''}`}
                     />
                 </a>
             </div>
             <button
-                class="flex md:hidden p-2 focus:ring-2 focus:ring-black focus:outline-none"
+                class={`flex md:hidden p-2 focus:ring-2 focus:outline-none ${isTransparent ? 'text-white focus:ring-white' : 'focus:ring-black'}`}
                 id="menu-open"
                 aria-label="Ouvrir le menu de navigation"
                 aria-expanded="false"
@@ -57,18 +69,19 @@ const { pathname } = Astro.url
             </button>
             <ul class="hidden md:flex items-center">
                 {links.map((item) => (
-                    <li class="relative px-1 py-3 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[2px] before:bg-black">
+                    <li class={`relative px-1 py-3 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-[2px] ${isTransparent ? 'before:bg-white/30' : 'before:bg-black'}`}>
                         <a
                             href={item.path}
                             target={item.target}
-                            class="relative flex items-center whitespace-nowrap px-5 py-1 group"
+                            class={`relative flex items-center whitespace-nowrap px-5 py-1 group ${isTransparent ? 'text-white' : ''}`}
                         >
                             <span class={`
                                 relative
                                 before:absolute before:left-0 before:-bottom-1
-                                before:h-[6px] before:w-0 before:bg-[var(--accent)]
+                                before:h-[6px] before:w-0
                                 before:transition-all before:duration-300
                                 group-hover:before:w-full
+                                ${isTransparent ? 'before:bg-[var(--blue)]' : 'before:bg-[var(--accent)]'}
                                 ${pathname === item.path ? 'before:w-full' : ''}
                             `}>{item.name}</span>
                         </a>
@@ -78,17 +91,28 @@ const { pathname } = Astro.url
                 <li class="relative px-2 py-2 flex items-center">
                     <a
                         href="/contact/"
-                        class="
-                            bg-[var(--blue)] border-2 border-black
-                            px-4 py-1.5
-                            font-medium text-sm
-                            shadow-[3px_3px_0px_rgba(0,0,0,1)]
-                            transition-all duration-200
-                            hover:bg-[var(--yellow)]
-                            hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
-                            hover:translate-x-[2px] hover:translate-y-[2px]
-                            focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
-                        "
+                        class={isTransparent
+                            ? `
+                                bg-white/10 border-2 border-white/40
+                                px-4 py-1.5
+                                font-medium text-sm text-white
+                                transition-all duration-200
+                                hover:bg-white/20
+                                hover:border-white/60
+                                focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none
+                            `
+                            : `
+                                bg-[var(--blue)] border-2 border-black
+                                px-4 py-1.5
+                                font-medium text-sm
+                                shadow-[3px_3px_0px_rgba(0,0,0,1)]
+                                transition-all duration-200
+                                hover:bg-[var(--yellow)]
+                                hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+                                hover:translate-x-[2px] hover:translate-y-[2px]
+                                focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
+                            `
+                        }
                     >
                         Contact
                     </a>
