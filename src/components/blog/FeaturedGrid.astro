@@ -1,0 +1,138 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDateShort, getCategoryName, getCategoryColor } from '../../lib/blog';
+
+interface Props {
+  featured: CollectionEntry<'blog'>;
+  recentPosts: CollectionEntry<'blog'>[];
+}
+
+const { featured, recentPosts } = Astro.props;
+---
+
+<section class="py-6 md:py-8 bg-white border-b-2 border-black">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- Featured post (left column, spans 3 rows) -->
+      <article
+        class="group relative bg-[var(--main-bg)] border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] overflow-hidden transition-all duration-300 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] md:row-span-3"
+      >
+        <a href={`/blog/${featured.slug}/`} class="absolute inset-0 z-10" aria-label={`Lire: ${featured.data.title}`}></a>
+
+        <!-- Image -->
+        <div class="relative aspect-[16/9] overflow-hidden border-b-2 border-black">
+          <img
+            src={featured.data.image.url}
+            alt={featured.data.image.alt}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+          <!-- Featured badge -->
+          <span class="absolute top-2 left-2 px-2 py-0.5 bg-[var(--violet)] text-white text-xs font-medium border border-black">
+            A la une
+          </span>
+        </div>
+
+        <!-- Content -->
+        <div class="p-4">
+          <div class="flex items-center gap-2 mb-2 text-xs text-gray-500">
+            <span class="flex items-center gap-1">
+              <span
+                class="w-1.5 h-1.5 rounded-full"
+                style={`background-color: ${getCategoryColor(featured.data.category)};`}
+              ></span>
+              {getCategoryName(featured.data.category)}
+            </span>
+            <span>·</span>
+            <span>{formatDateShort(featured.data.pubDate)}</span>
+            {featured.data.readingTime && (
+              <>
+                <span>·</span>
+                <span>{featured.data.readingTime} min</span>
+              </>
+            )}
+          </div>
+
+          <h2 class="text-lg md:text-xl font-bold mb-2 leading-tight group-hover:text-[var(--violet)] transition-colors line-clamp-2">
+            {featured.data.title}
+          </h2>
+
+          <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">
+            {featured.data.description}
+          </p>
+        </div>
+      </article>
+
+      <!-- Recent posts (right column, no images, with preview) -->
+      {recentPosts.slice(0, 2).map((post) => (
+        <article
+          class="group relative bg-white border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,0.2)] overflow-hidden transition-all duration-200 hover:shadow-[1px_1px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] p-4 flex flex-col justify-center"
+        >
+          <a href={`/blog/${post.slug}/`} class="absolute inset-0 z-10" aria-label={`Lire: ${post.data.title}`}></a>
+
+          <!-- Meta -->
+          <div class="flex items-center gap-2 mb-2 text-xs text-gray-400">
+            <span class="flex items-center gap-1">
+              <span
+                class="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                style={`background-color: ${getCategoryColor(post.data.category)};`}
+              ></span>
+              {getCategoryName(post.data.category)}
+            </span>
+            <span>·</span>
+            <span>{formatDateShort(post.data.pubDate)}</span>
+            {post.data.readingTime && (
+              <>
+                <span>·</span>
+                <span>{post.data.readingTime} min</span>
+              </>
+            )}
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-base font-bold mb-2 leading-tight group-hover:text-[var(--violet)] transition-colors">
+            {post.data.title}
+          </h3>
+
+          <!-- Preview -->
+          <p class="text-gray-500 text-sm line-clamp-2">
+            {post.data.description}
+          </p>
+        </article>
+      ))}
+
+      <!-- Newsletter block -->
+      <div class="bg-[var(--blue)] border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,0.2)] p-4 flex flex-col justify-center">
+        <div class="flex items-center gap-2 mb-2">
+          <i class="ri-mail-line text-lg"></i>
+          <span class="text-xs font-mono uppercase tracking-wider">Newsletter</span>
+        </div>
+
+        <h3 class="text-base font-bold mb-2">
+          Reste informé
+        </h3>
+
+        <p class="text-sm mb-3 opacity-80">
+          Nouveaux articles, projets et ressources directement dans ta boîte mail.
+        </p>
+
+        <form class="flex gap-2" onsubmit="return false;">
+          <input
+            type="email"
+            placeholder="ton@email.ch"
+            class="flex-1 px-3 py-2 text-sm border-2 border-black bg-white focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <button
+            type="submit"
+            class="px-3 py-2 bg-black text-white text-sm font-medium border-2 border-black hover:bg-gray-800 transition-colors"
+          >
+            <i class="ri-arrow-right-line"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

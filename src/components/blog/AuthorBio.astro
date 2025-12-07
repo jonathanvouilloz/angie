@@ -1,0 +1,69 @@
+---
+import { author } from '../../sample';
+---
+
+<section class="px-4 py-12">
+  <div class="max-w-3xl mx-auto">
+    <div class="bg-white border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.3)] p-6 md:p-8 relative">
+      <!-- Corner boxes (brutalist decoration) -->
+      <div class="size-2 bg-black absolute -top-1 -left-1"></div>
+      <div class="size-2 bg-black absolute -top-1 -right-1"></div>
+      <div class="size-2 bg-black absolute -bottom-1 -left-1"></div>
+      <div class="size-2 bg-black absolute -bottom-1 -right-1"></div>
+
+      <div class="flex flex-col md:flex-row gap-6 items-start">
+        <!-- Avatar -->
+        <div class="w-20 h-20 md:w-24 md:h-24 bg-[var(--blue)] border-2 border-black flex items-center justify-center flex-shrink-0">
+          <span class="text-3xl md:text-4xl font-black text-white">JV</span>
+        </div>
+
+        <!-- Bio content -->
+        <div class="flex-1">
+          <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Ecrit par</p>
+          <h3 class="text-xl md:text-2xl font-bold mb-2">{author.name}</h3>
+          <p class="text-gray-600 mb-4">
+            Developpeur freelance base a {author.location}. Je cree des solutions digitales sur-mesure pour entrepreneurs et petites equipes.
+          </p>
+
+          <!-- Social links -->
+          <div class="flex flex-wrap gap-4">
+            {author.linkedin && author.linkedin !== '#' && (
+              <a
+                href={author.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-sm font-medium hover:text-[var(--violet)] transition-colors"
+                aria-label="LinkedIn"
+              >
+                <i class="ri-linkedin-box-fill text-xl"></i>
+                <span class="hidden md:inline">LinkedIn</span>
+              </a>
+            )}
+            {author.github && author.github !== '#' && (
+              <a
+                href={author.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-sm font-medium hover:text-[var(--violet)] transition-colors"
+                aria-label="GitHub"
+              >
+                <i class="ri-github-fill text-xl"></i>
+                <span class="hidden md:inline">GitHub</span>
+              </a>
+            )}
+            {author.email && (
+              <a
+                href={author.email}
+                class="flex items-center gap-2 text-sm font-medium hover:text-[var(--violet)] transition-colors"
+                aria-label="Email"
+              >
+                <i class="ri-mail-line text-xl"></i>
+                <span class="hidden md:inline">Contact</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

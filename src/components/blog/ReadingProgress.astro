@@ -1,0 +1,398 @@
+---
+interface Props {
+  readingTime?: number;
+}
+
+const { readingTime } = Astro.props;
+---
+
+<!-- Sidebar - visible only on large screens -->
+<aside
+  id="reading-progress-sidebar"
+  aria-label="Progression de lecture"
+>
+  <div class="bg-white border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] p-4 relative">
+    <!-- Corner boxes -->
+    <div class="size-1.5 bg-black absolute -top-0.5 -left-0.5"></div>
+    <div class="size-1.5 bg-black absolute -top-0.5 -right-0.5"></div>
+    <div class="size-1.5 bg-black absolute -bottom-0.5 -left-0.5"></div>
+    <div class="size-1.5 bg-black absolute -bottom-0.5 -right-0.5"></div>
+
+    <!-- Progress indicator -->
+    <div class="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
+      <!-- Vertical progress bar -->
+      <div class="relative w-1.5 h-16 bg-gray-200 border border-black">
+        <div
+          id="progress-bar"
+          class="absolute bottom-0 left-0 w-full bg-[var(--blue)] transition-all duration-150"
+          style="height: 0%;"
+        ></div>
+      </div>
+      <div class="flex-1">
+        <p id="progress-percent" class="text-2xl font-bold">0%</p>
+        {readingTime && (
+          <p id="time-remaining" class="text-xs text-gray-500">
+            ~{readingTime} min restantes
+          </p>
+        )}
+      </div>
+    </div>
+
+    <!-- Table of contents with accordions -->
+    <nav id="toc-nav" aria-label="Table des matières">
+      <p class="text-xs text-gray-400 uppercase tracking-wide mb-3 font-medium">Sommaire</p>
+      <ul id="toc-list" class="space-y-1 text-sm max-h-[calc(100vh-22rem)] overflow-y-auto">
+        <!-- Populated by JavaScript -->
+      </ul>
+    </nav>
+  </div>
+</aside>
+
+<!-- Progress bar at top (mobile & tablet) -->
+<div
+  id="top-progress-bar"
+  class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50 xl:hidden"
+  role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+>
+  <div
+    id="top-progress-fill"
+    class="h-full bg-[var(--blue)] transition-all duration-150"
+    style="width: 0%;"
+  ></div>
+</div>
+
+<style>
+  /* Accordion styles */
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .accordion-content.open {
+    max-height: 500px;
+  }
+
+  .accordion-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .accordion-trigger[aria-expanded="true"] .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Active section highlight */
+  .toc-h2-link.active {
+    color: var(--violet);
+    border-left: 2px solid var(--violet);
+    margin-left: -2px;
+    padding-left: 8px;
+    background: rgba(163, 0, 217, 0.05);
+  }
+
+  .toc-h3-link.active {
+    color: var(--violet);
+    font-weight: 500;
+  }
+</style>
+
+<script define:vars={{ readingTime }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercent = document.getElementById('progress-percent');
+    const timeRemaining = document.getElementById('time-remaining');
+    const topProgressBar = document.getElementById('top-progress-bar');
+    const topProgressFill = document.getElementById('top-progress-fill');
+    const tocList = document.getElementById('toc-list');
+    const mobileTocList = document.getElementById('mobile-toc-list');
+    const mobileTocToggle = document.getElementById('mobile-toc-toggle');
+    const mobileTocContent = document.getElementById('mobile-toc-content');
+    const mobileTocIcon = document.getElementById('mobile-toc-icon');
+    const articleContent = document.querySelector('.prose');
+
+    if (!articleContent) return;
+
+    // Get all headings and group them
+    const allHeadings = articleContent.querySelectorAll('h2, h3');
+    const headingGroups = [];
+    let currentGroup = null;
+
+    allHeadings.forEach((heading, index) => {
+      // Add ID to heading if not present
+      if (!heading.id) {
+        heading.id = `section-${index}`;
+      }
+
+      if (heading.tagName === 'H2') {
+        currentGroup = {
+          h2: heading,
+          h3s: []
+        };
+        headingGroups.push(currentGroup);
+      } else if (heading.tagName === 'H3' && currentGroup) {
+        currentGroup.h3s.push(heading);
+      }
+    });
+
+    // Build TOC with accordions
+    function buildTocWithAccordions(container, isMobile = false) {
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (headingGroups.length === 0) {
+        const emptyMsg = document.createElement('li');
+        emptyMsg.textContent = 'Pas de sections';
+        emptyMsg.className = 'text-gray-400 italic';
+        container.appendChild(emptyMsg);
+        return;
+      }
+
+      headingGroups.forEach((group, groupIndex) => {
+        const li = document.createElement('li');
+        li.className = 'toc-section';
+        li.dataset.groupIndex = groupIndex;
+
+        const hasH3s = group.h3s.length > 0;
+
+        // H2 wrapper
+        const h2Wrapper = document.createElement('div');
+        h2Wrapper.className = 'flex items-center gap-1';
+
+        // H2 link
+        const h2Link = document.createElement('a');
+        h2Link.href = `#${group.h2.id}`;
+        h2Link.textContent = group.h2.textContent;
+        h2Link.className = 'toc-h2-link flex-1 py-1.5 font-medium hover:text-[var(--violet)] transition-colors block';
+        h2Link.dataset.heading = group.h2.id;
+
+        h2Link.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById(group.h2.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        h2Wrapper.appendChild(h2Link);
+
+        // Accordion toggle button (only if has H3s)
+        if (hasH3s) {
+          const toggleBtn = document.createElement('button');
+          toggleBtn.className = 'accordion-trigger p-1 hover:bg-gray-100 rounded transition-colors';
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          toggleBtn.setAttribute('aria-controls', `accordion-${isMobile ? 'mobile-' : ''}${groupIndex}`);
+          toggleBtn.innerHTML = '<i class="ri-arrow-down-s-line accordion-icon text-gray-400"></i>';
+
+          toggleBtn.addEventListener('click', () => {
+            const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+
+            // Close all other accordions (one open at a time)
+            container.querySelectorAll('.accordion-trigger').forEach(btn => {
+              btn.setAttribute('aria-expanded', 'false');
+            });
+            container.querySelectorAll('.accordion-content').forEach(content => {
+              content.classList.remove('open');
+            });
+
+            // Toggle current
+            if (!isExpanded) {
+              toggleBtn.setAttribute('aria-expanded', 'true');
+              accordionContent.classList.add('open');
+            }
+          });
+
+          h2Wrapper.appendChild(toggleBtn);
+        }
+
+        li.appendChild(h2Wrapper);
+
+        // Accordion content (H3s)
+        if (hasH3s) {
+          const accordionContent = document.createElement('ul');
+          accordionContent.id = `accordion-${isMobile ? 'mobile-' : ''}${groupIndex}`;
+          accordionContent.className = 'accordion-content pl-3 space-y-1 mt-1';
+
+          group.h3s.forEach(h3 => {
+            const h3Li = document.createElement('li');
+            const h3Link = document.createElement('a');
+            h3Link.href = `#${h3.id}`;
+            h3Link.textContent = h3.textContent;
+            h3Link.className = 'toc-h3-link text-xs text-gray-500 hover:text-[var(--violet)] transition-colors block py-1';
+            h3Link.dataset.heading = h3.id;
+
+            h3Link.addEventListener('click', (e) => {
+              e.preventDefault();
+              document.getElementById(h3.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            h3Li.appendChild(h3Link);
+            accordionContent.appendChild(h3Li);
+          });
+
+          li.appendChild(accordionContent);
+        }
+
+        container.appendChild(li);
+      });
+    }
+
+    // Build both TOCs
+    buildTocWithAccordions(tocList, false);
+    buildTocWithAccordions(mobileTocList, true);
+
+    // Mobile TOC toggle
+    if (mobileTocToggle && mobileTocContent && mobileTocIcon) {
+      mobileTocToggle.addEventListener('click', () => {
+        const isExpanded = mobileTocToggle.getAttribute('aria-expanded') === 'true';
+        mobileTocToggle.setAttribute('aria-expanded', !isExpanded);
+        mobileTocContent.classList.toggle('hidden');
+        mobileTocIcon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+    }
+
+    // Calculate article boundaries
+    const getArticleBounds = () => {
+      const rect = articleContent.getBoundingClientRect();
+      const scrollTop = window.scrollY;
+      return {
+        start: rect.top + scrollTop - 200,
+        end: rect.bottom + scrollTop - window.innerHeight,
+        total: rect.height - window.innerHeight + 200
+      };
+    };
+
+    // Find current section based on scroll
+    const getCurrentSection = () => {
+      let currentH2 = null;
+      let currentH3 = null;
+
+      allHeadings.forEach(heading => {
+        const rect = heading.getBoundingClientRect();
+        if (rect.top < 150) {
+          if (heading.tagName === 'H2') {
+            currentH2 = heading.id;
+            currentH3 = null;
+          } else {
+            currentH3 = heading.id;
+          }
+        }
+      });
+
+      return { currentH2, currentH3 };
+    };
+
+    // Update accordion state based on current section
+    const updateAccordionState = (container, currentH2) => {
+      if (!container) return;
+
+      headingGroups.forEach((group, index) => {
+        const trigger = container.querySelector(`[aria-controls="accordion-${container === mobileTocList ? 'mobile-' : ''}${index}"]`);
+        const content = container.querySelector(`#accordion-${container === mobileTocList ? 'mobile-' : ''}${index}`);
+
+        if (trigger && content) {
+          if (group.h2.id === currentH2 && group.h3s.length > 0) {
+            trigger.setAttribute('aria-expanded', 'true');
+            content.classList.add('open');
+          } else {
+            trigger.setAttribute('aria-expanded', 'false');
+            content.classList.remove('open');
+          }
+        }
+      });
+    };
+
+    // Update active link styling
+    const updateActiveLinkStyling = (container, currentH2, currentH3) => {
+      if (!container) return;
+
+      // Reset all links
+      container.querySelectorAll('.toc-h2-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      container.querySelectorAll('.toc-h3-link').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Highlight current H2
+      if (currentH2) {
+        const activeH2Link = container.querySelector(`.toc-h2-link[data-heading="${currentH2}"]`);
+        if (activeH2Link) {
+          activeH2Link.classList.add('active');
+        }
+      }
+
+      // Highlight current H3
+      if (currentH3) {
+        const activeH3Link = container.querySelector(`.toc-h3-link[data-heading="${currentH3}"]`);
+        if (activeH3Link) {
+          activeH3Link.classList.add('active');
+        }
+      }
+    };
+
+    // Update progress bar only (without accordion changes)
+    const updateProgressBar = () => {
+      const bounds = getArticleBounds();
+      const scrollY = window.scrollY;
+
+      // Calculate progress percentage
+      let progress = 0;
+      if (scrollY >= bounds.start && bounds.total > 0) {
+        progress = Math.min(100, Math.max(0,
+          ((scrollY - bounds.start) / bounds.total) * 100
+        ));
+      }
+
+      // Update UI
+      if (progressBar) progressBar.style.height = `${progress}%`;
+      if (progressPercent) progressPercent.textContent = `${Math.round(progress)}%`;
+      if (topProgressFill) topProgressFill.style.width = `${progress}%`;
+      if (topProgressBar) topProgressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
+
+      // Update time remaining
+      if (timeRemaining && readingTime) {
+        const remaining = Math.ceil(readingTime * (1 - progress / 100));
+        timeRemaining.textContent = remaining > 0
+          ? `~${remaining} min restantes`
+          : 'Lecture terminée';
+      }
+
+      return progress;
+    };
+
+    // Full update including accordions (called on scroll only)
+    const updateProgress = () => {
+      updateProgressBar();
+
+      // Get current section
+      const { currentH2, currentH3 } = getCurrentSection();
+
+      // Update accordions (auto-open based on current section)
+      updateAccordionState(tocList, currentH2);
+      updateAccordionState(mobileTocList, currentH2);
+
+      // Update active styling
+      updateActiveLinkStyling(tocList, currentH2, currentH3);
+      updateActiveLinkStyling(mobileTocList, currentH2, currentH3);
+    };
+
+    // Track if user has scrolled
+    let hasScrolled = false;
+
+    // Throttled scroll handler
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      hasScrolled = true;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Initial update - only progress bar, NOT accordions (keep them closed)
+    updateProgressBar();
+  });
+</script>
