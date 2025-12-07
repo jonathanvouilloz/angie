@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import CategoryBadge from './CategoryBadge.astro';
+import { formatDateShort } from '../../lib/blog';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, image, category, tags, pubDate, readingTime } = post.data;
+---
+
+<article
+  class="post-card group relative bg-white border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] overflow-hidden transition-all duration-200 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+  data-title={title.toLowerCase()}
+  data-tags={tags.join(' ').toLowerCase()}
+  data-category={category}
+>
+  <!-- Clickable overlay -->
+  <a href={`/blog/${post.slug}/`} class="absolute inset-0 z-10" aria-label={`Lire: ${title}`}></a>
+
+  <!-- Image -->
+  <div class="relative aspect-video overflow-hidden border-b-2 border-black">
+    <img
+      src={image.url}
+      alt={image.alt}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <!-- Category badge -->
+    <div class="absolute top-3 left-3">
+      <CategoryBadge category={category} />
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-5">
+    <!-- Meta -->
+    <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+      <time datetime={pubDate.toISOString()}>
+        {formatDateShort(pubDate)}
+      </time>
+      {readingTime && (
+        <span class="flex items-center gap-1">
+          <i class="ri-time-line"></i>
+          {readingTime} min
+        </span>
+      )}
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-lg font-bold mb-2 line-clamp-2 group-hover:text-[var(--violet)] transition-colors">
+      {title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-gray-600 text-sm line-clamp-2 mb-4">
+      {description}
+    </p>
+
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1">
+        {tags.slice(0, 3).map((tag) => (
+          <span class="px-2 py-0.5 bg-gray-100 text-xs text-gray-500">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <!-- Bottom accent line on hover -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-[var(--accent)] transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300"></div>
+</article>

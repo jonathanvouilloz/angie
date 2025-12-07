@@ -1,0 +1,27 @@
+---
+import { getCategoryName, getCategoryColor, type CategoryKey } from '../../lib/blog';
+
+interface Props {
+  category: CategoryKey;
+  size?: 'sm' | 'md';
+}
+
+const { category, size = 'sm' } = Astro.props;
+const name = getCategoryName(category);
+const color = getCategoryColor(category);
+
+const sizeClasses = {
+  sm: 'px-2 py-1 text-xs',
+  md: 'px-3 py-1.5 text-sm',
+};
+---
+
+<span
+  class:list={[
+    'font-medium border border-black inline-block',
+    sizeClasses[size],
+  ]}
+  style={`background-color: ${color};`}
+>
+  {name}
+</span>

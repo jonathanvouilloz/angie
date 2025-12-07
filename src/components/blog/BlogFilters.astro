@@ -1,0 +1,222 @@
+---
+import { categories } from '../../lib/blog';
+
+const categoryList = [
+  { slug: 'all', name: 'Tous' },
+  ...Object.entries(categories).map(([slug, data]) => ({ slug, name: data.name })),
+];
+---
+
+<div class="mb-6">
+  <div class="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+
+      <!-- Category tabs (buttons for dynamic filtering) -->
+      <div class="flex flex-wrap gap-2" id="category-filters">
+        {categoryList.map((cat) => (
+          <button
+            type="button"
+            data-category={cat.slug}
+            class:list={[
+              'filter-btn px-4 py-2 text-sm font-medium border-2 border-black transition-all duration-200',
+              cat.slug === 'all'
+                ? 'bg-[var(--blue)] shadow-[2px_2px_0px_rgba(0,0,0,1)] active'
+                : 'bg-white hover:bg-gray-100',
+            ]}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+
+      <!-- Search input -->
+      <div class="relative w-full md:w-64">
+        <input
+          type="text"
+          placeholder="Rechercher..."
+          class="w-full px-4 py-2 pr-10 border-2 border-black bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[var(--blue)]"
+          id="blog-search"
+        />
+        <i class="ri-search-line absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      </div>
+  </div>
+</div>
+
+<script>
+  function initBlogFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+    const postsList = document.getElementById('posts-list');
+    const noResults = document.getElementById('no-results');
+    const resetBtn = document.getElementById('reset-filters');
+    const pagination = document.getElementById('pagination');
+    const pageNumbers = document.getElementById('page-numbers');
+    const prevBtn = document.getElementById('prev-page') as HTMLButtonElement;
+    const nextBtn = document.getElementById('next-page') as HTMLButtonElement;
+
+    // Only target items inside #posts-list (not the featured grid)
+    const listItems = Array.from(postsList?.querySelectorAll('[data-category]') || []);
+
+    const ITEMS_PER_PAGE = 5;
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let currentPage = 1;
+    let filteredItems: Element[] = [];
+
+    function getFilteredItems() {
+      return listItems.filter((item) => {
+        const itemCategory = item.getAttribute('data-category') || '';
+        const title = item.getAttribute('data-title')?.toLowerCase() || '';
+        const tags = item.getAttribute('data-tags')?.toLowerCase() || '';
+
+        const matchesCategory = currentCategory === 'all' || itemCategory === currentCategory;
+        const matchesSearch = !currentSearch ||
+          title.includes(currentSearch) ||
+          tags.includes(currentSearch);
+
+        return matchesCategory && matchesSearch;
+      });
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+
+      // Hide pagination if only 1 page or no results
+      if (pagination) {
+        pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
+      }
+
+      // Update prev/next buttons
+      if (prevBtn) prevBtn.disabled = currentPage === 1;
+      if (nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+
+      // Generate page numbers
+      if (pageNumbers) {
+        pageNumbers.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.className = `w-10 h-10 flex items-center justify-center border-2 border-black font-medium text-sm transition-all duration-200 ${
+            i === currentPage
+              ? 'bg-[var(--blue)] shadow-[2px_2px_0px_rgba(0,0,0,1)]'
+              : 'bg-white hover:bg-gray-100'
+          }`;
+          btn.textContent = String(i);
+          btn.addEventListener('click', () => goToPage(i));
+          pageNumbers.appendChild(btn);
+        }
+      }
+    }
+
+    function displayPage() {
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+
+      // Hide all items first
+      listItems.forEach((item) => {
+        (item as HTMLElement).style.display = 'none';
+      });
+
+      // Show only items for current page
+      filteredItems.slice(start, end).forEach((item) => {
+        (item as HTMLElement).style.display = '';
+      });
+
+      // Show/hide empty state
+      if (noResults && postsList) {
+        if (filteredItems.length === 0) {
+          postsList.classList.add('hidden');
+          noResults.classList.remove('hidden');
+        } else {
+          postsList.classList.remove('hidden');
+          noResults.classList.add('hidden');
+        }
+      }
+
+      renderPagination();
+    }
+
+    function goToPage(page: number) {
+      currentPage = page;
+      displayPage();
+      // Scroll to top of list
+      postsList?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function filterPosts() {
+      filteredItems = getFilteredItems();
+      currentPage = 1; // Reset to page 1 when filtering
+      displayPage();
+    }
+
+    function resetFilters() {
+      currentCategory = 'all';
+      currentSearch = '';
+      currentPage = 1;
+
+      // Reset search input
+      if (searchInput) searchInput.value = '';
+
+      // Reset category buttons
+      filterButtons.forEach((b) => {
+        b.classList.remove('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+        b.classList.add('bg-white');
+        if (b.getAttribute('data-category') === 'all') {
+          b.classList.add('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+          b.classList.remove('bg-white');
+        }
+      });
+
+      filterPosts();
+    }
+
+    // Category filter click
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach((b) => {
+          b.classList.remove('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+          b.classList.add('bg-white');
+        });
+        btn.classList.add('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+        btn.classList.remove('bg-white');
+
+        currentCategory = btn.getAttribute('data-category') || 'all';
+        filterPosts();
+      });
+    });
+
+    // Search input
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearch = (e.target as HTMLInputElement).value.toLowerCase().trim();
+        filterPosts();
+      });
+    }
+
+    // Reset button
+    if (resetBtn) {
+      resetBtn.addEventListener('click', resetFilters);
+    }
+
+    // Pagination buttons
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) goToPage(currentPage - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+        if (currentPage < totalPages) goToPage(currentPage + 1);
+      });
+    }
+
+    // Initial render
+    filterPosts();
+  }
+
+  // Run on page load
+  initBlogFilters();
+
+  // Re-run on Astro page transitions (if using View Transitions)
+  document.addEventListener('astro:page-load', initBlogFilters);
+</script>

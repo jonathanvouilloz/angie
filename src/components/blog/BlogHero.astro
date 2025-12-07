@@ -1,0 +1,32 @@
+---
+import svgRedStar from '../../assets/red-star.svg';
+import svgPinkStar from '../../assets/pink-star.svg';
+---
+
+<section class="py-10 md:py-14 bg-[var(--main-bg)] relative overflow-hidden">
+  <!-- Decorative elements -->
+  <img src={svgPinkStar.src} alt="" width="30" class="absolute top-8 right-8 opacity-30 hidden md:block" aria-hidden="true" />
+
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <div class="relative">
+      <!-- Decorative star -->
+      <img src={svgRedStar.src} alt="" width="35" class="absolute top-0 right-0 md:right-1/4 opacity-60" aria-hidden="true" />
+
+      <div class="relative z-10">
+        <!-- Big expressive title -->
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight leading-[0.95]">
+          Blog &
+          <span class="relative inline-block">
+            <span class="relative z-10">Réflexions</span>
+            <span class="absolute bg-[var(--accent)] w-full h-[50%] left-0 bottom-0 z-0"></span>
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base md:text-lg text-gray-600 mt-3 max-w-2xl">
+          Tech, création, jeux, et tout ce qui m'inspire.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

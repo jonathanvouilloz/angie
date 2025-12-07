@@ -1,0 +1,282 @@
+---
+import '../../styles/global.css';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import AppHeader from '../../components/Header.astro';
+import AppFooter from '../../components/Footer.astro';
+import CategoryBadge from '../../components/blog/CategoryBadge.astro';
+import AuthorBio from '../../components/blog/AuthorBio.astro';
+import RelatedPosts from '../../components/blog/RelatedPosts.astro';
+import ReadingProgress from '../../components/blog/ReadingProgress.astro';
+import { formatDate, getRelatedPosts } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, allPosts: posts },
+  }));
+}
+
+const { post, allPosts } = Astro.props;
+const { title, description, image, category, tags, pubDate, readingTime } = post.data;
+const { Content } = await post.render();
+
+const relatedPosts = getRelatedPosts(post, allPosts, 3);
+---
+
+<Layout title={`${title} - Blog - Jon Labs`} description={description}>
+  <AppHeader />
+
+  <article class="mb-20">
+    <!-- Hero image -->
+    <div class="relative w-full aspect-[4/3] md:aspect-[16/9] max-h-[400px] overflow-hidden border-b-2 border-black">
+      <img
+        src={image.url}
+        alt={image.alt}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+    </div>
+
+    <!-- Grid layout: content + sidebar -->
+    <div class="max-w-6xl mx-auto px-4 -mt-48 relative z-10">
+      <div class="grid grid-cols-1 xl:grid-cols-3 xl:gap-8">
+        <!-- Article content (col 1-2) -->
+        <div class="col-span-1 xl:col-span-2 order-2 xl:order-1">
+          <!-- Mobile TOC - visible only below xl -->
+          <div class="xl:hidden mb-6 mt-20">
+            <button
+              id="mobile-toc-toggle"
+              class="w-full bg-white border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] p-4 flex justify-between items-center"
+              aria-expanded="false"
+              aria-controls="mobile-toc-content"
+            >
+              <span class="font-bold flex items-center gap-2">
+                <i class="ri-list-unordered"></i>
+                Sommaire
+              </span>
+              <i class="ri-arrow-down-s-line text-xl transition-transform duration-200" id="mobile-toc-icon"></i>
+            </button>
+            <div
+              id="mobile-toc-content"
+              class="hidden bg-white border-2 border-t-0 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] p-4"
+            >
+              <nav id="mobile-toc-nav" aria-label="Table des matières mobile">
+                <ul id="mobile-toc-list" class="space-y-2 text-sm">
+                  <!-- Populated by JavaScript -->
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Top bar: back + share -->
+          <div class="flex items-center justify-between mb-4">
+            <a
+              href="/blog/"
+              class="inline-flex items-center gap-2 text-sm font-medium bg-white border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+            >
+              <i class="ri-arrow-left-line"></i>
+              Retour au blog
+            </a>
+            <div class="flex items-center gap-2">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(Astro.url.href)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-white border-2 border-black p-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                aria-label="Partager sur X"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-white border-2 border-black p-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                aria-label="Partager sur LinkedIn"
+              >
+                <i class="ri-linkedin-fill"></i>
+              </a>
+              <button
+                class="bg-white border-2 border-black p-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                aria-label="Copier le lien"
+                onclick="navigator.clipboard.writeText(window.location.href); this.innerHTML='<i class=\'ri-check-line text-green-500\'></i>'; setTimeout(() => this.innerHTML='<i class=\'ri-link\'></i>', 2000)"
+              >
+                <i class="ri-link"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card with content -->
+          <div class="bg-white border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.3)] p-6 md:p-10">
+            <!-- Meta -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <CategoryBadge category={category} size="md" />
+              <span class="text-sm text-gray-500">{formatDate(pubDate)}</span>
+              {readingTime && (
+                <span class="flex items-center gap-1 text-sm text-gray-500">
+                  <i class="ri-time-line"></i>
+                  {readingTime} min de lecture
+                </span>
+              )}
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-3xl md:text-4xl font-black mb-6 leading-tight">
+              {title}
+            </h1>
+
+            <!-- Tags -->
+            {tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 mb-8 pb-8 border-b border-gray-200">
+                {tags.map((tag) => (
+                  <span class="px-3 py-1 bg-gray-100 text-sm text-gray-600">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <!-- Article content -->
+            <div class="prose prose-lg max-w-none">
+              <Content />
+            </div>
+
+            <!-- Share section -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+              <div class="flex items-center justify-between">
+                <a
+                  href="/blog/"
+                  class="inline-flex items-center gap-2 text-sm font-medium hover:text-[var(--violet)] transition-colors"
+                >
+                  <i class="ri-arrow-left-line"></i>
+                  Retour au blog
+                </a>
+                <div class="flex gap-4">
+                  <button
+                    class="text-gray-500 hover:text-gray-700 transition-colors"
+                    aria-label="Partager"
+                    onclick="navigator.share ? navigator.share({title: document.title, url: window.location.href}) : null"
+                  >
+                    <i class="ri-share-forward-line text-xl"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar TOC (col 3) - sticky -->
+        <div class="xl:col-span-1 order-1 xl:order-2 hidden xl:block">
+          <div class="sticky top-24">
+            <ReadingProgress readingTime={readingTime} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <RelatedPosts posts={relatedPosts} />
+  <AuthorBio />
+  <AppFooter />
+</Layout>
+
+<style is:global>
+  /* Prose styling for article content */
+  .prose {
+    color: #1a1a1a;
+    line-height: 1.75;
+  }
+
+  .prose p {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    list-style-type: decimal;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+    display: list-item;
+  }
+
+  .prose ul ul {
+    list-style-type: circle;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose ol ol {
+    list-style-type: lower-alpha;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose a {
+    color: var(--violet);
+    text-decoration: underline;
+  }
+
+  .prose a:hover {
+    color: var(--blue);
+  }
+
+  .prose blockquote {
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #666;
+  }
+
+  .prose code {
+    background: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+
+  .prose pre {
+    background: #1a1a1a;
+    color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 0;
+    border: 2px solid black;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .prose img {
+    border: 2px solid black;
+    margin: 1.5rem 0;
+  }
+</style>
