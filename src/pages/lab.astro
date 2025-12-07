@@ -1,0 +1,50 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro"
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout
+  title="Le Lab | Jon Labs - Projets Personnels & Expérimentations"
+  description="Mes projets personnels : application de gestion de camps, jeux de société, photographie et plus. Espace d'expérimentation tech."
+>
+  <Header />
+
+  <main class="min-h-[70vh] flex items-center justify-center px-6">
+    <div class="max-w-2xl text-center">
+      <!-- Badge -->
+      <span class="inline-block px-4 py-2 bg-gray-900 text-[var(--blue)] border-2 border-black text-sm font-medium mb-6">
+        En préparation
+      </span>
+
+      <!-- Titre -->
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        Le Lab
+      </h1>
+
+      <!-- Message -->
+      <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto">
+        Mon espace d'expérimentation : app de gestion de camps, création de jeux de société, photographie et autres projets personnels. Bientôt en ligne !
+      </p>
+
+      <!-- Preview des catégories -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <span class="px-3 py-1 bg-white border border-gray-300 text-sm text-gray-500">Camps App</span>
+        <span class="px-3 py-1 bg-white border border-gray-300 text-sm text-gray-500">Jeux de société</span>
+        <span class="px-3 py-1 bg-white border border-gray-300 text-sm text-gray-500">Photographie</span>
+        <span class="px-3 py-1 bg-white border border-gray-300 text-sm text-gray-500">Badminton</span>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href="/contact"
+        class="inline-block bg-[var(--blue)] border-2 border-black px-8 py-4 font-medium shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
+      >
+        Me contacter →
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

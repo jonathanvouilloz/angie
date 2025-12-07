@@ -1,0 +1,42 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro"
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout
+  title="À propos | Jon Labs - Jonathan Vouilloz"
+  description="Découvrez mon parcours : informaticien de gestion passionné par le développement web et l'automatisation. Basé à Genève."
+>
+  <Header />
+
+  <main class="min-h-[70vh] flex items-center justify-center px-6">
+    <div class="max-w-2xl text-center">
+      <!-- Badge -->
+      <span class="inline-block px-4 py-2 bg-[var(--violet)] text-white border-2 border-black text-sm font-medium mb-6">
+        Page en construction
+      </span>
+
+      <!-- Titre -->
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        À propos
+      </h1>
+
+      <!-- Message -->
+      <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto">
+        Je suis Jonathan, développeur et créateur digital basé à Genève. Cette page arrive bientôt avec mon parcours et ma philosophie.
+      </p>
+
+      <!-- CTA -->
+      <a
+        href="/contact"
+        class="inline-block bg-[var(--blue)] border-2 border-black px-8 py-4 font-medium shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200"
+      >
+        Me contacter →
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

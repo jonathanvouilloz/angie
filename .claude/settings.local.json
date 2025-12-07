@@ -9,7 +9,8 @@
       "Bash(copy:*)",
       "Bash(powershell -Command:*)",
       "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\data\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\data\")",
-      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\services\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\services\")"
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\services\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\services\")",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
