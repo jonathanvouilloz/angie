@@ -12,7 +12,7 @@ import svgPinkStar from '../assets/pink-star.svg'
         <div class="grid grid-cols-1 md:grid-cols-[45%_55%] gap-12 md:gap-28 items-center">
 
             <!-- Left: Visual element -->
-            <div class="relative order-2 md:order-1 group/card">
+            <div class="relative order-2 md:order-1 group/card" data-animate data-delay="0.1">
                 <!-- Main card -->
                 <div class="
                     quote-card
@@ -64,7 +64,7 @@ import svgPinkStar from '../assets/pink-star.svg'
             </div>
 
             <!-- Right: Text content -->
-            <div class="order-1 md:order-2 relative">
+            <div class="order-1 md:order-2 relative" data-animate>
                 <!-- Oversized number watermark -->
                 <span class="
                     absolute -top-8 -left-2 md:-top-12 md:-left-6
@@ -111,20 +111,20 @@ import svgPinkStar from '../assets/pink-star.svg'
                 </div>
 
                 <!-- Badges / Compétences -->
-                <div class="flex flex-wrap gap-3 mt-6">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium">
+                <div class="flex flex-wrap gap-3 mt-6" data-animate-stagger>
+                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium" data-animate-item>
                         <i class="ri-lightbulb-line text-[var(--violet)]"></i>
                         Conseil Stratégique
                     </span>
-                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium" data-animate-item>
                         <i class="ri-code-s-slash-line text-[var(--blue)]"></i>
                         Développement Astro/React
                     </span>
-                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium" data-animate-item>
                         <i class="ri-loop-left-line text-[var(--yellow)]"></i>
                         Automatisation Make
                     </span>
-                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] text-sm font-medium" data-animate-item>
                         <i class="ri-search-line text-emerald-500"></i>
                         Référencement SEO
                     </span>

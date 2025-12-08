@@ -56,7 +56,7 @@ const projects = [
     <div class="max-w-6xl mx-auto px-4 relative z-10">
 
         <!-- Section header - Editorial style -->
-        <div class="relative mb-16 md:mb-20">
+        <div class="relative mb-16 md:mb-20" data-animate>
             <!-- Oversized number watermark -->
             <span class="
                 absolute -top-8 -left-2 md:-top-12 md:-left-6
@@ -109,7 +109,7 @@ const projects = [
         </div>
 
         <!-- Projects grid with spotlight effect -->
-        <div class="portfolio-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="portfolio-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-animate-stagger>
             {projects.map((project, index) => (
                 <article
                     class="
@@ -120,6 +120,7 @@ const projects = [
                         overflow-hidden
                         relative
                     "
+                    data-animate-item
                 >
                     <!-- Clickable card overlay -->
                     <a href={project.link} class="absolute inset-0 z-20" aria-label={`Voir le projet ${project.title}`}></a>

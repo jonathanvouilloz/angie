@@ -1,0 +1,128 @@
+---
+interface Props {
+    colorStart?: string;
+    colorEnd?: string;
+    showLines?: boolean;
+    opacity?: number;
+}
+
+const {
+    colorStart = 'var(--blue)',
+    colorEnd = 'var(--violet)',
+    showLines = true,
+    opacity = 0.12
+} = Astro.props;
+---
+
+<div class="progress-flow-bg" aria-hidden="true">
+    <!-- Gradient mesh blobs -->
+    <div class="flow-blob blob-1"></div>
+    <div class="flow-blob blob-2"></div>
+    <div class="flow-blob blob-3"></div>
+
+    <!-- Diagonal progress lines -->
+    {showLines && (
+        <div class="diagonal-lines"></div>
+    )}
+
+    <!-- Flow direction indicator (subtle arrow shapes) -->
+    <div class="flow-arrows">
+        <div class="arrow arrow-1"></div>
+        <div class="arrow arrow-2"></div>
+        <div class="arrow arrow-3"></div>
+    </div>
+</div>
+
+<style define:vars={{ colorStart, colorEnd, opacity }}>
+    .progress-flow-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    /* Gradient mesh blobs - flow from left to right */
+    .flow-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: var(--opacity);
+    }
+
+    .blob-1 {
+        width: 400px;
+        height: 400px;
+        background: var(--colorStart);
+        left: -10%;
+        top: 20%;
+        opacity: calc(var(--opacity) * 1.5);
+    }
+
+    .blob-2 {
+        width: 350px;
+        height: 350px;
+        background: linear-gradient(135deg, var(--colorStart), var(--colorEnd));
+        left: 35%;
+        top: 40%;
+    }
+
+    .blob-3 {
+        width: 300px;
+        height: 300px;
+        background: var(--colorEnd);
+        right: -5%;
+        top: 30%;
+        opacity: calc(var(--opacity) * 0.8);
+    }
+
+    /* Diagonal lines suggesting movement/progress */
+    .diagonal-lines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            -30deg,
+            transparent,
+            transparent 60px,
+            var(--colorStart) 60px,
+            var(--colorStart) 61px
+        );
+        opacity: 0.08;
+    }
+
+    /* Subtle arrow shapes indicating direction */
+    .flow-arrows {
+        position: absolute;
+        inset: 0;
+    }
+
+    .arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 25px solid var(--colorStart);
+        opacity: 0.06;
+    }
+
+    .arrow-1 {
+        left: 20%;
+        top: 30%;
+        transform: scale(1.5);
+    }
+
+    .arrow-2 {
+        left: 50%;
+        top: 60%;
+        transform: scale(1.2);
+        opacity: 0.05;
+    }
+
+    .arrow-3 {
+        left: 75%;
+        top: 25%;
+        transform: scale(0.9);
+        opacity: 0.04;
+    }
+</style>

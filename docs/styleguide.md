@@ -656,6 +656,74 @@ tl.to(container, {
 });
 ```
 
+### Animations d'apparition (Motion)
+
+Le projet utilise **Motion** (motion.dev) pour les animations d'apparition au scroll. Le script centralisé se trouve dans `src/scripts/animations.ts`.
+
+#### Data attributes disponibles
+
+| Attribut | Usage |
+|----------|-------|
+| `data-animate` | Animation fade + slide up simple |
+| `data-animate data-delay="0.2"` | Avec délai personnalisé (en secondes) |
+| `data-animate-stagger` | Container pour animation en cascade |
+| `data-animate-item` | Élément enfant animé en cascade |
+
+#### Configuration par défaut
+
+```typescript
+const defaultConfig = {
+  duration: 0.6,        // Durée de l'animation
+  distance: 30,         // Distance de translation (px)
+  easing: [0.25, 0.1, 0.25, 1],  // Courbe d'accélération
+  staggerDelay: 0.1     // Délai entre éléments en cascade
+};
+```
+
+#### Exemple : Animation simple
+
+```html
+<!-- Élément qui apparaît au scroll -->
+<div data-animate>
+  <h2>Titre de section</h2>
+</div>
+
+<!-- Avec délai -->
+<p data-animate data-delay="0.2">
+  Texte qui apparaît après le titre
+</p>
+```
+
+#### Exemple : Animation en cascade (stagger)
+
+```html
+<!-- Container avec data-animate-stagger -->
+<div class="grid grid-cols-3 gap-6" data-animate-stagger>
+  <!-- Chaque enfant avec data-animate-item -->
+  <article data-animate-item>Carte 1</article>
+  <article data-animate-item>Carte 2</article>
+  <article data-animate-item>Carte 3</article>
+</div>
+```
+
+Les éléments apparaissent un par un avec un délai de 0.1s entre chaque.
+
+#### Patterns par composant
+
+| Composant | Pattern |
+|-----------|---------|
+| Hero | `data-animate` avec `data-delay` progressifs (0 → 0.4s) |
+| Services/Portfolio | Header `data-animate` + Grid `data-animate-stagger` |
+| Badges/Tags | Container `data-animate-stagger` + items `data-animate-item` |
+| Sections simples | `data-animate` sur le bloc principal |
+
+#### Bonnes pratiques
+
+1. **Ne pas imbriquer** les animations stagger (un seul niveau)
+2. **Éviter sur les marquees** - utiliser `data-animate` simple sur le container
+3. **Délais progressifs** pour le Hero : titre (0s) → accroche (0.1s) → texte (0.2s) → boutons (0.3s)
+4. **Margin de déclenchement** : -100px (l'animation se déclenche avant que l'élément soit visible)
+
 ---
 
 ## Icônes
