@@ -1,0 +1,94 @@
+---
+interface Props {
+    color?: string;
+    opacity?: number;
+}
+
+const {
+    color = 'rgba(239, 68, 68, 0.6)', // red-500 with opacity
+    opacity = 0.15
+} = Astro.props;
+---
+
+<div class="glitch-grid-bg" aria-hidden="true">
+    <!-- Base grid -->
+    <div class="grid-layer grid-base"></div>
+    <!-- Glitched/offset layers -->
+    <div class="grid-layer grid-glitch-1"></div>
+    <div class="grid-layer grid-glitch-2"></div>
+    <div class="grid-layer grid-glitch-3"></div>
+    <!-- Horizontal disruption lines -->
+    <div class="disruption-line line-1"></div>
+    <div class="disruption-line line-2"></div>
+    <div class="disruption-line line-3"></div>
+</div>
+
+<style define:vars={{ color, opacity }}>
+    .glitch-grid-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+        opacity: var(--opacity);
+    }
+
+    .grid-layer {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(var(--color) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    .grid-base {
+        opacity: 0.5;
+    }
+
+    /* Glitched offset layers */
+    .grid-glitch-1 {
+        clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%);
+        transform: translateX(8px);
+        opacity: 0.8;
+    }
+
+    .grid-glitch-2 {
+        clip-path: polygon(0 45%, 100% 45%, 100% 52%, 0 52%);
+        transform: translateX(-12px);
+        opacity: 0.7;
+    }
+
+    .grid-glitch-3 {
+        clip-path: polygon(0 75%, 100% 75%, 100% 82%, 0 82%);
+        transform: translateX(6px);
+        opacity: 0.6;
+    }
+
+    /* Horizontal disruption lines */
+    .disruption-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--color);
+    }
+
+    .line-1 {
+        top: 20%;
+        transform: scaleX(0.7) translateX(-15%);
+        opacity: 0.4;
+    }
+
+    .line-2 {
+        top: 50%;
+        transform: scaleX(0.5) translateX(30%);
+        opacity: 0.3;
+    }
+
+    .line-3 {
+        top: 78%;
+        transform: scaleX(0.6) translateX(-10%);
+        opacity: 0.35;
+    }
+</style>

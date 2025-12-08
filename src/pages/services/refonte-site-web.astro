@@ -10,6 +10,14 @@ import arrowUnderline from '../../assets/arrow-3.svg';
 // Import image hero
 import refonteHero from '../../assets/services/refonte1.webp';
 
+// Import background components
+import BackgroundGlitchGrid from '../../components/backgrounds/BackgroundGlitchGrid.astro';
+import BackgroundProgressFlow from '../../components/backgrounds/BackgroundProgressFlow.astro';
+import BackgroundCircuitBoard from '../../components/backgrounds/BackgroundCircuitBoard.astro';
+import BackgroundValueSpotlight from '../../components/backgrounds/BackgroundValueSpotlight.astro';
+import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
+import BackgroundMapContours from '../../components/backgrounds/BackgroundMapContours.astro';
+
 // SEO Data
 const seoData = {
     title: "Refonte de site web Genève | Jon Labs - Site moderne en 3 semaines",
@@ -397,8 +405,9 @@ const needOptions = [
     </section>
   
     <!-- PAIN POINTS SECTION -->
-    <section id="problemes" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
-        <div class="max-w-5xl mx-auto">
+    <section id="problemes" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundGlitchGrid />
+        <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
             <div class="text-center mb-12 md:mb-16">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
@@ -441,8 +450,9 @@ const needOptions = [
     </section>
 
     <!-- METHODOLOGY SECTION -->
-    <section id="methode" class="py-20 md:py-28 px-4">
-        <div class="max-w-5xl mx-auto">
+    <section id="methode" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundProgressFlow />
+        <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
             <div class="text-center mb-12 md:mb-16">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
@@ -571,8 +581,9 @@ const needOptions = [
     </section>
 
     <!-- TECHNOLOGY SECTION -->
-    <section id="technologie" class="py-20 md:py-28 px-4">
-        <div class="max-w-5xl mx-auto">
+    <section id="technologie" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundCircuitBoard animated={true} />
+        <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
             <div class="text-center mb-12 md:mb-16">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
@@ -622,8 +633,9 @@ const needOptions = [
     </section>
 
     <!-- PRICING SECTION -->
-    <section id="prix" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
-        <div class="max-w-5xl mx-auto">
+    <section id="prix" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundValueSpotlight />
+        <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
             <div class="text-center mb-12 md:mb-16">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
@@ -728,8 +740,9 @@ const needOptions = [
     </section>
 
     <!-- FAQ SECTION -->
-    <section id="faq" class="py-20 md:py-28 px-4">
-        <div class="max-w-3xl mx-auto">
+    <section id="faq" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundQuestionMarks animated={true} />
+        <div class="max-w-3xl mx-auto relative z-10">
             <!-- Section header -->
             <div class="text-center mb-12">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
@@ -798,8 +811,9 @@ const needOptions = [
     </section>
 
     <!-- LOCAL SEO SECTION -->
-    <section id="local" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
-        <div class="max-w-5xl mx-auto">
+    <section id="local" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundMapContours />
+        <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
             <div class="text-center mb-12 md:mb-16">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
@@ -860,12 +874,9 @@ const needOptions = [
     </section>
 
     <!-- CTA + FORM SECTION -->
-    <section id="contact" class="py-20 md:py-28 px-4 bg-[#0a0a0f] text-white relative overflow-hidden">
-        <!-- Grid background -->
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
-        <!-- Gradient overlays -->
-        <div class="absolute top-0 left-0 w-96 h-96 bg-[var(--blue)] opacity-10 blur-[100px] rounded-full"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[var(--violet)] opacity-10 blur-[100px] rounded-full"></div>
+    <section id="contact" class="py-20 md:py-28 px-4 bg-[var(--main-bg)] relative overflow-hidden">
+        <!-- Dot pattern background -->
+        <div class="absolute inset-0 dots-bg opacity-[0.4]"></div>
 
         <div class="max-w-4xl mx-auto relative z-10">
             <!-- Section header -->
@@ -878,19 +889,19 @@ const needOptions = [
 
             <!-- Options -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-6 text-center">
+                <div class="bg-white border-2 border-black p-6 text-center shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
                     <div class="w-12 h-12 bg-[var(--blue)] border-2 border-black mx-auto mb-4 flex items-center justify-center">
                         <i class="ri-search-eye-line text-xl text-black"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[var(--text)]">Option 1 : Audit gratuit</h3>
-                    <p class="text-gray-400 text-sm mb-4">15 min, pas de bullshit, pas de vente forcée.<br/>Je regarde votre site et vous dis ce qui cloche.</p>
+                    <h3 class="text-xl font-bold mb-2">Option 1 : Audit gratuit</h3>
+                    <p class="text-gray-600 text-sm mb-4">15 min, pas de bullshit, pas de vente forcée.<br/>Je regarde votre site et vous dis ce qui cloche.</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-6 text-center">
+                <div class="bg-white border-2 border-black p-6 text-center shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
                     <div class="w-12 h-12 bg-[var(--violet)] border-2 border-black mx-auto mb-4 flex items-center justify-center">
                         <i class="ri-chat-3-line text-xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[var(--text)]">Option 2 : Discutons</h3>
-                    <p class="text-gray-400 text-sm mb-4">Vous avez une idée claire ?<br/>On skip l'audit et on parle budget/timeline direct.</p>
+                    <h3 class="text-xl font-bold mb-2">Option 2 : Discutons</h3>
+                    <p class="text-gray-600 text-sm mb-4">Vous avez une idée claire ?<br/>On skip l'audit et on parle budget/timeline direct.</p>
                 </div>
             </div>
 
@@ -1070,7 +1081,7 @@ const needOptions = [
                 </form>
 
                 <!-- Trust indicators -->
-                <div class="flex flex-wrap justify-center gap-6 mt-8 text-sm text-gray-400">
+                <div class="flex flex-wrap justify-center gap-6 mt-8 text-sm text-gray-600">
                     <span class="flex items-center gap-2">
                         <i class="ri-time-line text-[var(--blue)]"></i>
                         Réponse sous 24-48h
@@ -1100,6 +1111,12 @@ const needOptions = [
 </Layout>
 
 <style>
+    /* Dot pattern background */
+    .dots-bg {
+        background-image: radial-gradient(circle, #000 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
     /* FAQ animations */
     .faq-item[data-open="true"] .faq-icon {
         transform: rotate(45deg);

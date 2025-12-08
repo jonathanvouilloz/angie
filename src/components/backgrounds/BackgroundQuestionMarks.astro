@@ -1,0 +1,82 @@
+---
+interface Props {
+    color?: string;
+    opacity?: number;
+    animated?: boolean;
+}
+
+const {
+    color = 'rgba(0, 0, 0, 0.4)',
+    opacity = 0.08,
+    animated = true
+} = Astro.props;
+
+// Pre-defined positions for question marks
+const questionMarks = [
+    { size: 120, top: '5%', left: '8%', rotate: -15, delay: 0 },
+    { size: 80, top: '15%', right: '12%', rotate: 20, delay: 0.5 },
+    { size: 100, top: '35%', left: '3%', rotate: 10, delay: 1 },
+    { size: 60, top: '25%', left: '25%', rotate: -8, delay: 1.5 },
+    { size: 140, top: '50%', right: '5%', rotate: -12, delay: 0.3 },
+    { size: 70, top: '60%', left: '15%', rotate: 25, delay: 0.8 },
+    { size: 90, top: '70%', right: '20%', rotate: -5, delay: 1.2 },
+    { size: 110, bottom: '10%', left: '5%', rotate: 15, delay: 0.6 },
+    { size: 65, bottom: '15%', right: '8%', rotate: -20, delay: 1.8 },
+    { size: 85, top: '40%', left: '40%', rotate: 5, delay: 0.2 },
+    { size: 95, bottom: '30%', left: '30%', rotate: -10, delay: 1.4 },
+    { size: 75, top: '10%', left: '50%', rotate: 18, delay: 0.9 },
+];
+---
+
+<div class="question-marks-bg" aria-hidden="true">
+    {questionMarks.map((qm, index) => (
+        <span
+            class:list={["question-mark", { animated }]}
+            style={`
+                font-size: ${qm.size}px;
+                ${qm.top ? `top: ${qm.top};` : ''}
+                ${qm.bottom ? `bottom: ${qm.bottom};` : ''}
+                ${qm.left ? `left: ${qm.left};` : ''}
+                ${qm.right ? `right: ${qm.right};` : ''}
+                --rotate: ${qm.rotate}deg;
+                --delay: ${qm.delay}s;
+            `}
+        >?</span>
+    ))}
+</div>
+
+<style define:vars={{ color, opacity }}>
+    .question-marks-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .question-mark {
+        position: absolute;
+        font-family: 'Space Grotesk', serif;
+        font-weight: 700;
+        color: var(--color);
+        opacity: var(--opacity);
+        transform: rotate(var(--rotate));
+        user-select: none;
+        line-height: 1;
+    }
+
+    /* Floating animation */
+    .question-mark.animated {
+        animation: float 6s ease-in-out infinite;
+        animation-delay: var(--delay);
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: rotate(var(--rotate)) translateY(0);
+        }
+        50% {
+            transform: rotate(var(--rotate)) translateY(-15px);
+        }
+    }
+</style>

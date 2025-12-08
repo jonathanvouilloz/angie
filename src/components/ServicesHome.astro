@@ -15,7 +15,7 @@ import { services } from '../sample'
     <div class="max-w-6xl mx-auto px-4 relative z-10">
 
         <!-- Section header - Editorial style -->
-        <div class="relative mb-16 md:mb-20">
+        <div class="relative mb-16 md:mb-20" data-animate>
             <!-- Oversized number watermark -->
             <span class="
                 absolute -top-8 -left-2 md:-top-12 md:-left-6
@@ -66,7 +66,7 @@ import { services } from '../sample'
         </div>
 
         <!-- Services grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-animate-stagger>
             {services.map((service, index) => (
                 <article
                     class="
@@ -81,6 +81,7 @@ import { services } from '../sample'
                         hover:translate-y-[-4px]
                         relative
                     "
+                    data-animate-item
                 >
                     <!-- Card number -->
                     <span class="

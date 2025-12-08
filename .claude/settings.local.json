@@ -18,7 +18,9 @@
       "Bash(dir \"C:\\Users\\jojo-\\Desktop\\angie\\dist\")",
       "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\services\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\services\")",
       "Bash(dir:*)",
-      "Bash(pnpm install:*)"
+      "Bash(pnpm install:*)",
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\scripts\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\scripts\")",
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\")"
     ],
     "deny": [],
     "ask": []
