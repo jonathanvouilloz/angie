@@ -206,7 +206,8 @@ export const serviceSections: ServiceSection[] = [
           'Pas de maintenance complexe, tu te concentres sur ton métier',
           'Évolutif : blog, portfolio, pages supplémentaires si besoin'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/creation-site-web'
       },
       {
         id: 'outils-mesure',

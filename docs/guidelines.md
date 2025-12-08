@@ -259,6 +259,49 @@ Texte en markdown...
 
 ---
 
+## Composants Réutilisables
+
+### Header
+
+Le composant Header supporte plusieurs variantes pour s'adapter aux différents contextes de page.
+
+```astro
+---
+interface Props {
+    variant?: 'default' | 'transparent';
+    scrollTransition?: boolean;
+}
+---
+
+<!-- Utilisation standard (fond blanc, texte noir) -->
+<Header />
+
+<!-- Variante transparente (fond transparent, texte blanc) -->
+<Header variant="transparent" />
+
+<!-- Avec transition au scroll (hero sombre → sections claires) -->
+<Header variant="transparent" scrollTransition={true} />
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'transparent'` | `'default'` | Style visuel du header |
+| `scrollTransition` | `boolean` | `false` | Active la transition automatique au scroll |
+
+#### Comportement scrollTransition
+
+Quand `scrollTransition={true}` :
+1. Le header démarre en mode transparent (texte blanc, fond transparent)
+2. Un `IntersectionObserver` surveille la section hero (`.hero-section`, `.hero-hub`)
+3. Quand le hero sort de l'écran, le header transition vers le mode solid (fond blanc, texte noir)
+4. La transition est fluide (0.3s ease)
+
+**Usage typique** : Pages avec hero sombre suivi de sections claires (ex: `/services`)
+
+---
+
 ## Git & Versioning
 
 ### Structure des commits

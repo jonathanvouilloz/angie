@@ -109,6 +109,11 @@
     - [x] Hero remonte sous le header (margin-top négatif)
     - [x] Background sombre unifié (body + hero)
     - [x] Hover des liens en vert labo (--blue) au lieu de violet
+    - [x] Transition au scroll (transparent → solid)
+      - [x] Prop `scrollTransition` sur Header.astro
+      - [x] IntersectionObserver détecte quand le hero sort de l'écran
+      - [x] Transition fluide (0.3s) vers header blanc/solide
+      - [x] Support multiple classes hero (.hero-section, .hero-hub)
   - [x] Modal conversation immersif
     - [x] Style iMessage avec header "Jonathan V."
     - [x] Messages animés avec typing indicator
