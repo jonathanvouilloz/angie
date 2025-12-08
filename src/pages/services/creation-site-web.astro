@@ -1,0 +1,1260 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+// Import SVG pour surlignement
+import arrowUnderline from '../../assets/arrow-3.svg';
+
+// Import image hero (réutiliser temporairement refonte1.webp)
+import creationHero from '../../assets/services/refonte1.webp';
+
+// Import background components
+import BackgroundGlitchGrid from '../../components/backgrounds/BackgroundGlitchGrid.astro';
+import BackgroundProgressFlow from '../../components/backgrounds/BackgroundProgressFlow.astro';
+import BackgroundCircuitBoard from '../../components/backgrounds/BackgroundCircuitBoard.astro';
+import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
+import BackgroundMapContours from '../../components/backgrounds/BackgroundMapContours.astro';
+
+// SEO Data
+const seoData = {
+    title: "Création de site web à Genève | Jon Labs",
+    description: "Site web professionnel en 3-4 semaines. Design sur-mesure, optimisé Google, sans WordPress. Pour indépendants et PME à Genève. Devis gratuit."
+};
+
+// Service schema for SEO
+const serviceSchema = [
+    {
+        title: "Création de site web",
+        description: "Création de site web professionnel à Genève. Design sur-mesure, ultra-rapide, optimisé SEO. À partir de 750 CHF."
+    }
+];
+
+// Pain points data (4 items)
+const painPoints = [
+    {
+        icon: "ri-search-line",
+        title: "Invisible sur Google",
+        description: "Vos concurrents apparaissent en premier quand quelqu'un cherche votre métier à Genève. Vous, non. Les clients potentiels ne savent même pas que vous existez."
+    },
+    {
+        icon: "ri-chat-voice-line",
+        title: "Dépendant du bouche-à-oreille",
+        description: "Votre réseau actuel vous amène des clients, mais c'est limité. Vous aimeriez que des gens vous trouvent sans avoir besoin de vous connaître."
+    },
+    {
+        icon: "ri-image-line",
+        title: "Une image qui ne vous ressemble pas",
+        description: "Votre seule vitrine, c'est une page Facebook ou un profil LinkedIn. Ça fait le job, mais ça ne reflète pas vraiment qui vous êtes ni le sérieux de votre travail."
+    },
+    {
+        icon: "ri-settings-3-line",
+        title: "Peur de la complexité technique",
+        description: "Vous avez déjà regardé WordPress, Wix, Squarespace... et vous avez abandonné. Trop compliqué, trop de temps, trop de choix. Vous voulez juste un truc qui marche."
+    }
+];
+
+// Methodology steps (5 étapes)
+const methodSteps = [
+    {
+        step: "1",
+        title: "Échange",
+        description: "On discute de votre activité, vos objectifs, vos clients. Qu'est-ce que vous voulez que les visiteurs comprennent en 10 secondes ? C'est la base de tout.",
+        duration: "30-45 min (gratuit, sans engagement)"
+    },
+    {
+        step: "2",
+        title: "Contenu",
+        description: "Vous me fournissez l'essentiel : textes, photos, logo si vous en avez un. Pas besoin d'être parfait — on affine ensemble. Je structure le tout pour que ce soit clair et efficace.",
+        duration: "1 semaine (à votre rythme)"
+    },
+    {
+        step: "3",
+        title: "Maquette",
+        description: "Je crée une maquette visuelle de votre site. Vous voyez exactement à quoi ça ressemblera avant que je code quoi que ce soit. On ajuste jusqu'à ce que ça vous plaise.",
+        duration: "3-5 jours"
+    },
+    {
+        step: "4",
+        title: "Développement",
+        description: "Je code votre site. Pas de WordPress qui rame, pas de template générique. Un site sur-mesure, rapide, optimisé pour Google dès le départ.",
+        duration: "1-2 semaines"
+    },
+    {
+        step: "5",
+        title: "Lancement",
+        description: "Mise en ligne, vérifications techniques, et une formation rapide pour que vous puissiez faire les modifications simples vous-même si besoin.",
+        duration: "1 jour"
+    }
+];
+
+// Differentiators (encart)
+const differentiators = [
+    {
+        icon: "ri-eye-line",
+        title: "Pas de surprise",
+        description: "vous validez chaque étape avant qu'on avance"
+    },
+    {
+        icon: "ri-key-line",
+        title: "Pas de dépendance",
+        description: "votre site vous appartient, vous pouvez le faire évoluer"
+    },
+    {
+        icon: "ri-chat-smile-2-line",
+        title: "Pas de jargon",
+        description: "je vous explique tout en français, pas en \"dev\""
+    },
+    {
+        icon: "ri-flashlight-line",
+        title: "Option express",
+        description: "besoin urgent ? On peut accélérer le calendrier"
+    }
+];
+
+// Results (6 items)
+const results = [
+    {
+        icon: "ri-smartphone-line",
+        title: "Un site responsive (mobile + ordinateur)",
+        description: "Vos visiteurs restent et naviguent confortablement, peu importe leur appareil. Plus de 60% des visites viennent du mobile."
+    },
+    {
+        icon: "ri-search-eye-line",
+        title: "Optimisé pour Google (référencement inclus)",
+        description: "Votre site est construit pour remonter dans les recherches locales. Quelqu'un cherche \"[votre métier] Genève\" ? Vous avez une chance d'apparaître."
+    },
+    {
+        icon: "ri-speed-line",
+        title: "Chargement ultra-rapide (score 90+)",
+        description: "Un site lent fait fuir les visiteurs. Le vôtre charge en moins de 2 secondes. Google adore, vos clients aussi."
+    },
+    {
+        icon: "ri-palette-line",
+        title: "Design sur-mesure, pas un template",
+        description: "Votre site ne ressemble à aucun autre. Il reflète votre identité, pas celle d'un modèle utilisé par 10'000 autres entreprises."
+    },
+    {
+        icon: "ri-pencil-line",
+        title: "Autonomie pour les modifications simples",
+        description: "Changer un texte, ajouter une photo, mettre à jour vos horaires : vous pouvez le faire vous-même. Formation incluse."
+    },
+    {
+        icon: "ri-shield-check-line",
+        title: "Hébergement sécurisé et performant",
+        description: "Votre site est en ligne 99.9% du temps, avec certificat SSL (le petit cadenas). Vos visiteurs sont en confiance."
+    }
+];
+
+// Tech stack
+const techStack = [
+    {
+        name: "Framer",
+        description: "Idéal pour les sites vitrines élégants. Modifications faciles, animations fluides.",
+        icon: "ri-layout-line",
+        idealFor: "Indépendants, consultants, portfolios créatifs"
+    },
+    {
+        name: "Webflow",
+        description: "Pour les projets plus ambitieux. CMS intégré, interactions avancées.",
+        icon: "ri-grid-line",
+        idealFor: "PME, agences, sites avec beaucoup de contenu"
+    },
+    {
+        name: "Site sur-mesure",
+        description: "Performance maximale et contrôle total. Pour les besoins spécifiques.",
+        icon: "ri-code-s-slash-line",
+        idealFor: "E-commerce, applications web, besoins techniques spécifiques"
+    }
+];
+
+// Pricing plans
+const pricingPlans = [
+    {
+        name: "Site Vitrine",
+        price: "750",
+        priceLabel: "À partir de",
+        features: [
+            "1 à 5 pages",
+            "Design sur-mesure",
+            "Responsive (mobile + desktop)",
+            "Optimisation Google de base",
+            "Formulaire de contact",
+            "Hébergement 1ère année inclus"
+        ],
+        ideal: "Artisans, indépendants, consultants qui veulent une présence en ligne simple et efficace.",
+        highlighted: false
+    },
+    {
+        name: "Site Vitrine + Blog",
+        price: "1'500",
+        priceLabel: "À partir de",
+        features: [
+            "Tout ce qui est inclus dans Site Vitrine",
+            "Section blog intégrée",
+            "Système de publication simple",
+            "Optimisation SEO avancée",
+            "Formation à la rédaction web"
+        ],
+        ideal: "Coachs, thérapeutes, experts qui veulent démontrer leur expertise et améliorer leur référencement.",
+        highlighted: true
+    },
+    {
+        name: "E-commerce & Applications",
+        price: "Sur devis",
+        priceLabel: "",
+        features: [
+            "Boutique en ligne",
+            "Paiement sécurisé (Stripe, TWINT)",
+            "Gestion des stocks",
+            "Fonctionnalités sur-mesure"
+        ],
+        ideal: "Commerçants, créateurs, entreprises avec des besoins spécifiques.",
+        highlighted: false
+    }
+];
+
+// FAQs (8 questions)
+const faqs = [
+    {
+        question: "Combien de temps pour avoir mon site ?",
+        answer: "Entre 3 et 4 semaines pour un site vitrine standard. Si vous avez une urgence (événement, lancement), j'ai une option express. On en parle lors du premier échange."
+    },
+    {
+        question: "Qu'est-ce que je dois fournir ?",
+        answer: "Vos textes (même bruts, on les retravaille ensemble), vos photos, votre logo si vous en avez un. Pas de panique si vous n'avez pas tout : je peux vous guider ou vous recommander des professionnels."
+    },
+    {
+        question: "Je n'y connais rien en technique, c'est un problème ?",
+        answer: "Pas du tout. C'est même la majorité de mes clients. Je m'occupe de toute la partie technique, vous vous concentrez sur votre métier. Et je vous explique tout en termes simples."
+    },
+    {
+        question: "Et si j'ai besoin de modifications après ?",
+        answer: "Les petites modifications (textes, photos), vous pouvez les faire vous-même — je vous montre comment. Pour des évolutions plus importantes, on en discute et je vous fais un devis."
+    },
+    {
+        question: "Pourquoi pas WordPress comme tout le monde ?",
+        answer: "WordPress, c'est bien pour certains usages. Mais c'est aussi lent, vulnérable aux piratages, et demande des mises à jour constantes. Ma stack technique vous donne un site plus rapide, plus sécurisé, et sans maintenance pénible."
+    },
+    {
+        question: "C'est quoi la différence avec Wix ou Squarespace ?",
+        answer: "Ces outils sont pratiques pour démarrer seul, mais vous êtes limité par leurs templates et leur système. Avec moi, vous avez un site vraiment sur-mesure, optimisé pour Google, et vous n'êtes pas enfermé dans une plateforme."
+    },
+    {
+        question: "Et si le résultat ne me plaît pas ?",
+        answer: "On valide ensemble à chaque étape (maquette, puis développement). Vous ne découvrez pas le site à la fin — vous participez à sa création. Si quelque chose ne va pas, on ajuste avant de continuer."
+    },
+    {
+        question: "Est-ce que je serai visible sur Google tout de suite ?",
+        answer: "Le référencement prend du temps (quelques semaines à quelques mois selon la concurrence). Mais votre site sera techniquement optimisé dès le jour 1. C'est la fondation. Ensuite, si vous voulez aller plus loin, on peut travailler sur une stratégie SEO plus poussée."
+    }
+];
+
+// Local advantages
+const localAdvantages = [
+    {
+        icon: "ri-user-voice-line",
+        title: "Des échanges facilités",
+        description: "On peut se voir en personne si besoin. Un café pour discuter du projet, un atelier pour affiner les détails."
+    },
+    {
+        icon: "ri-bar-chart-line",
+        title: "La même réalité business",
+        description: "Je connais le marché suisse, les attentes des clients locaux, les spécificités légales (LPD, facturation)."
+    },
+    {
+        icon: "ri-time-line",
+        title: "Réactivité",
+        description: "Même fuseau horaire, même rythme. Une question urgente ? Vous avez une réponse dans la journée."
+    },
+    {
+        icon: "ri-group-line",
+        title: "Un réseau local",
+        description: "Besoin d'un photographe professionnel ? D'un rédacteur ? Je peux vous recommander des personnes de confiance dans la région."
+    }
+];
+
+// Local zones
+const zones = [
+    { name: "Genève", type: "primary", icon: "ri-map-pin-fill" },
+    { name: "Vaud", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Valais", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Neuchâtel", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Fribourg", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Toute Suisse romande", type: "tertiary", icon: "ri-global-line" }
+];
+
+// Project type options for form
+const projectTypes = [
+    { value: "site-vitrine", label: "Site vitrine" },
+    { value: "site-blog", label: "Site + blog" },
+    { value: "e-commerce", label: "E-commerce" },
+    { value: "ne-sait-pas", label: "Je ne sais pas encore" }
+];
+
+// Budget options for form
+const budgetOptions = [
+    { value: "moins-1000", label: "< 1'000 CHF" },
+    { value: "1000-2000", label: "1'000 - 2'000 CHF" },
+    { value: "2000-5000", label: "2'000 - 5'000 CHF" },
+    { value: "plus-5000", label: "> 5'000 CHF" },
+    { value: "ne-sait-pas", label: "Je ne sais pas" }
+];
+---
+
+<Layout
+    title={seoData.title}
+    description={seoData.description}
+    schema="Service"
+    schemaData={serviceSchema}
+>
+    <Header />
+
+    <!-- ============================================== -->
+    <!-- HERO SECTION -->
+    <!-- ============================================== -->
+    <section class="hero-section -mt-[120px] pt-[150px] pb-16 md:pt-[160px] md:pb-20 px-4 relative overflow-hidden">
+        <!-- Gradient mesh background -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-[var(--blue)] opacity-20 blur-[120px] rounded-full"></div>
+            <div class="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-[var(--violet)] opacity-15 blur-[100px] rounded-full"></div>
+            <div class="absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-[var(--blue)] opacity-10 blur-[80px] rounded-full"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- Centered text content -->
+            <div class="text-center">
+                <!-- H1 SEO discret -->
+                <h1 class="seo-h1 mb-8 mt-8">Création de site web à Genève</h1>
+
+                <!-- Main title -->
+                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6">
+                    Un site qui travaille pour vous,<br/>
+                    <span class="relative inline-block">
+                        <span class="relative z-10">même quand vous dormez</span>
+                    </span>
+                </p>
+
+                <!-- Description -->
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Vous n'avez pas de site ou juste une page Facebook ?<br class="hidden md:block"/>
+                    <strong class="text-[var(--text)]">Lancez votre présence en ligne en 3-4 semaines.</strong><br class="hidden md:block"/>
+                    Un site simple, efficace, qui vous ramène des clients sans vous prendre la tête.
+                </p>
+
+                <!-- CTAs centered -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-20">
+                    <a
+                        href="#contact"
+                        class="
+                            bg-[var(--blue)]
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                            transition-all duration-200
+                            hover:bg-[var(--yellow)]
+                            hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                            hover:translate-x-[2px] hover:translate-y-[2px]
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        <i class="ri-chat-3-line"></i>
+                        Discuter de mon projet
+                    </a>
+                    <a
+                        href="#methode"
+                        class="
+                            bg-white
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            transition-all duration-200
+                            hover:bg-gray-100
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        Voir comment ça marche
+                        <i class="ri-arrow-down-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Browser mockup centered -->
+            <div class="w-full mx-auto relative">
+                <div class="bg-white border-3 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] relative">
+                    <!-- Browser bar -->
+                    <div class="flex items-center gap-2 p-3 border-b-2 border-black bg-gray-50">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-400 border border-black"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400 border border-black"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400 border border-black"></div>
+                        </div>
+                        <div class="flex-1 bg-white border border-black px-3 py-1 text-xs text-gray-400 font-mono text-center">
+                            votresite.ch
+                        </div>
+                    </div>
+                    <!-- Screenshot -->
+                    <img
+                        src={creationHero.src}
+                        alt="Exemple de création de site web professionnel"
+                        class="w-full h-auto"
+                    />
+                </div>
+                <!-- Score badge -->
+                <div class="absolute -top-4 -left-4 bg-white border-2 border-black px-3 py-2 shadow-[3px_3px_0px_rgba(0,0,0,1)] -rotate-6">
+                    <span class="font-mono text-sm font-bold text-[var(--blue)]">90+</span>
+                    <span class="text-xs text-gray-500 block">Google</span>
+                </div>
+                <!-- Speed badge -->
+                <div class="absolute -bottom-4 -right-4 bg-[var(--blue)] border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,1)] rotate-3">
+                    <span class="font-bold text-sm">3-4 sem.</span>
+                </div>
+            </div>
+
+            <!-- Location badge centered -->
+            <div class="flex items-center justify-center gap-2 text-sm text-gray-500 mt-12">
+                <i class="ri-map-pin-fill text-[var(--blue)]"></i>
+                <span>Basé à Genève | Service en Suisse romande</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAIN POINTS SECTION -->
+    <section id="problemes" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundGlitchGrid />
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    problèmes
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    <span class="relative inline-block">
+                        <span class="absolute bg-red-200 w-full h-[40%] left-0 bottom-1 -z-1"></span>
+                        Vous vous reconnaissez ?
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-600">Ce sont les situations que rencontrent la plupart de mes clients avant qu'on travaille ensemble.</p>
+            </div>
+
+            <!-- Pain points grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12">
+                {painPoints.map((point) => (
+                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                        <!-- Red X icon -->
+                        <div class="w-10 h-10 bg-red-100 border-2 border-red-300 flex items-center justify-center mb-4">
+                            <i class="ri-close-line text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{point.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{point.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Good news callout -->
+            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8 text-center">
+                <p class="text-lg md:text-xl font-medium">
+                    <i class="ri-lightbulb-line text-[var(--blue)] mr-2"></i>
+                    <strong>La bonne nouvelle ?</strong> Avoir un site professionnel ne demande ni des mois de travail, ni un budget démesuré.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY SECTION -->
+    <section id="methode" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundProgressFlow />
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    méthode
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Comment ça se passe ?
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Pas de tunnel de développement interminable. Un processus clair, des validations régulières, un site en ligne en <strong class="text-[var(--blue)]">3-4 semaines</strong>.
+                </p>
+            </div>
+
+            <!-- Method steps grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {methodSteps.slice(0, 3).map((step, index) => (
+                    <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative">
+                        <!-- Number badge -->
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-10 h-10 bg-[var(--blue)] border-2 border-black flex items-center justify-center font-mono font-bold text-sm">
+                                0{index + 1}
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">{step.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">{step.description}</p>
+                        <!-- Duration -->
+                        <div class="flex items-center gap-2 text-sm pt-3 border-t border-dashed border-gray-300">
+                            <i class="ri-time-line text-[var(--blue)]"></i>
+                            <span class="text-gray-500">{step.duration}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Steps 4 and 5 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
+                {methodSteps.slice(3).map((step, index) => (
+                    <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative">
+                        <!-- Number badge -->
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-10 h-10 bg-[var(--blue)] border-2 border-black flex items-center justify-center font-mono font-bold text-sm">
+                                0{index + 4}
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">{step.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">{step.description}</p>
+                        <!-- Duration -->
+                        <div class="flex items-center gap-2 text-sm pt-3 border-t border-dashed border-gray-300">
+                            <i class="ri-time-line text-[var(--blue)]"></i>
+                            <span class="text-gray-500">{step.duration}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Differentiators box -->
+            <div class="bg-white border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative">
+                <!-- Corner boxes -->
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+
+                <h3 class="text-xl font-bold text-center mb-6">Ce qui change avec Jon Labs</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {differentiators.map((diff) => (
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-[var(--blue)] border-2 border-black mx-auto mb-3 flex items-center justify-center">
+                                <i class={`${diff.icon} text-xl`}></i>
+                            </div>
+                            <h4 class="font-bold mb-1">{diff.title}</h4>
+                            <p class="text-sm text-gray-600">{diff.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section id="resultats" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
+        <div class="max-w-5xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    résultats
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Ce que vous obtenez
+                </h2>
+            </div>
+
+            <!-- Results grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
+                {results.map((result) => (
+                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                        <!-- Green check icon -->
+                        <div class="w-10 h-10 bg-green-100 border-2 border-green-400 flex items-center justify-center mb-4">
+                            <i class="ri-check-line text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{result.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{result.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Testimonial placeholder -->
+            <div class="bg-[var(--accent)] bg-opacity-20 border-2 border-[var(--violet)] p-8 text-center">
+                <i class="ri-double-quotes-l text-4xl text-[var(--violet)] opacity-50 mb-4 block"></i>
+                <p class="text-lg md:text-xl italic text-gray-700 mb-4">
+                    « Jonathan a été super flexible, rapide et a compris exactement ce que je voulais. Il a été très rapide en plus car j'avais un besoin urgent. »
+                </p>
+                <span class="text-gray-500">— Solène Derbal, cheffe d'orchestre</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGY SECTION -->
+    <section id="technologie" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundCircuitBoard animated={true} />
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    sous le capot
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Technologie moderne
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Pas de solution unique pour tous. <strong>Je choisis l'outil adapté à votre projet</strong> — simplicité, flexibilité ou performance.
+                </p>
+            </div>
+
+            <!-- Tech cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12">
+                {techStack.map((tech) => (
+                    <div class="tech-card bg-white border-2 border-black p-6 text-center transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                        <i class={`${tech.icon} text-3xl text-[var(--violet)] mb-4 block`}></i>
+                        <h3 class="text-xl font-bold mb-2">{tech.name}</h3>
+                        <p class="text-sm text-gray-600 mb-3">{tech.description}</p>
+                        <p class="text-xs text-[var(--blue)] font-medium">
+                            <i class="ri-user-star-line mr-1"></i>
+                            {tech.idealFor}
+                        </p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Reassurance note -->
+            <div class="bg-white border-2 border-black p-6 text-center">
+                <p class="text-gray-600">
+                    <i class="ri-information-line text-[var(--blue)] mr-2"></i>
+                    <strong>Dans tous les cas :</strong> un site rapide, sécurisé, et que vous pouvez faire évoluer. On choisit ensemble l'option qui vous convient.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="prix" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
+        <div class="max-w-5xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    investissement
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Des tarifs clairs
+                </h2>
+                <p class="text-lg text-gray-600">Adaptés à la taille de votre projet. Pas de mauvaise surprise.</p>
+            </div>
+
+            <!-- Pricing cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
+                {pricingPlans.map((plan) => (
+                    <div class={`
+                        pricing-card bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 relative
+                        ${plan.highlighted ? 'shadow-[8px_8px_0px_rgba(0,0,0,1)] ring-2 ring-[var(--blue)]' : 'shadow-[4px_4px_0px_rgba(0,0,0,0.3)]'}
+                    `}>
+                        {plan.highlighted && (
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--blue)] border-2 border-black px-3 py-1 text-xs font-bold">
+                                POPULAIRE
+                            </div>
+                        )}
+
+                        <h3 class="text-xl font-bold mb-4">{plan.name}</h3>
+
+                        <div class="mb-6">
+                            {plan.priceLabel && (
+                                <span class="text-sm text-gray-500">{plan.priceLabel}</span>
+                            )}
+                            <p class="text-3xl font-bold text-[var(--text)]">
+                                {plan.price}
+                                {plan.priceLabel && <span class="text-lg"> CHF</span>}
+                            </p>
+                        </div>
+
+                        <ul class="space-y-3 mb-6">
+                            {plan.features.map((feature) => (
+                                <li class="flex items-start gap-2 text-sm">
+                                    <i class="ri-check-line text-[var(--blue)] mt-0.5 flex-shrink-0"></i>
+                                    <span>{feature}</span>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <div class="pt-4 border-t border-dashed border-gray-300">
+                            <p class="text-xs text-gray-500">
+                                <strong>Idéal pour :</strong> {plan.ideal}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Pricing notes -->
+            <div class="bg-white border-2 border-black p-6 md:p-8">
+                <h3 class="font-bold mb-4 flex items-center gap-2">
+                    <i class="ri-information-line text-[var(--blue)]"></i>
+                    Ce qui influence le prix :
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600 mb-6">
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i class="ri-arrow-right-s-line text-[var(--blue)]"></i>
+                            Nombre de pages
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ri-arrow-right-s-line text-[var(--blue)]"></i>
+                            Complexité du design
+                        </li>
+                    </ul>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i class="ri-arrow-right-s-line text-[var(--blue)]"></i>
+                            Fonctionnalités spécifiques (réservation, multilingue...)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ri-arrow-right-s-line text-[var(--blue)]"></i>
+                            Délai souhaité (option express disponible)
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex flex-wrap gap-6 text-sm">
+                    <span class="flex items-center gap-2">
+                        <i class="ri-bank-card-line text-[var(--blue)]"></i>
+                        <strong>Facilités de paiement :</strong> Paiement en 2-3 fois possible selon le montant.
+                    </span>
+                </div>
+                <p class="mt-4 text-sm text-gray-500 bg-gray-50 p-3 border-l-4 border-[var(--blue)]">
+                    <strong>Pas sûr de la formule ?</strong> On en discute ensemble. Premier échange gratuit et sans engagement.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundQuestionMarks animated={true} />
+        <div class="max-w-3xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    faq
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">Questions fréquentes</h2>
+            </div>
+
+            <!-- FAQ items -->
+            <div class="faq-list space-y-6">
+                {faqs.map((faq, index) => (
+                    <div class="faq-item border-2 border-black bg-[var(--main-bg)]" data-faq-item>
+                        <button
+                            class="
+                                faq-trigger
+                                w-full
+                                flex items-center justify-between gap-4
+                                p-5
+                                text-left
+                                font-medium
+                                cursor-pointer
+                                transition-colors duration-200
+                                hover:bg-[var(--blue)] hover:bg-opacity-10
+                            "
+                            aria-expanded="false"
+                            data-faq-trigger
+                        >
+                            <span class="flex items-start gap-3">
+                                <span class="font-mono text-sm text-gray-400 mt-0.5">{String(index + 1).padStart(2, '0')}</span>
+                                <span class="text-lg">{faq.question}</span>
+                            </span>
+                            <span class="
+                                faq-icon
+                                w-8 h-8
+                                border-2 border-black
+                                bg-white
+                                flex items-center justify-center
+                                transition-transform duration-300
+                                flex-shrink-0
+                            ">
+                                <i class="ri-add-line text-lg"></i>
+                            </span>
+                        </button>
+                        <div
+                            class="faq-content overflow-hidden transition-all duration-300"
+                            style="max-height: 0;"
+                            data-faq-content
+                        >
+                            <div class="p-6 pt-2 pl-12">
+                                <p class="text-gray-600 leading-relaxed">
+                                    {faq.answer}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Extra question note -->
+            <div class="text-center mt-8">
+                <p class="text-gray-500">
+                    Une autre question ? <a href="#contact" class="text-[var(--blue)] font-medium hover:underline">Contactez-moi directement</a>, je réponds sous 24h.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCAL SEO SECTION -->
+    <section id="local" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundMapContours />
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    local
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Un prestataire à <span class="text-[var(--blue)]">Genève</span>,<br/>
+                    ça change quoi ?
+                </h2>
+            </div>
+
+            <!-- Two columns -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Why local -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Travailler avec quelqu'un dans la région, c'est aussi :</h3>
+                    <div class="space-y-4">
+                        {localAdvantages.map((adv) => (
+                            <div class="flex items-start gap-4 p-4 bg-[var(--main-bg)] border-2 border-black">
+                                <div class="w-10 h-10 bg-[var(--blue)] border-2 border-black flex items-center justify-center flex-shrink-0">
+                                    <i class={`${adv.icon} text-lg`}></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">{adv.title}</h4>
+                                    <p class="text-sm text-gray-600">{adv.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- Zones -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Zones couvertes</h3>
+                    <div class="space-y-3">
+                        {zones.map((zone) => (
+                            <div class={`
+                                flex items-center gap-4 p-4 border-2 border-black
+                                ${zone.type === 'primary' ? 'bg-[var(--blue)] bg-opacity-20 border-[var(--blue)]' : 'bg-white'}
+                            `}>
+                                <i class={`${zone.icon} text-xl ${zone.type === 'primary' ? 'text-[var(--blue)]' : 'text-gray-600'}`}></i>
+                                <span class={`font-medium ${zone.type === 'primary' ? 'text-lg font-bold' : ''}`}>
+                                    {zone.name}
+                                    {zone.type === 'primary' && <span class="text-sm font-normal text-gray-600 ml-2">(basé sur place)</span>}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                    <p class="mt-6 text-sm text-gray-500">
+                        <i class="ri-information-line mr-1"></i>
+                        Les échanges se font en personne ou en visio selon vos préférences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA + FORM SECTION -->
+    <section id="contact" class="py-20 md:py-28 px-4 bg-[var(--main-bg)] relative overflow-hidden">
+        <!-- Dot pattern background -->
+        <div class="absolute inset-0 dots-bg opacity-[0.4]"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-normal mb-4 text-[var(--text)]">
+                    Prêt à lancer votre site ?
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Premier échange gratuit et sans engagement. On discute de votre projet, je vous donne mon avis honnête, vous décidez ensuite.
+                </p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form
+                    class="bg-white text-[var(--text)] border-3 border-black p-6 md:p-8 shadow-[8px_8px_0px_rgba(0,217,163,0.3)] relative"
+                    id="creation-form"
+                >
+                    <!-- Corner boxes -->
+                    <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                    <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                    <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                    <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+
+                    <h3 class="text-xl font-bold mb-6 text-center">Parlons de votre projet</h3>
+
+                    <!-- Hidden fields for Web3Forms -->
+                    <input type="hidden" name="access_key" value="2964b7b3-2e2d-454b-a792-967518d5788b">
+                    <input type="hidden" name="subject" value="Demande création site web - Jon Labs">
+                    <input type="hidden" name="from_name" value="Jon Labs - Création site">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Nom -->
+                        <div class="form-field">
+                            <label for="name" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">01</span>
+                                Nom / Prénom <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                placeholder="Jean Dupont"
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all"
+                            />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-field">
+                            <label for="email" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">02</span>
+                                Email <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                placeholder="vous@exemple.ch"
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all"
+                            />
+                        </div>
+
+                        <!-- Téléphone -->
+                        <div class="form-field">
+                            <label for="phone" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">03</span>
+                                Téléphone (optionnel)
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="+41 79 123 45 67"
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all"
+                            />
+                        </div>
+
+                        <!-- Type de projet -->
+                        <div class="form-field">
+                            <label for="project-type" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">04</span>
+                                Type de projet <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                id="project-type"
+                                name="project_type"
+                                required
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all cursor-pointer"
+                            >
+                                <option value="" disabled selected>Choisir...</option>
+                                {projectTypes.map((type) => (
+                                    <option value={type.value}>{type.label}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="form-field md:col-span-2">
+                            <label for="message" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">05</span>
+                                Votre message <span class="text-red-500">*</span>
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                required
+                                placeholder="Décrivez brièvement votre activité et ce que vous recherchez..."
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg placeholder:text-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all"
+                            ></textarea>
+                        </div>
+
+                        <!-- Budget -->
+                        <div class="form-field">
+                            <label for="budget" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">06</span>
+                                Budget approximatif
+                            </label>
+                            <select
+                                id="budget"
+                                name="budget"
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all cursor-pointer"
+                            >
+                                <option value="" disabled selected>Choisir...</option>
+                                {budgetOptions.map((option) => (
+                                    <option value={option.value}>{option.label}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <!-- Comment nous avez-vous trouvé -->
+                        <div class="form-field">
+                            <label for="source" class="flex items-center gap-2 text-sm font-medium mb-2">
+                                <span class="font-mono text-xs text-gray-400">07</span>
+                                Comment nous avez-vous trouvé ? (optionnel)
+                            </label>
+                            <input
+                                type="text"
+                                id="source"
+                                name="source"
+                                placeholder="Google, recommandation, LinkedIn..."
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all"
+                            />
+                        </div>
+
+                        <!-- Consent -->
+                        <div class="form-field md:col-span-2">
+                            <label class="flex items-start gap-3 cursor-pointer group">
+                                <input
+                                    type="checkbox"
+                                    name="consent"
+                                    required
+                                    class="mt-1 w-5 h-5 border-2 border-black appearance-none cursor-pointer checked:bg-[var(--blue)] checked:border-black relative transition-all"
+                                />
+                                <span class="text-sm text-gray-600 group-hover:text-black transition-colors">
+                                    Vos données sont utilisées uniquement pour répondre à votre demande. Pas de spam, promis. <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="md:col-span-2 pt-4">
+                            <button
+                                type="submit"
+                                class="
+                                    submit-btn
+                                    w-full
+                                    bg-[var(--blue)]
+                                    border-2 border-black
+                                    px-8 py-4
+                                    text-lg font-bold
+                                    shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                                    transition-all duration-200
+                                    hover:bg-[var(--yellow)]
+                                    hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                                    hover:translate-x-[2px] hover:translate-y-[2px]
+                                    focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
+                                    flex items-center justify-center gap-3
+                                "
+                            >
+                                <span>Envoyer ma demande</span>
+                                <i class="ri-send-plane-line text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Post-form content wrapper -->
+                <div class="bg-[var(--main-bg)]/90 backdrop-blur-sm p-6 mt-8">
+                    <!-- Trust indicators -->
+                    <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
+                        <span class="flex items-center gap-2">
+                            <i class="ri-time-line text-[var(--blue)]"></i>
+                            Réponse sous 24h
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <i class="ri-gift-line text-[var(--blue)]"></i>
+                            Premier échange gratuit
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <i class="ri-file-list-3-line text-[var(--blue)]"></i>
+                            Devis clair
+                        </span>
+                    </div>
+
+                    <!-- Alternatives -->
+                    <div class="text-center mt-8 space-y-4">
+                        <p class="text-gray-500 text-sm">Vous préférez réserver un créneau directement ?</p>
+                        <a
+                            href="https://cal.com/jonlabs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline"
+                        >
+                            <i class="ri-calendar-line"></i>
+                            Prendre rendez-vous sur Cal.com
+                        </a>
+                    </div>
+
+                    <!-- Direct contact -->
+                    <div class="text-center mt-6">
+                        <p class="text-gray-500 text-sm mb-2">Besoin d'une réponse rapide ?</p>
+                        <a href="mailto:contact@jonlabs.ch" class="text-[var(--blue)] font-mono hover:underline">
+                            contact@jonlabs.ch
+                        </a>
+                    </div>
+
+                    <!-- Not ready yet -->
+                    <div class="text-center mt-8 p-4 bg-white border-2 border-dashed border-gray-300">
+                        <p class="text-gray-500 text-sm">
+                            <strong>Pas encore prêt ?</strong> C'est normal. Vous pouvez aussi consulter mes <a href="/services" class="text-[var(--blue)] hover:underline">autres services</a> ou lire quelques articles sur le <a href="/blog" class="text-[var(--blue)] hover:underline">blog</a> pour mieux me connaître.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* Dot pattern background */
+    .dots-bg {
+        background-image: radial-gradient(circle, #000 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    /* FAQ animations */
+    .faq-item[data-open="true"] .faq-icon {
+        transform: rotate(45deg);
+        background-color: var(--blue);
+    }
+
+    /* H1 SEO style terminal */
+    .seo-h1 {
+        font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(15, 15, 15, 0.5);
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Custom checkbox checkmark */
+    input[type="checkbox"]:checked::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 1px;
+        width: 6px;
+        height: 12px;
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    /* Submit button loading state */
+    .submit-btn.loading {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .submit-btn.loading i {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /* Scroll margin for anchor navigation */
+    section[id] {
+        scroll-margin-top: 100px;
+    }
+</style>
+
+<script>
+    // FAQ accordion logic
+    const faqItems = document.querySelectorAll('[data-faq-item]');
+
+    faqItems.forEach(item => {
+        const trigger = item.querySelector('[data-faq-trigger]');
+        const content = item.querySelector('[data-faq-content]') as HTMLElement;
+
+        trigger?.addEventListener('click', () => {
+            const isOpen = item.getAttribute('data-open') === 'true';
+
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.setAttribute('data-open', 'false');
+                    const otherContent = otherItem.querySelector('[data-faq-content]') as HTMLElement;
+                    const otherTrigger = otherItem.querySelector('[data-faq-trigger]');
+                    if (otherContent) otherContent.style.maxHeight = '0';
+                    otherTrigger?.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current item
+            if (isOpen) {
+                item.setAttribute('data-open', 'false');
+                content.style.maxHeight = '0';
+                trigger.setAttribute('aria-expanded', 'false');
+            } else {
+                item.setAttribute('data-open', 'true');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Form submission
+    const form = document.getElementById('creation-form') as HTMLFormElement;
+    const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;
+    const btnText = submitBtn?.querySelector('span');
+    const btnIcon = submitBtn?.querySelector('i');
+
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Loading state
+        if (submitBtn) {
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            if (btnText) btnText.textContent = 'Envoi en cours...';
+            if (btnIcon) btnIcon.className = 'ri-loader-4-line text-xl animate-spin';
+        }
+
+        try {
+            const formData = new FormData(form);
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Show success message
+                alert('Merci ! Votre demande a bien été envoyée. Je vous réponds sous 24h.');
+                form.reset();
+            } else {
+                alert('Erreur lors de l\'envoi. Veuillez réessayer ou m\'écrire directement à contact@jonlabs.ch');
+            }
+        } catch (error) {
+            alert('Erreur de connexion. Veuillez réessayer.');
+        } finally {
+            // Reset button
+            if (submitBtn) {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                if (btnText) btnText.textContent = 'Envoyer ma demande';
+                if (btnIcon) btnIcon.className = 'ri-send-plane-line text-xl';
+            }
+        }
+    });
+</script>

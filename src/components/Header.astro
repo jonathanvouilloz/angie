@@ -6,10 +6,12 @@ import { author, cta } from '../sample'
 // Interface Props pour variantes
 interface Props {
     variant?: 'default' | 'transparent';
+    scrollTransition?: boolean; // Active la transition au scroll (transparent -> solid)
 }
 
-const { variant = 'default' } = Astro.props;
+const { variant = 'default', scrollTransition = false } = Astro.props;
 const isTransparent = variant === 'transparent';
+const hasScrollTransition = isTransparent && scrollTransition;
 
 // Interface typée pour les liens de navigation
 interface NavLink {
@@ -30,7 +32,7 @@ const links: NavLink[] = [
 const { pathname } = Astro.url
 ---
 
-<header class={`sticky top-0 z-40 p-6 overflow-hidden ${isTransparent ? 'bg-transparent border-b-0' : 'bg-transparent'}`}>
+<header class={`sticky top-0 z-40 p-6 overflow-hidden ${isTransparent ? 'bg-transparent border-b-0' : 'bg-transparent'} ${hasScrollTransition ? 'scroll-transition' : ''}`} data-scroll-transition={hasScrollTransition ? 'true' : undefined}>
 
     <div class={`flex border-3 max-w-[360px] md:max-w-6xl m-auto relative z-10 ${isTransparent ? 'border-white/20 bg-transparent' : 'border-black bg-white'}`}>
         <!-- top boxes -->
@@ -335,6 +337,80 @@ const { pathname } = Astro.url
     transform: translateY(-2px);
     outline: none;
   }
+
+  /* ===== SCROLL TRANSITION STYLES ===== */
+  /* Header avec transition au scroll (transparent -> solid) */
+  header.scroll-transition {
+    transition: all 0.3s ease;
+  }
+
+  header.scroll-transition > div {
+    transition: all 0.3s ease;
+  }
+
+  /* État après scroll: fond solide */
+  header.scroll-transition.is-scrolled > div {
+    border-color: black;
+    background-color: white;
+  }
+
+  /* Corner boxes transition */
+  header.scroll-transition .size-2 {
+    transition: all 0.3s ease;
+  }
+
+  header.scroll-transition.is-scrolled .size-2 {
+    background-color: white;
+    border-color: black;
+  }
+
+  /* Logo transition */
+  header.scroll-transition img[alt="Jon Labs"] {
+    transition: filter 0.3s ease;
+  }
+
+  header.scroll-transition.is-scrolled img[alt="Jon Labs"] {
+    filter: none !important;
+  }
+
+  /* Nav links transition */
+  header.scroll-transition nav a,
+  header.scroll-transition nav span {
+    transition: color 0.3s ease;
+  }
+
+  header.scroll-transition.is-scrolled nav ul li a {
+    color: black;
+  }
+
+  /* Separator bars transition */
+  header.scroll-transition nav ul li::before {
+    transition: background-color 0.3s ease;
+  }
+
+  header.scroll-transition.is-scrolled nav ul li::before {
+    background-color: black;
+  }
+
+  /* Menu button transition */
+  header.scroll-transition #menu-open {
+    transition: color 0.3s ease;
+  }
+
+  header.scroll-transition.is-scrolled #menu-open {
+    color: black;
+  }
+
+  /* CTA button transition */
+  header.scroll-transition.is-scrolled nav ul li:last-child a {
+    background-color: var(--blue);
+    border-color: black;
+    color: black;
+  }
+
+  header.scroll-transition.is-scrolled nav ul li:last-child a:hover {
+    background-color: var(--yellow);
+  }
 </style>
 
 <script>
@@ -374,5 +450,25 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
     });
+
+    // Scroll transition: transparent -> solid quand le hero sort de l'écran
+    const header = document.querySelector('header[data-scroll-transition="true"]');
+    // Support plusieurs classes de hero (.hero-section, .hero-hub, etc.)
+    const heroSection = document.querySelector('.hero-section, .hero-hub, section[class*="hero"]');
+
+    if (header && heroSection) {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Quand le hero n'est plus visible (ou presque plus)
+                if (entry.intersectionRatio < 0.1) {
+                    header.classList.add('is-scrolled');
+                } else {
+                    header.classList.remove('is-scrolled');
+                }
+            },
+            { threshold: [0, 0.1, 0.5, 1] }
+        );
+        observer.observe(heroSection);
+    }
 });
 </script>
