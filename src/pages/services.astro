@@ -2,14 +2,14 @@
 // Page Services - Jon Labs
 // Expérience interactive avec caméléon mascotte, bulles de scénarios, et conversations animées
 
-import '../styles/global.css'
-import Layout from '../layouts/Layout.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import HeroScenarios from '../components/services/HeroScenarios.astro'
-import ConversationModal from '../components/services/ConversationModal.astro'
-import ServiceSection from '../components/services/ServiceSection.astro'
-import ServicesCTA from '../components/services/ServicesCTA.astro'
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import HeroScenarios from "../components/services/HeroScenarios.astro";
+import ConversationModal from "../components/services/ConversationModal.astro";
+import ServiceSection from "../components/services/ServiceSection.astro";
+import ServicesCTA from "../components/services/ServicesCTA.astro";
 ---
 
 <Layout
@@ -29,15 +29,16 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
           <div class="header-content">
             <div>
               <h2 class="section-title">
-                Mes Services<br/>
-                en Détail
+                Mes services<br />
+                en détail
               </h2>
             </div>
-
-            <a href="/contact" class="section-cta">
-              Me contacter
-              <i class="ri-arrow-right-line"></i>
-            </a>
+            <div>
+              <a href="/contact" class="section-cta">
+                Me contacter
+                <i class="ri-arrow-right-line"></i>
+              </a>
+            </div>
           </div>
         </header>
 
@@ -108,7 +109,7 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--text, #0F172A);
+    color: var(--text, #0f172a);
     text-decoration: none;
     border-bottom: 2px solid black;
     padding-bottom: 0.25rem;
@@ -117,7 +118,7 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
 
   .section-cta:hover {
     gap: 0.75rem;
-    border-color: var(--blue, #00D9A3);
+    border-color: var(--blue, #00d9a3);
   }
 
   /* Services Grid */
@@ -147,21 +148,21 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
   // Animation d'entrée au scroll pour les services
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: "0px 0px -50px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        entry.target.classList.add("visible");
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
   // Observer les catégories de services
-  document.querySelectorAll('.service-category').forEach(el => {
-    el.classList.add('animate-on-scroll');
+  document.querySelectorAll(".service-category").forEach((el) => {
+    el.classList.add("animate-on-scroll");
     observer.observe(el);
   });
 </script>
@@ -176,7 +177,9 @@ import ServicesCTA from '../components/services/ServicesCTA.astro'
   .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
   }
 
   .animate-on-scroll.visible {

@@ -30,14 +30,7 @@ const links: NavLink[] = [
 const { pathname } = Astro.url
 ---
 
-<header class={`relative p-7 overflow-hidden ${isTransparent ? 'bg-transparent border-b-0 z-10' : 'border-b-3'}`}>
-    {!isTransparent && (
-        <>
-            <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -right-9 -top-4" />
-            <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -left-8 -bottom-5 hidden md:block" />
-        </>
-    )}
-
+<header class={`sticky top-0 z-40 p-6 overflow-hidden ${isTransparent ? 'bg-transparent border-b-0' : 'bg-transparent'}`}>
 
     <div class={`flex border-3 max-w-[360px] md:max-w-6xl m-auto relative z-10 ${isTransparent ? 'border-white/20 bg-transparent' : 'border-black bg-white'}`}>
         <!-- top boxes -->
@@ -122,64 +115,227 @@ const { pathname } = Astro.url
     </div>
   </header>
 
+  <!-- Menu Mobile Full-Screen Brutalist -->
   <div
-    class="block md:hidden fixed inset-0 bg-white z-50 p-3 transition-all duration-300 -translate-x-[100%] overflow-y-auto"
+    class="mobile-menu md:hidden fixed inset-0 z-50 flex flex-col"
     id="menu-content"
     role="dialog"
     aria-modal="true"
     aria-label="Menu de navigation"
   >
-    <div class="flex p-6 border-b-2 border-black">
-        <h3 class="flex-1 font-bold uppercase tracking-wider">Menu</h3>
-        <button
-            id="menu-close"
-            aria-label="Fermer le menu"
-            class="p-1 focus:ring-2 focus:ring-black focus:outline-none"
-        >
-            <i class="ri-close-line text-3xl" aria-hidden="true"></i>
-        </button>
+    <!-- Header -->
+    <div class="flex items-center justify-between p-6 border-b-2 border-black">
+      <a href="/" class="menu-logo" aria-label="Retour à l'accueil">
+        <img
+          src={logo.src}
+          alt="Jon Labs"
+          class="h-7 w-auto"
+        />
+      </a>
+      <button
+        id="menu-close"
+        aria-label="Fermer le menu"
+        class="menu-close-btn"
+      >
+        <i class="ri-close-line text-2xl" aria-hidden="true"></i>
+      </button>
     </div>
-    <nav>
-        <ul class="flex flex-col justify-center items-center gap-2 mt-8">
-            {links.map((item) => (
-                <li class="py-2 w-full text-center">
-                    <a
-                        href={item.path}
-                        target={item.target}
-                        class={`
-                            block p-3 text-2xl font-bold
-                            transition-colors duration-200
-                            hover:bg-[var(--accent)]
-                            ${pathname === item.path ? 'bg-[var(--accent)]' : ''}
-                        `}
-                    >
-                        {item.name}
-                    </a>
-                </li>
-            ))}
-            {/* CTA Contact mobile */}
-            <li class="py-6 mt-4">
-                <a
-                    href="/contact/"
-                    class="
-                        inline-block
-                        bg-[var(--blue)] border-3 border-black
-                        px-10 py-4
-                        text-xl font-bold
-                        shadow-[4px_4px_0px_rgba(0,0,0,1)]
-                        transition-all duration-200
-                        hover:bg-[var(--yellow)]
-                        hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
-                        hover:translate-x-[2px] hover:translate-y-[2px]
-                    "
-                >
-                    Contact
-                </a>
-            </li>
-        </ul>
+
+    <!-- Navigation -->
+    <nav class="flex-1 flex flex-col justify-center px-6">
+      <ul class="space-y-1">
+        {links.map((item, index) => (
+          <li class="menu-item" style={`--i: ${index}`}>
+            <a
+              href={item.path}
+              target={item.target}
+              class={`menu-link ${pathname === item.path ? 'is-active' : ''}`}
+            >
+              <span class="menu-number">0{index + 1}</span>
+              <span class="menu-separator">—</span>
+              <span class="menu-text">{item.name}</span>
+              {pathname === item.path && (
+                <i class="ri-arrow-right-line ml-auto text-lg" aria-hidden="true"></i>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA Contact -->
+      <a href="/contact/" class="menu-cta mt-8">
+        Contact
+        <i class="ri-arrow-right-line" aria-hidden="true"></i>
+      </a>
     </nav>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between p-6 border-t-2 border-dashed border-black/30">
+      <div class="flex gap-3">
+        <a
+          href={author.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="LinkedIn"
+        >
+          <i class="ri-linkedin-fill" aria-hidden="true"></i>
+        </a>
+        <a
+          href={author.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="GitHub"
+        >
+          <i class="ri-github-fill" aria-hidden="true"></i>
+        </a>
+        <a
+          href={author.email}
+          class="social-icon"
+          aria-label="Email"
+        >
+          <i class="ri-mail-fill" aria-hidden="true"></i>
+        </a>
+      </div>
+      <span class="flex items-center gap-2 text-sm font-medium">
+        <i class="ri-map-pin-fill" aria-hidden="true"></i>
+        {author.location}
+      </span>
+    </div>
   </div>
 
+
+<style>
+  /* Menu Mobile Full-Screen Brutalist */
+  .mobile-menu {
+    background: var(--blue);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .mobile-menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu-close-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    background: white;
+    transition: all 0.2s;
+  }
+
+  .menu-close-btn:hover,
+  .menu-close-btn:focus {
+    background: black;
+    color: white;
+    outline: none;
+  }
+
+  .menu-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 1.75rem;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+  }
+
+  .menu-link:hover,
+  .menu-link:focus {
+    background: black;
+    color: white;
+    transform: translateX(8px);
+    border-color: black;
+    outline: none;
+  }
+
+  .menu-link.is-active {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-number {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    opacity: 0.5;
+    min-width: 1.5rem;
+  }
+
+  .menu-separator {
+    opacity: 0.3;
+  }
+
+  .menu-item {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .mobile-menu.is-open .menu-item {
+    animation: menuSlideIn 0.4s ease forwards;
+    animation-delay: calc(var(--i) * 0.05s + 0.1s);
+  }
+
+  @keyframes menuSlideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .menu-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.125rem 2rem;
+    background: black;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border: 3px solid black;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .menu-cta:hover,
+  .menu-cta:focus {
+    background: var(--yellow);
+    color: black;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    outline: none;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    background: white;
+    font-size: 1.125rem;
+    transition: all 0.2s ease;
+  }
+
+  .social-icon:hover,
+  .social-icon:focus {
+    background: black;
+    color: white;
+    transform: translateY(-2px);
+    outline: none;
+  }
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -188,13 +344,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuClose = document.querySelector('#menu-close');
 
     function openMenu() {
-        menuContent?.classList.remove('-translate-x-[100%]');
+        menuContent?.classList.add('is-open');
         menuOpen?.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
-        menuContent?.classList.add('-translate-x-[100%]');
+        menuContent?.classList.remove('is-open');
         menuOpen?.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
     }
