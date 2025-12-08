@@ -10,11 +10,14 @@ import HeroScenarios from "../components/services/HeroScenarios.astro";
 import ConversationModal from "../components/services/ConversationModal.astro";
 import ServiceSection from "../components/services/ServiceSection.astro";
 import ServicesCTA from "../components/services/ServicesCTA.astro";
+import { services } from "../sample";
 ---
 
 <Layout
   title="Services - Jon Labs | Développement Web, Automatisation, Applications"
   description="Découvrez comment Jon Labs peut résoudre vos problématiques business. Développement web, automatisation des processus, et applications sur-mesure. Explorez les solutions adaptées à votre situation."
+  schema="Service"
+  schemaData={services}
 >
   <Header variant="transparent" />
 

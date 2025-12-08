@@ -9,6 +9,7 @@ import AuthorBio from '../../components/blog/AuthorBio.astro';
 import RelatedPosts from '../../components/blog/RelatedPosts.astro';
 import ReadingProgress from '../../components/blog/ReadingProgress.astro';
 import { formatDate, getRelatedPosts } from '../../lib/blog';
+import { author } from '../../sample';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -23,9 +24,36 @@ const { title, description, image, category, tags, pubDate, readingTime } = post
 const { Content } = await post.render();
 
 const relatedPosts = getRelatedPosts(post, allPosts, 3);
+
+// Prepare BlogPosting schema data
+const schemaData = {
+  title,
+  description,
+  url: Astro.url.href,
+  image: new URL(image.url, Astro.site).toString(),
+  datePublished: pubDate,
+  dateModified: post.data.updatedDate || pubDate,
+  author: author.name,
+  category,
+  tags
+};
 ---
 
-<Layout title={`${title} - Blog - Jon Labs`} description={description}>
+<Layout
+  title={`${title} - Blog - Jon Labs`}
+  description={description}
+  ogImage={image.url}
+  ogType="article"
+  schema="BlogPosting"
+  schemaData={schemaData}
+  article={{
+    publishedTime: pubDate,
+    modifiedTime: post.data.updatedDate,
+    author: author.name,
+    section: category,
+    tags
+  }}
+>
   <AppHeader />
 
   <article class="mb-20">
