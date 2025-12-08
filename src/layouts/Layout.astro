@@ -1,18 +1,31 @@
 ---
+import SEO from '../components/SEO.astro';
+
 interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
+	ogType?: 'website' | 'article';
+	schema?: 'Organization' | 'Person' | 'BlogPosting' | 'FAQPage' | 'Service';
+	schemaData?: Record<string, any>;
+	article?: {
+		publishedTime: Date;
+		modifiedTime?: Date;
+		author: string;
+		section?: string;
+		tags?: string[];
+	};
 }
 
 const {
 	title = "Jon Labs - Solutions Digitales",
 	description = "Développement web, automatisation, applications. De l'idée au produit fini, j'accompagne entrepreneurs et petites équipes dans leurs projets digitaux.",
-	ogImage = "/og-image.svg"
+	ogImage = "/og-image.svg",
+	ogType = "website",
+	schema = "Organization",
+	schemaData,
+	article
 } = Astro.props;
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
@@ -21,25 +34,17 @@ const ogImageURL = new URL(ogImage, Astro.site);
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="canonical" href={canonicalURL} />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
-		<meta name="robots" content="index, follow" />
 
-		<!-- Open Graph -->
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:locale" content="fr_CH" />
-		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:image" content={ogImageURL} />
-		<meta property="og:site_name" content="Jon Labs" />
-
-		<!-- Twitter -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={ogImageURL} />
+		<SEO
+			title={title}
+			description={description}
+			ogImage={ogImage}
+			ogType={ogType}
+			schema={schema}
+			schemaData={schemaData}
+			article={article}
+		/>
 
 		<title>{title}</title>
 	</head>

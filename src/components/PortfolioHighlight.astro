@@ -1,15 +1,25 @@
 ---
+// TODO: Téléchargez les images depuis les URLs dans src/assets/portfolio/README.md
+// Puis décommentez les imports ci-dessous et commentez les URLs dans le tableau projects
+
+// import { Image } from 'astro:assets';
+// import imgEcommerce from '../assets/portfolio/ecommerce.jpg';
+// import imgDashboard from '../assets/portfolio/dashboard.jpg';
+// import imgPWA from '../assets/portfolio/pwa.jpg';
+
 import svgArrowCard from '../assets/arrow-card.svg'
 import svgRedStar from '../assets/red-star.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 
-// Placeholder projects data
+// Portfolio projects data
 const projects = [
     {
         id: 'ecommerce',
         title: 'Boutique E-commerce',
         description: 'Site de vente en ligne complet avec gestion de stock, paiements Stripe et tableau de bord admin.',
-        image: 'https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=800',
+        // image: imgEcommerce,  // Décommenter après téléchargement
+        imageUrl: 'https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=800',
+        imageAlt: 'Interface e-commerce avec panier d\'achat et produits',
         technologies: ['React', 'Node.js', 'Stripe'],
         category: 'Dev Web',
         link: '#'
@@ -18,7 +28,9 @@ const projects = [
         id: 'dashboard',
         title: 'Dashboard Analytics',
         description: 'Tableau de bord temps réel pour visualiser les métriques clés et générer des rapports automatisés.',
-        image: 'https://images.pexels.com/photos/7947541/pexels-photo-7947541.jpeg?auto=compress&cs=tinysrgb&w=800',
+        // image: imgDashboard,  // Décommenter après téléchargement
+        imageUrl: 'https://images.pexels.com/photos/7947541/pexels-photo-7947541.jpeg?auto=compress&cs=tinysrgb&w=800',
+        imageAlt: 'Tableau de bord analytics avec graphiques et métriques',
         technologies: ['Astro', 'Supabase', 'Chart.js'],
         category: 'Application',
         link: '#'
@@ -27,7 +39,9 @@ const projects = [
         id: 'pwa',
         title: 'App Mobile PWA',
         description: 'Application progressive installable sur mobile pour la gestion de tâches et la collaboration d\'équipe.',
-        image: 'https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=800',
+        // image: imgPWA,  // Décommenter après téléchargement
+        imageUrl: 'https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=800',
+        imageAlt: 'Application mobile progressive sur smartphone',
         technologies: ['React', 'Tailwind', 'PWA'],
         category: 'Application',
         link: '#'
@@ -113,11 +127,25 @@ const projects = [
                     <!-- Image -->
                     <div class="relative aspect-video overflow-hidden border-b-2 border-black">
                         <img
-                            src={project.image}
-                            alt={project.title}
+                            src={project.imageUrl}
+                            alt={project.imageAlt}
+                            width="800"
+                            height="450"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             loading="lazy"
                         />
+                        <!-- TODO: Remplacer par Image component après téléchargement des images:
+                        <Image
+                            src={project.image}
+                            alt={project.imageAlt}
+                            width={800}
+                            height={450}
+                            format="webp"
+                            quality={80}
+                            loading="lazy"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        -->
                         <!-- Subtle gradient overlay on hover -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 

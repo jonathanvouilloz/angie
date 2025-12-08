@@ -132,10 +132,25 @@
   - [ ] Grid de projets
   - [ ] Cartes projet avec screenshots, descriptions, technos
   - [ ] CTA final
+- [x] **Landing Page Refonte Site Web** (`/services/refonte-site-web`)
+  - [x] Hero centré avec browser mockup + screenshot réalisation
+  - [x] Gradient mesh background subtil (blobs blur)
+  - [x] Badges performance (90+ Google, <1s)
+  - [x] Section Pain Points (6 problèmes clients)
+  - [x] Section Méthodologie (3 semaines timeline)
+  - [x] Section "Ce qui me différencie" (4 cards)
+  - [x] Section Résultats Avant/Après (tableau comparatif)
+  - [x] Section Technologie (3 options + garanties)
+  - [x] Section Prix (timeline + budget transparent)
+  - [x] Section FAQ (accordion avec 10 questions)
+  - [x] Section Local SEO (zones intervention Genève/Suisse romande)
+  - [x] Formulaire contact Web3Forms intégré
+  - [x] Responsive mobile/desktop
 
 ### Livrables
 
 - ✅ Page Services complète et fonctionnelle
+- ✅ Landing page SEO "Refonte site web Genève"
 - ⏳ Page Portfolio à créer
 - ✅ Navigation mise à jour
 - ✅ Liens inter-pages fonctionnels

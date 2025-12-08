@@ -164,6 +164,7 @@ export interface SubService {
   description: string;
   features: string[];
   ctaText: string;
+  link?: string; // Lien vers une page dédiée (optionnel)
 }
 
 export interface ServiceSection {
@@ -191,7 +192,8 @@ export const serviceSections: ServiceSection[] = [
           'Référencement local pour être trouvé dans ta région',
           'Architecture évolutive pour grandir avec ton activité'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/refonte-site-web'
       },
       {
         id: 'creation-site',

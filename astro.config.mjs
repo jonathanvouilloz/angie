@@ -9,5 +9,10 @@ export default defineConfig({
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
+  },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/noop'
+    }
   }
 });

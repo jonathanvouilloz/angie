@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Bars from "./Bars.astro"
 
 import svgRedStar from '../assets/red-star.svg'
@@ -6,7 +7,7 @@ import svgIdea from '../assets/idea.svg'
 import svgArrow from '../assets/arrow.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 import svgArrowHero from '../assets/arrow-3.svg'
-import imgJonathan from '../assets/jonathan-vouilloz.jpg'
+import imgJonathan from '../assets/jonathan-vouilloz.webp'
 
 import { author, cta } from '../sample'
 ---
@@ -170,9 +171,13 @@ import { author, cta } from '../sample'
             <img src={svgIdea.src} width="50" alt="" class="absolute top-12 -left-6 z-20" aria-hidden="true" />
 
             <!-- Photo -->
-            <img
-              src={imgJonathan.src}
-              alt="Jonathan Vouilloz"
+            <Image
+              src={imgJonathan}
+              alt="Jonathan Vouilloz - Développeur web et partenaire digital à Genève"
+              width={320}
+              height={400}
+              quality={85}
+              loading="eager"
               class="w-full max-w-[250px] mx-auto md:max-w-none aspect-[4/5] md:h-[280px] border-2 border-black object-cover object-top"
             />
             <Bars />
