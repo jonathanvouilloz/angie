@@ -77,8 +77,9 @@ import { author } from '../../sample'
       <!-- CTA & Social Links -->
       <div class="cv-hero-animate flex flex-col md:flex-row items-start md:items-center gap-6 mt-10 pt-8 border-t-2 border-black border-dashed">
         <!-- Download CTA -->
-        <button
-          data-open-cv-modal
+        <a
+          href="/cv-pdf"
+          target="_blank"
           class="
             inline-flex items-center gap-3
             bg-[var(--blue)] border-2 border-black
@@ -91,12 +92,11 @@ import { author } from '../../sample'
             hover:translate-x-[2px] hover:translate-y-[2px]
             focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none
             group
-            cursor-pointer
           "
         >
           <i class="ri-download-2-line text-xl group-hover:animate-bounce"></i>
           Télécharger le CV (PDF)
-        </button>
+        </a>
 
         <!-- Social Links -->
         <div class="flex items-center gap-4 md:ml-auto">

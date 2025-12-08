@@ -9,11 +9,11 @@ const author = {
 
 const cta = {
     primary: {
-        text: `Donner vie à mon projet`,
+        text: `Discuter de mon projet`,
         link: `/contact/`
     },
     secondary: {
-        text: `Mes créations`,
+        text: `Voir mes réalisations`,
         link: `#portfolio`
     }
 }
@@ -21,22 +21,22 @@ const cta = {
 const services = [
     {
         id: 'web-dev',
-        title: 'Développement Web',
-        description: 'Sites web, applications, e-commerce. Du concept au déploiement, je crée des solutions digitales performantes.',
+        title: 'Création de Sites Web & E-commerce',
+        description: 'Sites vitrines ultra-rapides (Astro) et boutiques en ligne. Je crée des expériences digitales qui convertissent les visiteurs en clients.',
         icon: 'ri-code-s-slash-line',
         link: '/services/#web-dev'
     },
     {
         id: 'automation',
-        title: 'Automatisation & Processus',
-        description: 'Optimisez vos workflows. Emails, processus métiers, intégrations. Gagnez du temps sur les tâches répétitives.',
+        title: 'Automatisation & Processus Métiers',
+        description: 'Faites travailler les robots à votre place. Je connecte vos outils (Make, Zapier, API) pour éliminer les tâches répétitives.',
         icon: 'ri-loop-left-line',
         link: '/services/#automation'
     },
     {
         id: 'custom-apps',
-        title: 'Applications Sur-Mesure',
-        description: 'Solutions custom adaptées à vos besoins spécifiques. De la conception au déploiement.',
+        title: 'Applications Web & SaaS Sur-Mesure',
+        description: 'Votre besoin est unique ? Je développe des outils métiers, dashboards et MVPs spécifiques pour votre activité.',
         icon: 'ri-smartphone-line',
         link: '/services/#custom-apps'
     }

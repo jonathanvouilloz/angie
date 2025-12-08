@@ -32,12 +32,19 @@ const positions = [
   <div class="hero-content">
     <!-- Titre -->
     <header class="hero-header">
-      <h1 class="hero-title">
+      <!-- H1 SEO style "terminal" -->
+      <h1 class="seo-h1">
+        <span class="h1-marker">></span> Jon Labs : Développeur Web & Expert Automatisation à Genève
+      </h1>
+
+      <!-- Titre visuel principal -->
+      <p class="hero-title-visual">
         Quelle est ta
         <span class="title-highlight">situation</span> ?
-      </h1>
+      </p>
+
       <p class="hero-subtitle">
-        Clique sur ce qui te parle pour découvrir la solution.
+        Cliquez sur votre problème. Je conçois la solution technique (Site, App, Workflow) pour le résoudre.
       </p>
     </header>
 
@@ -190,7 +197,27 @@ const positions = [
     padding-top: 2rem;
   }
 
-  .hero-title {
+  /* H1 SEO style terminal */
+  .seo-h1 {
+    font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .h1-marker {
+    color: #00D9A3;
+    font-weight: 600;
+  }
+
+  /* Titre visuel principal */
+  .hero-title-visual {
     font-size: 2.25rem;
     font-weight: 400;
     color: white;
@@ -200,7 +227,7 @@ const positions = [
   }
 
   @media (min-width: 768px) {
-    .hero-title {
+    .hero-title-visual {
       font-size: 3rem;
     }
   }
