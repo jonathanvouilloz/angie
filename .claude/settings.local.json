@@ -16,7 +16,9 @@
       "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\blog\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\blog\")",
       "Bash(npm install:*)",
       "Bash(dir \"C:\\Users\\jojo-\\Desktop\\angie\\dist\")",
-      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\services\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\services\")"
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\services\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\services\")",
+      "Bash(dir:*)",
+      "Bash(pnpm install:*)"
     ],
     "deny": [],
     "ask": []
