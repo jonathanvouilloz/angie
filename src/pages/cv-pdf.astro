@@ -1,0 +1,524 @@
+---
+// CV PDF - Version minimaliste pour impression (1 page A4)
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Jonathan Vouilloz</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4;
+      margin: 1.2cm;
+    }
+
+    html, body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      line-height: 1.4;
+      color: #1a1a1a;
+      background: white;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    /* Layout */
+    .cv-container {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0.5cm;
+    }
+
+    /* Header */
+    .cv-header {
+      text-align: center;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #000;
+    }
+
+    .cv-name {
+      font-size: 22pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .cv-title {
+      font-size: 11pt;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    .cv-contact {
+      font-size: 9pt;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+    }
+
+    .cv-contact span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Sections */
+    .cv-section {
+      margin-bottom: 10px;
+    }
+
+    .cv-section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #ccc;
+      color: #000;
+    }
+
+    /* Profile */
+    .cv-profile {
+      font-size: 9.5pt;
+      color: #333;
+      text-align: justify;
+    }
+
+    /* Experience */
+    .cv-experience {
+      margin-bottom: 8px;
+    }
+
+    .cv-exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .cv-exp-title {
+      font-weight: 700;
+      font-size: 10pt;
+    }
+
+    .cv-exp-company {
+      font-weight: 400;
+      color: #555;
+    }
+
+    .cv-exp-period {
+      font-size: 9pt;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .cv-exp-missions {
+      font-size: 9pt;
+      color: #444;
+      padding-left: 12px;
+    }
+
+    .cv-exp-missions li {
+      margin-bottom: 1px;
+    }
+
+    /* Formation */
+    .cv-formation-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .cv-formation-title {
+      font-weight: 600;
+      font-size: 9.5pt;
+    }
+
+    .cv-formation-school {
+      font-size: 9pt;
+      color: #555;
+    }
+
+    .cv-formation-year {
+      font-size: 9pt;
+      color: #666;
+    }
+
+    /* Skills */
+    .cv-skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px 16px;
+      font-size: 9pt;
+    }
+
+    .cv-skill-category {
+      margin-bottom: 4px;
+    }
+
+    .cv-skill-label {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .cv-skill-list {
+      color: #444;
+    }
+
+    /* Footer row */
+    .cv-footer-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 6px;
+    }
+
+    .cv-languages, .cv-interests {
+      font-size: 9pt;
+    }
+
+    .cv-lang-item {
+      margin-bottom: 2px;
+    }
+
+    .cv-lang-name {
+      font-weight: 600;
+    }
+
+    .cv-lang-level {
+      color: #555;
+    }
+
+    /* Achievements */
+    .cv-achievements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      font-size: 9pt;
+    }
+
+    .cv-achievement {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .cv-achievement-metric {
+      font-weight: 700;
+      font-size: 11pt;
+      color: #0066cc;
+      white-space: nowrap;
+    }
+
+    .cv-achievement-desc {
+      color: #444;
+    }
+
+    /* Continuous learning */
+    .cv-learning-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 20px;
+      font-size: 9pt;
+    }
+
+    .cv-learning-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .cv-learning-name {
+      color: #333;
+    }
+
+    .cv-learning-status {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #0066cc;
+    }
+
+    .cv-learning-status.past {
+      color: #888;
+      font-weight: 400;
+    }
+
+    /* Soft skills */
+    .cv-softskills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      font-size: 9pt;
+    }
+
+    .cv-softskill {
+      color: #333;
+    }
+
+    .cv-softskill strong {
+      color: #000;
+    }
+
+    /* Print button */
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .print-btn:hover {
+      background: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" id="download-btn">
+    Télécharger PDF
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    document.getElementById('download-btn').addEventListener('click', function() {
+      const element = document.querySelector('.cv-container');
+      const btn = this;
+      btn.textContent = 'Génération...';
+      btn.disabled = true;
+
+      const opt = {
+        margin: 0,
+        filename: 'CV-Jonathan-Vouilloz.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.textContent = 'Télécharger PDF';
+        btn.disabled = false;
+      });
+    });
+  </script>
+
+  <div class="cv-container">
+    <!-- Header -->
+    <header class="cv-header">
+      <h1 class="cv-name">Jonathan Vouilloz</h1>
+      <p class="cv-title">Informaticien de gestion & Créateur digital</p>
+      <div class="cv-contact">
+        <span>Genève, Suisse</span>
+        <span>078 944 77 07</span>
+        <span>contact@jonlabs.ch</span>
+        <span>linkedin.com/in/jonathan-vouilloz</span>
+        <span>github.com/jonathanvouilloz</span>
+      </div>
+    </header>
+
+    <!-- Profile -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Profil</h2>
+      <p class="cv-profile">
+        Informaticien de gestion avec 8+ ans d'expérience combinant développement web, automatisation et stratégie digitale. Parcours polyvalent alliant compétences techniques, vision business et capacité de transmission. Approche pragmatique : créer des solutions concrètes qui génèrent des résultats mesurables.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Expérience professionnelle</h2>
+
+      <div class="cv-experience">
+        <div class="cv-exp-header">
+          <span class="cv-exp-title">Fondateur & Développeur Full-Stack <span class="cv-exp-company">— Jon Labs (Freelance)</span></span>
+          <span class="cv-exp-period">2024 - Présent</span>
+        </div>
+        <ul class="cv-exp-missions">
+          <li>Développement de sites web et applications sur-mesure pour entrepreneurs et PME</li>
+          <li>Automatisation de processus métiers (workflows, emails, intégrations API)</li>
+          <li>Conseil stratégique digital et formation technique</li>
+        </ul>
+      </div>
+
+      <div class="cv-experience">
+        <div class="cv-exp-header">
+          <span class="cv-exp-title">Co-fondateur & Développeur <span class="cv-exp-company">— Kusari Sàrl</span></span>
+          <span class="cv-exp-period">2021 - 2024</span>
+        </div>
+        <ul class="cv-exp-missions">
+          <li>Exploration et développement de projets blockchain/Web3</li>
+          <li>Développement de prototypes et applications décentralisées</li>
+        </ul>
+      </div>
+
+      <div class="cv-experience">
+        <div class="cv-exp-header">
+          <span class="cv-exp-title">Développeur & Consultant Marketing <span class="cv-exp-company">— Barber Concept</span></span>
+          <span class="cv-exp-period">2020 - Présent</span>
+        </div>
+        <ul class="cv-exp-missions">
+          <li>Système de prise de rendez-vous en ligne (19'000 utilisateurs, 6 salons)</li>
+          <li>Création site web, identité graphique et stratégie de croissance</li>
+        </ul>
+      </div>
+
+      <div class="cv-experience">
+        <div class="cv-exp-header">
+          <span class="cv-exp-title">Moniteur de Camps & Développeur <span class="cv-exp-company">— Centre Protestant de Vacances</span></span>
+          <span class="cv-exp-period">2015 - Présent</span>
+        </div>
+        <ul class="cv-exp-missions">
+          <li>Animation et encadrement de camps de vacances (10 ans)</li>
+          <li>Développement d'une application de gestion des camps (déploiement 2026)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Formation -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Formation</h2>
+      <div class="cv-formation-item">
+        <div>
+          <span class="cv-formation-title">Bachelor HES en Informatique de Gestion</span>
+          <span class="cv-formation-school"> — Haute École de Gestion (HEG), Genève</span>
+        </div>
+        <span class="cv-formation-year">2017 - 2020</span>
+      </div>
+      <div class="cv-formation-item">
+        <div>
+          <span class="cv-formation-title">CFC Informaticien de Gestion</span>
+          <span class="cv-formation-school"> — ESIG, Genève</span>
+        </div>
+        <span class="cv-formation-year">2015 - 2017</span>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Compétences</h2>
+      <div class="cv-skills-grid">
+        <div class="cv-skill-category">
+          <span class="cv-skill-label">Développement : </span>
+          <span class="cv-skill-list">Astro, React, Node.js, TypeScript, Supabase, PostgreSQL</span>
+        </div>
+        <div class="cv-skill-category">
+          <span class="cv-skill-label">Marketing : </span>
+          <span class="cv-skill-list">SEO, Copywriting, Email Marketing, Analytics</span>
+        </div>
+        <div class="cv-skill-category">
+          <span class="cv-skill-label">Outils : </span>
+          <span class="cv-skill-list">Make, Airtable, Git, Vercel, Claude AI, Figma</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Achievements -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Réalisations clés</h2>
+      <div class="cv-achievements-grid">
+        <div class="cv-achievement">
+          <span class="cv-achievement-metric">19'000</span>
+          <span class="cv-achievement-desc">utilisateurs sur le système RDV Barber Concept</span>
+        </div>
+        <div class="cv-achievement">
+          <span class="cv-achievement-metric">+340%</span>
+          <span class="cv-achievement-desc">trafic organique pour cabinet juridique (SEO)</span>
+        </div>
+        <div class="cv-achievement">
+          <span class="cv-achievement-metric">+47%</span>
+          <span class="cv-achievement-desc">taux d'ouverture emailing (Le Matin Dimanche)</span>
+        </div>
+        <div class="cv-achievement">
+          <span class="cv-achievement-metric">35 camps/an</span>
+          <span class="cv-achievement-desc">gérés via l'application CPV (85 moniteurs)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Continuous Learning -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Formations continues</h2>
+      <div class="cv-learning-grid">
+        <div class="cv-learning-item">
+          <span class="cv-learning-name">Marketing Digital & Copywriting</span>
+          <span class="cv-learning-status">EN COURS</span>
+        </div>
+        <div class="cv-learning-item">
+          <span class="cv-learning-name">SEO & Référencement naturel</span>
+          <span class="cv-learning-status">EN COURS</span>
+        </div>
+        <div class="cv-learning-item">
+          <span class="cv-learning-name">IA & Prompt Engineering</span>
+          <span class="cv-learning-status">EN COURS</span>
+        </div>
+        <div class="cv-learning-item">
+          <span class="cv-learning-name">Blockchain & Web3</span>
+          <span class="cv-learning-status past">2021-2024</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soft Skills -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Compétences transversales</h2>
+      <div class="cv-softskills">
+        <span class="cv-softskill"><strong>Pédagogie</strong> — vulgarisation technique</span>
+        <span class="cv-softskill"><strong>Gestion de projets</strong> — conception à livraison</span>
+        <span class="cv-softskill"><strong>Autonomie</strong> — freelance depuis 2020</span>
+        <span class="cv-softskill"><strong>Polyvalence</strong> — tech + business + design</span>
+      </div>
+    </section>
+
+    <!-- Languages & Interests -->
+    <div class="cv-footer-row">
+      <section class="cv-languages">
+        <h2 class="cv-section-title">Langues</h2>
+        <div class="cv-lang-item">
+          <span class="cv-lang-name">Français</span> — <span class="cv-lang-level">Langue maternelle</span>
+        </div>
+        <div class="cv-lang-item">
+          <span class="cv-lang-name">Anglais</span> — <span class="cv-lang-level">Technique B1 (lecture documentation, communication pro)</span>
+        </div>
+      </section>
+
+      <section class="cv-interests">
+        <h2 class="cv-section-title">Centres d'intérêt</h2>
+        <p>Badminton (pratique + support tech clubs), Photographie, Jeux de société (emploi ludothèque)</p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

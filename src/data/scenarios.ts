@@ -177,13 +177,13 @@ export interface ServiceSection {
 export const serviceSections: ServiceSection[] = [
   {
     id: 'web-outils',
-    title: 'Web & Outils sur mesure',
-    accroche: 'Sites performants, outils internes, tableaux de bord. Du one-page qui convertit à l\'application métier sur mesure.',
+    title: 'Sites Web & Applications Sur-Mesure',
+    accroche: `Sites performants et outils internes. Du one-page qui convertit à l'application métier pour les PME suisses.`,
     subServices: [
       {
         id: 'refonte-site',
         title: 'Refonte de site',
-        description: 'Modernisation de ton site avec focus sur la conversion et la performance.',
+        description: 'Modernisation design et technique. Temps de chargement éclair (Score 90+ sur Google).',
         features: [
           'Design responsive adapté à tous les écrans',
           'Temps de chargement optimisé (score 90+)',
@@ -196,7 +196,7 @@ export const serviceSections: ServiceSection[] = [
       {
         id: 'creation-site',
         title: 'Création de site',
-        description: 'Un site professionnel qui travaille pour toi 24/7.',
+        description: 'Un site vitrine optimisé SEO qui travaille pour toi 24/7. Hébergement en Suisse ou optimisé mondial.',
         features: [
           'Structure claire : qui tu es, ce que tu fais, comment te contacter',
           'Optimisé pour Google dès le jour 1',
@@ -223,13 +223,13 @@ export const serviceSections: ServiceSection[] = [
   },
   {
     id: 'automatisation',
-    title: 'Automatisation',
-    accroche: 'Gagne du temps en automatisant ce qui peut l\'être. Connecte tes outils, libère-toi des tâches répétitives.',
+    title: 'Automatisation & Workflows (No-Code)',
+    accroche: 'Libère-toi des tâches répétitives. Je connecte tes logiciels pour que tes données circulent toutes seules.',
     subServices: [
       {
         id: 'connexion-outils',
         title: 'Connexion d\'outils',
-        description: 'Fais communiquer tes applications pour que les données circulent toutes seules.',
+        description: 'Fais parler ton CRM avec ta facturation (ex: Stripe vers Bexio/Excel).',
         features: [
           'Nouveau client Stripe → création auto dans ton CRM',
           'Email de bienvenue déclenché sans action manuelle',
@@ -241,7 +241,7 @@ export const serviceSections: ServiceSection[] = [
       {
         id: 'automatisation-taches',
         title: 'Automatisation de tâches',
-        description: 'Récupère 5-10h par semaine sur les tâches répétitives.',
+        description: 'Récupère 5 à 10h/semaine. Fini les copier-coller d\'emails et les erreurs de saisie manuelle',
         features: [
           'Relances clients et factures envoyées automatiquement',
           'Rapports générés sans intervention',
@@ -255,13 +255,13 @@ export const serviceSections: ServiceSection[] = [
   },
   {
     id: 'validation',
-    title: 'Validation d\'idées',
-    accroche: 'Teste avant de construire. Valide ton concept rapidement et à moindre coût.',
+    title: 'Lancement de Projet & MVP',
+    accroche: 'Teste ton concept rapidement avant d\'investir des milliers de francs.',
     subServices: [
       {
         id: 'test-concept',
         title: 'Test de concept',
-        description: 'Vérifie que ton idée intéresse vraiment avant d\'investir.',
+        description: 'Landing page de conversion + Campagne ciblée pour vérifier si "ça mord" en 2 semaines.',
         features: [
           'Landing page claire avec ta proposition de valeur',
           'Campagne pub ciblée avec budget minimal (dès 100 CHF)',
@@ -273,7 +273,7 @@ export const serviceSections: ServiceSection[] = [
       {
         id: 'mvp-rapide',
         title: 'MVP rapide',
-        description: 'Un prototype fonctionnel en 2-3 semaines pour montrer et tester.',
+        description: 'Une première version fonctionnelle de ton app pour convaincre investisseurs ou premiers clients.',
         features: [
           'Focus sur LA fonctionnalité clé qui prouve ta valeur',
           'Itérations rapides basées sur les retours terrain',
