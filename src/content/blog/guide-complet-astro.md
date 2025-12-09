@@ -7,7 +7,7 @@ image:
   alt: "Code sur ecran"
 category: "tech"
 tags: ["Astro", "JavaScript", "Performance", "SSG"]
-featured: true
+featured: false
 draft: false
 readingTime: 12
 ---

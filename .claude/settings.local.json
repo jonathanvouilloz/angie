@@ -20,7 +20,8 @@
       "Bash(dir:*)",
       "Bash(pnpm install:*)",
       "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\scripts\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\scripts\")",
-      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\")"
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\")",
+      "Bash(findstr:*)"
     ],
     "deny": [],
     "ask": []
