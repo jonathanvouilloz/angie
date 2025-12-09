@@ -257,6 +257,24 @@ tags: ["tech", "dev"]
 Texte en markdown...
 ```
 
+### Liens dans les articles
+
+**Liens externes** : Tous les liens externes s'ouvrent automatiquement dans un nouvel onglet grâce au plugin `rehype-external-links` configuré dans `astro.config.mjs`.
+
+```markdown
+<!-- Syntaxe standard - le plugin ajoute target="_blank" automatiquement -->
+[Lien externe](https://example.com)
+```
+
+**Liens internes** : Les liens vers des pages du site restent dans le même onglet.
+
+```markdown
+[Page services](/services)
+[Autre article](/blog/mon-article)
+```
+
+> **Note** : Ne pas ajouter manuellement `target="_blank"` en HTML dans le markdown. Le plugin gère ça automatiquement pour tous les liens externes.
+
 ---
 
 ## Composants Réutilisables
