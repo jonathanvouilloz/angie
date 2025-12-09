@@ -3,8 +3,8 @@ title: "Freelance ou agence web en 2025 : comment choisir en Suisse romande ?"
 description: "Tarifs, avantages, limites : le guide complet pour choisir entre freelance et agence pour ton projet web."
 pubDate: 2025-12-09
 image:
-  url: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  alt: "Réunion entre professionnels"
+  url: "/images/blog/agence-vs-freelance.webp"
+  alt: "Agence vs Freelance - Que choisir en 2025 ?"
 category: "perso"
 tags: ["freelance", "agence", "suisse", "budget", "web"]
 featured: true
