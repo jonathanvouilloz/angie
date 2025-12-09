@@ -307,4 +307,56 @@ const schemaData = {
     border: 2px solid black;
     margin: 1.5rem 0;
   }
+
+  /* Table styling */
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid black;
+    margin: 1.5rem 0;
+    background: white;
+    font-size: 0.9rem;
+    display: table;
+    overflow-x: auto;
+  }
+
+  .prose thead {
+    background: #1a1a1a;
+    color: white;
+  }
+
+  .prose th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    border: 2px solid black;
+  }
+
+  .prose td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+  }
+
+  .prose tbody tr {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .prose tbody tr:last-child {
+    border-bottom: 3px solid black;
+  }
+
+  .prose tbody tr:hover {
+    background: var(--main-bg);
+  }
+
+  /* Responsive wrapper */
+  @media (max-width: 640px) {
+    .prose table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
 </style>
