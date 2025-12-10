@@ -239,23 +239,81 @@ export const services: Service[] = [
 
 ### Blog posts (Markdown)
 
-```markdown
+#### Frontmatter complet
+
+```yaml
 ---
-layout: ../../layouts/BlogPost.astro
-title: "Titre de l'article"
-description: "Description pour SEO"
-pubDate: 2024-01-15
-author: "Jonathan Vouilloz"
+title: "Titre accrocheur de l'article"
+description: "Meta description SEO - MAX 160 caractères"
+pubDate: 2025-12-10
 image:
-  url: "/images/blog/article.jpg"
-  alt: "Description de l'image"
-tags: ["tech", "dev"]
+  url: "/images/blog/nom-image.webp"
+  alt: "Description de l'image pour accessibilité"
+category: "tech"  # ou "perso"
+tags: ["tag1", "tag2", "tag3"]
+featured: false   # true = mis en avant sur la page blog
+draft: false      # true = non publié
+readingTime: 8    # temps de lecture en minutes
+---
+```
+
+#### Structure type d'un article
+
+```markdown
+[Introduction sans titre - accroche chiffrée ou question]
+
 ---
 
-# Contenu de l'article
+## Section principale 1 (H2)
 
-Texte en markdown...
+Contenu...
+
+---
+
+## Section principale 2 (H2)
+
+### Sous-section (H3)
+
+Contenu...
+
+---
+
+## Ce qu'il faut retenir
+
+![Ce qu'il faut retenir - Points clés à mémoriser](/images/blog/resume-end-article.webp)
+
+[Résumé en 3-5 points clés numérotés]
+
+---
+
+**[CTA accrocheur avec question]**
+
+[Texte de transition]
+
+[Lien CTA principal →](https://cal.com/jonathan-vouilloz/appel-de-bienvenue)
+
+[Texte alternatif]
+
+[Lien CTA secondaire →](/services)
 ```
+
+#### Éléments visuels
+
+| Image | Usage | Chemin |
+|-------|-------|--------|
+| Image principale | Thumbnail + header article | `/images/blog/[slug].webp` |
+| Image "Ce qu'il faut retenir" | Section conclusion | `/images/blog/resume-end-article.webp` |
+| Images illustratives | Dans le corps de l'article | `/images/blog/[description].webp` |
+
+#### Bonnes pratiques
+
+1. **Description** : Max 160 caractères (contrainte du schema)
+2. **Séparateurs `---`** : Entre chaque grande section
+3. **Hiérarchie** : H2 pour sections principales, H3 pour sous-sections
+4. **Mise en gras** : Points clés avec `**texte**`
+5. **Tableaux** : Pour les comparatifs (outils, prix, etc.)
+6. **Image de conclusion** : Utiliser `resume-end-article.webp` si section "Ce qu'il faut retenir"
+7. **CTAs** : Toujours terminer avec un appel à l'action vers cal.com ou /services
 
 ### Liens dans les articles
 

@@ -164,6 +164,8 @@ C'est d'ailleurs l'approche que je privilégie chez Jon Labs. Je gère ton proje
 
 ## Ce qu'il faut retenir
 
+![Ce qu'il faut retenir - Points clés à mémoriser](/images/blog/resume-end-article.webp)
+
 Le choix freelance vs agence n'est pas une question de "mieux" ou "moins bien". C'est une question d'adéquation avec ton projet.
 
 **En résumé :**
@@ -185,6 +187,10 @@ Si tu veux qu'on regarde ensemble quelle approche correspond le mieux à ta situ
 On fait le point sur ton projet, tes objectifs, ton budget, et je te dis honnêtement si je suis la bonne personne pour t'aider (ou pas).
 
 [Réserver un appel découverte →](https://cal.com/jonathan-vouilloz/appel-de-bienvenue)
+
+Ou découvrir mes services :
+
+[Voir les services →](/services)
 
 ---
 

@@ -189,12 +189,25 @@ Pour un commerce qui peut ensuite tourner en "pilote automatique" et t'amener de
 
 ---
 
-## Tu veux aller plus vite ?
+## Ce qu'il faut retenir
+
+![Ce qu'il faut retenir - Points clés à mémoriser](/images/blog/resume-end-article.webp)
+
+1. **Google Business Profile = priorité absolue** — c'est gratuit et c'est là que tes clients te cherchent
+2. **Un site one-page suffit** pour 90% des commerces locaux
+3. **Système de contact/réservation sans commission** pour ne plus dépendre des plateformes
+4. **Les avis Google alimentent ta visibilité** — automatise leur collecte
+
+---
+
+**Tu veux aller plus vite ?**
 
 Si tu préfères te concentrer sur ton métier et déléguer la partie technique, c'est exactement ce que je fais.
 
 Je t'accompagne pour créer une présence en ligne qui travaille pour toi : site adapté à ton budget et tes besoins, optimisation Google, système de réservation — le tout sans commission récurrente qui te saigne chaque mois.
 
-[Demander un devis](/contact)
+[Réserver un appel découverte →](https://cal.com/jonathan-vouilloz/appel-de-bienvenue)
 
-On discute de ton commerce, je te dis ce qui fait sens pour toi, et tu décides.
+Ou découvrir mes services :
+
+[Voir les services →](/services)
