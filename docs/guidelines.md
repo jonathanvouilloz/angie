@@ -318,6 +318,44 @@ Quand `scrollTransition={true}` :
 
 **Usage typique** : Pages avec hero sombre suivi de sections claires (ex: `/services`)
 
+### FAQ
+
+Le composant FAQ (`src/components/FAQ.astro`) permet d'afficher des sections de questions/réponses avec un accordion brutaliste.
+
+```astro
+---
+import FAQ from '../components/FAQ.astro';
+import type { FAQItem } from '../components/FAQ.astro';
+
+const faqs: FAQItem[] = [
+    { question: "...", answer: "..." },
+    { question: "...", answer: "...", linkText: "Voir →", linkUrl: "/page" }
+];
+---
+
+<!-- Usage standard -->
+<FAQ faqs={faqs} />
+
+<!-- Avec background custom -->
+<FAQ faqs={faqs} sectionId="faq">
+    <BackgroundQuestionMarks slot="background" />
+</FAQ>
+
+<!-- Mode minimal (sans section wrapper) -->
+<FAQ faqs={faqs} variant="minimal" />
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `faqs` | `FAQItem[]` | required | Questions/réponses |
+| `title` | `string` | "Questions fréquentes" | Titre de la section |
+| `sectionId` | `string` | "faq" | ID pour ancrage |
+| `variant` | `'default' \| 'minimal'` | "default" | minimal = sans wrapper |
+
+**Voir `docs/styleguide.md`** pour la documentation complète des props et exemples.
+
 ---
 
 ## Git & Versioning

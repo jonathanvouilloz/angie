@@ -1,0 +1,946 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTASection from '../../components/CTASection.astro';
+
+// Images (chemins statiques depuis public/)
+const heroImage = '/images/outils/outils-google-checklist-local.webp';
+const pdfImage = '/images/outils/pdf-checklist-google.webp';
+
+// SEO Data
+const seoData = {
+    title: "Checklist : Rendre ton commerce visible sur Google | Jon Labs",
+    description: "Plan d'action en 4 semaines pour passer de invisible à visible sur Google. Google Business, site one-page, réservation, avis. Télécharge le PDF gratuit."
+};
+
+// Checklist data structured
+const semaine1 = {
+    title: "Google Business Profile",
+    subtitle: "L'étape la plus importante. Si tu ne fais qu'une seule chose, fais celle-là.",
+    sections: [
+        {
+            title: "Créer ta fiche",
+            items: [
+                { text: "Aller sur business.google.com", link: "https://business.google.com" },
+                { text: "Créer une nouvelle fiche OU réclamer une fiche existante" },
+                { text: "Valider ta propriété (courrier, téléphone ou email)" }
+            ]
+        },
+        {
+            title: "Remplir les informations essentielles",
+            items: [
+                { text: "Nom exact de ton commerce (pas de mots-clés bidons)" },
+                { text: "Adresse précise (vérifie sur Google Maps)" },
+                { text: "Numéro de téléphone — celui que tu décroches vraiment" },
+                { text: "Horaires à jour — y compris jours fériés" },
+                { text: "Catégorie précise — \"Restaurant italien\" plutôt que \"Restaurant\"" },
+                { text: "Description — 2-3 phrases sur ce qui te rend unique" },
+                { text: "Lien vers ton site (si tu en as un)" }
+            ]
+        },
+        {
+            title: "Ajouter des photos de qualité",
+            description: "Minimum 5 photos. Pas besoin d'un photographe pro, mais évite le flou.",
+            items: [
+                { text: "Devanture — pour qu'on te reconnaisse dans la rue" },
+                { text: "Intérieur — l'ambiance, les tables, l'espace" },
+                { text: "Produits/plats phares — ce qui donne envie" },
+                { text: "Toi ou ton équipe — ça humanise" },
+                { text: "Détails qui font la diff — déco, terrasse, spécialités" }
+            ]
+        },
+        {
+            title: "Gérer les avis existants",
+            items: [
+                { text: "Lire tous les avis (oui, même les vieux)" },
+                { text: "Répondre aux avis positifs — un merci sincère suffit" },
+                { text: "Répondre aux avis négatifs — calme, pro, orienté solution" },
+                { text: "Signaler les faux avis évidents (si applicable)" }
+            ]
+        }
+    ],
+    result: "Ta fiche apparaît sur Google Maps et dans les recherches locales"
+};
+
+const semaine2 = {
+    title: "Site one-page",
+    subtitle: "Un site d'une page bien faite suffit pour 90% des commerces locaux.",
+    sections: [
+        {
+            title: "Définir ton contenu",
+            description: "Ton site doit répondre à 4 questions, point final :",
+            items: [
+                { text: "Qui tu es — ton histoire en 3 phrases max" },
+                { text: "Ce que tu proposes — services ou produits, avec prix si possible" },
+                { text: "Où et quand — adresse, horaires, plan d'accès" },
+                { text: "Comment te contacter — téléphone, email, formulaire ou réservation" }
+            ]
+        },
+        {
+            title: "Choisir ton outil",
+            items: [
+                { text: "Budget serré, faire soi-même → Carrd (dès 19$/an), Google Sites (gratuit)", link: "https://carrd.co" },
+                { text: "Plus de contrôle → Framer, Webflow", link: "https://framer.com" },
+                { text: "Déléguer → Demande-moi un devis", link: "/contact" }
+            ]
+        },
+        {
+            title: "Vérifier l'essentiel",
+            items: [
+                { text: "Test mobile obligatoire — ouvre ton site sur ton téléphone" },
+                { text: "Tout est lisible sans zoomer ?" },
+                { text: "Les boutons sont assez gros pour cliquer au pouce ?" },
+                { text: "Le numéro de téléphone est cliquable ?" },
+                { text: "Vitesse de chargement — si ça met plus de 3 secondes, y'a un problème" },
+                { text: "Pas de fautes — relis ou fais relire" }
+            ]
+        },
+        {
+            title: "Connecter à Google Business",
+            items: [
+                { text: "Retourner sur ta fiche Google Business" },
+                { text: "Ajouter l'URL de ton site dans le champ \"Site web\"" },
+                { text: "Vérifier que le lien fonctionne" }
+            ]
+        }
+    ],
+    result: "Un site pro qui donne envie de te contacter"
+};
+
+const semaine3 = {
+    title: "Contact et réservation",
+    subtitle: "Le but : que le client puisse agir facilement après t'avoir trouvé.",
+    sections: [
+        {
+            title: "Mettre en place ton système de contact",
+            description: "Choisis ce qui correspond à ton activité :",
+            items: [
+                { text: "Formulaire simple — nom, email, message (pas 15 champs)" },
+                { text: "WhatsApp Business — gratuit, et les gens adorent" },
+                { text: "Bouton \"Appeler\" — cliquable sur mobile" },
+                { text: "Email visible — pour ceux qui préfèrent" }
+            ]
+        },
+        {
+            title: "Si tu prends des réservations (resto, salon, etc.)",
+            description: "Alternatives aux plateformes qui te prennent 1'200 CHF/mois :",
+            items: [
+                { text: "Aleno — solution suisse, pas de commission par couvert", link: "https://aleno.me" },
+                { text: "Lunchgate — autre option suisse", link: "https://www.lunchgate.ch/" },
+                { text: "Cal.com ou Calendly — pour les RDV simples", link: "https://cal.com" },
+                { text: "Formulaire basique + confirmation manuelle — si ton volume est faible" }
+            ]
+        },
+        {
+            title: "Ajouter un moyen de paiement rapide",
+            items: [
+                { text: "Créer un lien ou QR code TWINT pour les acomptes" },
+                { text: "L'afficher clairement sur la page de réservation/contact" },
+                { text: "Tester le parcours toi-même" }
+            ]
+        },
+        {
+            title: "Tester le parcours client complet",
+            description: "Mets-toi dans la peau d'un client :",
+            items: [
+                { text: "Chercher ton commerce sur Google (en navigation privée)" },
+                { text: "Cliquer sur ta fiche Google Business" },
+                { text: "Aller sur ton site" },
+                { text: "Essayer de te contacter / réserver" },
+                { text: "Demander à un ami de faire le même test" }
+            ]
+        }
+    ],
+    result: "Les clients peuvent agir facilement"
+};
+
+const semaine4 = {
+    title: "Avis et suivi",
+    subtitle: "La machine est en place. Maintenant, il faut l'alimenter.",
+    sections: [
+        {
+            title: "Créer ton système de collecte d'avis",
+            items: [
+                { text: "Générer ton lien d'avis Google (via ta fiche Google Business)" },
+                { text: "Transformer en QR code (qr-code-generator.com)", link: "https://www.qr-code-generator.com" },
+                { text: "Créer un support physique — chevalet, autocollant, carte" }
+            ]
+        },
+        {
+            title: "Préparer ton message de demande d'avis",
+            description: "\"Merci pour votre visite ! Si vous avez 30 secondes, un petit avis nous aide énormément : [lien]\"",
+            items: [
+                { text: "Préparer une version SMS/WhatsApp" },
+                { text: "Préparer une version email (si tu collectes les emails)" },
+                { text: "Définir le bon moment pour l'envoyer (2h après = sweet spot)" }
+            ]
+        },
+        {
+            title: "Installer le suivi (Analytics)",
+            items: [
+                { text: "Créer un compte sur analytics.google.com", link: "https://analytics.google.com" },
+                { text: "Récupérer le code de suivi (ou ID de mesure)" },
+                { text: "L'installer sur ton site (ou demander à ton prestataire)" },
+                { text: "Vérifier que ça fonctionne (données en temps réel)" }
+            ]
+        },
+        {
+            title: "Planifier ton check mensuel",
+            description: "Bloque 15 minutes par mois dans ton agenda :",
+            items: [
+                { text: "Combien de visiteurs ce mois ?" },
+                { text: "D'où viennent-ils ? (Google, direct, réseaux)" },
+                { text: "Quelles pages regardent-ils ?" },
+                { text: "Nouveaux avis à traiter ?" },
+                { text: "Questions/demandes récurrentes à adresser sur le site ?" }
+            ]
+        }
+    ],
+    result: "Une machine qui tourne (presque) toute seule"
+};
+
+const recap = [
+    { etape: "1", focus: "Google Business", actions: "Fiche complète + photos + avis" },
+    { etape: "2", focus: "Site one-page", actions: "4 sections essentielles + mobile ok" },
+    { etape: "3", focus: "Contact/réservation", actions: "Parcours client fluide + paiement" },
+    { etape: "4", focus: "Avis + suivi", actions: "QR code + Analytics + routine mensuelle" }
+];
+---
+
+<Layout
+    title={seoData.title}
+    description={seoData.description}
+>
+    <Header />
+
+    <!-- HERO SECTION -->
+    <section class="hero-section pt-32 pb-16 md:pt-40 md:pb-20 px-4 relative overflow-hidden">
+        <!-- Gradient mesh background -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-[var(--blue)] opacity-15 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[var(--violet)] opacity-10 blur-[100px] rounded-full"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center">
+                <!-- Breadcrumb -->
+                <div class="flex items-center justify-center gap-2 text-sm text-gray-500 mb-6">
+                    <a href="/" class="hover:text-[var(--blue)]">Accueil</a>
+                    <span>/</span>
+                    <span>Outils</span>
+                    <span>/</span>
+                    <span class="text-[var(--text)]">Checklist Commerce Google</span>
+                </div>
+
+                <!-- Badge -->
+                <span class="inline-flex items-center gap-2 bg-[var(--blue)] border-2 border-black px-4 py-1 text-sm font-medium mb-6">
+                    <i class="ri-checkbox-circle-line text-black"></i>
+                    Outil gratuit
+                </span>
+
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6">
+                    Checklist : Rendre ton commerce<br/>
+                    <span class="relative inline-block">
+                        <span class="absolute bg-[var(--accent)] w-full h-[40%] left-0 bottom-1 -z-1"></span>
+                        <span class="relative z-10">visible sur Google</span>
+                    </span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Le plan d'action en 4 semaines, étape par étape.<br/>
+                    <strong class="text-[var(--text)]">Coche, avance, progresse.</strong>
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a
+                        href="#semaine-1"
+                        class="
+                            bg-[var(--blue)]
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                            transition-all duration-200
+                            hover:bg-[var(--yellow)]
+                            hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                            hover:translate-x-[2px] hover:translate-y-[2px]
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        <i class="ri-play-line"></i>
+                        Commencer maintenant
+                    </a>
+                    <a
+                        href="#telecharger"
+                        class="
+                            bg-white
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            transition-all duration-200
+                            hover:bg-gray-100
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        <i class="ri-download-line"></i>
+                        Télécharger le PDF
+                    </a>
+                </div>
+
+                <!-- Hero image -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-white border-3 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] overflow-hidden">
+                        <img
+                            src={heroImage}
+                            alt="Checklist visibilité Google pour commerces locaux"
+                            class="w-full h-auto"
+                            loading="eager"
+                        />
+                    </div>
+                </div>
+
+                <!-- Context link -->
+                <div class="mt-8 p-4 bg-white border-2 border-black inline-block">
+                    <p class="text-sm text-gray-600">
+                        <i class="ri-article-line mr-2 text-[var(--blue)]"></i>
+                        Tu n'as pas lu l'article complet ?
+                        <a href="/blog/0a30joursgooglevisible" class="text-[var(--blue)] font-medium hover:underline">
+                            Commence par là →
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO BAR -->
+    <section class="intro-bar relative py-8 px-4 text-white overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="flex flex-col items-center gap-6">
+                <!-- Stats principales -->
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-base md:text-lg">
+                    <span class="flex items-center gap-2">
+                        <span class="w-8 h-8 bg-[var(--blue)] bg-opacity-20 border border-[var(--blue)] border-opacity-50 flex items-center justify-center text-sm font-mono font-bold">4</span>
+                        <span class="text-white/80">étapes</span>
+                    </span>
+                    <span class="text-white/20 text-2xl hidden sm:inline">·</span>
+                    <span class="flex items-center gap-2">
+                        <span class="font-bold text-white">~10-15h</span>
+                        <span class="text-white/60">de travail</span>
+                    </span>
+                    <span class="text-white/20 text-2xl hidden sm:inline">·</span>
+                    <span class="flex items-center gap-2">
+                        <span class="font-bold text-[var(--blue)]">0 CHF</span>
+                        <span class="text-white/60">de budget obligatoire</span>
+                    </span>
+                </div>
+
+                <!-- Trust indicators -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm">
+                    <span class="flex items-center gap-2 text-white/70">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--blue)]">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        Actionnable
+                    </span>
+                    <span class="flex items-center gap-2 text-white/70">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--blue)]">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        Progressif
+                    </span>
+                    <span class="flex items-center gap-2 text-white/70">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--blue)]">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                        Gratuit
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMAINE 1 -->
+    <section id="semaine-1" class="py-16 md:py-24 px-4 bg-white border-b-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <!-- Week header -->
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-16 h-16 bg-[var(--blue)] border-3 border-black flex items-center justify-center flex-shrink-0 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                    <span class="font-mono font-bold text-2xl">01</span>
+                </div>
+                <div>
+                    <span class="text-sm font-mono text-gray-500 uppercase tracking-wider">Étape 1</span>
+                    <h2 class="text-2xl md:text-3xl font-bold">{semaine1.title}</h2>
+                    <p class="text-gray-600 mt-1">{semaine1.subtitle}</p>
+                </div>
+            </div>
+
+            <!-- Checklist sections -->
+            <div class="space-y-6">
+                {semaine1.sections.map((section) => (
+                    <div class="checklist-card bg-[var(--main-bg)] border-2 border-black p-6">
+                        <h3 class="text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="ri-list-check-2 text-[var(--blue)]"></i>
+                            {section.title}
+                        </h3>
+                        {section.description && (
+                            <p class="text-sm text-gray-600 mb-4">{section.description}</p>
+                        )}
+                        <ul class="space-y-3">
+                            {section.items.map((item) => (
+                                <li class="flex items-start gap-3 group">
+                                    <div class="checkbox-wrapper mt-0.5">
+                                        <input type="checkbox" class="peer sr-only" id={`check-${Math.random().toString(36).substr(2, 9)}`} />
+                                        <label class="w-5 h-5 border-2 border-black bg-white flex items-center justify-center cursor-pointer transition-all peer-checked:bg-[var(--blue)]">
+                                            <i class="ri-check-line text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                        </label>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">
+                                        {item.link ? (
+                                            <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-[var(--blue)] hover:underline">
+                                                {item.text}
+                                            </a>
+                                        ) : item.text}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Result badge -->
+            <div class="mt-8 bg-green-50 border-2 border-green-500 p-4 flex items-center gap-3">
+                <div class="w-10 h-10 bg-green-500 border-2 border-black flex items-center justify-center flex-shrink-0">
+                    <i class="ri-check-double-line text-white text-xl"></i>
+                </div>
+                <p class="font-medium">
+                    <span class="text-green-700">Résultat :</span> {semaine1.result}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMAINE 2 -->
+    <section id="semaine-2" class="py-16 md:py-24 px-4 border-b-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <!-- Week header -->
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-16 h-16 bg-[var(--violet)] border-3 border-black flex items-center justify-center flex-shrink-0 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                    <span class="font-mono font-bold text-2xl text-white">02</span>
+                </div>
+                <div>
+                    <span class="text-sm font-mono text-gray-500 uppercase tracking-wider">Étape 2</span>
+                    <h2 class="text-2xl md:text-3xl font-bold">{semaine2.title}</h2>
+                    <p class="text-gray-600 mt-1">{semaine2.subtitle}</p>
+                </div>
+            </div>
+
+            <!-- Checklist sections -->
+            <div class="space-y-6">
+                {semaine2.sections.map((section) => (
+                    <div class="checklist-card bg-white border-2 border-black p-6">
+                        <h3 class="text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="ri-list-check-2 text-[var(--violet)]"></i>
+                            {section.title}
+                        </h3>
+                        {section.description && (
+                            <p class="text-sm text-gray-600 mb-4">{section.description}</p>
+                        )}
+                        <ul class="space-y-3">
+                            {section.items.map((item) => (
+                                <li class="flex items-start gap-3 group">
+                                    <div class="checkbox-wrapper mt-0.5">
+                                        <input type="checkbox" class="peer sr-only" />
+                                        <div class="w-5 h-5 border-2 border-black bg-white flex items-center justify-center cursor-pointer transition-all peer-checked:bg-[var(--violet)]">
+                                            <i class="ri-check-line text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">
+                                        {item.link ? (
+                                            <a href={item.link} target={item.link.startsWith('/') ? '_self' : '_blank'} rel={item.link.startsWith('/') ? '' : 'noopener noreferrer'} class="text-[var(--violet)] hover:underline">
+                                                {item.text}
+                                            </a>
+                                        ) : item.text}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Result badge -->
+            <div class="mt-8 bg-green-50 border-2 border-green-500 p-4 flex items-center gap-3">
+                <div class="w-10 h-10 bg-green-500 border-2 border-black flex items-center justify-center flex-shrink-0">
+                    <i class="ri-check-double-line text-white text-xl"></i>
+                </div>
+                <p class="font-medium">
+                    <span class="text-green-700">Résultat :</span> {semaine2.result}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMAINE 3 -->
+    <section id="semaine-3" class="py-16 md:py-24 px-4 bg-white border-b-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <!-- Week header -->
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-16 h-16 bg-[var(--blue)] border-3 border-black flex items-center justify-center flex-shrink-0 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                    <span class="font-mono font-bold text-2xl">03</span>
+                </div>
+                <div>
+                    <span class="text-sm font-mono text-gray-500 uppercase tracking-wider">Étape 3</span>
+                    <h2 class="text-2xl md:text-3xl font-bold">{semaine3.title}</h2>
+                    <p class="text-gray-600 mt-1">{semaine3.subtitle}</p>
+                </div>
+            </div>
+
+            <!-- Checklist sections -->
+            <div class="space-y-6">
+                {semaine3.sections.map((section) => (
+                    <div class="checklist-card bg-[var(--main-bg)] border-2 border-black p-6">
+                        <h3 class="text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="ri-list-check-2 text-[var(--blue)]"></i>
+                            {section.title}
+                        </h3>
+                        {section.description && (
+                            <p class="text-sm text-gray-600 mb-4">{section.description}</p>
+                        )}
+                        <ul class="space-y-3">
+                            {section.items.map((item) => (
+                                <li class="flex items-start gap-3 group">
+                                    <div class="checkbox-wrapper mt-0.5">
+                                        <input type="checkbox" class="peer sr-only" />
+                                        <div class="w-5 h-5 border-2 border-black bg-white flex items-center justify-center cursor-pointer transition-all peer-checked:bg-[var(--blue)]">
+                                            <i class="ri-check-line text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">
+                                        {item.link ? (
+                                            <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-[var(--blue)] hover:underline">
+                                                {item.text}
+                                            </a>
+                                        ) : item.text}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Automation CTA -->
+            <div class="mt-8 bg-white border-3 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-5">
+                    <div class="w-14 h-14 bg-[var(--violet)] border-2 border-black flex items-center justify-center flex-shrink-0 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                        <i class="ri-robot-line text-white text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-bold mb-1">Option : Automatiser tout ça</h4>
+                        <p class="text-gray-600">
+                            La collecte d'avis, l'envoi de messages... C'est exactement le genre de tâche qui peut tourner toute seule. Un client passe, il reçoit automatiquement un SMS 2h plus tard.
+                        </p>
+                    </div>
+                    <a
+                        href="/services/automatisation"
+                        class="
+                            bg-[var(--violet)]
+                            text-white
+                            border-2 border-black
+                            px-5 py-3
+                            font-medium
+                            shadow-[3px_3px_0px_rgba(0,0,0,1)]
+                            transition-all duration-200
+                            hover:shadow-[1px_1px_0px_rgba(0,0,0,1)]
+                            hover:translate-x-[2px] hover:translate-y-[2px]
+                            whitespace-nowrap
+                            flex items-center gap-2
+                        "
+                    >
+                        <i class="ri-settings-3-line"></i>
+                        Découvrir
+                    </a>
+                </div>
+            </div>
+
+            <!-- Result badge -->
+            <div class="mt-8 bg-green-50 border-2 border-green-500 p-4 flex items-center gap-3">
+                <div class="w-10 h-10 bg-green-500 border-2 border-black flex items-center justify-center flex-shrink-0">
+                    <i class="ri-check-double-line text-white text-xl"></i>
+                </div>
+                <p class="font-medium">
+                    <span class="text-green-700">Résultat :</span> {semaine3.result}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMAINE 4 -->
+    <section id="semaine-4" class="py-16 md:py-24 px-4 border-b-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <!-- Week header -->
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-16 h-16 bg-[var(--violet)] border-3 border-black flex items-center justify-center flex-shrink-0 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                    <span class="font-mono font-bold text-2xl text-white">04</span>
+                </div>
+                <div>
+                    <span class="text-sm font-mono text-gray-500 uppercase tracking-wider">Étape 4</span>
+                    <h2 class="text-2xl md:text-3xl font-bold">{semaine4.title}</h2>
+                    <p class="text-gray-600 mt-1">{semaine4.subtitle}</p>
+                </div>
+            </div>
+
+            <!-- Checklist sections -->
+            <div class="space-y-6">
+                {semaine4.sections.map((section) => (
+                    <div class="checklist-card bg-white border-2 border-black p-6">
+                        <h3 class="text-lg font-bold mb-2 flex items-center gap-2">
+                            <i class="ri-list-check-2 text-[var(--violet)]"></i>
+                            {section.title}
+                        </h3>
+                        {section.description && (
+                            <p class="text-sm text-gray-600 mb-4 italic">"{section.description}"</p>
+                        )}
+                        <ul class="space-y-3">
+                            {section.items.map((item) => (
+                                <li class="flex items-start gap-3 group">
+                                    <div class="checkbox-wrapper mt-0.5">
+                                        <input type="checkbox" class="peer sr-only" />
+                                        <div class="w-5 h-5 border-2 border-black bg-white flex items-center justify-center cursor-pointer transition-all peer-checked:bg-[var(--violet)]">
+                                            <i class="ri-check-line text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">
+                                        {item.link ? (
+                                            <a href={item.link} target="_blank" rel="noopener noreferrer" class="text-[var(--violet)] hover:underline">
+                                                {item.text}
+                                            </a>
+                                        ) : item.text}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Result badge -->
+            <div class="mt-8 bg-green-50 border-2 border-green-500 p-4 flex items-center gap-3">
+                <div class="w-10 h-10 bg-green-500 border-2 border-black flex items-center justify-center flex-shrink-0">
+                    <i class="ri-check-double-line text-white text-xl"></i>
+                </div>
+                <p class="font-medium">
+                    <span class="text-green-700">Résultat :</span> {semaine4.result}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECAP TABLE -->
+    <section class="py-16 md:py-24 px-4 bg-white border-b-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">Récap : ton plan sur 4 semaines</h2>
+                <p class="text-gray-600">Total : environ <strong>10-15 heures</strong> sur un mois. Moins d'une heure par jour.</p>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full border-3 border-black">
+                    <thead>
+                        <tr class="bg-[var(--blue)]">
+                            <th class="p-4 text-left border-r-2 border-black font-bold text-black">Étape</th>
+                            <th class="p-4 text-left border-r-2 border-black font-bold text-black">Focus</th>
+                            <th class="p-4 text-left font-bold text-black">Actions clés</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {recap.map((row, index) => (
+                            <tr class={index % 2 === 0 ? 'bg-[var(--main-bg)]' : 'bg-white'}>
+                                <td class="p-4 border-t-2 border-r-2 border-black">
+                                    <span class="font-mono font-bold text-[var(--violet)]">{row.etape}</span>
+                                </td>
+                                <td class="p-4 border-t-2 border-r-2 border-black font-medium">{row.focus}</td>
+                                <td class="p-4 border-t-2 border-black text-gray-600">{row.actions}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bottom note -->
+            <div class="mt-8 p-6 bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)]">
+                <p class="text-center">
+                    <strong>Un commerce qui peut ensuite tourner en "pilote automatique"</strong><br/>
+                    <span class="text-gray-600">et t'amener des clients sans que tu démarches.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF DOWNLOAD SECTION -->
+    <section id="telecharger" class="py-16 md:py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Left: Image -->
+                <div class="order-2 md:order-1">
+                    <div class="bg-white border-3 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] p-4 -rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <img
+                            src={pdfImage}
+                            alt="Aperçu du PDF Checklist Commerce Google"
+                            class="w-full h-auto"
+                        />
+                    </div>
+                </div>
+
+                <!-- Right: Content + Form -->
+                <div class="order-1 md:order-2">
+                    <span class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-gray-500 mb-4">
+                        <i class="ri-file-pdf-line text-red-500"></i>
+                        Téléchargement gratuit
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4">Télécharge cette checklist</h2>
+                    <p class="text-gray-600 mb-6">
+                        Garde-la sur ton téléphone, imprime-la, partage-la à un collègue commerçant.
+                    </p>
+
+                    <!-- Bonus list -->
+                    <div class="bg-white border-2 border-black p-4 mb-6">
+                        <p class="font-bold text-sm mb-3">Dans la version PDF, tu trouveras aussi :</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2">
+                                <i class="ri-check-line text-[var(--blue)] mt-0.5"></i>
+                                3 modèles de messages pour demander des avis
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ri-check-line text-[var(--blue)] mt-0.5"></i>
+                                Le template de QR code prêt à personnaliser
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ri-check-line text-[var(--blue)] mt-0.5"></i>
+                                Ma mini-checklist "Audit express" (5 min)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Form -->
+                    <form
+                        action="https://api.web3forms.com/submit"
+                        method="POST"
+                        class="space-y-4"
+                        id="pdf-form"
+                    >
+                        <input type="hidden" name="access_key" value="2964b7b3-2e2d-454b-a792-967518d5788b">
+                        <input type="hidden" name="subject" value="Téléchargement Checklist Commerce Google">
+                        <input type="hidden" name="from_name" value="Jon Labs - Checklist PDF">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <div>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Ton email"
+                                required
+                                class="w-full px-4 py-3 border-2 border-black bg-white text-lg placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--blue)] focus:ring-offset-2 transition-all"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="
+                                w-full
+                                bg-[var(--blue)]
+                                border-2 border-black
+                                px-6 py-4
+                                text-lg font-bold
+                                shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                                transition-all duration-200
+                                hover:bg-[var(--yellow)]
+                                hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                                hover:translate-x-[2px] hover:translate-y-[2px]
+                                flex items-center justify-center gap-2
+                            "
+                        >
+                            <i class="ri-download-line"></i>
+                            Recevoir le PDF →
+                        </button>
+
+                        <p class="text-xs text-gray-500 text-center">
+                            Pas de spam, promis. Juste la checklist + des conseils pratiques de temps en temps.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA DÉLÉGUER -->
+    <CTASection
+        title="Tu préfères déléguer ?"
+        description="Cette checklist te donne les étapes. Mais si tu préfères te concentrer sur ton métier et laisser quelqu'un d'autre gérer la technique — site adapté à ton budget, Google Business optimisé, automatisation des avis — c'est exactement ce que je fais."
+        buttonText="Demander un devis"
+        buttonLink="/contact"
+        buttonIcon="ri-chat-3-line"
+        subtext="On discute de ton commerce, je te dis ce qui fait sens pour toi, et tu décides."
+        variant="light"
+        badge="Option confort"
+    />
+
+    <!-- BACK TO ARTICLE -->
+    <section class="py-8 px-4 bg-white border-t-2 border-black">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <a
+                href="/blog/0a30joursgooglevisible"
+                class="flex items-center gap-2 text-gray-600 hover:text-[var(--blue)] transition-colors"
+            >
+                <i class="ri-arrow-left-line"></i>
+                Retour à l'article complet
+            </a>
+            <p class="text-sm text-gray-500">
+                <strong>Jon Labs</strong> — Genève
+            </p>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* Intro bar - style "Prêt à démarrer" */
+    .intro-bar {
+        background: #0a0a0f;
+    }
+
+    .intro-bar::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+    }
+
+    .intro-bar::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 30% 50%, rgba(0, 217, 163, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 70% 50%, rgba(163, 0, 217, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    /* Checkbox styling */
+    .checkbox-wrapper input:checked + div,
+    .checkbox-wrapper input:checked + label {
+        background-color: var(--blue);
+    }
+
+    .checkbox-wrapper input:checked + div i,
+    .checkbox-wrapper input:checked + label i {
+        opacity: 1;
+    }
+
+    /* Scroll margin for anchor navigation */
+    section[id] {
+        scroll-margin-top: 100px;
+    }
+
+    /* Checklist card hover */
+    .checklist-card {
+        transition: all 0.2s ease;
+    }
+
+    .checklist-card:hover {
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
+    }
+
+    /* Custom label for checkbox */
+    .checkbox-wrapper label,
+    .checkbox-wrapper div {
+        cursor: pointer;
+    }
+
+    .checkbox-wrapper label:hover,
+    .checkbox-wrapper div:hover {
+        background-color: rgba(0, 217, 163, 0.1);
+    }
+</style>
+
+<script>
+    // Make checkboxes work with visual feedback
+    document.querySelectorAll('.checkbox-wrapper').forEach(wrapper => {
+        const input = wrapper.querySelector('input[type="checkbox"]');
+        const visual = wrapper.querySelector('div') || wrapper.querySelector('label');
+
+        if (visual && input) {
+            visual.addEventListener('click', () => {
+                input.checked = !input.checked;
+                if (input.checked) {
+                    visual.classList.add('bg-[var(--blue)]');
+                    visual.querySelector('i')?.classList.add('opacity-100');
+                } else {
+                    visual.classList.remove('bg-[var(--blue)]');
+                    visual.querySelector('i')?.classList.remove('opacity-100');
+                }
+            });
+        }
+    });
+
+    // PDF Form submission
+    const pdfForm = document.getElementById('pdf-form') as HTMLFormElement;
+
+    pdfForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = pdfForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const originalText = submitBtn.innerHTML;
+
+        // Loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Envoi en cours...';
+
+        try {
+            const formData = new FormData(pdfForm);
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                submitBtn.innerHTML = '<i class="ri-check-line"></i> Envoyé !';
+                submitBtn.classList.remove('bg-[var(--blue)]');
+                submitBtn.classList.add('bg-green-500');
+
+                // Reset after delay
+                setTimeout(() => {
+                    pdfForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.classList.remove('bg-green-500');
+                    submitBtn.classList.add('bg-[var(--blue)]');
+                    submitBtn.disabled = false;
+                }, 3000);
+            } else {
+                alert('Erreur lors de l\'envoi. Réessaye ou écris-moi directement à contact@jonlabs.ch');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            alert('Erreur de connexion. Réessaye.');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>

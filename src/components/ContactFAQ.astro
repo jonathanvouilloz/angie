@@ -1,7 +1,9 @@
 ---
-// ContactFAQ.astro - Accordion FAQ brutaliste
+// ContactFAQ.astro - FAQ de la page contact utilisant le composant FAQ réutilisable
+import FAQ from './FAQ.astro';
+import type { FAQItem } from './FAQ.astro';
 
-const faqs = [
+const faqs: FAQItem[] = [
     {
         question: "Vous travaillez en remote ou sur site ?",
         answer: "Principalement en remote, mais je peux me déplacer en Suisse romande pour des réunions si nécessaire. La plupart de mes clients préfèrent le remote pour sa flexibilité."
@@ -18,118 +20,12 @@ const faqs = [
         question: "Quels sont les délais typiques ?",
         answer: "Ça dépend de la complexité : 2-3 semaines pour un site vitrine, 1-2 mois pour une web app, et plusieurs mois pour une application complète. Je vous donnerai une estimation précise après avoir discuté de votre projet."
     }
-]
+];
 ---
 
-<section class="faq-section py-16 md:py-24 px-4 bg-white border-y-2 border-black">
-    <div class="max-w-3xl mx-auto">
-        <!-- Section header -->
-        <div class="text-center mb-12">
-            <span class="
-                inline-flex items-center gap-2
-                text-xs font-mono uppercase tracking-[0.2em]
-                text-gray-500
-                mb-3
-            ">
-                <span class="w-8 h-px bg-gray-400"></span>
-                faq
-                <span class="w-8 h-px bg-gray-400"></span>
-            </span>
-            <h2 class="text-3xl md:text-4xl font-normal">Questions fréquentes</h2>
-        </div>
-
-        <!-- FAQ items -->
-        <div class="faq-list space-y-4">
-            {faqs.map((faq, index) => (
-                <div class="faq-item border-2 border-black bg-[var(--main-bg)]" data-faq-item>
-                    <button
-                        class="
-                            faq-trigger
-                            w-full
-                            flex items-center justify-between gap-4
-                            p-5
-                            text-left
-                            font-medium
-                            transition-colors duration-200
-                            hover:bg-[var(--accent)]
-                        "
-                        aria-expanded="false"
-                        data-faq-trigger
-                    >
-                        <span class="flex items-center gap-3">
-                            <span class="font-mono text-sm text-gray-400">0{index + 1}</span>
-                            <span class="text-lg">{faq.question}</span>
-                        </span>
-                        <span class="
-                            faq-icon
-                            w-8 h-8
-                            border-2 border-black
-                            bg-white
-                            flex items-center justify-center
-                            transition-transform duration-300
-                            flex-shrink-0
-                        ">
-                            <i class="ri-add-line text-lg"></i>
-                        </span>
-                    </button>
-                    <div
-                        class="faq-content overflow-hidden transition-all duration-300"
-                        style="max-height: 0;"
-                        data-faq-content
-                    >
-                        <div class="p-5 pt-0 pl-14 md:pl-16">
-                            <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </div>
-</section>
-
-<style>
-    .faq-item[data-open="true"] .faq-icon {
-        transform: rotate(45deg);
-        background-color: var(--blue);
-    }
-
-    .faq-item[data-open="true"] .faq-trigger {
-        background-color: rgba(0, 217, 163, 0.1);
-    }
-</style>
-
-<script>
-    // FAQ accordion logic
-    const faqItems = document.querySelectorAll('[data-faq-item]');
-
-    faqItems.forEach(item => {
-        const trigger = item.querySelector('[data-faq-trigger]');
-        const content = item.querySelector('[data-faq-content]') as HTMLElement;
-
-        trigger?.addEventListener('click', () => {
-            const isOpen = item.getAttribute('data-open') === 'true';
-
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.setAttribute('data-open', 'false');
-                    const otherContent = otherItem.querySelector('[data-faq-content]') as HTMLElement;
-                    const otherTrigger = otherItem.querySelector('[data-faq-trigger]');
-                    if (otherContent) otherContent.style.maxHeight = '0';
-                    otherTrigger?.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Toggle current item
-            if (isOpen) {
-                item.setAttribute('data-open', 'false');
-                content.style.maxHeight = '0';
-                trigger.setAttribute('aria-expanded', 'false');
-            } else {
-                item.setAttribute('data-open', 'true');
-                content.style.maxHeight = content.scrollHeight + 'px';
-                trigger.setAttribute('aria-expanded', 'true');
-            }
-        });
-    });
-</script>
+<FAQ
+    faqs={faqs}
+    title="Questions fréquentes"
+    sectionId="faq"
+    class="bg-white border-y-2 border-black"
+/>

@@ -1,0 +1,226 @@
+---
+// FAQ.astro - Composant FAQ réutilisable avec accordion brutaliste
+
+export interface FAQItem {
+    question: string;
+    answer: string;
+    linkText?: string;    // Texte du lien optionnel (ex: "Voir le portfolio →")
+    linkUrl?: string;     // URL du lien optionnel (ex: "/portfolio")
+}
+
+interface Props {
+    faqs: FAQItem[];
+    title?: string;           // Default: "Questions fréquentes"
+    subtitle?: string;        // Texte sous le titre
+    sectionId?: string;       // ID pour ancrage (default: "faq")
+    showSection?: boolean;    // Wrapper section complet (default: true)
+    variant?: 'default' | 'minimal';  // minimal = sans section wrapper
+    class?: string;           // Classes additionnelles
+}
+
+const {
+    faqs,
+    title = "Questions fréquentes",
+    subtitle,
+    sectionId = "faq",
+    showSection = true,
+    variant = 'default',
+    class: className = ''
+} = Astro.props;
+
+const hasBackground = Astro.slots.has('background');
+---
+
+{variant === 'minimal' ? (
+    <!-- Mode minimal : juste les items FAQ sans wrapper -->
+    <div class={`faq-list space-y-4 ${className}`}>
+        {faqs.map((faq, index) => (
+            <div class="faq-item border-2 border-black bg-[var(--main-bg)]" data-faq-item>
+                <button
+                    class="
+                        faq-trigger
+                        w-full
+                        flex items-center justify-between gap-4
+                        p-5
+                        text-left
+                        font-medium
+                        cursor-pointer
+                        transition-colors duration-200
+                        hover:bg-[var(--blue)] hover:bg-opacity-10
+                    "
+                    aria-expanded="false"
+                    data-faq-trigger
+                >
+                    <span class="flex items-start gap-3">
+                        <span class="font-mono text-sm text-gray-400 mt-0.5">{String(index + 1).padStart(2, '0')}</span>
+                        <span class="text-lg">{faq.question}</span>
+                    </span>
+                    <span class="
+                        faq-icon
+                        w-8 h-8
+                        border-2 border-black
+                        bg-white
+                        flex items-center justify-center
+                        transition-transform duration-300
+                        flex-shrink-0
+                    ">
+                        <i class="ri-add-line text-lg"></i>
+                    </span>
+                </button>
+                <div
+                    class="faq-content overflow-hidden transition-all duration-300"
+                    style="max-height: 0;"
+                    data-faq-content
+                >
+                    <div class="p-6 pt-2 pl-12">
+                        <p class="text-gray-600 leading-relaxed">
+                            {faq.answer}
+                            {faq.linkText && faq.linkUrl && (
+                                <a href={faq.linkUrl} class="text-[var(--blue)] font-medium ml-1 hover:underline">
+                                    {faq.linkText}
+                                </a>
+                            )}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+) : (
+    <!-- Mode default : section complète avec header -->
+    <section id={sectionId} class={`py-20 md:py-28 px-4 relative overflow-hidden ${className}`}>
+        {hasBackground && (
+            <slot name="background" />
+        )}
+        <div class="max-w-3xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    faq
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">{title}</h2>
+                {subtitle && (
+                    <p class="text-lg text-gray-600 mt-4">{subtitle}</p>
+                )}
+            </div>
+
+            <!-- FAQ items -->
+            <div class="faq-list space-y-6">
+                {faqs.map((faq, index) => (
+                    <div class="faq-item border-2 border-black bg-[var(--main-bg)]" data-faq-item>
+                        <button
+                            class="
+                                faq-trigger
+                                w-full
+                                flex items-center justify-between gap-4
+                                p-5
+                                text-left
+                                font-medium
+                                cursor-pointer
+                                transition-colors duration-200
+                                hover:bg-[var(--blue)] hover:bg-opacity-10
+                            "
+                            aria-expanded="false"
+                            data-faq-trigger
+                        >
+                            <span class="flex items-start gap-3">
+                                <span class="font-mono text-sm text-gray-400 mt-0.5">{String(index + 1).padStart(2, '0')}</span>
+                                <span class="text-lg">{faq.question}</span>
+                            </span>
+                            <span class="
+                                faq-icon
+                                w-8 h-8
+                                border-2 border-black
+                                bg-white
+                                flex items-center justify-center
+                                transition-transform duration-300
+                                flex-shrink-0
+                            ">
+                                <i class="ri-add-line text-lg"></i>
+                            </span>
+                        </button>
+                        <div
+                            class="faq-content overflow-hidden transition-all duration-300"
+                            style="max-height: 0;"
+                            data-faq-content
+                        >
+                            <div class="p-6 pt-2 pl-12">
+                                <p class="text-gray-600 leading-relaxed">
+                                    {faq.answer}
+                                    {faq.linkText && faq.linkUrl && (
+                                        <a href={faq.linkUrl} class="text-[var(--blue)] font-medium ml-1 hover:underline">
+                                            {faq.linkText}
+                                        </a>
+                                    )}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+)}
+
+<style>
+    /* FAQ animations */
+    .faq-item[data-open="true"] .faq-icon {
+        transform: rotate(45deg);
+        background-color: var(--blue);
+    }
+
+    /* Scroll margin for anchor navigation */
+    section[id] {
+        scroll-margin-top: 100px;
+    }
+</style>
+
+<script>
+    // FAQ accordion logic - runs once per page load
+    function initFAQ() {
+        const faqItems = document.querySelectorAll('[data-faq-item]');
+
+        faqItems.forEach(item => {
+            const trigger = item.querySelector('[data-faq-trigger]');
+            const content = item.querySelector('[data-faq-content]') as HTMLElement;
+
+            // Skip if already initialized
+            if (trigger?.hasAttribute('data-faq-initialized')) return;
+            trigger?.setAttribute('data-faq-initialized', 'true');
+
+            trigger?.addEventListener('click', () => {
+                const isOpen = item.getAttribute('data-open') === 'true';
+
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.setAttribute('data-open', 'false');
+                        const otherContent = otherItem.querySelector('[data-faq-content]') as HTMLElement;
+                        const otherTrigger = otherItem.querySelector('[data-faq-trigger]');
+                        if (otherContent) otherContent.style.maxHeight = '0';
+                        otherTrigger?.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle current item
+                if (isOpen) {
+                    item.setAttribute('data-open', 'false');
+                    content.style.maxHeight = '0';
+                    trigger.setAttribute('aria-expanded', 'false');
+                } else {
+                    item.setAttribute('data-open', 'true');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    trigger.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    }
+
+    // Initialize on page load
+    initFAQ();
+
+    // Re-initialize on Astro page transitions (View Transitions)
+    document.addEventListener('astro:page-load', initFAQ);
+</script>
