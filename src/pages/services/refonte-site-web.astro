@@ -17,6 +17,10 @@ import BackgroundCircuitBoard from '../../components/backgrounds/BackgroundCircu
 import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
 import BackgroundMapContours from '../../components/backgrounds/BackgroundMapContours.astro';
 
+// Import FAQ component
+import FAQ from '../../components/FAQ.astro';
+import type { FAQItem } from '../../components/FAQ.astro';
+
 // SEO Data
 const seoData = {
     title: "Refonte de site web Genève | Jon Labs - Site moderne en 3 semaines",
@@ -209,7 +213,7 @@ const inclusions = [
 ];
 
 // FAQ data
-const faqs = [
+const faqs: FAQItem[] = [
     {
         question: "Je dois refaire TOUT mon site ou on peut garder des choses ?",
         answer: "Ça dépend. Si votre contenu est bon, on le réutilise. Si votre design est sauvable, on s'en inspire. On ne jette pas par principe, on optimise."
@@ -244,7 +248,9 @@ const faqs = [
     },
     {
         question: "Je peux voir des exemples de vos refontes ?",
-        answer: "Oui, consultez mon portfolio pour voir des exemples concrets de projets réalisés."
+        answer: "Oui, consultez mon portfolio pour voir des exemples concrets de projets réalisés.",
+        linkText: "Voir le portfolio →",
+        linkUrl: "/portfolio"
     },
     {
         question: "Comment se passe le premier contact ?",
@@ -738,75 +744,9 @@ const needOptions = [
     </section>
 
     <!-- FAQ SECTION -->
-    <section id="faq" class="py-20 md:py-28 px-4 relative overflow-hidden">
-        <BackgroundQuestionMarks animated={true} />
-        <div class="max-w-3xl mx-auto relative z-10">
-            <!-- Section header -->
-            <div class="text-center mb-12">
-                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
-                    <span class="w-8 h-px bg-gray-400"></span>
-                    faq
-                    <span class="w-8 h-px bg-gray-400"></span>
-                </span>
-                <h2 class="text-3xl md:text-4xl font-normal">Questions fréquentes</h2>
-            </div>
-
-            <!-- FAQ items -->
-            <div class="faq-list space-y-6">
-                {faqs.map((faq, index) => (
-                    <div class="faq-item border-2 border-black bg-[var(--main-bg)]" data-faq-item>
-                        <button
-                            class="
-                                faq-trigger
-                                w-full
-                                flex items-center justify-between gap-4
-                                p-5
-                                text-left
-                                font-medium
-                                cursor-pointer
-                                transition-colors duration-200
-                                hover:bg-[var(--blue)] hover:bg-opacity-10
-                            "
-                            aria-expanded="false"
-                            data-faq-trigger
-                        >
-                            <span class="flex items-start gap-3">
-                                <span class="font-mono text-sm text-gray-400 mt-0.5">{String(index + 1).padStart(2, '0')}</span>
-                                <span class="text-lg">{faq.question}</span>
-                            </span>
-                            <span class="
-                                faq-icon
-                                w-8 h-8
-                                border-2 border-black
-                                bg-white
-                                flex items-center justify-center
-                                transition-transform duration-300
-                                flex-shrink-0
-                            ">
-                                <i class="ri-add-line text-lg"></i>
-                            </span>
-                        </button>
-                        <div
-                            class="faq-content overflow-hidden transition-all duration-300"
-                            style="max-height: 0;"
-                            data-faq-content
-                        >
-                            <div class="p-6 pt-2 pl-12">
-                                <p class="text-gray-600 leading-relaxed">
-                                    {faq.answer}
-                                    {index === 8 && (
-                                        <a href="/portfolio" class="text-[var(--blue)] font-medium ml-1 hover:underline">
-                                            Voir le portfolio →
-                                        </a>
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
+    <FAQ faqs={faqs} sectionId="faq">
+        <BackgroundQuestionMarks slot="background" animated={true} />
+    </FAQ>
 
     <!-- LOCAL SEO SECTION -->
     <section id="local" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
@@ -1115,12 +1055,6 @@ const needOptions = [
         background-size: 24px 24px;
     }
 
-    /* FAQ animations */
-    .faq-item[data-open="true"] .faq-icon {
-        transform: rotate(45deg);
-        background-color: var(--blue);
-    }
-
      /* H1 SEO style terminal */
   .seo-h1 {
     font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
@@ -1169,40 +1103,6 @@ const needOptions = [
 </style>
 
 <script>
-    // FAQ accordion logic
-    const faqItems = document.querySelectorAll('[data-faq-item]');
-
-    faqItems.forEach(item => {
-        const trigger = item.querySelector('[data-faq-trigger]');
-        const content = item.querySelector('[data-faq-content]') as HTMLElement;
-
-        trigger?.addEventListener('click', () => {
-            const isOpen = item.getAttribute('data-open') === 'true';
-
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.setAttribute('data-open', 'false');
-                    const otherContent = otherItem.querySelector('[data-faq-content]') as HTMLElement;
-                    const otherTrigger = otherItem.querySelector('[data-faq-trigger]');
-                    if (otherContent) otherContent.style.maxHeight = '0';
-                    otherTrigger?.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Toggle current item
-            if (isOpen) {
-                item.setAttribute('data-open', 'false');
-                content.style.maxHeight = '0';
-                trigger.setAttribute('aria-expanded', 'false');
-            } else {
-                item.setAttribute('data-open', 'true');
-                content.style.maxHeight = content.scrollHeight + 'px';
-                trigger.setAttribute('aria-expanded', 'true');
-            }
-        });
-    });
-
     // Form submission
     const form = document.getElementById('refonte-form') as HTMLFormElement;
     const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;

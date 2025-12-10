@@ -794,6 +794,93 @@ Le template utilise Remix Icon (CDN) :
 
 ---
 
+## Composant FAQ
+
+Le composant FAQ réutilisable (`src/components/FAQ.astro`) permet d'afficher des sections de questions/réponses avec un accordion brutaliste.
+
+### Import
+
+```astro
+---
+import FAQ from '../components/FAQ.astro';
+import type { FAQItem } from '../components/FAQ.astro';
+---
+```
+
+### Interface FAQItem
+
+```typescript
+interface FAQItem {
+    question: string;
+    answer: string;
+    linkText?: string;    // Texte du lien optionnel
+    linkUrl?: string;     // URL du lien optionnel
+}
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `faqs` | `FAQItem[]` | required | Tableau des questions/réponses |
+| `title` | `string` | "Questions fréquentes" | Titre de la section |
+| `subtitle` | `string` | - | Texte sous le titre |
+| `sectionId` | `string` | "faq" | ID pour ancrage |
+| `showSection` | `boolean` | true | Affiche le wrapper section |
+| `variant` | `'default' \| 'minimal'` | "default" | minimal = sans wrapper |
+| `class` | `string` | - | Classes additionnelles |
+
+### Usage simple
+
+```astro
+<FAQ
+    faqs={[
+        { question: "Comment ça marche ?", answer: "..." },
+        { question: "Quel est le prix ?", answer: "..." }
+    ]}
+/>
+```
+
+### Usage avec background personnalisé
+
+```astro
+<FAQ faqs={faqs} sectionId="faq">
+    <BackgroundQuestionMarks slot="background" animated={true} />
+</FAQ>
+```
+
+### Usage avec lien dans la réponse
+
+```astro
+const faqs: FAQItem[] = [
+    {
+        question: "Puis-je voir des exemples ?",
+        answer: "Oui, consultez le portfolio.",
+        linkText: "Voir le portfolio →",
+        linkUrl: "/portfolio"
+    }
+];
+
+<FAQ faqs={faqs} />
+```
+
+### Usage minimal (sans section wrapper)
+
+```astro
+<FAQ faqs={faqs} variant="minimal" />
+```
+
+### Style
+
+Le composant utilise :
+- Bordures noires (`border-2 border-black`)
+- Background `var(--main-bg)`
+- Numérotation automatique (01, 02, ...)
+- Icône + qui devient × au clic
+- Couleur accent `var(--blue)` pour l'état ouvert
+
+---
+
 ## Formulaires
 
 ### Input standard
