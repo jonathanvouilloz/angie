@@ -108,8 +108,27 @@ Excel a rendu service pendant des années. Mais en 2025, les attentes ont chang�
 
 Tous les clubs n'ont pas besoin de la même chose. Certains trouveront leur bonheur dans un logiciel du marché. D'autres ont juste besoin d'une automatisation bien pensée pour débloquer un point de friction précis.
 
-Si vous vous reconnaissez dans ce que j'ai décrit — les relances sans fin, le fichier Excel mystérieux, le sentiment de perdre du temps sur des tâches qui devraient être simples — je vous propose qu'on en parle.
+---
+
+## Ce qu'il faut retenir
+
+![Ce qu'il faut retenir - Points clés à mémoriser](/images/blog/resume-end-article.webp)
+
+1. **Excel a ses limites** : fichiers éparpillés, formules fragiles, passation difficile
+2. **Les relances manuelles épuisent les bénévoles** — et c'est souvent un problème de système, pas de mauvaise volonté des membres
+3. **La conformité nLPD impose de repenser la gestion des données** personnelles
+4. **Une automatisation ciblée** (inscription + paiement + relances) peut libérer des heures chaque mois sans nécessiter un logiciel lourd
+
+---
+
+**Vous vous reconnaissez dans ce que j'ai décrit ?**
+
+Les relances sans fin, le fichier Excel mystérieux, le sentiment de perdre du temps sur des tâches qui devraient être simples — je vous propose qu'on en parle.
 
 Un échange de 30 minutes, sans engagement, pour comprendre ce qui coince dans votre club et voir si je peux vous aider.
 
 [Réserver un appel découverte →](https://cal.com/jonathan-vouilloz/appel-de-bienvenue)
+
+Ou découvrir mes solutions d'automatisation :
+
+[Voir les services →](/services)
