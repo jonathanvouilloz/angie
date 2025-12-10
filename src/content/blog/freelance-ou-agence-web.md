@@ -1,10 +1,10 @@
 ---
-title: "Freelance ou agence web en 2025 : comment choisir en Suisse romande ?"
+title: "Freelance ou agence web en 2026 : comment choisir en Suisse romande ?"
 description: "Tarifs, avantages, limites : le guide complet pour choisir entre freelance et agence pour ton projet web."
 pubDate: 2025-12-09
 image:
   url: "/images/blog/agence-vs-freelance.webp"
-  alt: "Agence vs Freelance - Que choisir en 2025 ?"
+  alt: "Agence vs Freelance - Que choisir en 2026 ?"
 category: "perso"
 tags: ["freelance", "agence", "suisse", "budget", "web"]
 featured: true
@@ -18,11 +18,11 @@ C'est une question légitime. Et la réponse honnête, c'est : ça dépend.
 
 Pas très satisfaisant, je sais. Mais c'est la vérité. Ce qui compte, c'est de comprendre les vrais critères de choix pour **ton** projet, **ton** budget, et **tes** attentes.
 
-Dans cet article, je te donne les clés pour décider en connaissance de cause — sans bullshit, avec des chiffres concrets du marché suisse romand en 2025.
+Dans cet article, je te donne les clés pour décider en connaissance de cause — sans bullshit, avec des chiffres concrets du marché suisse romand en 2026.
 
 ---
 
-## Le marché en 2025 : ce qui a changé
+## Le marché en 2026 : ce qui change
 
 Le monde du freelancing explose. En Europe, on compte +92% de freelances en 10 ans. En Suisse, le modèle séduit de plus en plus, notamment dans le web et l'IT.
 
@@ -32,7 +32,7 @@ Résultat : le marché s'est professionnalisé. Les freelances ne sont plus des 
 
 Mais les agences ont aussi évolué. Elles proposent des offres plus flexibles, des équipes plus réduites, et certaines ont adopté des tarifs plus accessibles.
 
-Bref, en 2025, les deux options sont viables. La question n'est plus "lequel est meilleur ?" mais "lequel est meilleur **pour moi** ?"
+Bref, en 2026, les deux options sont viables. La question n'est plus "lequel est meilleur ?" mais "lequel est meilleur **pour moi** ?"
 
 ---
 

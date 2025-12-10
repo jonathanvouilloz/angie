@@ -5,9 +5,9 @@ import Layout from '../../layouts/Layout.astro';
 import AppHeader from '../../components/Header.astro';
 import AppFooter from '../../components/Footer.astro';
 import BlogHero from '../../components/blog/BlogHero.astro';
-import BlogFilters from '../../components/blog/BlogFilters.astro';
-import FeaturedGrid from '../../components/blog/FeaturedGrid.astro';
-import PostListItem from '../../components/blog/PostListItem.astro';
+import BlogSidebar from '../../components/blog/BlogSidebar.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import { formatDateShort, getCategoryName, getCategoryColor } from '../../lib/blog';
 
 // Get all published posts
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -20,12 +20,8 @@ const sortedPosts = allPosts.sort((a, b) =>
 // Get featured post (first one marked as featured, or most recent)
 const featuredPost = sortedPosts.find((post) => post.data.featured) || sortedPosts[0];
 
-// Get next 2 posts for the grid (excluding featured)
-const postsExcludingFeatured = sortedPosts.filter((post) => post.slug !== featuredPost?.slug);
-const recentPosts = postsExcludingFeatured.slice(0, 2);
-
-// Remaining posts for the list (all others)
-const listPosts = postsExcludingFeatured.slice(2);
+// All other posts (excluding featured)
+const otherPosts = sortedPosts.filter((post) => post.slug !== featuredPost?.slug);
 ---
 
 <Layout title="Blog - Jon Labs">
@@ -34,81 +30,330 @@ const listPosts = postsExcludingFeatured.slice(2);
   <main>
     <BlogHero />
 
-    {featuredPost && (
-      <FeaturedGrid featured={featuredPost} recentPosts={recentPosts} />
-    )}
+    <section class="py-8 md:py-12 bg-[var(--main-bg)]">
+      <div class="max-w-6xl mx-auto px-4">
+        <!-- Two column layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-6 lg:gap-8">
 
-    {listPosts.length > 0 && (
-      <section class="py-8 md:py-12 bg-[var(--main-bg)]">
-        <div class="max-w-6xl mx-auto px-4">
-          <!-- Section title -->
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-xs font-mono uppercase tracking-[0.2em] text-gray-500">
-              Tous les articles
-            </span>
-            <span class="h-px flex-1 bg-gray-200"></span>
-          </div>
+          <!-- Sidebar -->
+          <BlogSidebar />
 
-          <BlogFilters />
+          <!-- Main content -->
+          <div>
+            <!-- Featured post (large, vertical layout) -->
+            {featuredPost && (
+              <article
+                id="featured-post"
+                class="group relative bg-white border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] mb-8"
+                data-category={featuredPost.data.category}
+                data-title={featuredPost.data.title.toLowerCase()}
+                data-tags={featuredPost.data.tags.join(' ').toLowerCase()}
+              >
+                <a href={`/blog/${featuredPost.slug}/`} class="absolute inset-0 z-10" aria-label={`Lire: ${featuredPost.data.title}`}></a>
 
-          <!-- Simple list with spotlight effect -->
-          <div id="posts-list" class="posts-list bg-white border-2 border-black p-4 md:p-6">
-            {listPosts.map((post) => (
-              <PostListItem post={post} />
-            ))}
-          </div>
+                <!-- Featured banner -->
+                <div class="bg-[var(--violet)] text-white px-4 py-2 flex items-center gap-2 border-b-2 border-black">
+                  <i class="ri-star-fill text-[var(--yellow)]"></i>
+                  <span class="text-sm font-bold uppercase tracking-wider">A la une</span>
+                </div>
 
-          <!-- Empty state message -->
-          <div id="no-results" class="hidden bg-white border-2 border-black p-8 text-center">
-            <i class="ri-search-line text-4xl text-gray-300 mb-4"></i>
-            <p class="text-gray-500 font-medium">Aucun article ne correspond à votre recherche.</p>
-            <button
-              id="reset-filters"
-              class="mt-4 px-4 py-2 text-sm font-medium bg-[var(--blue)] border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all"
-            >
-              Réinitialiser les filtres
-            </button>
-          </div>
+                <!-- Image (large, 16:9) -->
+                <div class="relative aspect-[16/9] overflow-hidden border-b-2 border-black">
+                  <img
+                    src={featuredPost.data.image.url}
+                    alt={featuredPost.data.image.alt}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
 
-          <!-- Pagination -->
-          <nav id="pagination" class="flex justify-center items-center gap-2 mt-8" aria-label="Pagination">
-            <button
-              id="prev-page"
-              class="w-10 h-10 flex items-center justify-center border-2 border-black bg-white transition-all duration-200 hover:bg-[var(--blue)] disabled:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100"
-              aria-label="Page précédente"
-            >
-              <i class="ri-arrow-left-line"></i>
-            </button>
-            <div id="page-numbers" class="flex gap-2">
-              <!-- Generated by JS -->
+                <!-- Content -->
+                <div class="p-6">
+                  <div class="flex items-center gap-3 mb-3 text-sm text-gray-500">
+                    <span class="flex items-center gap-1.5">
+                      <span
+                        class="w-2.5 h-2.5 rounded-full"
+                        style={`background-color: ${getCategoryColor(featuredPost.data.category)};`}
+                      ></span>
+                      {getCategoryName(featuredPost.data.category)}
+                    </span>
+                    <span>·</span>
+                    <span>{formatDateShort(featuredPost.data.pubDate)}</span>
+                    {featuredPost.data.readingTime && (
+                      <>
+                        <span>·</span>
+                        <span class="flex items-center gap-1">
+                          <i class="ri-time-line"></i>
+                          {featuredPost.data.readingTime} min
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  <h2 class="text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:text-[var(--violet)] transition-colors">
+                    {featuredPost.data.title}
+                  </h2>
+
+                  <p class="text-gray-600 text-base leading-relaxed line-clamp-2 mb-4">
+                    {featuredPost.data.description}
+                  </p>
+
+                  <div class="flex items-center text-sm font-semibold text-[var(--violet)] group-hover:underline">
+                    Lire l'article
+                    <i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+                  </div>
+                </div>
+              </article>
+            )}
+
+            <!-- Section title -->
+            <div class="flex items-center gap-3 mb-6">
+              <span class="text-xs font-mono uppercase tracking-[0.2em] text-gray-500">
+                Tous les articles
+              </span>
+              <span class="h-px flex-1 bg-gray-300"></span>
             </div>
-            <button
-              id="next-page"
-              class="w-10 h-10 flex items-center justify-center border-2 border-black bg-white transition-all duration-200 hover:bg-[var(--blue)] disabled:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100"
-              aria-label="Page suivante"
-            >
-              <i class="ri-arrow-right-line"></i>
-            </button>
-          </nav>
+
+            <!-- Posts grid -->
+            <div id="posts-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {otherPosts.map((post) => (
+                <PostCard post={post} />
+              ))}
+            </div>
+
+            <!-- Empty state message -->
+            <div id="no-results" class="hidden bg-white border-2 border-black p-8 text-center">
+              <i class="ri-search-line text-4xl text-gray-300 mb-4 block"></i>
+              <p class="text-gray-500 font-medium">Aucun article ne correspond à votre recherche.</p>
+            </div>
+
+            <!-- Pagination -->
+            <nav id="pagination" class="flex justify-center items-center gap-2 mt-10" aria-label="Pagination">
+              <button
+                id="prev-page"
+                class="w-10 h-10 flex items-center justify-center border-2 border-black bg-white transition-all duration-200 hover:bg-[var(--blue)] disabled:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100"
+                aria-label="Page précédente"
+              >
+                <i class="ri-arrow-left-line"></i>
+              </button>
+              <div id="page-numbers" class="flex gap-2">
+                <!-- Generated by JS -->
+              </div>
+              <button
+                id="next-page"
+                class="w-10 h-10 flex items-center justify-center border-2 border-black bg-white transition-all duration-200 hover:bg-[var(--blue)] disabled:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100"
+                aria-label="Page suivante"
+              >
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </nav>
+          </div>
         </div>
-      </section>
-    )}
+      </div>
+    </section>
   </main>
 
   <AppFooter />
 </Layout>
 
-<style>
-  /* Spotlight effect on hover */
-  .posts-list:hover :global(.post-list-item) {
-    opacity: 0.4;
+<script>
+  function initBlogFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+    const postsGrid = document.getElementById('posts-grid');
+    const featuredPost = document.getElementById('featured-post');
+    const noResults = document.getElementById('no-results');
+    const resetBtn = document.getElementById('reset-filters');
+    const pagination = document.getElementById('pagination');
+    const pageNumbers = document.getElementById('page-numbers');
+    const prevBtn = document.getElementById('prev-page') as HTMLButtonElement;
+    const nextBtn = document.getElementById('next-page') as HTMLButtonElement;
+
+    // Get all post cards from the grid
+    const postCards = Array.from(postsGrid?.querySelectorAll('.post-card') || []);
+
+    const ITEMS_PER_PAGE = 6;
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let currentPage = 1;
+    let filteredItems: Element[] = [];
+
+    function getFilteredItems() {
+      return postCards.filter((item) => {
+        const itemCategory = item.getAttribute('data-category') || '';
+        const title = item.getAttribute('data-title')?.toLowerCase() || '';
+        const tags = item.getAttribute('data-tags')?.toLowerCase() || '';
+
+        const matchesCategory = currentCategory === 'all' || itemCategory === currentCategory;
+        const matchesSearch = !currentSearch ||
+          title.includes(currentSearch) ||
+          tags.includes(currentSearch);
+
+        return matchesCategory && matchesSearch;
+      });
+    }
+
+    function checkFeaturedVisibility() {
+      if (!featuredPost) return;
+
+      const itemCategory = featuredPost.getAttribute('data-category') || '';
+      const title = featuredPost.getAttribute('data-title')?.toLowerCase() || '';
+      const tags = featuredPost.getAttribute('data-tags')?.toLowerCase() || '';
+
+      const matchesCategory = currentCategory === 'all' || itemCategory === currentCategory;
+      const matchesSearch = !currentSearch ||
+        title.includes(currentSearch) ||
+        tags.includes(currentSearch);
+
+      featuredPost.style.display = (matchesCategory && matchesSearch) ? '' : 'none';
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+
+      // Hide pagination if only 1 page or no results
+      if (pagination) {
+        pagination.style.display = totalPages <= 1 ? 'none' : 'flex';
+      }
+
+      // Update prev/next buttons
+      if (prevBtn) prevBtn.disabled = currentPage === 1;
+      if (nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+
+      // Generate page numbers
+      if (pageNumbers) {
+        pageNumbers.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.className = `w-10 h-10 flex items-center justify-center border-2 border-black font-medium text-sm transition-all duration-200 ${
+            i === currentPage
+              ? 'bg-[var(--blue)] shadow-[2px_2px_0px_rgba(0,0,0,1)]'
+              : 'bg-white hover:bg-gray-100'
+          }`;
+          btn.textContent = String(i);
+          btn.addEventListener('click', () => goToPage(i));
+          pageNumbers.appendChild(btn);
+        }
+      }
+    }
+
+    function displayPage() {
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+
+      // Hide all cards first
+      postCards.forEach((item) => {
+        (item as HTMLElement).style.display = 'none';
+      });
+
+      // Show only items for current page
+      filteredItems.slice(start, end).forEach((item) => {
+        (item as HTMLElement).style.display = '';
+      });
+
+      // Check featured post visibility
+      checkFeaturedVisibility();
+
+      // Show/hide empty state
+      const featuredVisible = featuredPost?.style.display !== 'none';
+      if (noResults && postsGrid) {
+        if (filteredItems.length === 0 && !featuredVisible) {
+          postsGrid.classList.add('hidden');
+          noResults.classList.remove('hidden');
+        } else {
+          postsGrid.classList.remove('hidden');
+          noResults.classList.add('hidden');
+        }
+      }
+
+      // Show/hide reset button
+      if (resetBtn) {
+        resetBtn.classList.toggle('hidden', currentCategory === 'all' && !currentSearch);
+      }
+
+      renderPagination();
+    }
+
+    function goToPage(page: number) {
+      currentPage = page;
+      displayPage();
+      // Scroll to grid
+      postsGrid?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function filterPosts() {
+      filteredItems = getFilteredItems();
+      currentPage = 1;
+      displayPage();
+    }
+
+    function resetFilters() {
+      currentCategory = 'all';
+      currentSearch = '';
+      currentPage = 1;
+
+      if (searchInput) searchInput.value = '';
+
+      filterButtons.forEach((b) => {
+        b.classList.remove('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+        b.classList.add('bg-white');
+        if (b.getAttribute('data-category') === 'all') {
+          b.classList.add('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+          b.classList.remove('bg-white');
+        }
+      });
+
+      filterPosts();
+    }
+
+    // Category filter click
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => {
+          b.classList.remove('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+          b.classList.add('bg-white');
+        });
+        btn.classList.add('active', 'bg-[var(--blue)]', 'shadow-[2px_2px_0px_rgba(0,0,0,1)]');
+        btn.classList.remove('bg-white');
+
+        currentCategory = btn.getAttribute('data-category') || 'all';
+        filterPosts();
+      });
+    });
+
+    // Search input
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearch = (e.target as HTMLInputElement).value.toLowerCase().trim();
+        filterPosts();
+      });
+    }
+
+    // Reset button
+    if (resetBtn) {
+      resetBtn.addEventListener('click', resetFilters);
+    }
+
+    // Pagination buttons
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) goToPage(currentPage - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+        if (currentPage < totalPages) goToPage(currentPage + 1);
+      });
+    }
+
+    // Initial render
+    filterPosts();
   }
 
-  .posts-list :global(.post-list-item:hover) {
-    opacity: 1;
-  }
+  // Run on page load
+  initBlogFilters();
 
-  .posts-list :global(.post-list-item) {
-    transition: opacity 0.3s ease;
-  }
-</style>
+  // Re-run on Astro page transitions
+  document.addEventListener('astro:page-load', initBlogFilters);
+</script>
