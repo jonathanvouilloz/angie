@@ -204,16 +204,24 @@ Mieux vaut un "non" rapide qu'un "non" après 6 mois de dev.
 
 ---
 
-**T'as une idée qui te trotte dans la tête ?**
+## Tu veux qu'on teste ton idée ensemble ?
 
-Avant de passer des semaines à construire, pose-toi la question : est-ce que t'as validé que quelqu'un veut payer pour ça ?
+Si tu préfères déléguer la partie technique — landing page, campagne pub, analyse des résultats — je propose un service clé en main. En 2 semaines, tu as une réponse du marché.
 
-Si t'as besoin d'un regard extérieur pour challenger ton idée, on peut en parler. Pas de pitch commercial, juste 30 minutes de questions cash pour voir si ton concept tient la route.
+**Ce que tu obtiens :**
+- Une landing page professionnelle avec copywriting stratégique
+- Une campagne Meta Ads configurée et ciblée
+- Un rapport avec métriques concrètes
+- Un appel de debrief pour interpréter les résultats
+
+[Découvrir le service Test de concept →](/services/validation-idee)
+
+---
+
+**Tu préfères d'abord en discuter ?**
+
+Si t'as besoin d'un regard extérieur pour challenger ton idée avant de te lancer, on peut en parler. Pas de pitch commercial, juste 30 minutes de questions cash pour voir si ton concept tient la route.
 
 ![Illustration de deux personnes en discussion pour challenger une idée business](/images/blog/valide-idee-business-suisse-cta.webp)
 
-[Réserver un appel →](https://cal.com/jonathan-vouilloz/appel-de-bienvenue)
-
-Ou découvrir les services :
-
-[Voir les services →](/services)
+[Réserver un appel découverte →](https://cal.com/jonathan-vouilloz/appel-de-bienvenue)
