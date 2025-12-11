@@ -311,7 +311,7 @@ const needOptions = [
                 <h1 class="seo-h1 mb-8 mt-8">Refonte de site web à Genève</h1>
 
                 <!-- Main title -->
-                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6">
+                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6" data-animate="fade-up">
                     Votre site date de 2015 ?<br/>
                     Il est temps de passer à la
                     <span class="relative inline-block">
@@ -326,13 +326,13 @@ const needOptions = [
                 </p>
 
                 <!-- Description -->
-                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto" data-animate="fade-up" data-delay="0.1">
                     Site lent, design vieillot, impossible à modifier vous-même, invisible sur Google ?<br class="hidden md:block"/>
                     <strong class="text-[var(--text)]">Je refais tout. Proprement. En 3 semaines.</strong>
                 </p>
 
                 <!-- CTAs centered -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-20">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-20" data-animate="fade-up" data-delay="0.2">
                     <a
                         href="#contact"
                         class="
@@ -370,7 +370,7 @@ const needOptions = [
             </div>
 
             <!-- Browser mockup centered -->
-            <div class="w-full mx-auto relative">
+            <div class="w-full mx-auto relative" data-animate="scale" data-delay="0.3">
                 <div class="bg-white border-3 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] relative">
                     <!-- Browser bar -->
                     <div class="flex items-center gap-2 p-3 border-b-2 border-black bg-gray-50">
@@ -414,7 +414,7 @@ const needOptions = [
         <BackgroundGlitchGrid />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     problèmes
@@ -431,9 +431,9 @@ const needOptions = [
             </div>
 
             <!-- Pain points grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12" data-animate-stagger>
                 {painPoints.map((point) => (
-                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
                         <!-- Red X icon -->
                         <div class="w-10 h-10 bg-red-100 border-2 border-red-300 flex items-center justify-center mb-4">
                             <i class="ri-close-line text-red-500 text-xl"></i>
@@ -445,7 +445,7 @@ const needOptions = [
             </div>
 
             <!-- Good news callout -->
-            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8 text-center">
+            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8 text-center" data-animate="fade-up">
                 <p class="text-lg md:text-xl font-medium">
                     <i class="ri-lightbulb-line text-[var(--blue)] mr-2"></i>
                     <strong>Bonne nouvelle :</strong> Tout ça, c'est réparable. Et plus vite que vous pensez.
@@ -459,7 +459,7 @@ const needOptions = [
         <BackgroundProgressFlow />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     méthode
@@ -472,9 +472,9 @@ const needOptions = [
             </div>
 
             <!-- Timeline - Grid simple -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-animate-stagger>
                 {methodSteps.map((step, index) => (
-                    <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative">
+                    <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative" data-animate-item>
                         <!-- Number badge intégré -->
                         <div class="flex items-center gap-3 mb-4">
                             <span class="w-10 h-10 bg-[var(--blue)] border-2 border-black flex items-center justify-center font-mono font-bold text-sm">
@@ -504,10 +504,10 @@ const needOptions = [
 
             <!-- Differentiators -->
             <div class="mt-16 md:mt-20">
-                <h3 class="text-xl md:text-2xl font-bold text-center mb-8">Ce qui me différencie</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <h3 class="text-xl md:text-2xl font-bold text-center mb-8" data-animate="fade-up">Ce qui me différencie</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" data-animate-stagger>
                     {differentiators.map((diff) => (
-                        <div class="bg-white border-2 border-black p-5">
+                        <div class="bg-white border-2 border-black p-5" data-animate-item>
                             <i class={`${diff.icon} text-2xl text-[var(--blue)] mb-3 block`}></i>
                             <h4 class="font-bold mb-2">{diff.title}</h4>
                             <p class="text-sm text-gray-600">{diff.description}</p>
@@ -522,7 +522,7 @@ const needOptions = [
     <section id="resultats" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
         <div class="max-w-5xl mx-auto">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     résultats
@@ -535,7 +535,7 @@ const needOptions = [
             </div>
 
             <!-- Results table -->
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" data-animate="fade-up" data-delay="0.1">
                 <table class="w-full border-3 border-black bg-[var(--main-bg)]">
                     <!-- Header -->
                     <thead>
@@ -590,7 +590,7 @@ const needOptions = [
         <BackgroundCircuitBoard animated={true} />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     technologie
@@ -606,9 +606,9 @@ const needOptions = [
             </div>
 
             <!-- Tech options -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12" data-animate-stagger="scale">
                 {techOptions.map((tech) => (
-                    <div class="tech-card bg-white border-2 border-black p-6 text-center transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                    <div class="tech-card bg-white border-2 border-black p-6 text-center transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
                         <i class={`${tech.icon} text-3xl text-[var(--violet)] mb-4 block`}></i>
                         <p class="text-sm text-gray-500 mb-1">{tech.type}</p>
                         <h3 class="text-xl font-bold mb-2">{tech.solution}</h3>
@@ -618,7 +618,7 @@ const needOptions = [
             </div>
 
             <!-- Guarantees -->
-            <div class="bg-white border-2 border-black p-6 md:p-8 mb-12">
+            <div class="bg-white border-2 border-black p-6 md:p-8 mb-12" data-animate="fade-up">
                 <h3 class="text-lg font-bold text-center mb-6">Les 3 garanties (peu importe la techno)</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {guarantees.map((g) => (
@@ -641,7 +641,7 @@ const needOptions = [
     <section id="prix" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
         <div class="max-w-5xl mx-auto">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     investissement
@@ -654,9 +654,9 @@ const needOptions = [
             </div>
 
             <!-- Pricing cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12" data-animate-stagger>
                 <!-- Timeline card -->
-                <div class="bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative">
+                <div class="bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate-item>
                     <!-- Corner boxes -->
                     <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
                     <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
@@ -687,7 +687,7 @@ const needOptions = [
                 </div>
 
                 <!-- Pricing card -->
-                <div class="bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative">
+                <div class="bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate-item>
                     <!-- Corner boxes -->
                     <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--violet)] border-2 border-black"></div>
                     <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--violet)] border-2 border-black"></div>
@@ -723,7 +723,7 @@ const needOptions = [
             </div>
 
             <!-- Inclusions -->
-            <div class="bg-white border-2 border-black p-6 md:p-8">
+            <div class="bg-white border-2 border-black p-6 md:p-8" data-animate="fade-up">
                 <h3 class="font-bold mb-4 flex items-center gap-2">
                     <i class="ri-checkbox-circle-line text-[var(--blue)]"></i>
                     Ce qui est TOUJOURS inclus :
@@ -753,7 +753,7 @@ const needOptions = [
         <BackgroundMapContours />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     local
@@ -768,7 +768,7 @@ const needOptions = [
             <!-- Two columns -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                 <!-- Why local -->
-                <div>
+                <div data-animate="fade-left">
                     <h3 class="text-xl font-bold mb-6">Pourquoi choisir un prestataire local ?</h3>
                     <div class="space-y-4">
                         {localAdvantages.map((adv) => (
@@ -786,7 +786,7 @@ const needOptions = [
                 </div>
 
                 <!-- Zones -->
-                <div>
+                <div data-animate="fade-right">
                     <h3 class="text-xl font-bold mb-6">Zones d'intervention prioritaires</h3>
                     <div class="space-y-3">
                         {zones.map((zone) => (
@@ -818,7 +818,7 @@ const needOptions = [
 
         <div class="max-w-4xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <h2 class="text-3xl md:text-4xl font-normal mb-4 text-[var(--text)]">
                     Prêt à moderniser votre site ?
                 </h2>
@@ -826,15 +826,15 @@ const needOptions = [
             </div>
 
             <!-- Options -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <div class="bg-white border-2 border-black p-6 text-center shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12" data-animate-stagger>
+                <div class="bg-white border-2 border-black p-6 text-center shadow-[4px_4px_0px_rgba(0,0,0,0.15)]" data-animate-item>
                     <div class="w-12 h-12 bg-[var(--blue)] border-2 border-black mx-auto mb-4 flex items-center justify-center">
                         <i class="ri-search-eye-line text-xl text-black"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Option 1 : Audit gratuit</h3>
                     <p class="text-gray-600 text-sm mb-4">15 min, pas de bullshit, pas de vente forcée.<br/>Je regarde votre site et vous dis ce qui cloche.</p>
                 </div>
-                <div class="bg-white border-2 border-black p-6 text-center shadow-[4px_4px_0px_rgba(0,0,0,0.15)]">
+                <div class="bg-white border-2 border-black p-6 text-center shadow-[4px_4px_0px_rgba(0,0,0,0.15)]" data-animate-item>
                     <div class="w-12 h-12 bg-[var(--violet)] border-2 border-black mx-auto mb-4 flex items-center justify-center">
                         <i class="ri-chat-3-line text-xl text-white"></i>
                     </div>
@@ -844,7 +844,7 @@ const needOptions = [
             </div>
 
             <!-- Contact Form -->
-            <div class="contact-form-container">
+            <div class="contact-form-container" data-animate="scale">
                 <form
                     class="bg-white text-[var(--text)] border-3 border-black p-6 md:p-8 shadow-[8px_8px_0px_rgba(0,217,163,0.3)] relative"
                     id="refonte-form"
