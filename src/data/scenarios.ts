@@ -219,7 +219,8 @@ export const serviceSections: ServiceSection[] = [
           'Interface simple pensée pour toi et ton équipe',
           'Connexion à tes outils existants (CRM, compta, emails...)'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/outils-sur-mesure'
       }
     ],
     ctaText: 'Lancer mon projet web'

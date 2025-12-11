@@ -23,7 +23,14 @@
       "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\components\\backgrounds\")",
       "Bash(findstr:*)",
       "Bash(move:*)",
-      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\outils\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\outils\")"
+      "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\outils\" mkdir \"C:\\Users\\jojo-\\Desktop\\angie\\src\\pages\\outils\")",
+      "Bash(claude mcp add nano-banana npx -y nano-banana-mcp)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp:*)",
+      "mcp__nano-banana__generate_image",
+      "Bash(npx @aspect-build/squoosh-cli:*)",
+      "Bash(where:*)",
+      "Bash(node -e:*)"
     ],
     "deny": [],
     "ask": []
