@@ -272,7 +272,8 @@ export const serviceSections: ServiceSection[] = [
           'Métriques concrètes : visiteurs, clics, inscriptions',
           'Réponse en 1-2 semaines : ça mord ou pas ?'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/validation-idee'
       },
       {
         id: 'mvp-rapide',

@@ -1,0 +1,820 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.astro';
+
+// Import SVG pour surlignement hero
+import svgArrowHero from '../../assets/arrow-3.svg';
+
+// Import background components (utilisés avec parcimonie)
+import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
+import BackgroundProgressFlow from '../../components/backgrounds/BackgroundProgressFlow.astro';
+
+// SEO Data
+const seoData = {
+    title: "Test de concept et validation d'idée | Jon Labs Genève",
+    description: "Vérifiez que votre idée intéresse le marché avant d'investir. Landing page + campagne ciblée + analyse. Réponse en 2 semaines. Basé à Genève."
+};
+
+// Service schema for SEO
+const serviceSchema = [
+    {
+        title: "Test de concept et validation d'idée",
+        description: "Service de validation d'idée business à Genève. Landing page, campagne Meta Ads, analyse des résultats. À partir de 750 CHF."
+    }
+];
+
+// Pain points data
+const painPoints = [
+    {
+        title: "\"J'ai investi 3 mois sur un projet... que personne ne voulait.\"",
+        description: "L'histoire classique : on construit dans son coin, on peaufine, on lance — et le marché s'en fiche. Le problème n'est pas l'exécution. C'est l'absence de validation."
+    },
+    {
+        title: "\"Je ne sais pas si mon idée plaît vraiment ou si mes proches sont juste polis.\"",
+        description: "Les retours de l'entourage sont biaisés par nature. Seuls des inconnus qui n'ont aucune raison de vous faire plaisir peuvent donner une réponse honnête."
+    },
+    {
+        title: "\"On n'a pas le temps en interne de monter un test propre.\"",
+        description: "Configurer une landing page, paramétrer une campagne pub, analyser les résultats... Ça demande des compétences spécifiques et du temps que vous n'avez pas."
+    },
+    {
+        title: "\"Créer une Sàrl pour tester ? Trop risqué.\"",
+        description: "20'000 CHF de capital, des frais de notaire, des mois de paperasse — pour découvrir ensuite que le marché n'existe pas. Il y a une autre façon de faire."
+    }
+];
+
+// Method phases
+const methodPhases = [
+    {
+        phase: "1",
+        title: "Le signal faible",
+        description: "On commence avec une landing page minimaliste — un \"coming soon\" bien présenté. On lance une première campagne ciblée. L'objectif : vérifier que le sujet attire l'attention. Si personne ne clique, inutile d'aller plus loin. Vous avez votre réponse."
+    },
+    {
+        phase: "2",
+        title: "L'intérêt confirmé",
+        description: "Si la phase 1 fonctionne, on étoffe la page avec votre proposition de valeur et un formulaire d'inscription. On affine le ciblage avec des audiences similaires (lookalike). L'objectif : voir si des gens veulent en savoir plus, pas juste cliquer par curiosité."
+    },
+    {
+        phase: "3",
+        title: "L'intention d'achat",
+        description: "Si la phase 2 confirme l'intérêt, on construit une landing complète avec un appel à l'action engageant — pré-commande, réservation, demande de devis. C'est le test ultime : est-ce que des inconnus sont prêts à passer à l'action ?"
+    }
+];
+
+// Process steps
+const processSteps = [
+    {
+        step: "1",
+        title: "Échange initial",
+        description: "On clarifie votre idée, votre cible, et ce que \"succès\" signifie pour vous. Je vous dis honnêtement si le test fait sens — ou s'il vaut mieux affiner le concept d'abord.",
+        duration: "30 min (gratuit)"
+    },
+    {
+        step: "2",
+        title: "Création de la landing page",
+        description: "Pas un template générique. Du copywriting stratégique pensé pour votre offre, un design soigné, une page optimisée pour la conversion. Le wording compte autant que le visuel.",
+        duration: "3-5 jours"
+    },
+    {
+        step: "3",
+        title: "Configuration de la campagne",
+        description: "Ciblage précis sur Meta Ads (Facebook/Instagram). On définit ensemble les audiences pertinentes, le budget est maîtrisé, et on peut cibler géographiquement si votre offre est locale.",
+        duration: "1-2 jours"
+    },
+    {
+        step: "4",
+        title: "Analyse et rapport",
+        description: "Données concrètes : visiteurs, taux de clic, inscriptions ou conversions. Pas des opinions — des chiffres. Plus un appel de debrief pour interpréter ensemble ce que ça signifie pour votre projet.",
+        duration: "À la fin du test"
+    }
+];
+
+// Differentiators
+const differentiators = [
+    {
+        icon: "ri-edit-line",
+        text: "Pas juste une \"jolie page\" : du copywriting pensé pour convertir"
+    },
+    {
+        icon: "ri-stack-line",
+        text: "Méthode itérative : on teste par étapes, pas tout d'un coup"
+    },
+    {
+        icon: "ri-key-line",
+        text: "Vous repartez avec la landing page — elle vous appartient"
+    },
+    {
+        icon: "ri-timer-line",
+        text: "Réponse en 2 semaines, pas 2 mois"
+    }
+];
+
+// Results
+const results = [
+    {
+        title: "Une landing page professionnelle",
+        description: "Wording précis, design soigné, hébergée et fonctionnelle. Elle vous appartient après le test."
+    },
+    {
+        title: "Une campagne Meta Ads configurée",
+        description: "Ciblage affiné, budget optimisé, audiences testées. Vous gardez le contrôle sur les dépenses."
+    },
+    {
+        title: "Un rapport avec métriques concrètes",
+        description: "Visiteurs, clics, taux de conversion — des chiffres, pas des opinions."
+    },
+    {
+        title: "Un appel de debrief",
+        description: "On analyse ensemble ce que les données signifient. Faut-il pivoter ? Continuer ? Affiner le message ?"
+    },
+    {
+        title: "Une réponse claire en 2 semaines",
+        description: "Ça mord, ou pas. Vous savez si vous devez continuer à investir."
+    }
+];
+
+// Pricing
+const pricing = {
+    prestation: "750 – 1'500 CHF",
+    budget_pub: "150 – 200 CHF",
+    delai: "2 semaines"
+};
+
+// FAQs
+const faqs = [
+    {
+        question: "Quel budget pub faut-il prévoir ?",
+        answer: "Entre 150 et 200 CHF suffisent généralement pour un premier test significatif. Ce budget est payé directement à Meta (Facebook/Instagram), pas à moi. C'est vous qui contrôlez les dépenses, et on peut ajuster en cours de route."
+    },
+    {
+        question: "Que se passe-t-il si le test est négatif ?",
+        answer: "C'est une bonne nouvelle, pas une mauvaise. Vous venez d'économiser des semaines — voire des mois — de travail sur une idée qui n'aurait pas fonctionné. On peut discuter ensemble de comment pivoter ou affiner le concept. Parfois, c'est juste le message qui ne passait pas, pas l'idée elle-même."
+    },
+    {
+        question: "La landing page m'appartient-elle après le test ?",
+        answer: "Oui. Elle reste à vous. Vous pouvez continuer à l'utiliser, la modifier, ou la faire évoluer vers un vrai site si le test est positif. Pas de dépendance, pas d'abonnement caché."
+    },
+    {
+        question: "Je n'ai pas encore de structure juridique, c'est un problème ?",
+        answer: "Non. En Suisse, vous pouvez facturer jusqu'à 100'000 CHF par an en Raison Individuelle sans même créer de Sàrl. Le test de concept sert justement à valider AVANT d'investir dans une structure.",
+        linkText: "En savoir plus sur la validation sans créer de Sàrl →",
+        linkUrl: "/blog/valide-idee-business-suisse"
+    },
+    {
+        question: "Quels types d'idées peut-on tester ?",
+        answer: "Pratiquement tout : un nouveau service, un produit physique ou digital, une formation, une app, un SaaS, une offre de consulting... Si ça peut s'expliquer sur une page et intéresser une audience ciblable sur les réseaux sociaux, on peut tester."
+    },
+    {
+        question: "Comment je sais si mon idée est \"testable\" ?",
+        answer: "On en discute lors du premier échange. Si votre idée est trop floue, si le marché est impossible à cibler précisément, ou si le test n'apporterait pas de réponse claire, je vous le dirai — et je vous aiderai à affiner avant de dépenser quoi que ce soit."
+    },
+    {
+        question: "Pourquoi Meta Ads et pas Google Ads ?",
+        answer: "Meta Ads permet de cibler des gens qui ne cherchent pas encore activement votre solution — c'est idéal pour tester une idée nouvelle. Google Ads fonctionne mieux quand les gens savent déjà ce qu'ils cherchent. Pour la validation de concept, Meta est généralement plus pertinent. Mais si votre offre répond à une recherche claire, on peut combiner les deux."
+    },
+    {
+        question: "Et si le test est positif, vous pouvez développer la suite ?",
+        answer: "Oui. Si votre idée est validée et que vous voulez passer à un vrai site ou une application, on peut en discuter. Mais ce n'est pas une obligation — le test est un service autonome, vous êtes libre de continuer avec qui vous voulez."
+    }
+];
+
+// Local zones
+const zones = [
+    { name: "Genève", type: "primary", icon: "ri-map-pin-fill" },
+    { name: "Lausanne", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Vaud", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Toute Suisse romande", type: "tertiary", icon: "ri-global-line" }
+];
+---
+
+<Layout
+    title={seoData.title}
+    description={seoData.description}
+    schema="Service"
+    schemaData={serviceSchema}
+>
+    <Header />
+
+    <!-- ============================================== -->
+    <!-- HERO SECTION -->
+    <!-- ============================================== -->
+    <section class="hero-section -mt-[120px] pt-[150px] pb-16 md:pt-[160px] md:pb-24 px-4 relative overflow-hidden">
+        <!-- Gradient mesh background -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-[var(--yellow)] opacity-15 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-[var(--blue)] opacity-10 blur-[100px] rounded-full"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- Centered text content -->
+            <div class="text-center">
+                <!-- H1 SEO discret -->
+                <h1 class="seo-h1 mb-8 mt-8">Test de concept et validation d'idée à Genève</h1>
+
+                <!-- Main title -->
+                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6" data-animate="fade-up">
+                    Votre idée vaut-elle le coup ?<br/>
+                    Réponse en
+                    <span class="relative inline-block">
+                        <span class="relative z-10">2 semaines.</span>
+                        <img
+                            src={svgArrowHero.src}
+                            alt=""
+                            class="absolute -bottom-1 left-0 w-full h-5 md:h-6 pointer-events-none"
+                            aria-hidden="true"
+                        />
+                    </span>
+                </p>
+
+                <!-- Description -->
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto" data-animate="fade-up" data-delay="0.1">
+                    Avant d'investir des mois de développement, vérifiez que des gens sont prêts à payer.<br class="hidden md:block"/>
+                    <strong class="text-[var(--text)]">Une landing page stratégique, une campagne ciblée, des chiffres concrets.</strong>
+                </p>
+
+                <!-- CTAs centered -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-20" data-animate="fade-up" data-delay="0.2">
+                    <a
+                        href="https://cal.com/jonathan-vouilloz/appel-de-bienvenue"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="
+                            bg-[var(--yellow)]
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                            transition-all duration-200
+                            hover:bg-[var(--blue)]
+                            hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                            hover:translate-x-[2px] hover:translate-y-[2px]
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        <i class="ri-rocket-line"></i>
+                        Tester mon idée
+                    </a>
+                    <a
+                        href="#methode"
+                        class="
+                            bg-white
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            transition-all duration-200
+                            hover:bg-gray-100
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        Voir comment ça fonctionne
+                        <i class="ri-arrow-down-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual element: Idea validation concept -->
+            <div class="w-full max-w-2xl mx-auto relative" data-animate="scale" data-delay="0.3">
+                <div class="bg-white border-3 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] p-8 md:p-12 relative">
+                    <!-- Corner boxes -->
+                    <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                    <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                    <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                    <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+
+                    <!-- Concept illustration -->
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+                        <!-- Idea -->
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-[var(--yellow)] border-2 border-black mx-auto mb-3 flex items-center justify-center">
+                                <i class="ri-lightbulb-line text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-sm">Votre idée</span>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="hidden md:flex items-center">
+                            <div class="w-16 h-0.5 bg-black"></div>
+                            <i class="ri-arrow-right-line text-xl"></i>
+                        </div>
+                        <div class="md:hidden">
+                            <i class="ri-arrow-down-line text-xl"></i>
+                        </div>
+
+                        <!-- Test -->
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-[var(--blue)] border-2 border-black mx-auto mb-3 flex items-center justify-center">
+                                <i class="ri-flask-line text-3xl"></i>
+                            </div>
+                            <span class="font-bold text-sm">Test marché</span>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="hidden md:flex items-center">
+                            <div class="w-16 h-0.5 bg-black"></div>
+                            <i class="ri-arrow-right-line text-xl"></i>
+                        </div>
+                        <div class="md:hidden">
+                            <i class="ri-arrow-down-line text-xl"></i>
+                        </div>
+
+                        <!-- Result -->
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-green-100 border-2 border-green-500 mx-auto mb-3 flex items-center justify-center">
+                                <i class="ri-check-double-line text-3xl text-green-600"></i>
+                            </div>
+                            <span class="font-bold text-sm">Réponse claire</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge délai -->
+                <div class="absolute -top-4 -right-4 bg-[var(--yellow)] border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,1)] rotate-3">
+                    <span class="font-bold text-sm">2 semaines</span>
+                </div>
+
+                <!-- Badge prix -->
+                <div class="absolute -bottom-4 -left-4 bg-white border-2 border-black px-3 py-2 shadow-[3px_3px_0px_rgba(0,0,0,1)] -rotate-3">
+                    <span class="font-mono text-sm">dès 750 CHF</span>
+                </div>
+            </div>
+
+            <!-- Location badge centered -->
+            <div class="flex items-center justify-center gap-2 text-sm text-gray-500 mt-12">
+                <i class="ri-map-pin-fill text-[var(--yellow)]"></i>
+                <span>Basé à Genève | Service en Suisse romande</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAIN POINTS SECTION -->
+    <section id="problemes" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
+        <div class="max-w-5xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    problèmes
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    <span class="relative inline-block">
+                        <span class="absolute bg-red-200 w-full h-[40%] left-0 bottom-1 -z-1"></span>
+                        Vous vous reconnaissez ?
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-600">Ces situations sont plus courantes qu'on ne le croit.</p>
+            </div>
+
+            <!-- Pain points grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12" data-animate-stagger>
+                {painPoints.map((point) => (
+                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
+                        <!-- Red X icon -->
+                        <div class="w-10 h-10 bg-red-100 border-2 border-red-300 flex items-center justify-center mb-4">
+                            <i class="ri-close-line text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{point.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{point.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Good news callout -->
+            <div class="bg-[var(--yellow)] bg-opacity-20 border-2 border-[var(--yellow)] p-6 md:p-8 text-center" data-animate="fade-up">
+                <p class="text-lg md:text-xl font-medium">
+                    <i class="ri-lightbulb-line text-[var(--text)] mr-2"></i>
+                    <strong>La bonne nouvelle :</strong> vous pouvez avoir une réponse du marché avant d'investir sérieusement.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHOD SECTION -->
+    <section id="methode" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    méthode
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Comment ça se passe ?
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Une approche itérative qui minimise le risque et maximise l'apprentissage.
+                </p>
+            </div>
+
+            <!-- 3 Phases -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold text-center mb-8">La méthode en 3 phases</h3>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+                    La plupart des prestataires vous livrent une landing page et vous souhaitent bonne chance. Ici, on procède par étapes — chaque phase nous apprend quelque chose avant de passer à la suivante.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-animate-stagger>
+                    {methodPhases.map((phase) => (
+                        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative" data-animate-item>
+                            <!-- Phase badge -->
+                            <div class="absolute -top-3 left-4 bg-[var(--yellow)] border-2 border-black px-3 py-1 text-xs font-bold">
+                                PHASE {phase.phase}
+                            </div>
+                            <h4 class="text-lg font-bold mb-3 mt-4">{phase.title}</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">{phase.description}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <!-- Why this method -->
+                <div class="mt-8 bg-[var(--main-bg)] border-2 border-black p-6 text-center" data-animate="fade-up">
+                    <p class="text-gray-700">
+                        <strong>Pourquoi cette méthode ?</strong> À chaque phase, on affine le ciblage et le message. Si ça ne mord pas en phase 1, inutile de construire une landing complète. Vous économisez du temps et de l'argent. Et si ça fonctionne, vous avez des données solides pour continuer en confiance.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Process steps -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold text-center mb-8">Le processus concret</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-animate-stagger>
+                    {processSteps.map((step, index) => (
+                        <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative" data-animate-item>
+                            <!-- Number badge -->
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="w-10 h-10 bg-[var(--yellow)] border-2 border-black flex items-center justify-center font-mono font-bold text-sm">
+                                    0{index + 1}
+                                </span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">{step.title}</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">{step.description}</p>
+                            <!-- Duration -->
+                            <div class="flex items-center gap-2 text-sm pt-3 border-t border-dashed border-gray-300">
+                                <i class="ri-time-line text-[var(--yellow)]"></i>
+                                <span class="text-gray-500">{step.duration}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Differentiators box -->
+            <div class="bg-white border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate="fade-up">
+                <!-- Corner boxes -->
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+
+                <h3 class="text-xl font-bold text-center mb-6">Ce qui change avec Jon Labs</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {differentiators.map((diff) => (
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-[var(--yellow)] border-2 border-black flex items-center justify-center flex-shrink-0">
+                                <i class={`${diff.icon} text-sm`}></i>
+                            </div>
+                            <p class="text-sm text-gray-700">{diff.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section id="resultats" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundProgressFlow />
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    résultats
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Ce que vous obtenez
+                </h2>
+            </div>
+
+            <!-- Results grid: 3 cards on top -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6" data-animate-stagger>
+                {results.slice(0, 3).map((result) => (
+                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
+                        <!-- Green check icon -->
+                        <div class="w-10 h-10 bg-green-100 border-2 border-green-400 flex items-center justify-center mb-4">
+                            <i class="ri-check-line text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{result.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{result.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Results grid: 2 cards centered below -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto" data-animate-stagger>
+                {results.slice(3).map((result) => (
+                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
+                        <!-- Green check icon -->
+                        <div class="w-10 h-10 bg-green-100 border-2 border-green-400 flex items-center justify-center mb-4">
+                            <i class="ri-check-line text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{result.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{result.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- STORY SECTION -->
+    <section id="histoire" class="py-20 md:py-28 px-4">
+        <div class="max-w-3xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    pourquoi ce service
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Pourquoi je propose ce service
+                </h2>
+            </div>
+
+            <!-- Story card -->
+            <div class="bg-white border-3 border-black p-8 md:p-10 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate="fade-up">
+                <i class="ri-double-quotes-l text-6xl text-gray-100 absolute -top-4 -left-2 md:-left-4"></i>
+
+                <div class="space-y-4 text-gray-700 leading-relaxed relative z-10">
+                    <p class="font-bold text-lg text-[var(--text)]">J'ai fait l'erreur que vous voulez éviter.</p>
+
+                    <p>Avec un associé, on a passé un mois entier à développer une plateforme de vente de contenu digital. Le concept : permettre à n'importe qui de vendre du contenu instantanément. Tu uploades ton fichier, tu choisis ton prix, tu partages le lien. Le destinataire paie, il accède au contenu.</p>
+
+                    <p>L'UX était nickel. Le produit était "parfait".</p>
+
+                    <p><strong>Sauf qu'on n'avait jamais vérifié que quelqu'un voulait payer pour ça.</strong></p>
+
+                    <p>Quand on a enfin montré le produit au monde, le marché s'en fichait. Les gens qu'on ciblait avaient déjà leurs solutions. Le problème qu'on résolvait n'était pas assez douloureux pour qu'ils changent leurs habitudes.</p>
+
+                    <p>Un mois de travail. Des nuits blanches. Un produit qui n'existe plus aujourd'hui.</p>
+
+                    <div class="bg-[var(--yellow)] bg-opacity-30 border-l-4 border-[var(--yellow)] p-4 mt-6">
+                        <p class="font-bold text-[var(--text)]">
+                            Si on avait fait une landing page en 2 jours et dépensé 200 CHF de pub, on aurait su en une semaine que l'idée ne tenait pas.
+                        </p>
+                    </div>
+
+                    <p class="mt-6">C'est pour ça que je propose ce service. Pour vous éviter cette erreur.</p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-dashed border-gray-300">
+                    <a href="/blog/valide-idee-business-suisse" class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline">
+                        <i class="ri-article-line"></i>
+                        Lire l'histoire complète et la méthode du smoke test
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="prix" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    investissement
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Investissement
+                </h2>
+                <p class="text-lg text-gray-600">Un test qui coûte moins cher qu'un mois de développement raté.</p>
+            </div>
+
+            <!-- Pricing card -->
+            <div class="bg-[var(--main-bg)] border-3 border-black p-8 md:p-10 shadow-[8px_8px_0px_rgba(0,0,0,1)] relative mb-8" data-animate="scale">
+                <!-- Corner boxes -->
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--yellow)] border-2 border-black"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <span class="text-sm text-gray-500 block mb-2">Prestation complète</span>
+                        <span class="text-3xl font-bold text-[var(--text)]">{pricing.prestation}</span>
+                    </div>
+                    <div>
+                        <span class="text-sm text-gray-500 block mb-2">Budget pub recommandé</span>
+                        <span class="text-3xl font-bold text-[var(--text)]">{pricing.budget_pub}</span>
+                        <span class="text-xs text-gray-500 block mt-1">(payé directement à Meta)</span>
+                    </div>
+                    <div>
+                        <span class="text-sm text-gray-500 block mb-2">Délai</span>
+                        <span class="text-3xl font-bold text-[var(--text)]">{pricing.delai}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price factors -->
+            <div class="bg-white border-2 border-black p-6 mb-8" data-animate="fade-up">
+                <h3 class="font-bold mb-4 flex items-center gap-2">
+                    <i class="ri-information-line text-[var(--yellow)]"></i>
+                    Ce qui influence le prix :
+                </h3>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center gap-2">
+                        <i class="ri-arrow-right-s-line text-[var(--yellow)]"></i>
+                        La complexité de l'offre à présenter
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="ri-arrow-right-s-line text-[var(--yellow)]"></i>
+                        Le nombre de variantes à tester
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="ri-arrow-right-s-line text-[var(--yellow)]"></i>
+                        Le niveau de design requis
+                    </li>
+                </ul>
+                <p class="mt-4 text-sm text-gray-500">
+                    <strong>Paiement échelonné possible</strong> — on en discute selon votre situation.
+                </p>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center" data-animate="fade-up">
+                <p class="text-gray-600 mb-6">
+                    Premier échange gratuit et sans engagement. On parle de votre idée, je vous dis honnêtement si ce service fait sens pour vous.
+                </p>
+                <a
+                    href="/contact"
+                    class="
+                        inline-flex items-center gap-2
+                        bg-[var(--yellow)]
+                        border-2 border-black
+                        px-8 py-4
+                        text-lg font-bold
+                        shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                        transition-all duration-200
+                        hover:bg-[var(--blue)]
+                        hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                        hover:translate-x-[2px] hover:translate-y-[2px]
+                    "
+                >
+                    <i class="ri-file-list-3-line"></i>
+                    Demander un devis personnalisé
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <FAQ
+        faqs={faqs}
+        title="Questions fréquentes"
+        sectionId="faq"
+    >
+        <BackgroundQuestionMarks slot="background" />
+    </FAQ>
+
+    <!-- Extra question note -->
+    <div class="text-center py-8 px-4 -mt-16 relative z-10">
+        <p class="text-gray-500">
+            Autre question ? <a href="/contact" class="text-[var(--blue)] font-medium hover:underline">Contactez-moi directement</a>, je réponds sous 24h.
+        </p>
+    </div>
+
+    <!-- LOCAL SECTION -->
+    <section id="local" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
+        <div class="max-w-4xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    local
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Basé à <span class="text-[var(--yellow)]">Genève</span>, disponible partout en Suisse romande
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-animate="fade-up">
+                <!-- Description -->
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Le test de concept se fait entièrement à distance — l'échange initial, le suivi, le debrief, tout peut se faire en visio. C'est souvent plus efficace.
+                    </p>
+                    <p>
+                        Mais si vous préférez un échange en personne pour le kickoff ou le debrief, je suis disponible sur Genève et ses environs.
+                    </p>
+                    <p>
+                        Je connais le marché suisse romand, ses spécificités — TWINT pour les paiements, la nLPD pour la protection des données, les comportements d'achat locaux. Et je peux cibler précisément votre zone géographique si votre offre est locale.
+                    </p>
+                </div>
+
+                <!-- Zones -->
+                <div class="space-y-3">
+                    {zones.map((zone) => (
+                        <div class={`
+                            flex items-center gap-4 p-4 border-2 border-black
+                            ${zone.type === 'primary' ? 'bg-[var(--yellow)] bg-opacity-20 border-[var(--yellow)]' : 'bg-white'}
+                        `}>
+                            <i class={`${zone.icon} text-xl ${zone.type === 'primary' ? 'text-[var(--text)]' : 'text-gray-600'}`}></i>
+                            <span class={`font-medium ${zone.type === 'primary' ? 'text-lg font-bold' : ''}`}>
+                                {zone.name}
+                                {zone.type === 'primary' && <span class="text-sm font-normal text-gray-600 ml-2">(basé sur place)</span>}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section id="cta-final" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <!-- Dot pattern background -->
+        <div class="absolute inset-0 dots-bg opacity-[0.3]"></div>
+
+        <div class="max-w-3xl mx-auto relative z-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-normal mb-6" data-animate="fade-up">
+                Prêt à savoir si votre idée vaut le coup ?
+            </h2>
+            <p class="text-lg text-gray-600 mb-8" data-animate="fade-up" data-delay="0.1">
+                Premier échange gratuit, 30 minutes. On parle de votre idée, je vous dis honnêtement si ce test fait sens — et si je suis la bonne personne pour vous aider.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12" data-animate="fade-up" data-delay="0.2">
+                <a
+                    href="https://cal.com/jonathan-vouilloz/appel-de-bienvenue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                        bg-[var(--yellow)]
+                        border-2 border-black
+                        px-8 py-4
+                        text-lg font-bold
+                        shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                        transition-all duration-200
+                        hover:bg-[var(--blue)]
+                        hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                        hover:translate-x-[2px] hover:translate-y-[2px]
+                        flex items-center justify-center gap-2
+                    "
+                >
+                    <i class="ri-calendar-line"></i>
+                    Réserver un appel découverte
+                </a>
+            </div>
+
+            <!-- Alternative -->
+            <div class="bg-white border-2 border-dashed border-gray-300 p-6 inline-block" data-animate="fade-up" data-delay="0.3">
+                <p class="text-gray-500 text-sm mb-2">
+                    <strong>Pas encore prêt ?</strong> Commencez par comprendre la méthode du smoke test et comment valider une idée en Suisse sans créer de Sàrl.
+                </p>
+                <a href="/blog/valide-idee-business-suisse" class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline">
+                    <i class="ri-article-line"></i>
+                    Lire l'article
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* Dot pattern background */
+    .dots-bg {
+        background-image: radial-gradient(circle, #000 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    /* H1 SEO style terminal */
+    .seo-h1 {
+        font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(15, 15, 15, 0.5);
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Scroll margin for anchor navigation */
+    section[id] {
+        scroll-margin-top: 100px;
+    }
+</style>

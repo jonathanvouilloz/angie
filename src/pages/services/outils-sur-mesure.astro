@@ -299,19 +299,19 @@ const budgetOptions = [
                 </h1>
 
                 <!-- Main title -->
-                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6">
+                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6" data-animate="fade-up">
                     Ton métier est unique.<br/>
                     Ton outil devrait l'être <span class="border-b-4 border-[var(--blue)]">aussi</span>.
                 </p>
 
                 <!-- Description -->
-                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto" data-animate="fade-up" data-delay="0.1">
                     Excel atteint ses limites, les logiciels du marché ne collent pas à ton process, et bricoler entre 5 apps différentes te fait perdre du temps.
                     <strong class="text-[var(--text)]">Je crée des dashboards et outils métier pensés pour ta façon de travailler</strong> — pas l'inverse.
                 </p>
 
                 <!-- CTAs - Sur une ligne -->
-                <div class="flex flex-wrap gap-4 justify-center mb-12">
+                <div class="flex flex-wrap gap-4 justify-center mb-12" data-animate="fade-up" data-delay="0.2">
                     <a
                         href="#contact"
                         class="
@@ -349,7 +349,7 @@ const budgetOptions = [
             </div>
 
             <!-- Screenshot Dashboard réel -->
-            <div class="relative max-w-3xl mx-auto">
+            <div class="relative max-w-3xl mx-auto" data-animate="scale" data-delay="0.3">
                 <div class="relative">
                     <!-- Image du dashboard -->
                     <div class="border-3 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] overflow-hidden bg-white">
@@ -387,7 +387,7 @@ const budgetOptions = [
         <BackgroundGlitchGrid color="rgba(239, 68, 68, 0.5)" opacity={0.12} />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     problèmes
@@ -403,9 +403,9 @@ const budgetOptions = [
             </div>
 
             <!-- Pain points grid - Format conversationnel avec guillemets -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12" data-animate-stagger>
                 {painPoints.map((point) => (
-                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
                         <!-- Icon + Quote -->
                         <div class="flex items-start gap-4 mb-4">
                             <div class="w-10 h-10 bg-red-100 border-2 border-red-300 flex items-center justify-center flex-shrink-0">
@@ -419,7 +419,7 @@ const budgetOptions = [
             </div>
 
             <!-- Transition callout -->
-            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8 text-center">
+            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8 text-center" data-animate="fade-up">
                 <p class="text-lg md:text-xl font-medium">
                     <i class="ri-lightbulb-line text-[var(--blue)] mr-2"></i>
                     <strong>Le problème n'est pas que tu es difficile.</strong> C'est que ton métier a des spécificités que les logiciels généralistes ignorent. La solution ? Un outil conçu autour de <strong>TON</strong> fonctionnement.
@@ -435,7 +435,7 @@ const budgetOptions = [
         <BackgroundProgressFlow colorStart="var(--blue)" colorEnd="var(--violet)" opacity={0.15} />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     méthode
@@ -483,7 +483,7 @@ const budgetOptions = [
             </div>
 
             <!-- Differentiators box -->
-            <div class="mt-16 bg-white border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative">
+            <div class="mt-16 bg-white border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate="fade-up">
                 <!-- Corner boxes -->
                 <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
                 <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
@@ -519,7 +519,7 @@ const budgetOptions = [
     <section id="resultats" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     résultats
@@ -531,9 +531,9 @@ const budgetOptions = [
             </div>
 
             <!-- Results grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12" data-animate-stagger>
                 {results.map((result) => (
-                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
                         <!-- Green check icon -->
                         <div class="w-10 h-10 bg-green-100 border-2 border-green-400 flex items-center justify-center mb-4">
                             <i class={`${result.icon} text-green-600 text-xl`}></i>
@@ -548,7 +548,7 @@ const budgetOptions = [
             </div>
 
             <!-- Case study - Dashboard club sportif -->
-            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8">
+            <div class="bg-[var(--blue)] bg-opacity-10 border-2 border-[var(--blue)] p-6 md:p-8" data-animate="fade-up">
                 <div class="flex flex-col md:flex-row gap-6 items-start">
                     <div class="w-16 h-16 bg-[var(--blue)] border-2 border-black flex items-center justify-center flex-shrink-0">
                         <i class="ri-trophy-line text-2xl"></i>
@@ -575,7 +575,7 @@ const budgetOptions = [
     <section id="technologie" class="py-20 md:py-28 px-4 relative overflow-hidden">
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     sous le capot
@@ -590,9 +590,9 @@ const budgetOptions = [
             </div>
 
             <!-- Tech cards -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12" data-animate-stagger="scale">
                 {techStack.map((tech) => (
-                    <div class="tech-card bg-white border-2 border-black p-4 md:p-6 text-center transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:-translate-y-1">
+                    <div class="tech-card bg-white border-2 border-black p-4 md:p-6 text-center transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)] hover:-translate-y-1" data-animate-item>
                         <i class={`${tech.icon} text-3xl text-[var(--blue)] mb-3 block`}></i>
                         <h3 class="text-sm md:text-base font-bold mb-2">{tech.name}</h3>
                         <p class="text-xs text-gray-600 hidden md:block">{tech.description}</p>
@@ -601,7 +601,7 @@ const budgetOptions = [
             </div>
 
             <!-- Reassurance note -->
-            <div class="bg-white border-2 border-black p-6 text-center">
+            <div class="bg-white border-2 border-black p-6 text-center" data-animate="fade-up">
                 <p class="text-gray-600">
                     <i class="ri-information-line text-[var(--blue)] mr-2"></i>
                     <strong>Pas besoin de comprendre ces termes.</strong> Ce qui compte pour toi : c'est moderne, c'est maintenable, et tes données restent les tiennes.
@@ -616,7 +616,7 @@ const budgetOptions = [
     <section id="prix" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
         <div class="max-w-5xl mx-auto">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     investissement
@@ -629,12 +629,12 @@ const budgetOptions = [
             </div>
 
             <!-- Pricing tiers -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12" data-animate-stagger>
                 {pricingTiers.map((tier) => (
                     <div class={`
                         pricing-card bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 relative
                         ${tier.highlighted ? 'shadow-[8px_8px_0px_rgba(0,0,0,1)] ring-2 ring-[var(--blue)]' : 'shadow-[4px_4px_0px_rgba(0,0,0,0.3)]'}
-                    `}>
+                    `} data-animate-item>
                         {tier.highlighted && (
                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--blue)] border-2 border-black px-3 py-1 text-xs font-bold">
                                 COURANT
@@ -659,7 +659,7 @@ const budgetOptions = [
             </div>
 
             <!-- Pricing factors -->
-            <div class="bg-white border-2 border-black p-6 md:p-8">
+            <div class="bg-white border-2 border-black p-6 md:p-8" data-animate="fade-up">
                 <h3 class="font-bold mb-4 flex items-center gap-2">
                     <i class="ri-information-line text-[var(--blue)]"></i>
                     Ce qui influence le budget :
@@ -693,7 +693,7 @@ const budgetOptions = [
         <BackgroundMapContours opacity={0.1} />
         <div class="max-w-5xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
                     <span class="w-8 h-px bg-gray-400"></span>
                     local
@@ -706,9 +706,9 @@ const budgetOptions = [
             </div>
 
             <!-- Advantages grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" data-animate-stagger>
                 {localAdvantages.map((adv) => (
-                    <div class="flex flex-col items-center text-center p-6 bg-[var(--main-bg)] border-2 border-black transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]">
+                    <div class="flex flex-col items-center text-center p-6 bg-[var(--main-bg)] border-2 border-black transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
                         <div class="w-12 h-12 bg-[var(--blue)] border-2 border-black flex items-center justify-center mb-4">
                             <i class={`${adv.icon} text-xl`}></i>
                         </div>
@@ -734,7 +734,7 @@ const budgetOptions = [
 
         <div class="max-w-4xl mx-auto relative z-10">
             <!-- Section header -->
-            <div class="text-center mb-12 md:mb-16">
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
                 <h2 class="text-3xl md:text-4xl font-normal mb-4 text-[var(--text)]">
                     Tu as un process qui mériterait son propre outil ?
                 </h2>
@@ -744,7 +744,7 @@ const budgetOptions = [
             </div>
 
             <!-- Contact Form -->
-            <div class="contact-form-container">
+            <div class="contact-form-container" data-animate="scale">
                 <form
                     class="bg-white text-[var(--text)] border-3 border-black p-6 md:p-8 shadow-[8px_8px_0px_rgba(0,217,163,0.3)] relative"
                     id="outils-form"
