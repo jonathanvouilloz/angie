@@ -100,13 +100,23 @@ const schemaData = {
 
           <!-- Top bar: back + share -->
           <div class="flex items-center justify-between mb-4">
-            <a
-              href="/blog/"
-              class="inline-flex items-center gap-2 text-sm font-medium bg-white border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-            >
-              <i class="ri-arrow-left-line"></i>
-              Retour au blog
-            </a>
+            <div class="flex items-center gap-2">
+              <a
+                href="/blog/"
+                class="inline-flex items-center gap-2 text-sm font-medium bg-white border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+              >
+                <i class="ri-arrow-left-line"></i>
+                Retour au blog
+              </a>
+              <button
+                class="focus-mode-toggle inline-flex items-center gap-2 text-sm font-medium bg-white border-2 border-black px-4 py-2 shadow-[3px_3px_0px_rgba(0,0,0,0.3)] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer"
+                aria-label="Mode lecture focus"
+                title="Activer/Désactiver le mode lecture focus"
+              >
+                <i class="focus-mode-icon ri-book-read-line"></i>
+                <span>Focus mode</span>
+              </button>
+            </div>
             <div class="flex items-center gap-2">
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(Astro.url.href)}`}
@@ -167,8 +177,10 @@ const schemaData = {
             )}
 
             <!-- Article content -->
-            <div class="prose prose-lg max-w-none">
-              <Content />
+            <div class="prose-wrapper">
+              <div class="prose prose-lg max-w-none">
+                <Content />
+              </div>
             </div>
 
             <!-- Share section -->
@@ -208,6 +220,45 @@ const schemaData = {
   <RelatedPosts posts={relatedPosts} />
   <AuthorBio />
   <AppFooter />
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.focus-mode-toggle');
+    const toggleIcons = document.querySelectorAll('.focus-mode-icon');
+
+    if (toggleButtons.length > 0) {
+      const applyFocusMode = (isActive) => {
+        if (isActive) {
+          document.body.classList.add('focus-mode-active');
+        } else {
+          document.body.classList.remove('focus-mode-active');
+        }
+        // Update icons
+        toggleIcons.forEach(icon => {
+            const currentClasses = icon.className.split(' ').filter(c => !c.startsWith('ri-'));
+            currentClasses.push(isActive ? 'ri-book-open-line' : 'ri-book-read-line');
+            icon.className = currentClasses.join(' ');
+        });
+      };
+
+      // Load initial state
+      const savedState = localStorage.getItem('focusMode');
+      const initialState = savedState === 'true';
+      applyFocusMode(initialState);
+
+      // Add event listeners
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.stopPropagation(); // Stop click from propagating to other elements
+          const isActive = document.body.classList.toggle('focus-mode-active');
+          localStorage.setItem('focusMode', isActive);
+          applyFocusMode(isActive);
+        });
+      });
+    }
+  });
+</script>
+
 </Layout>
 
 <style is:global>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'); /* Updated to include 600 weight */
 
 @import "tailwindcss";
 
@@ -12,4 +13,146 @@
     font-display: swap;
 }
 
+/* Focus Mode Styles V8 (Image Size) */
+body.focus-mode-active {
+    background-color: #FAFAFA !important; /* Soft background */
+}
 
+/* Hide non-essential elements */
+body.focus-mode-active header,
+body.focus-mode-active footer,
+body.focus-mode-active .related-posts-section,
+body.focus-mode-active .author-bio-section,
+body.focus-mode-active .relative.w-full.aspect-\[4\/3\], /* Hides hero image */
+body.focus-mode-active .xl\:col-span-1.order-1, /* Hides sidebar */
+body.focus-mode-active .mt-12.pt-8.border-t /* Hides bottom share section */
+{
+  display: none !important;
+}
+
+/* Reset layout of the main containers to center the content */
+body.focus-mode-active .max-w-6xl.mx-auto {
+  margin-top: 5vh !important; /* Give some space from the top */
+  max-width: 42rem !important; /* Optimal line length: ~672px */
+  padding: 0 1rem !important;
+}
+
+body.focus-mode-active .grid {
+  display: block !important; /* Break the grid layout */
+}
+
+/* Remove styling from the content card */
+body.focus-mode-active .bg-white.border-2.border-black {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Typography rules for focus mode */
+body.focus-mode-active .prose {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555555; /* Lighter body text color */
+}
+
+/* Titles typography */
+body.focus-mode-active .prose h1,
+body.focus-mode-active .prose h2,
+body.focus-mode-active .prose h3,
+body.focus-mode-active .prose h4,
+body.focus-mode-active .prose h5,
+body.focus-mode-active .prose h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; /* Semi-bold */
+    color: #2D2D2D; /* Titles remain slightly darker */
+}
+
+/* Explicitly setting title sizes and margins for consistency (REDUCED) */
+body.focus-mode-active .prose h1 {
+  font-size: 1.8em; /* ~32.4px based on 18px base */
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+body.focus-mode-active .prose h2 {
+  font-size: 1.5em; /* ~27px */
+  margin-top: 1.3em;
+  margin-bottom: 0.7em;
+}
+body.focus-mode-active .prose h3 {
+  font-size: 1.2em; /* ~21.6px */
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+}
+body.focus-mode-active .prose h4 {
+  font-size: 1.1em; /* ~19.8px */
+  margin-top: 1.1em;
+  margin-bottom: 0.5em;
+}
+body.focus-mode-active .prose h5,
+body.focus-mode-active .prose h6 {
+  font-size: 1em; /* ~18px */
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+/* Table styling for focus mode (SOFTER) */
+body.focus-mode-active .prose table {
+    border: 1px solid #ccc; /* Softer main border */
+    background: #fff; /* Ensure white background for table */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+body.focus-mode-active .prose thead {
+    background: #eee; /* Light gray header background */
+    color: #333; /* Dark gray text */
+}
+
+body.focus-mode-active .prose th {
+    border: 1px solid #ddd; /* Softer header borders */
+    padding: 0.6em 0.8em; /* Adjusted padding */
+}
+
+body.focus-mode-active .prose td {
+    border: 1px solid #ddd; /* Softer cell borders */
+    padding: 0.6em 0.8em; /* Adjusted padding */
+}
+
+body.focus-mode-active .prose tbody tr:last-child {
+    border-bottom: 1px solid #ccc; /* Softer final row border */
+}
+
+body.focus-mode-active .prose tbody tr:hover {
+    background: #f9f9f9; /* Subtle hover effect */
+}
+
+/* Image styling for focus mode */
+body.focus-mode-active .prose img {
+    max-width: 70% !important; /* Reduce size by 30% */
+    display: block !important; /* Override default inline-block */
+    margin: 1.5rem auto !important; /* Center the image and keep vertical margin */
+    border: none !important; /* Remove bold border in focus mode for softer look */
+    border-radius: 4px; /* Slight round corners */
+}
+
+/* Style for the focus mode toggle button when focus mode is active */
+body.focus-mode-active .focus-mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000; /* Ensure it's above other content */
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle background */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    color: #333; /* Darker color for visibility */
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+body.focus-mode-active .focus-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: #000;
+}
