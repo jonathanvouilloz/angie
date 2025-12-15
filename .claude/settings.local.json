@@ -30,7 +30,8 @@
       "mcp__nano-banana__generate_image",
       "Bash(npx @aspect-build/squoosh-cli:*)",
       "Bash(where:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(ls -la \"C:\\Users\\jojo-\\Desktop\\angie\\public\"\" 2>/dev/null || echo \"No public directory \")"
     ],
     "deny": [],
     "ask": []

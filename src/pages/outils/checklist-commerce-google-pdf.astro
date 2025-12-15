@@ -1,0 +1,745 @@
+---
+// PDF Checklist Commerce Google - Version minimaliste pour impression
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Checklist Commerce Google - PDF | Jon Labs</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4;
+      margin: 1cm;
+    }
+
+    html, body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      font-size: 9pt;
+      line-height: 1.35;
+      color: #1a1a1a;
+      background: white;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+
+    /* Layout */
+    .pdf-container {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0.3cm;
+    }
+
+    /* Header */
+    .pdf-header {
+      text-align: center;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #000;
+    }
+
+    .pdf-title {
+      font-size: 18pt;
+      font-weight: 700;
+      margin-bottom: 2px;
+      letter-spacing: -0.5px;
+    }
+
+    .pdf-subtitle {
+      font-size: 10pt;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .pdf-meta {
+      font-size: 8pt;
+      color: #666;
+    }
+
+    /* Week sections */
+    .week-section {
+      margin-bottom: 14px;
+    }
+
+    .week-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .week-number {
+      background: #000;
+      color: white;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 10pt;
+    }
+
+    .week-title {
+      font-size: 11pt;
+      font-weight: 700;
+    }
+
+    .week-subtitle {
+      font-size: 8pt;
+      color: #666;
+      font-style: italic;
+      margin-left: auto;
+    }
+
+    /* Checklist groups */
+    .checklist-group {
+      margin-bottom: 8px;
+    }
+
+    .group-title {
+      font-size: 9pt;
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: #333;
+    }
+
+    .checklist-items {
+      padding-left: 6px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 2px;
+      font-size: 8.5pt;
+    }
+
+    .checkbox {
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid #000;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .item-text {
+      color: #333;
+    }
+
+    /* Result badge */
+    .result-badge {
+      background: #f0fdf4;
+      border: 1px solid #22c55e;
+      padding: 4px 8px;
+      margin-top: 6px;
+      font-size: 8pt;
+      display: inline-block;
+    }
+
+    .result-badge strong {
+      color: #16a34a;
+    }
+
+    /* Bonus sections */
+    .bonus-section {
+      background: #fafafa;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .bonus-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .bonus-star {
+      font-size: 12pt;
+    }
+
+    .bonus-title {
+      font-size: 10pt;
+      font-weight: 700;
+    }
+
+    /* Message templates */
+    .message-template {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 8px;
+      margin-bottom: 8px;
+      font-size: 8pt;
+    }
+
+    .message-label {
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-size: 7pt;
+      letter-spacing: 0.5px;
+    }
+
+    .message-content {
+      color: #444;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* Steps list */
+    .steps-list {
+      counter-reset: step;
+      padding-left: 0;
+    }
+
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 8.5pt;
+    }
+
+    .steps-list li::before {
+      counter-increment: step;
+      content: counter(step) ".";
+      font-weight: 700;
+      color: #000;
+      min-width: 14px;
+    }
+
+    /* Hack box */
+    .hack-box {
+      background: #fff7ed;
+      border: 1px solid #f97316;
+      padding: 8px;
+    }
+
+    .hack-title {
+      font-weight: 700;
+      color: #c2410c;
+      margin-bottom: 4px;
+      font-size: 9pt;
+    }
+
+    .hack-example {
+      background: white;
+      border-left: 3px solid #f97316;
+      padding: 4px 8px;
+      margin: 6px 0;
+      font-size: 8pt;
+      color: #444;
+    }
+
+    .hack-warning {
+      font-size: 7.5pt;
+      color: #666;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    .pdf-footer {
+      margin-top: 16px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+      text-align: center;
+      font-size: 8pt;
+      color: #666;
+    }
+
+    .pdf-footer a {
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* Columns layout for compact display */
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* Print button */
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .print-btn:hover {
+      background: #333;
+    }
+
+    @media print {
+      .print-btn {
+        display: none;
+      }
+    }
+
+    /* Compact recap table */
+    .recap-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8pt;
+      margin-top: 8px;
+    }
+
+    .recap-table th,
+    .recap-table td {
+      border: 1px solid #ccc;
+      padding: 4px 6px;
+      text-align: left;
+    }
+
+    .recap-table th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" id="download-btn">
+    Telecharger PDF
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    document.getElementById('download-btn').addEventListener('click', function() {
+      const element = document.querySelector('.pdf-container');
+      const btn = this;
+      btn.textContent = 'Generation...';
+      btn.disabled = true;
+
+      const opt = {
+        margin: 0,
+        filename: 'Checklist-Commerce-Google-JonLabs.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        btn.textContent = 'Telecharger PDF';
+        btn.disabled = false;
+      });
+    });
+  </script>
+
+  <div class="pdf-container">
+    <!-- Header -->
+    <header class="pdf-header">
+      <h1 class="pdf-title">Checklist : Rendre ton commerce visible sur Google</h1>
+      <p class="pdf-subtitle">Le plan d'action en 4 semaines — Coche, avance, progresse.</p>
+      <p class="pdf-meta">jonlabs.ch | contact@jonlabs.ch</p>
+    </header>
+
+    <!-- SEMAINE 1 -->
+    <section class="week-section">
+      <div class="week-header">
+        <span class="week-number">1</span>
+        <span class="week-title">Google Business Profile</span>
+        <span class="week-subtitle">L'etape la plus importante</span>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Creer ta fiche</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Aller sur business.google.com</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Creer ou reclamer une fiche existante</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Valider ta propriete</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Informations essentielles</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Nom exact (pas de mots-cles)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Adresse precise (verifier le pin)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Telephone que tu decroches</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Horaires a jour (+ jours feries)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Categorie precise</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Description (2-3 phrases)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Lien vers ton site</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Photos (minimum 5)</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Devanture</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Interieur / ambiance</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Produits / plats phares</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Toi ou ton equipe</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Details (deco, terrasse...)</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Gerer les avis</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Lire tous les avis</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Repondre aux positifs</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Repondre aux negatifs (calme, pro)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Signaler les faux avis</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-badge"><strong>Resultat :</strong> Ta fiche apparait sur Google Maps et recherches locales</div>
+    </section>
+
+    <!-- SEMAINE 2 -->
+    <section class="week-section">
+      <div class="week-header">
+        <span class="week-number">2</span>
+        <span class="week-title">Site one-page</span>
+        <span class="week-subtitle">Une page bien faite suffit pour 90% des commerces</span>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">4 questions essentielles</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Qui tu es (3 phrases max)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Ce que tu proposes (+ prix)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Ou et quand (adresse, horaires)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Comment te contacter</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Choisir ton outil</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Carrd (19$/an) ou Google Sites (gratuit)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Framer / Webflow (plus de controle)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Deleguer a un pro (jonlabs.ch/contact)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Verifier l'essentiel</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Test mobile : lisible sans zoomer ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Boutons assez gros pour le pouce ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Telephone cliquable ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Chargement < 3 secondes ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Pas de fautes d'orthographe</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Connecter a Google Business</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Ajouter l'URL dans la fiche</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Verifier que le lien fonctionne</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-badge"><strong>Resultat :</strong> Un site pro qui donne envie de te contacter</div>
+    </section>
+
+    <!-- SEMAINE 3 -->
+    <section class="week-section">
+      <div class="week-header">
+        <span class="week-number">3</span>
+        <span class="week-title">Contact et reservation</span>
+        <span class="week-subtitle">Que le client puisse agir facilement</span>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Systeme de contact</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Formulaire simple (3 champs max)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">WhatsApp Business (gratuit)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Bouton "Appeler" cliquable</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Email visible</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Reservations (resto, salon...)</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Aleno (suisse, sans commission)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Cal.com / Calendly (RDV simples)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Formulaire + confirmation manuelle</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Paiement rapide</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Lien ou QR TWINT pour acomptes</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Afficher clairement</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Tester le parcours</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Test parcours client</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Chercher sur Google (navigation privee)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Cliquer sur la fiche</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Aller sur le site</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Contacter / reserver</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Faire tester par un ami</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-badge"><strong>Resultat :</strong> Les clients peuvent agir facilement</div>
+    </section>
+
+    <!-- SEMAINE 4 -->
+    <section class="week-section">
+      <div class="week-header">
+        <span class="week-number">4</span>
+        <span class="week-title">Avis et suivi</span>
+        <span class="week-subtitle">Alimenter la machine</span>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Collecte d'avis</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Generer le lien d'avis Google</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Transformer en QR code</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Support physique (chevalet, carte)</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Message SMS/WhatsApp pret</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Message email pret</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Envoyer 2h apres = sweet spot</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="checklist-group">
+            <div class="group-title">Analytics</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Compte analytics.google.com</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Code de suivi installe</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Verifier temps reel</span></div>
+            </div>
+          </div>
+
+          <div class="checklist-group">
+            <div class="group-title">Check mensuel (15 min)</div>
+            <div class="checklist-items">
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Combien de visiteurs ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">D'ou viennent-ils ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Nouveaux avis a traiter ?</span></div>
+              <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Questions recurrentes ?</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-badge"><strong>Resultat :</strong> Une machine qui tourne (presque) toute seule</div>
+    </section>
+
+    <!-- RECAP -->
+    <table class="recap-table">
+      <tr>
+        <th>Etape</th>
+        <th>Focus</th>
+        <th>Actions cles</th>
+      </tr>
+      <tr>
+        <td><strong>1</strong></td>
+        <td>Google Business</td>
+        <td>Fiche complete + photos + avis</td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td>Site one-page</td>
+        <td>4 sections essentielles + mobile ok</td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td>Contact/reservation</td>
+        <td>Parcours client fluide + paiement</td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td>Avis + suivi</td>
+        <td>QR code + Analytics + routine</td>
+      </tr>
+    </table>
+
+    <!-- PAGE BREAK FOR BONUS -->
+    <div class="page-break"></div>
+
+    <!-- BONUS SECTION -->
+    <header class="pdf-header" style="margin-top: 0;">
+      <h1 class="pdf-title" style="font-size: 14pt;">BONUS EXCLUSIFS</h1>
+      <p class="pdf-subtitle">Contenu reserve aux abonnes</p>
+    </header>
+
+    <!-- BONUS 1: Message templates -->
+    <section class="bonus-section">
+      <div class="bonus-header">
+        <span class="bonus-star">&#9733;</span>
+        <span class="bonus-title">Modeles de messages pour demander des avis</span>
+      </div>
+
+      <div class="message-template">
+        <div class="message-label">SMS / WhatsApp</div>
+        <div class="message-content">
+          "Merci pour votre visite chez [Nom] ! Si vous avez 30 sec, un petit avis nous aide enormement : [lien court]"
+        </div>
+      </div>
+
+      <div class="message-template">
+        <div class="message-label">Email</div>
+        <div class="message-content">
+          <strong>Objet :</strong> Merci pour votre visite !<br><br>
+          Bonjour [Prenom],<br><br>
+          Merci d'avoir choisi [Nom] aujourd'hui.<br>
+          Votre avis compte beaucoup pour nous — il aide d'autres clients a nous trouver.<br><br>
+          Si vous avez 30 secondes : [lien]<br><br>
+          A bientot !
+        </div>
+      </div>
+
+      <div class="message-template">
+        <div class="message-label">Oral (script)</div>
+        <div class="message-content">
+          "Merci beaucoup ! Si vous etes satisfait, un petit avis Google nous aiderait enormement. On a un QR code juste la [montrer] ou je peux vous envoyer le lien par SMS si vous preferez."
+        </div>
+      </div>
+    </section>
+
+    <!-- BONUS 2: QR Code guide -->
+    <section class="bonus-section">
+      <div class="bonus-header">
+        <span class="bonus-star">&#9733;</span>
+        <span class="bonus-title">Creer ton QR Code d'avis Google</span>
+      </div>
+
+      <ol class="steps-list">
+        <li>Aller sur ta fiche Google Business → "Demander des avis" → copier le lien</li>
+        <li>Aller sur <strong>qr-code-generator.com</strong> (gratuit, sans inscription)</li>
+        <li>Coller le lien, personnaliser les couleurs si tu veux</li>
+        <li>Telecharger en PNG haute resolution</li>
+        <li>Placer sur : comptoir, table, addition, vitrine, carte de visite</li>
+      </ol>
+
+      <p style="font-size: 7.5pt; color: #666; margin-top: 6px;">
+        <strong>Astuce :</strong> Imprime en grand format (min. 3x3cm) pour que les telephones le scannent facilement.
+      </p>
+    </section>
+
+    <!-- BONUS 3: Audit Express -->
+    <section class="bonus-section">
+      <div class="bonus-header">
+        <span class="bonus-star">&#9733;</span>
+        <span class="bonus-title">Mini-checklist "Audit Express" (5 min)</span>
+      </div>
+
+      <p style="font-size: 8pt; color: #666; margin-bottom: 6px;">A faire 1x par mois pour garder ta fiche au top :</p>
+
+      <div class="two-cols">
+        <div class="checklist-items">
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Nom exact (pas de mots-cles bidons)</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Adresse correcte sur Maps</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Telephone a jour</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Horaires corrects (+ feries)</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Categorie precise</span></div>
+        </div>
+        <div class="checklist-items">
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Au moins 5 photos recentes</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Lien site web fonctionnel</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Dernier avis repondu ?</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Post Google ce mois-ci ?</span></div>
+          <div class="checklist-item"><span class="checkbox"></span><span class="item-text">Infos = site web ?</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BONUS 4: Hack Horaires -->
+    <section class="bonus-section">
+      <div class="bonus-header">
+        <span class="bonus-star">&#9733;</span>
+        <span class="bonus-title">Hack : L'astuce des horaires tardifs</span>
+      </div>
+
+      <div class="hack-box">
+        <div class="hack-title">Le principe</div>
+        <p style="font-size: 8.5pt; margin-bottom: 6px;">
+          Si tes horaires vont jusqu'a 22h mais que tes concurrents ferment a 19h, tu apparais <strong>seul</strong> sur Google Maps pour les recherches tardives.
+        </p>
+
+        <div class="hack-example">
+          <strong>Exemple :</strong> Quelqu'un cherche "coiffeur ouvert" a 21h → seuls les commerces avec horaires jusqu'a 21h+ apparaissent. Tu es peut-etre le seul !
+        </div>
+
+        <div class="hack-warning">
+          Important : Ne mens pas sur tes horaires. Mais si tu peux legitimement etendre tes horaires (meme 30 min de plus que tes concurrents), fais-le. Ca peut faire la difference.
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pdf-footer">
+      <p><strong>Jon Labs</strong> — Geneve, Suisse</p>
+      <p><a href="https://jonlabs.ch">jonlabs.ch</a> | contact@jonlabs.ch</p>
+      <p style="margin-top: 6px; font-size: 7pt;">
+        Tu preferes deleguer ? <a href="https://jonlabs.ch/contact">Demande un devis</a> — site, Google Business, automatisation.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

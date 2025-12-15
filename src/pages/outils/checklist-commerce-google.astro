@@ -736,15 +736,19 @@ const recap = [
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li class="flex items-start gap-2">
                                 <i class="ri-check-line text-[var(--blue)] mt-0.5"></i>
-                                3 modèles de messages pour demander des avis
+                                3 modeles de messages pour demander des avis
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="ri-check-line text-[var(--blue)] mt-0.5"></i>
-                                Le template de QR code prêt à personnaliser
+                                Guide pour creer ton QR code d'avis
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="ri-check-line text-[var(--blue)] mt-0.5"></i>
-                                Ma mini-checklist "Audit express" (5 min)
+                                Mini-checklist "Audit express" (5 min)
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ri-check-line text-[var(--violet)] mt-0.5"></i>
+                                <strong>Bonus :</strong> Hack horaires Google Business
                             </li>
                         </ul>
                     </div>
@@ -922,7 +926,6 @@ const recap = [
         e.preventDefault();
 
         const submitBtn = pdfForm.querySelector('button[type="submit"]') as HTMLButtonElement;
-        const originalText = submitBtn.innerHTML;
 
         // Loading state
         submitBtn.disabled = true;
@@ -938,26 +941,16 @@ const recap = [
             const result = await response.json();
 
             if (result.success) {
-                submitBtn.innerHTML = '<i class="ri-check-line"></i> Envoyé !';
-                submitBtn.classList.remove('bg-[var(--blue)]');
-                submitBtn.classList.add('bg-green-500');
-
-                // Reset after delay
-                setTimeout(() => {
-                    pdfForm.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.classList.remove('bg-green-500');
-                    submitBtn.classList.add('bg-[var(--blue)]');
-                    submitBtn.disabled = false;
-                }, 3000);
+                // Redirect to thank you page with PDF access
+                window.location.href = '/merci-checklist';
             } else {
                 alert('Erreur lors de l\'envoi. Réessaye ou écris-moi directement à contact@jonlabs.ch');
-                submitBtn.innerHTML = originalText;
+                submitBtn.innerHTML = '<i class="ri-download-line"></i> Recevoir le PDF →';
                 submitBtn.disabled = false;
             }
         } catch (error) {
             alert('Erreur de connexion. Réessaye.');
-            submitBtn.innerHTML = originalText;
+            submitBtn.innerHTML = '<i class="ri-download-line"></i> Recevoir le PDF →';
             submitBtn.disabled = false;
         }
     });
