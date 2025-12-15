@@ -14,19 +14,23 @@ import BackgroundMapContours from '../../components/backgrounds/BackgroundMapCon
 // Import hero image
 import dashboardScreen from '../../assets/services/dashboard-custom-screen.webp';
 
+// Schema.org
+import { serviceSchemas, SITE_URL } from '../../data/schema';
+import { getBreadcrumbSchema } from '../../lib/seo';
+
 // SEO Data
 const seoData = {
     title: "Outils sur mesure à Genève | Applications métier | Jon Labs",
     description: "Développement d'applications et dashboards sur mesure pour PME et indépendants. Sortez d'Excel, centralisez vos données. Prototype en 2 semaines."
 };
 
-// Service schema for SEO
-const serviceSchema = [
-    {
-        title: "Développement d'outils sur mesure",
-        description: "Applications métier et dashboards personnalisés à Genève. Sortez d'Excel, centralisez vos données. Prototype fonctionnel en 1-2 semaines."
-    }
-];
+// Schema.org data
+const breadcrumb = getBreadcrumbSchema([
+    { name: "Accueil", url: SITE_URL },
+    { name: "Services", url: `${SITE_URL}/services` },
+    { name: "Outils sur mesure", url: `${SITE_URL}/services/outils-sur-mesure` }
+]);
+const schemas = [serviceSchemas["outils-sur-mesure"], breadcrumb];
 
 // Pain points data (4 items) - Format conversationnel
 const painPoints = [
@@ -275,8 +279,7 @@ const budgetOptions = [
 <Layout
     title={seoData.title}
     description={seoData.description}
-    schema="Service"
-    schemaData={serviceSchema}
+    schemas={schemas}
 >
     <Header />
 

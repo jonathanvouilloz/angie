@@ -16,11 +16,27 @@ import CVLanguages from '../components/cv/CVLanguages.astro'
 import CVInterests from '../components/cv/CVInterests.astro'
 import CVFooter from '../components/cv/CVFooter.astro'
 import Modal from '../components/Modal.astro'
+
+// Schema.org
+import { personData, SITE_URL } from '../data/schema';
+import { getProfilePageSchema } from '../lib/seo';
+
+const pageTitle = "CV - Jonathan Vouilloz | Développeur & Créateur Digital | Jon Labs";
+const pageDescription = "CV de Jonathan Vouilloz, informaticien de gestion et créateur digital. Développement web, automatisation, applications sur-mesure. Basé à Genève.";
+
+const profilePageSchema = getProfilePageSchema({
+  url: `${SITE_URL}/cv`,
+  name: pageTitle,
+  description: pageDescription
+});
+
+const schemas = [personData, profilePageSchema];
 ---
 
 <Layout
-  title="CV - Jonathan Vouilloz | Développeur & Créateur Digital | Jon Labs"
-  description="CV de Jonathan Vouilloz, informaticien de gestion et créateur digital. Développement web, automatisation, applications sur-mesure. Basé à Genève."
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header />
 

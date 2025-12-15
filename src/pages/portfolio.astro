@@ -3,11 +3,27 @@ import '../styles/global.css'
 import Layout from "../layouts/Layout.astro"
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+
+// Schema.org
+import { SITE_URL } from '../data/schema';
+import { getCollectionPageSchema } from '../lib/seo';
+
+const pageTitle = "Portfolio | Jon Labs - Projets & Réalisations";
+const pageDescription = "Découvrez mes projets et réalisations : sites web, applications et automatisations. Portfolio bientôt disponible.";
+
+const portfolioSchema = getCollectionPageSchema({
+  url: `${SITE_URL}/portfolio`,
+  name: pageTitle,
+  description: pageDescription
+});
+
+const schemas = [portfolioSchema];
 ---
 
 <Layout
-  title="Portfolio | Jon Labs - Projets & Réalisations"
-  description="Découvrez mes projets et réalisations : sites web, applications et automatisations. Portfolio bientôt disponible."
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header />
 

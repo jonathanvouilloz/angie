@@ -1,0 +1,757 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FAQ from '../../components/FAQ.astro';
+
+// Import SVG pour surlignement hero
+import svgArrowHero from '../../assets/arrow-3.svg';
+
+// Import background components
+import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
+import BackgroundProgressFlow from '../../components/backgrounds/BackgroundProgressFlow.astro';
+import BackgroundGlitchGrid from '../../components/backgrounds/BackgroundGlitchGrid.astro';
+
+// Import images
+import imgHero from '../../assets/services/mvp-hero.png';
+import imgProblemes from '../../assets/services/mvp-problemes.png';
+import imgMethode from '../../assets/services/mvp-methode.png';
+import imgCtaFinal from '../../assets/services/mvp-cta-final.png';
+
+// Schema.org
+import { serviceSchemas, SITE_URL } from '../../data/schema';
+import { getBreadcrumbSchema } from '../../lib/seo';
+
+// SEO Data
+const seoData = {
+    title: "Développement MVP Genève & Suisse | Développeur Freelance | Jon Labs",
+    description: "Transforme ton idée en prototype fonctionnel en 2-3 semaines. Développeur MVP freelance à Genève pour startups, entrepreneurs et PME romandes."
+};
+
+// Schema.org data
+const breadcrumb = getBreadcrumbSchema([
+    { name: "Accueil", url: SITE_URL },
+    { name: "Services", url: `${SITE_URL}/services` },
+    { name: "Développement MVP", url: `${SITE_URL}/services/developpement-mvp` }
+]);
+const schemas = [serviceSchemas["developpement-mvp"], breadcrumb];
+
+// Pain points data
+const painPoints = [
+    {
+        title: "Le pitch dans 3 semaines",
+        description: "Tu as décroché un rendez-vous avec un investisseur — FONGIT, Business Angel romand, ou fonds d'amorçage suisse. Ton \"produit\", pour l'instant, c'est un PowerPoint et beaucoup de promesses. Montrer quelque chose de concret changerait tout."
+    },
+    {
+        title: "L'idée qui tourne en boucle",
+        description: "Ça fait des semaines que tu y penses. Tu as noté des trucs, fait des schémas, peut-être même commencé à coder un bout. Mais tu n'arrives pas à sortir quelque chose de montrable. Le perfectionnisme te paralyse."
+    },
+    {
+        title: "Le doute qui s'installe",
+        description: "Est-ce que les gens vont vraiment vouloir ça ? Est-ce que ça résout un vrai problème ? Tu pourrais passer encore 3 mois à te poser la question... ou construire un truc minimal et avoir ta réponse en 3 semaines."
+    },
+    {
+        title: "Le process interne à tester",
+        description: "Tu bosses dans une PME romande et tu as une idée pour améliorer un process. Mais convaincre ta direction avec un doc Word, c'est mission impossible. Il te faudrait un proto fonctionnel pour montrer concrètement ce que ça donnerait."
+    }
+];
+
+// Method steps
+const methodSteps = [
+    {
+        step: "1",
+        title: "Cadrage",
+        description: "On se pose ensemble — autour d'un café à Genève ou en visio — et on identifie LA fonctionnalité qui compte. Pas les 47 features de ta roadmap idéale. Juste celle qui prouve ta valeur. C'est souvent la partie la plus difficile : couper dans le gras.",
+        duration: "1-2h appel + échanges async"
+    },
+    {
+        step: "2",
+        title: "Construction",
+        description: "Je développe avec des technologies modernes et robustes. Tu n'as pas besoin de comprendre le code. On avance par itérations courtes : je te montre, tu me dis ce qui va ou pas, on ajuste. Pas de surprise à la livraison.",
+        duration: "1-2 semaines"
+    },
+    {
+        step: "3",
+        title: "Livraison",
+        description: "Tu repars avec un prototype fonctionnel que tu peux montrer, tester, utiliser. Pas une maquette cliquable — un truc qui marche vraiment. Je te fournis aussi une documentation claire pour que tu puisses continuer sans moi.",
+        duration: "Démo + passation quelques heures"
+    }
+];
+
+// Differentiators
+const differentiators = [
+    {
+        icon: "ri-timer-line",
+        text: "Pas de tunnel de 6 mois : prototype en main en 2-3 semaines max"
+    },
+    {
+        icon: "ri-user-line",
+        text: "Un seul interlocuteur : tu parles à celui qui code, pas à un chef de projet"
+    },
+    {
+        icon: "ri-shield-check-line",
+        text: "Qualité suisse, flexibilité freelance : réactivité et rigueur, sans les coûts d'une agence"
+    },
+    {
+        icon: "ri-door-open-line",
+        text: "Pas de dépendance forcée : tu repars avec quelque chose d'utilisable et documenté"
+    }
+];
+
+// Results
+const results = [
+    {
+        title: "Un prototype fonctionnel",
+        description: "Pas une maquette Figma, pas un PowerPoint animé. Un truc qui tourne, que tu peux montrer en live à tes investisseurs ou tes premiers utilisateurs."
+    },
+    {
+        title: "Focus sur l'essentiel",
+        description: "LA fonctionnalité qui démontre ta valeur. Le reste viendra après, si ça vaut le coup."
+    },
+    {
+        title: "De quoi convaincre",
+        description: "Investisseurs suisses, partenaires, direction, premiers clients — montrer vaut mille mots."
+    },
+    {
+        title: "Une base solide pour la suite",
+        description: "Si tu décides de continuer, le code est propre et documenté. Pas de dette technique cachée. Tu peux itérer dessus ou le confier à une équipe plus tard."
+    },
+    {
+        title: "Ta réponse",
+        description: "Le marché veut ça ou pas ? En 2-3 semaines, tu es fixé. Plus de doutes qui traînent pendant des mois."
+    }
+];
+
+// Price factors
+const priceFactors = [
+    "La complexité de la fonctionnalité clé",
+    "Le niveau de finition nécessaire (proto interne vs démo investisseurs)",
+    "Le délai souhaité"
+];
+
+// FAQs
+const faqs = [
+    {
+        question: "C'est quoi la différence entre un MVP et un produit fini ?",
+        answer: "Un MVP, c'est le strict minimum pour prouver que ton concept fonctionne. On coupe tout ce qui n'est pas essentiel — pas de cahier des charges de 50 pages, pas de développement sur mesure de chaque feature. Un produit fini, c'est après — quand tu sais que ça vaut le coup d'investir plus."
+    },
+    {
+        question: "2-3 semaines, c'est vraiment possible ?",
+        answer: "Pour un proto ciblé sur une fonctionnalité clé, oui. Si tu veux une app complète avec 15 features, non. C'est justement l'intérêt du MVP : aller vite en se concentrant sur l'essentiel."
+    },
+    {
+        question: "Et si je veux continuer après le MVP ?",
+        answer: "Soit on continue ensemble pour développer la vraie V1, soit tu repars avec une base propre et documentée pour bosser avec quelqu'un d'autre. Pas de lock-in, pas de code \"otage\"."
+    },
+    {
+        question: "Je n'y connais rien en technique, c'est un problème ?",
+        answer: "Zéro. Je m'occupe de la partie technique, toi tu me dis ce que tu veux accomplir. On parle business et problèmes à résoudre, pas lignes de code."
+    },
+    {
+        question: "Et si le MVP montre que mon idée ne marche pas ?",
+        answer: "C'est une victoire. Tu as ta réponse en quelques semaines au lieu de la découvrir après 6 mois de travail. Mieux vaut un \"non\" rapide qu'un \"non\" après avoir tout investi."
+    },
+    {
+        question: "Tu peux m'aider à définir ce que devrait être le MVP ?",
+        answer: "Oui, c'est même une grosse partie du travail. Savoir quoi couper est souvent plus dur que savoir quoi construire."
+    },
+    {
+        question: "Pourquoi travailler avec un freelance à Genève plutôt qu'une agence ou un dev offshore ?",
+        answer: "Trois raisons principales. La proximité : on peut se voir, on parle la même langue, on comprend le contexte suisse. La réactivité : pas de décalage horaire, pas de chef de projet intermédiaire, tu parles directement à celui qui code. La confiance : tes données restent en Suisse, conformes à la nLPD, et tu sais exactement qui travaille sur ton projet."
+    }
+];
+
+// Local zones
+const zones = [
+    { name: "Genève", type: "primary", icon: "ri-map-pin-fill" },
+    { name: "Lausanne", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Vaud", type: "secondary", icon: "ri-map-pin-line" },
+    { name: "Toute Suisse romande", type: "tertiary", icon: "ri-global-line" }
+];
+---
+
+<Layout
+    title={seoData.title}
+    description={seoData.description}
+    schemas={schemas}
+>
+    <Header />
+
+    <!-- ============================================== -->
+    <!-- HERO SECTION -->
+    <!-- ============================================== -->
+    <section class="hero-section -mt-[120px] pt-[150px] pb-16 md:pt-[160px] md:pb-24 px-4 relative overflow-hidden">
+        <!-- Gradient mesh background -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-0 -left-20 w-[500px] h-[500px] bg-[var(--yellow)] opacity-15 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-[var(--blue)] opacity-10 blur-[100px] rounded-full"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Centered text content -->
+            <div class="text-center">
+                <!-- H1 SEO discret -->
+                <h1 class="seo-h1 mb-8 mt-8">Développeur MVP Freelance à Genève</h1>
+
+                <!-- Main title -->
+                <p class="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight mb-6" data-animate="fade-up">
+                    Ton prototype fonctionnel<br/>
+                    en
+                    <span class="relative inline-block">
+                        <span class="relative z-10">2-3 semaines.</span>
+                        <img
+                            src={svgArrowHero.src}
+                            alt=""
+                            class="absolute -bottom-1 left-0 w-full h-5 md:h-6 pointer-events-none"
+                            aria-hidden="true"
+                        />
+                    </span>
+                </p>
+
+                <!-- Subtitle -->
+                <p class="text-xl md:text-2xl font-medium text-[var(--text)] mb-4" data-animate="fade-up" data-delay="0.1">
+                    Arrête de construire dans ton coin pendant 6 mois.
+                </p>
+
+                <!-- Description -->
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto" data-animate="fade-up" data-delay="0.15">
+                    Tu as une idée, un concept à tester, un pitch à préparer. Tu n'as pas besoin d'une app complète — tu as besoin d'un <strong class="text-[var(--text)]">partenaire technique en Suisse romande</strong> pour sortir un truc qui marche, maintenant.
+                </p>
+
+                <!-- CTAs centered -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-16" data-animate="fade-up" data-delay="0.2">
+                    <a
+                        href="https://cal.com/jonathan-vouilloz/appel-de-bienvenue"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="
+                            bg-[var(--blue)]
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                            transition-all duration-200
+                            hover:bg-[var(--yellow)]
+                            hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                            hover:translate-x-[2px] hover:translate-y-[2px]
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        <i class="ri-rocket-line"></i>
+                        Discuter de mon projet
+                    </a>
+                    <a
+                        href="#methode"
+                        class="
+                            bg-white
+                            border-2 border-black
+                            px-6 py-4
+                            text-lg font-medium
+                            transition-all duration-200
+                            hover:bg-gray-100
+                            flex items-center justify-center gap-2
+                        "
+                    >
+                        Voir comment ça fonctionne
+                        <i class="ri-arrow-down-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual element: Hero illustration -->
+            <div class="w-full max-w-3xl mx-auto relative" data-animate="scale" data-delay="0.3">
+                <div class="bg-white border-3 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] p-4 md:p-6 relative">
+                    <!-- Corner boxes -->
+                    <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                    <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                    <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                    <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+
+                    <!-- Image -->
+                    <img
+                        src={imgHero.src}
+                        alt="MVP: Sortir vite - Comparaison entre 6 mois seul et 2-3 semaines avec un prototype"
+                        class="w-full h-auto"
+                        loading="eager"
+                    />
+                </div>
+
+            </div>
+
+            <!-- Location badge centered -->
+            <div class="flex items-center justify-center gap-2 text-sm text-gray-500 mt-12">
+                <i class="ri-map-pin-fill text-[var(--blue)]"></i>
+                <span>Basé à Genève | Service en Suisse romande</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- PAIN POINTS SECTION -->
+    <!-- ============================================== -->
+    <section id="problemes" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundGlitchGrid color="rgba(239, 68, 68, 0.4)" opacity={0.08} />
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    situations
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    <span class="relative inline-block">
+                        <span class="absolute bg-red-200 w-full h-[40%] left-0 bottom-1 -z-1"></span>
+                        Tu te reconnais ?
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-600">Ces situations où le temps joue contre toi.</p>
+            </div>
+
+            <!-- Pain points grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12" data-animate-stagger>
+                {painPoints.map((point) => (
+                    <div class="pain-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
+                        <!-- Red X icon -->
+                        <div class="w-10 h-10 bg-red-100 border-2 border-red-300 flex items-center justify-center mb-4">
+                            <i class="ri-close-line text-red-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{point.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{point.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Illustration problèmes -->
+            <div class="w-full max-w-md mx-auto mb-12" data-animate="fade-up">
+                <img
+                    src={imgProblemes.src}
+                    alt="L'idée qui tourne en boucle - illustration des doutes et blocages"
+                    class="w-full h-auto"
+                    loading="lazy"
+                />
+            </div>
+
+            <!-- Personal story callout -->
+            <div class="bg-[var(--main-bg)] border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate="fade-up">
+                <i class="ri-double-quotes-l text-6xl text-gray-100 absolute -top-4 -left-2 md:-left-4"></i>
+
+                <div class="space-y-4 text-gray-700 leading-relaxed relative z-10">
+                    <p class="font-bold text-lg text-[var(--text)]">J'ai vécu exactement ça.</p>
+
+                    <p>On a passé un mois entier à développer un produit "parfait" — une plateforme de vente de contenu digital. L'UX était nickel, trois clics et c'était en ligne. Le problème ? <strong>On a découvert que le marché s'en foutait après avoir tout construit.</strong></p>
+
+                    <p>Un mois de dev, des nuits blanches, un produit qui n'existe plus aujourd'hui.</p>
+
+                    <div class="bg-[var(--blue)] bg-opacity-20 border-l-4 border-[var(--blue)] p-4 mt-6">
+                        <p class="font-bold text-[var(--text)]">
+                            Si on avait sorti un proto moche mais fonctionnel en une semaine, on aurait eu notre réponse sans y laisser des plumes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- METHOD SECTION -->
+    <!-- ============================================== -->
+    <section id="methode" class="py-20 md:py-28 px-4 relative overflow-hidden">
+        <BackgroundProgressFlow opacity={0.08} />
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    méthode
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Comment ça se passe ?
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Pas de tunnel de développement. Tu vois ce qui se passe à chaque étape.
+                </p>
+            </div>
+
+            <!-- Method illustration -->
+            <div class="w-full max-w-2xl mx-auto mb-12" data-animate="fade-up">
+                <img
+                    src={imgMethode.src}
+                    alt="La méthode MVP en 3 étapes: Cadrage, Construction, Livraison"
+                    class="w-full h-auto"
+                    loading="lazy"
+                />
+            </div>
+
+            <!-- Process steps -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-animate-stagger>
+                {methodSteps.map((step, index) => (
+                    <div class="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_rgba(0,0,0,0.15)] relative" data-animate-item>
+                        <!-- Step badge -->
+                        <div class="absolute -top-3 left-4 bg-[var(--blue)] border-2 border-black px-3 py-1 text-xs font-bold">
+                            ÉTAPE {step.step}
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 mt-4">{step.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">{step.description}</p>
+                        <!-- Duration -->
+                        <div class="flex items-center gap-2 text-sm pt-3 border-t border-dashed border-gray-300">
+                            <i class="ri-time-line text-[var(--blue)]"></i>
+                            <span class="text-gray-500">{step.duration}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Differentiators box -->
+            <div class="bg-white border-3 border-black p-6 md:p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate="fade-up">
+                <!-- Corner boxes -->
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+
+                <h3 class="text-xl font-bold text-center mb-6">Ce qui change avec Jon Labs</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {differentiators.map((diff) => (
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-[var(--blue)] border-2 border-black flex items-center justify-center flex-shrink-0">
+                                <i class={`${diff.icon} text-sm`}></i>
+                            </div>
+                            <p class="text-sm text-gray-700">{diff.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- RESULTS SECTION -->
+    <!-- ============================================== -->
+    <section id="resultats" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <BackgroundProgressFlow opacity={0.05} />
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    résultats
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Ce que tu obtiens
+                </h2>
+            </div>
+
+            <!-- Results grid: 3 cards on top -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6" data-animate-stagger>
+                {results.slice(0, 3).map((result) => (
+                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
+                        <!-- Green check icon -->
+                        <div class="w-10 h-10 bg-green-100 border-2 border-green-400 flex items-center justify-center mb-4">
+                            <i class="ri-check-line text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{result.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{result.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Results grid: 2 cards centered below -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto" data-animate-stagger>
+                {results.slice(3).map((result) => (
+                    <div class="result-card bg-[var(--main-bg)] border-2 border-black p-6 relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.2)]" data-animate-item>
+                        <!-- Green check icon -->
+                        <div class="w-10 h-10 bg-green-100 border-2 border-green-400 flex items-center justify-center mb-4">
+                            <i class="ri-check-line text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">{result.title}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">{result.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- PRICING SECTION -->
+    <!-- ============================================== -->
+    <section id="prix" class="py-20 md:py-28 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12 md:mb-16" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    investissement
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal mb-4">
+                    Investissement
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Chaque MVP est différent. Un proto pour tester une idée en interne, ce n'est pas la même chose qu'un démonstrateur pour lever des fonds.
+                </p>
+            </div>
+
+            <!-- Pricing info card -->
+            <div class="bg-white border-3 border-black p-8 md:p-10 shadow-[8px_8px_0px_rgba(0,0,0,1)] relative mb-8" data-animate="scale">
+                <!-- Corner boxes -->
+                <div class="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+                <div class="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[var(--blue)] border-2 border-black"></div>
+
+                <div class="text-center mb-8">
+                    <p class="text-xl md:text-2xl font-bold text-[var(--text)] mb-2">
+                        On en discute, je te fais un devis clair avec un périmètre précis.
+                    </p>
+                    <p class="text-gray-600">Pas de surprise en cours de route.</p>
+                </div>
+
+                <div class="border-t-2 border-dashed border-gray-300 pt-6">
+                    <h4 class="font-bold mb-4 flex items-center justify-center gap-2">
+                        <i class="ri-information-line text-[var(--blue)]"></i>
+                        Ce qui influence le prix :
+                    </h4>
+                    <ul class="space-y-2 max-w-md mx-auto">
+                        {priceFactors.map((factor) => (
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <i class="ri-arrow-right-s-line text-[var(--blue)]"></i>
+                                {factor}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center" data-animate="fade-up">
+                <a
+                    href="https://cal.com/jonathan-vouilloz/appel-de-bienvenue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                        inline-flex items-center gap-2
+                        bg-[var(--blue)]
+                        border-2 border-black
+                        px-8 py-4
+                        text-lg font-bold
+                        shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                        transition-all duration-200
+                        hover:bg-[var(--yellow)]
+                        hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                        hover:translate-x-[2px] hover:translate-y-[2px]
+                    "
+                >
+                    <i class="ri-file-list-3-line"></i>
+                    Demander un devis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- FAQ SECTION -->
+    <!-- ============================================== -->
+    <FAQ
+        faqs={faqs}
+        title="Questions fréquentes"
+        sectionId="faq"
+    >
+        <BackgroundQuestionMarks slot="background" />
+    </FAQ>
+
+    <!-- Extra question note -->
+    <div class="text-center py-8 px-4 -mt-16 relative z-10">
+        <p class="text-gray-500">
+            Autre question ? <a href="/contact" class="text-[var(--blue)] font-medium hover:underline">Contacte-moi directement</a>, je réponds sous 24h.
+        </p>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- ABOUT SECTION -->
+    <!-- ============================================== -->
+    <section id="about" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black">
+        <div class="max-w-3xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    à propos
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Qui est derrière Jon Labs ?
+                </h2>
+            </div>
+
+            <!-- About card -->
+            <div class="bg-[var(--main-bg)] border-3 border-black p-8 md:p-10 shadow-[6px_6px_0px_rgba(0,0,0,1)] relative" data-animate="fade-up">
+                <div class="space-y-4 text-gray-700 leading-relaxed">
+                    <p>Je suis <strong class="text-[var(--text)]">Jonathan</strong>, développeur et créateur de solutions digitales basé à Genève.</p>
+
+                    <p>Je ne suis pas une agence avec 15 commerciaux et des juniors qui font le travail. Je suis <strong class="text-[var(--text)]">ton partenaire technique direct</strong> — celui qui va coder ton MVP, répondre à tes questions, et t'aider à trancher quand il faut faire des choix.</p>
+
+                    <p>Mon approche : <strong class="text-[var(--text)]">action plutôt que perfection</strong>. Mieux vaut un proto imparfait entre les mains qu'une idée parfaite qui reste dans ta tête.</p>
+
+                    <p>J'ai accompagné des entrepreneurs romands, des startups en phase d'amorçage et des PME suisses qui avaient besoin de tester vite avant d'investir gros.</p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-dashed border-gray-300">
+                    <a href="/about" class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline">
+                        <i class="ri-user-line"></i>
+                        En savoir plus sur mon parcours
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- LOCAL SECTION -->
+    <!-- ============================================== -->
+    <section id="local" class="py-20 md:py-28 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center mb-12" data-animate="fade-up">
+                <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 mb-4">
+                    <span class="w-8 h-px bg-gray-400"></span>
+                    local
+                    <span class="w-8 h-px bg-gray-400"></span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-normal">
+                    Basé à <span class="text-[var(--blue)]">Genève</span>, disponible partout en Suisse romande
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-animate="fade-up">
+                <!-- Description -->
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Le développement de MVP se fait généralement à distance — les échanges, le suivi, les démos, tout peut se faire en visio. C'est souvent plus efficace.
+                    </p>
+                    <p>
+                        Mais si tu préfères un échange en personne pour le cadrage initial ou les points d'étape, je suis disponible sur Genève et ses environs.
+                    </p>
+                    <p>
+                        Je connais le contexte suisse romand — les attentes des investisseurs locaux, la nLPD pour la protection des données, les habitudes des utilisateurs d'ici.
+                    </p>
+                </div>
+
+                <!-- Zones -->
+                <div class="space-y-3">
+                    {zones.map((zone) => (
+                        <div class={`
+                            flex items-center gap-4 p-4 border-2 border-black
+                            ${zone.type === 'primary' ? 'bg-[var(--blue)] bg-opacity-20 border-[var(--blue)]' : 'bg-white'}
+                        `}>
+                            <i class={`${zone.icon} text-xl ${zone.type === 'primary' ? 'text-[var(--text)]' : 'text-gray-600'}`}></i>
+                            <span class={`font-medium ${zone.type === 'primary' ? 'text-lg font-bold' : ''}`}>
+                                {zone.name}
+                                {zone.type === 'primary' && <span class="text-sm font-normal text-gray-600 ml-2">(basé sur place)</span>}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- CTA FINAL SECTION -->
+    <!-- ============================================== -->
+    <section id="cta-final" class="py-20 md:py-28 px-4 bg-white border-y-2 border-black relative overflow-hidden">
+        <!-- Dot pattern background -->
+        <div class="absolute inset-0 dots-bg opacity-[0.3]"></div>
+
+        <div class="max-w-3xl mx-auto relative z-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-normal mb-6" data-animate="fade-up">
+                T'as un truc à construire ?
+            </h2>
+            <p class="text-xl font-medium text-[var(--text)] mb-4" data-animate="fade-up" data-delay="0.1">
+                Arrête de tourner en rond.
+            </p>
+            <p class="text-lg text-gray-600 mb-8" data-animate="fade-up" data-delay="0.15">
+                En 30 minutes, on regarde ton projet ensemble et je te dis honnêtement si un MVP fait sens — et ce qu'il faudrait pour le sortir.
+            </p>
+
+            <!-- CTA illustration -->
+            <div class="w-full max-w-sm mx-auto mb-8" data-animate="fade-up" data-delay="0.2">
+                <img
+                    src={imgCtaFinal.src}
+                    alt="Le premier pas - Franchir la porte vers votre MVP"
+                    class="w-full h-auto"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12" data-animate="fade-up" data-delay="0.25">
+                <a
+                    href="https://cal.com/jonathan-vouilloz/appel-de-bienvenue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="
+                        bg-[var(--blue)]
+                        border-2 border-black
+                        px-8 py-4
+                        text-lg font-bold
+                        shadow-[4px_4px_0px_rgba(0,0,0,1)]
+                        transition-all duration-200
+                        hover:bg-[var(--yellow)]
+                        hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]
+                        hover:translate-x-[2px] hover:translate-y-[2px]
+                        flex items-center justify-center gap-2
+                    "
+                >
+                    <i class="ri-calendar-line"></i>
+                    Réserver un appel découverte
+                </a>
+            </div>
+
+            <!-- Alternative -->
+            <div class="bg-[var(--main-bg)] border-2 border-dashed border-gray-300 p-6 inline-block" data-animate="fade-up" data-delay="0.3">
+                <p class="text-gray-500 text-sm mb-2">
+                    <strong>Pas encore prêt ?</strong> Tu peux d'abord valider ton idée avant de construire quoi que ce soit.
+                </p>
+                <a href="/services/validation-idee" class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline">
+                    <i class="ri-flask-line"></i>
+                    Découvrir le service de validation d'idée
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style>
+    /* Dot pattern background */
+    .dots-bg {
+        background-image: radial-gradient(circle, #000 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    /* H1 SEO style terminal */
+    .seo-h1 {
+        font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(15, 15, 15, 0.5);
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Scroll margin for anchor navigation */
+    section[id] {
+        scroll-margin-top: 100px;
+    }
+</style>

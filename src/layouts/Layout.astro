@@ -1,12 +1,16 @@
 ---
 import SEO from '../components/SEO.astro';
+import type { SchemaType, JSONLDSchema } from '../lib/seo';
 
 interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
 	ogType?: 'website' | 'article';
-	schema?: 'Organization' | 'Person' | 'BlogPosting' | 'FAQPage' | 'Service';
+	// NEW: Array of schemas (preferred)
+	schemas?: Array<{ type: SchemaType; data?: any }> | JSONLDSchema[];
+	// Legacy: Single schema (backward compatibility)
+	schema?: SchemaType;
 	schemaData?: Record<string, any>;
 	article?: {
 		publishedTime: Date;
@@ -22,7 +26,8 @@ const {
 	description = "Développement web, automatisation, applications. De l'idée au produit fini, j'accompagne entrepreneurs et petites équipes dans leurs projets digitaux.",
 	ogImage = "/og-image.svg",
 	ogType = "website",
-	schema = "Organization",
+	schemas,
+	schema,
 	schemaData,
 	article
 } = Astro.props;
@@ -41,6 +46,7 @@ const {
 			description={description}
 			ogImage={ogImage}
 			ogType={ogType}
+			schemas={schemas}
 			schema={schema}
 			schemaData={schemaData}
 			article={article}

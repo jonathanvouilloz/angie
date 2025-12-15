@@ -12,19 +12,23 @@ import svgArrowHero from '../../assets/arrow-3.svg';
 import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
 import BackgroundProgressFlow from '../../components/backgrounds/BackgroundProgressFlow.astro';
 
+// Schema.org
+import { serviceSchemas, SITE_URL } from '../../data/schema';
+import { getBreadcrumbSchema } from '../../lib/seo';
+
 // SEO Data
 const seoData = {
     title: "Test de concept et validation d'idée | Jon Labs Genève",
     description: "Vérifiez que votre idée intéresse le marché avant d'investir. Landing page + campagne ciblée + analyse. Réponse en 2 semaines. Basé à Genève."
 };
 
-// Service schema for SEO
-const serviceSchema = [
-    {
-        title: "Test de concept et validation d'idée",
-        description: "Service de validation d'idée business à Genève. Landing page, campagne Meta Ads, analyse des résultats. À partir de 750 CHF."
-    }
-];
+// Schema.org data
+const breadcrumb = getBreadcrumbSchema([
+    { name: "Accueil", url: SITE_URL },
+    { name: "Services", url: `${SITE_URL}/services` },
+    { name: "Validation d'idée", url: `${SITE_URL}/services/validation-idee` }
+]);
+const schemas = [serviceSchemas["validation-idee"], breadcrumb];
 
 // Pain points data
 const painPoints = [
@@ -194,8 +198,7 @@ const zones = [
 <Layout
     title={seoData.title}
     description={seoData.description}
-    schema="Service"
-    schemaData={serviceSchema}
+    schemas={schemas}
 >
     <Header />
 

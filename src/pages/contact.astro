@@ -9,11 +9,27 @@ import ContactInfo from "../components/ContactInfo.astro";
 import ContactFAQ from "../components/ContactFAQ.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Modal from "../components/Modal.astro";
+
+// Schema.org
+import { SITE_URL } from '../data/schema';
+import { getContactPageSchema } from '../lib/seo';
+
+const pageTitle = "Contact - Jon Labs";
+const pageDescription = "Discutons de votre projet. Développement web, automatisation, applications sur-mesure. Je suis disponible pour de nouvelles collaborations.";
+
+const contactPageSchema = getContactPageSchema({
+  url: `${SITE_URL}/contact`,
+  name: pageTitle,
+  description: pageDescription
+});
+
+const schemas = [contactPageSchema];
 ---
 
 <Layout
-  title="Contact - Jon Labs"
-  description="Discutons de votre projet. Développement web, automatisation, applications sur-mesure. Je suis disponible pour de nouvelles collaborations."
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header />
 

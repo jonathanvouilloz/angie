@@ -4,6 +4,10 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
+// Schema.org
+import { SITE_URL } from '../../data/schema';
+import { getCollectionPageSchema } from '../../lib/seo';
+
 const seoData = {
     title: "Outils gratuits | Jon Labs",
     description: "Ressources et outils gratuits pour les commerçants et entrepreneurs. Checklists, guides pratiques et templates."
@@ -18,11 +22,21 @@ const outils = [
         icon: "ri-checkbox-circle-line"
     }
 ];
+
+// Schema.org data
+const outilsSchema = getCollectionPageSchema({
+    url: `${SITE_URL}/outils`,
+    name: seoData.title,
+    description: seoData.description
+});
+
+const schemas = [outilsSchema];
 ---
 
 <Layout
     title={seoData.title}
     description={seoData.description}
+    schemas={schemas}
 >
     <Header />
 

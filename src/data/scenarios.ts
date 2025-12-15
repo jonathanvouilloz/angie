@@ -240,7 +240,8 @@ export const serviceSections: ServiceSection[] = [
           'Synchronisation bidirectionnelle de tes contacts',
           'Une info saisie une fois, propagée partout'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/integration-outils'
       },
       {
         id: 'automatisation-taches',
@@ -252,7 +253,8 @@ export const serviceSections: ServiceSection[] = [
           'Notifications consolidées (fini les 50 apps à checker)',
           'Processus de validation simplifiés'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/automatisation'
       }
     ],
     ctaText: 'Automatiser mes process'

@@ -26,7 +26,7 @@ Workflow complet pour créer un article à partir d'un fichier markdown brut, av
 **Image hero (principale)** - Utiliser `mcp__nano-banana__generate_image` :
 
 ```
-Style: Hand-drawn sketchnote illustration, white background
+Style: Hand-drawn sketchnote illustration, white background,
 Colors: Cyan (#00D9D9), magenta (#FF00FF), black only
 Layout: [TYPE selon analyse - VS/checklist/process]
 

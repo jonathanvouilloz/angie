@@ -3,11 +3,27 @@ import '../styles/global.css'
 import Layout from "../layouts/Layout.astro"
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+
+// Schema.org
+import { personData, SITE_URL } from '../data/schema';
+import { getAboutPageSchema } from '../lib/seo';
+
+const pageTitle = "À propos | Jon Labs - Jonathan Vouilloz";
+const pageDescription = "Découvrez mon parcours : informaticien de gestion passionné par le développement web et l'automatisation. Basé à Genève.";
+
+const aboutPageSchema = getAboutPageSchema({
+  url: `${SITE_URL}/about`,
+  name: pageTitle,
+  description: pageDescription
+});
+
+const schemas = [personData, aboutPageSchema];
 ---
 
 <Layout
-  title="À propos | Jon Labs - Jonathan Vouilloz"
-  description="Découvrez mon parcours : informaticien de gestion passionné par le développement web et l'automatisation. Basé à Genève."
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header />
 

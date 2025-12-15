@@ -1,5 +1,5 @@
 ---
-import { generateJSONLD } from '../lib/seo';
+import { generateJSONLD, type SchemaType, type JSONLDSchema } from '../lib/seo';
 
 interface Props {
   // Core SEO
@@ -20,8 +20,11 @@ interface Props {
     tags?: string[];
   };
 
-  // Structured Data
-  schema?: 'Organization' | 'Person' | 'BlogPosting' | 'FAQPage' | 'Service';
+  // Structured Data - NEW: supports array of schemas
+  schemas?: Array<{ type: SchemaType; data?: any }> | JSONLDSchema[];
+
+  // Structured Data - Legacy support (single schema)
+  schema?: SchemaType;
   schemaData?: Record<string, any>;
 
   // Meta robots
@@ -36,6 +39,7 @@ const {
   ogImage = '/og-image.svg',
   ogType = 'website',
   article,
+  schemas,
   schema,
   schemaData,
   robots = 'index, follow'
@@ -48,8 +52,30 @@ const canonicalURL = canonical
 
 const ogImageURL = new URL(ogImage, Astro.site);
 
-// Generate JSON-LD if schema type is provided
-const jsonLd = schema ? generateJSONLD(schema, schemaData, Astro) : null;
+// Generate JSON-LD schemas
+let jsonLdSchemas: JSONLDSchema[] = [];
+
+// Handle new schemas array format
+if (schemas && schemas.length > 0) {
+  // Check if it's already JSONLDSchema objects or needs generation
+  if ('@context' in schemas[0]) {
+    // Already JSON-LD objects
+    jsonLdSchemas = schemas as JSONLDSchema[];
+  } else {
+    // Generate from type definitions
+    jsonLdSchemas = (schemas as Array<{ type: SchemaType; data?: any }>)
+      .map(({ type, data }) => generateJSONLD(type, data, Astro))
+      .filter((s): s is JSONLDSchema => s !== null);
+  }
+}
+
+// Legacy single schema support
+if (schema && jsonLdSchemas.length === 0) {
+  const legacySchema = generateJSONLD(schema, schemaData, Astro);
+  if (legacySchema) {
+    jsonLdSchemas = [legacySchema];
+  }
+}
 ---
 
 <!-- Meta tags -->
@@ -85,6 +111,6 @@ const jsonLd = schema ? generateJSONLD(schema, schemaData, Astro) : null;
 <meta name="twitter:image" content={ogImageURL} />
 
 <!-- JSON-LD Structured Data -->
-{jsonLd && (
+{jsonLdSchemas.map((jsonLd) => (
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd, null, 2)} />
-)}
+))}

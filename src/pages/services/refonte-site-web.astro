@@ -21,19 +21,23 @@ import BackgroundMapContours from '../../components/backgrounds/BackgroundMapCon
 import FAQ from '../../components/FAQ.astro';
 import type { FAQItem } from '../../components/FAQ.astro';
 
+// Schema.org
+import { serviceSchemas, SITE_URL } from '../../data/schema';
+import { getBreadcrumbSchema } from '../../lib/seo';
+
 // SEO Data
 const seoData = {
     title: "Refonte de site web Genève | Jon Labs - Site moderne en 3 semaines",
     description: "Refonte de site web à Genève. Design moderne, ultra-rapide, optimisé SEO. Stack Astro/Tailwind. Devis transparent. Contact : Jon Labs"
 };
 
-// Service schema for SEO - must be an array for getServiceSchema()
-const serviceSchema = [
-    {
-        title: "Refonte de site web",
-        description: "Refonte complète de site web à Genève. Design moderne, ultra-rapide, optimisé SEO. Stack Astro/Tailwind. À partir de 750 CHF."
-    }
-];
+// Schema.org data
+const breadcrumb = getBreadcrumbSchema([
+    { name: "Accueil", url: SITE_URL },
+    { name: "Services", url: `${SITE_URL}/services` },
+    { name: "Refonte de site web", url: `${SITE_URL}/services/refonte-site-web` }
+]);
+const schemas = [serviceSchemas["refonte-site-web"], breadcrumb];
 
 // Pain points data
 const painPoints = [
@@ -288,8 +292,7 @@ const needOptions = [
 <Layout
     title={seoData.title}
     description={seoData.description}
-    schema="Service"
-    schemaData={serviceSchema}
+    schemas={schemas}
 >
     <Header />
 

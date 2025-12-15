@@ -1,4 +1,14 @@
 import { author } from '../sample';
+import {
+  SITE_URL,
+  organizationData,
+  personData,
+  localBusinessData,
+  websiteData,
+  servicesListData,
+  serviceSchemas,
+  blogSchema
+} from '../data/schema';
 
 export interface JSONLDSchema {
   '@context': string;
@@ -7,67 +17,164 @@ export interface JSONLDSchema {
 }
 
 /**
- * Base Organization schema for Jon Labs
- * Used across all pages to establish brand identity
+ * Get Organization schema from central data
  */
 export function getOrganizationSchema(): JSONLDSchema {
+  return { ...organizationData };
+}
+
+/**
+ * Get Person schema from central data
+ */
+export function getPersonSchema(): JSONLDSchema {
+  return { ...personData };
+}
+
+/**
+ * Get LocalBusiness schema from central data
+ */
+export function getLocalBusinessSchema(): JSONLDSchema {
+  return { ...localBusinessData };
+}
+
+/**
+ * Get Website schema from central data
+ */
+export function getWebsiteSchema(): JSONLDSchema {
+  return { ...websiteData };
+}
+
+/**
+ * WebPage schema - generic page
+ */
+export function getWebPageSchema(data: {
+  url: string;
+  name: string;
+  description: string;
+}): JSONLDSchema {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Jon Labs',
-    alternateName: author.nickname,
-    url: 'https://jonlabs.ch',
-    logo: 'https://jonlabs.ch/og-image.svg',
-    sameAs: [
-      author.linkedin !== '#' ? author.linkedin : '',
-      author.github !== '#' ? author.github : ''
-    ].filter(Boolean),
-    contactPoint: {
-      '@type': 'ContactPoint',
-      email: author.email.replace('mailto:', ''),
-      contactType: 'Customer Service',
-      availableLanguage: ['fr', 'en']
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Genève',
-      addressCountry: 'CH'
+    '@type': 'WebPage',
+    '@id': `${data.url}#webpage`,
+    url: data.url,
+    name: data.name,
+    description: data.description,
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${SITE_URL}/#organization` },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/og-image.svg`
     }
   };
 }
 
 /**
- * Person schema for Jonathan Vouilloz
- * Used on about/bio pages and as author reference
+ * AboutPage schema
  */
-export function getPersonSchema(): JSONLDSchema {
+export function getAboutPageSchema(data: {
+  url: string;
+  name: string;
+  description: string;
+}): JSONLDSchema {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: author.name,
-    alternateName: author.nickname,
-    url: 'https://jonlabs.ch',
-    image: 'https://jonlabs.ch/assets/jonathan-vouilloz.jpg',
-    jobTitle: 'Développeur Web & Partenaire Digital',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Jon Labs'
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: author.location.split(',')[0].trim(),
-      addressCountry: 'CH'
-    },
-    sameAs: [
-      author.linkedin !== '#' ? author.linkedin : '',
-      author.github !== '#' ? author.github : ''
-    ].filter(Boolean)
+    '@type': 'AboutPage',
+    url: data.url,
+    name: data.name,
+    description: data.description,
+    mainEntity: { '@id': `${SITE_URL}/#person` },
+    isPartOf: { '@id': `${SITE_URL}/#website` }
   };
 }
 
 /**
+ * ContactPage schema
+ */
+export function getContactPageSchema(data: {
+  url: string;
+  name: string;
+  description: string;
+}): JSONLDSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    url: data.url,
+    name: data.name,
+    description: data.description,
+    mainEntity: { '@id': `${SITE_URL}/#organization` },
+    isPartOf: { '@id': `${SITE_URL}/#website` }
+  };
+}
+
+/**
+ * CollectionPage schema - for portfolio, lab, outils
+ */
+export function getCollectionPageSchema(data: {
+  url: string;
+  name: string;
+  description: string;
+  mainEntity?: string; // '@id' reference
+}): JSONLDSchema {
+  const schema: JSONLDSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    url: data.url,
+    name: data.name,
+    description: data.description,
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${SITE_URL}/#organization` }
+  };
+
+  if (data.mainEntity) {
+    schema.mainEntity = { '@id': data.mainEntity };
+  }
+
+  return schema;
+}
+
+/**
+ * ProfilePage schema - for CV page
+ */
+export function getProfilePageSchema(data: {
+  url: string;
+  name: string;
+  description: string;
+}): JSONLDSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: data.url,
+    name: data.name,
+    description: data.description,
+    mainEntity: { '@id': `${SITE_URL}/#person` },
+    isPartOf: { '@id': `${SITE_URL}/#website` }
+  };
+}
+
+/**
+ * Get Services ItemList schema
+ */
+export function getServicesListSchema(): JSONLDSchema {
+  return { ...servicesListData };
+}
+
+/**
+ * Get individual service schema by slug
+ */
+export function getServiceItemSchema(slug: string): JSONLDSchema | null {
+  const schema = serviceSchemas[slug as keyof typeof serviceSchemas];
+  return schema ? { ...schema } : null;
+}
+
+/**
+ * Get Blog schema
+ */
+export function getBlogListSchema(): JSONLDSchema {
+  return { ...blogSchema };
+}
+
+/**
  * BlogPosting schema for blog articles
- * Enables rich snippets in search results
  */
 export function getBlogPostingSchema(data: {
   title: string;
@@ -79,34 +186,36 @@ export function getBlogPostingSchema(data: {
   author: string;
   category: string;
   tags: string[];
+  readingTime?: number;
 }): JSONLDSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: data.title,
     description: data.description,
-    image: data.image,
+    url: data.url,
+    image: {
+      '@type': 'ImageObject',
+      url: data.image
+    },
     datePublished: data.datePublished.toISOString(),
     dateModified: data.dateModified?.toISOString() || data.datePublished.toISOString(),
-    author: {
-      '@type': 'Person',
-      name: data.author,
-      url: 'https://jonlabs.ch'
-    },
-    publisher: getOrganizationSchema(),
+    author: { '@id': `${SITE_URL}/#person` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': data.url
     },
     articleSection: data.category,
     keywords: data.tags.join(', '),
-    inLanguage: 'fr-CH'
+    wordCount: data.readingTime ? data.readingTime * 200 : undefined,
+    inLanguage: 'fr-CH',
+    isPartOf: { '@id': `${SITE_URL}/blog#blog` }
   };
 }
 
 /**
  * FAQPage schema for FAQ sections
- * Improves visibility in search results
  */
 export interface FAQItem {
   question: string;
@@ -129,8 +238,23 @@ export function getFAQPageSchema(faqs: FAQItem[]): JSONLDSchema {
 }
 
 /**
- * ProfessionalService schema for services page
- * Highlights service offerings in search
+ * Breadcrumb schema for navigation
+ */
+export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>): JSONLDSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  };
+}
+
+/**
+ * Legacy ProfessionalService schema (kept for backward compatibility)
  */
 export function getServiceSchema(services: any[]): JSONLDSchema {
   return {
@@ -138,7 +262,7 @@ export function getServiceSchema(services: any[]): JSONLDSchema {
     '@type': 'ProfessionalService',
     name: 'Jon Labs',
     description: 'Développement web, automatisation, et applications sur-mesure pour entrepreneurs et PME en Suisse Romande',
-    provider: getOrganizationSchema(),
+    provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: {
       '@type': 'City',
       name: 'Genève',
@@ -147,7 +271,7 @@ export function getServiceSchema(services: any[]): JSONLDSchema {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Services Digital',
-      itemListElement: services.map((service, index) => ({
+      itemListElement: services.map((service) => ({
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
@@ -160,11 +284,32 @@ export function getServiceSchema(services: any[]): JSONLDSchema {
 }
 
 /**
+ * Schema types supported by the system
+ */
+export type SchemaType =
+  | 'Organization'
+  | 'Person'
+  | 'LocalBusiness'
+  | 'Website'
+  | 'WebPage'
+  | 'AboutPage'
+  | 'ContactPage'
+  | 'CollectionPage'
+  | 'ProfilePage'
+  | 'ServicesList'
+  | 'ServiceItem'
+  | 'BlogList'
+  | 'BlogPosting'
+  | 'FAQPage'
+  | 'Breadcrumb'
+  | 'Service'; // Legacy
+
+/**
  * Main JSON-LD generator function
  * Routes to appropriate schema based on type
  */
 export function generateJSONLD(
-  schemaType: 'Organization' | 'Person' | 'BlogPosting' | 'FAQPage' | 'Service',
+  schemaType: SchemaType,
   data?: any,
   astroContext?: any
 ): JSONLDSchema | null {
@@ -175,11 +320,44 @@ export function generateJSONLD(
     case 'Person':
       return getPersonSchema();
 
+    case 'LocalBusiness':
+      return getLocalBusinessSchema();
+
+    case 'Website':
+      return getWebsiteSchema();
+
+    case 'WebPage':
+      return data ? getWebPageSchema(data) : null;
+
+    case 'AboutPage':
+      return data ? getAboutPageSchema(data) : null;
+
+    case 'ContactPage':
+      return data ? getContactPageSchema(data) : null;
+
+    case 'CollectionPage':
+      return data ? getCollectionPageSchema(data) : null;
+
+    case 'ProfilePage':
+      return data ? getProfilePageSchema(data) : null;
+
+    case 'ServicesList':
+      return getServicesListSchema();
+
+    case 'ServiceItem':
+      return data?.slug ? getServiceItemSchema(data.slug) : null;
+
+    case 'BlogList':
+      return getBlogListSchema();
+
     case 'BlogPosting':
       return data ? getBlogPostingSchema(data) : null;
 
     case 'FAQPage':
       return data ? getFAQPageSchema(data) : null;
+
+    case 'Breadcrumb':
+      return data ? getBreadcrumbSchema(data) : null;
 
     case 'Service':
       return data ? getServiceSchema(data) : null;
@@ -187,4 +365,15 @@ export function generateJSONLD(
     default:
       return null;
   }
+}
+
+/**
+ * Helper to generate multiple schemas at once
+ */
+export function generateMultipleSchemas(
+  schemas: Array<{ type: SchemaType; data?: any }>
+): JSONLDSchema[] {
+  return schemas
+    .map(({ type, data }) => generateJSONLD(type, data))
+    .filter((schema): schema is JSONLDSchema => schema !== null);
 }

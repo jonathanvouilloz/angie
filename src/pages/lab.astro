@@ -3,11 +3,28 @@ import '../styles/global.css'
 import Layout from "../layouts/Layout.astro"
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+
+// Schema.org
+import { SITE_URL } from '../data/schema';
+import { getCollectionPageSchema } from '../lib/seo';
+
+const pageTitle = "Le Lab | Jon Labs - Projets Personnels & Expérimentations";
+const pageDescription = "Mes projets personnels : application de gestion de camps, jeux de société, photographie et plus. Espace d'expérimentation tech.";
+
+const labSchema = getCollectionPageSchema({
+  url: `${SITE_URL}/lab`,
+  name: pageTitle,
+  description: pageDescription,
+  mainEntity: `${SITE_URL}/#person`
+});
+
+const schemas = [labSchema];
 ---
 
 <Layout
-  title="Le Lab | Jon Labs - Projets Personnels & Expérimentations"
-  description="Mes projets personnels : application de gestion de camps, jeux de société, photographie et plus. Espace d'expérimentation tech."
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header />
 

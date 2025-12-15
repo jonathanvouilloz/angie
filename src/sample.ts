@@ -1,8 +1,8 @@
 const author = {
     name: `Jonathan Vouilloz`,
     nickname: `Jon Labs`,
-    linkedin: `#`,
-    github: `#`,
+    linkedin: `https://www.linkedin.com/in/jonathan-vouilloz-3b5741139/`,
+    github: `https://github.com/jonathanvouilloz`,
     email: `mailto:contact@jonlabs.ch`,
     location: `Genève, Suisse`
 }

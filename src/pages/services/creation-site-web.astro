@@ -17,19 +17,23 @@ import BackgroundCircuitBoard from '../../components/backgrounds/BackgroundCircu
 import BackgroundQuestionMarks from '../../components/backgrounds/BackgroundQuestionMarks.astro';
 import BackgroundMapContours from '../../components/backgrounds/BackgroundMapContours.astro';
 
+// Schema.org
+import { serviceSchemas, SITE_URL } from '../../data/schema';
+import { getBreadcrumbSchema } from '../../lib/seo';
+
 // SEO Data
 const seoData = {
     title: "Création de site web à Genève | Jon Labs",
     description: "Site web professionnel en 3-4 semaines. Design sur-mesure, optimisé Google, sans WordPress. Pour indépendants et PME à Genève. Devis gratuit."
 };
 
-// Service schema for SEO
-const serviceSchema = [
-    {
-        title: "Création de site web",
-        description: "Création de site web professionnel à Genève. Design sur-mesure, ultra-rapide, optimisé SEO. À partir de 750 CHF."
-    }
-];
+// Schema.org data
+const breadcrumb = getBreadcrumbSchema([
+    { name: "Accueil", url: SITE_URL },
+    { name: "Services", url: `${SITE_URL}/services` },
+    { name: "Création de site web", url: `${SITE_URL}/services/creation-site-web` }
+]);
+const schemas = [serviceSchemas["creation-site-web"], breadcrumb];
 
 // Pain points data (4 items)
 const painPoints = [
@@ -306,8 +310,7 @@ const budgetOptions = [
 <Layout
     title={seoData.title}
     description={seoData.description}
-    schema="Service"
-    schemaData={serviceSchema}
+    schemas={schemas}
 >
     <Header />
 

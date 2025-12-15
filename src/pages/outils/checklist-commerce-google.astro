@@ -5,6 +5,10 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import CTASection from '../../components/CTASection.astro';
 
+// Schema.org
+import { SITE_URL } from '../../data/schema';
+import { getWebPageSchema, getBreadcrumbSchema } from '../../lib/seo';
+
 // Images (chemins statiques depuis public/)
 const heroImage = '/images/outils/outils-google-checklist-local.webp';
 const pdfImage = '/images/outils/pdf-checklist-google.webp';
@@ -14,6 +18,19 @@ const seoData = {
     title: "Checklist : Rendre ton commerce visible sur Google | Jon Labs",
     description: "Plan d'action en 4 semaines pour passer de invisible à visible sur Google. Google Business, site one-page, réservation, avis. Télécharge le PDF gratuit."
 };
+
+// Schema.org data
+const webPageSchema = getWebPageSchema({
+    url: `${SITE_URL}/outils/checklist-commerce-google`,
+    name: seoData.title,
+    description: seoData.description
+});
+const breadcrumb = getBreadcrumbSchema([
+    { name: "Accueil", url: SITE_URL },
+    { name: "Outils", url: `${SITE_URL}/outils` },
+    { name: "Checklist Commerce Google", url: `${SITE_URL}/outils/checklist-commerce-google` }
+]);
+const schemas = [webPageSchema, breadcrumb];
 
 // Checklist data structured
 const semaine1 = {
@@ -212,6 +229,7 @@ const recap = [
 <Layout
     title={seoData.title}
     description={seoData.description}
+    schemas={schemas}
 >
     <Header />
 

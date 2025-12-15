@@ -11,11 +11,37 @@ import LabGrid from '../components/LabGrid.astro'
 import AboutHome from '../components/AboutHome.astro'
 import TechStack from '../components/TechStack.astro'
 import Footer from '../components/Footer.astro'
+
+// Schema.org data
+import {
+  organizationData,
+  localBusinessData,
+  websiteData,
+  SITE_URL
+} from '../data/schema';
+import { getWebPageSchema } from '../lib/seo';
+
+const pageTitle = "Jon Labs | Développeur Web Freelance à Genève";
+const pageDescription = "Solutions digitales sur-mesure : sites web, automatisation, applications. J'accompagne entrepreneurs et PME de l'idée au produit fini.";
+
+const webPageSchema = getWebPageSchema({
+  url: SITE_URL,
+  name: pageTitle,
+  description: pageDescription
+});
+
+const schemas = [
+  organizationData,
+  localBusinessData,
+  websiteData,
+  webPageSchema
+];
 ---
 
 <Layout
-  title="Jon Labs | Développeur Web Freelance à Genève"
-  description="Solutions digitales sur-mesure : sites web, automatisation, applications. J'accompagne entrepreneurs et PME de l'idée au produit fini."
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header />
   <Hero />

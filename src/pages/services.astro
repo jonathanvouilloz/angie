@@ -11,13 +11,27 @@ import ConversationModal from "../components/services/ConversationModal.astro";
 import ServiceSection from "../components/services/ServiceSection.astro";
 import ServicesCTA from "../components/services/ServicesCTA.astro";
 import { services } from "../sample";
+
+// Schema.org
+import { servicesListData, SITE_URL } from '../data/schema';
+import { getWebPageSchema } from '../lib/seo';
+
+const pageTitle = "Services - Jon Labs | Développement Web, Automatisation, Applications";
+const pageDescription = "Découvrez comment Jon Labs peut résoudre vos problématiques business. Développement web, automatisation des processus, et applications sur-mesure. Explorez les solutions adaptées à votre situation.";
+
+const webPageSchema = getWebPageSchema({
+  url: `${SITE_URL}/services`,
+  name: pageTitle,
+  description: pageDescription
+});
+
+const schemas = [servicesListData, webPageSchema];
 ---
 
 <Layout
-  title="Services - Jon Labs | Développement Web, Automatisation, Applications"
-  description="Découvrez comment Jon Labs peut résoudre vos problématiques business. Développement web, automatisation des processus, et applications sur-mesure. Explorez les solutions adaptées à votre situation."
-  schema="Service"
-  schemaData={services}
+  title={pageTitle}
+  description={pageDescription}
+  schemas={schemas}
 >
   <Header variant="transparent" scrollTransition={true} />
 
