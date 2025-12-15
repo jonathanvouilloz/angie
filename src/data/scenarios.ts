@@ -287,7 +287,8 @@ export const serviceSections: ServiceSection[] = [
           'Livrable démontrable à des investisseurs/partenaires/clients',
           'Base solide pour continuer le développement'
         ],
-        ctaText: 'En savoir plus'
+        ctaText: 'En savoir plus',
+        link: '/services/developpement-mvp'
       }
     ],
     ctaText: 'Valider mon idée'
