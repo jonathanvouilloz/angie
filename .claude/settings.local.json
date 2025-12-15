@@ -33,7 +33,8 @@
       "Bash(node -e:*)",
       "WebFetch(domain:github.com)",
       "Bash(claude mcp list:*)",
-      "mcp__nano-banana__edit_image"
+      "mcp__nano-banana__edit_image",
+      "Bash(npx sharp-cli:*)"
     ],
     "deny": [],
     "ask": []

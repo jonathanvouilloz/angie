@@ -25,8 +25,10 @@ Workflow complet pour créer un article à partir d'un fichier markdown brut, av
 
 **Image hero (principale)** - Utiliser `mcp__nano-banana__generate_image` :
 
+**Format obligatoire : 16:9 (paysage)** - Préciser dans le prompt : "16:9 aspect ratio, widescreen landscape format"
+
 ```
-Style: Hand-drawn sketchnote illustration, white background,
+Style: Hand-drawn sketchnote illustration, white background, 16:9 widescreen landscape format
 Colors: Cyan (#00D9D9), magenta (#FF00FF), black only
 Layout: [TYPE selon analyse - VS/checklist/process]
 
