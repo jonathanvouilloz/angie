@@ -1,7 +1,7 @@
 ---
 title: "Rendez-vous manqués et No-shows : Le système de réservation pour sécuriser votre CA"
 description: "Réduisez les no-shows avec un système de réservation adapté : comparatif des outils, rappels SMS/WhatsApp et acomptes TWINT."
-pubDate: 2025-12-10
+pubDate: 2025-12-06
 image:
   url: "/images/blog/no-show-agendas.webp"
   alt: "Système de réservation anti no-show pour praticiens"

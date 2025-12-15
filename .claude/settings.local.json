@@ -31,9 +31,15 @@
       "Bash(npx @aspect-build/squoosh-cli:*)",
       "Bash(where:*)",
       "Bash(node -e:*)",
-      "Bash(ls -la \"C:\\Users\\jojo-\\Desktop\\angie\\public\"\" 2>/dev/null || echo \"No public directory \")"
+      "WebFetch(domain:github.com)",
+      "Bash(claude mcp list:*)",
+      "mcp__nano-banana__edit_image"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "nano-banana"
+  ]
 }

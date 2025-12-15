@@ -52,17 +52,13 @@ const schemas = [blogSchema];
             <!-- Featured post (large, vertical layout) -->
             {featuredPost && (
               <article
-                id="featured-post"
                 class="group relative bg-white border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] mb-8"
-                data-category={featuredPost.data.category}
-                data-title={featuredPost.data.title.toLowerCase()}
-                data-tags={featuredPost.data.tags.join(' ').toLowerCase()}
               >
                 <a href={`/blog/${featuredPost.slug}/`} class="absolute inset-0 z-10" aria-label={`Lire: ${featuredPost.data.title}`}></a>
 
                 <!-- Featured banner -->
                 <div class="bg-[var(--violet)] text-white px-4 py-2 flex items-center gap-2 border-b-2 border-black">
-                  <i class="ri-star-fill text-[var(--yellow)]"></i>
+                  <i class="ri-star-fill text-white"></i>
                   <span class="text-sm font-bold uppercase tracking-wider">A la une</span>
                 </div>
 
@@ -170,13 +166,13 @@ const schemas = [blogSchema];
     const filterButtons = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('blog-search') as HTMLInputElement;
     const postsGrid = document.getElementById('posts-grid');
-    const featuredPost = document.getElementById('featured-post');
     const noResults = document.getElementById('no-results');
     const resetBtn = document.getElementById('reset-filters');
     const pagination = document.getElementById('pagination');
     const pageNumbers = document.getElementById('page-numbers');
     const prevBtn = document.getElementById('prev-page') as HTMLButtonElement;
     const nextBtn = document.getElementById('next-page') as HTMLButtonElement;
+    const viewButtons = document.querySelectorAll('.view-btn');
 
     // Get all post cards from the grid
     const postCards = Array.from(postsGrid?.querySelectorAll('.post-card') || []);
@@ -186,6 +182,52 @@ const schemas = [blogSchema];
     let currentSearch = '';
     let currentPage = 1;
     let filteredItems: Element[] = [];
+    let currentView = localStorage.getItem('blog-view') || 'grid';
+
+    // View toggle functions
+    function setView(view: string) {
+      currentView = view;
+      localStorage.setItem('blog-view', view);
+
+      // Toggle button styles
+      viewButtons.forEach((btn) => {
+        const btnView = btn.getAttribute('data-view');
+        if (btnView === view) {
+          btn.classList.add('bg-[var(--blue)]');
+          btn.classList.remove('bg-white');
+        } else {
+          btn.classList.remove('bg-[var(--blue)]');
+          btn.classList.add('bg-white');
+        }
+      });
+
+      // Toggle grid classes
+      if (postsGrid) {
+        if (view === 'grid') {
+          postsGrid.classList.add('sm:grid-cols-2');
+          postsGrid.classList.remove('grid-cols-1');
+        } else {
+          postsGrid.classList.remove('sm:grid-cols-2');
+          postsGrid.classList.add('grid-cols-1');
+        }
+      }
+
+      // Toggle card layouts via data attribute
+      postCards.forEach((card) => {
+        (card as HTMLElement).dataset.viewMode = view;
+      });
+    }
+
+    // Initialize view on load
+    setView(currentView);
+
+    // View toggle click handlers
+    viewButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const view = btn.getAttribute('data-view') || 'grid';
+        setView(view);
+      });
+    });
 
     function getFilteredItems() {
       return postCards.filter((item) => {
@@ -200,21 +242,6 @@ const schemas = [blogSchema];
 
         return matchesCategory && matchesSearch;
       });
-    }
-
-    function checkFeaturedVisibility() {
-      if (!featuredPost) return;
-
-      const itemCategory = featuredPost.getAttribute('data-category') || '';
-      const title = featuredPost.getAttribute('data-title')?.toLowerCase() || '';
-      const tags = featuredPost.getAttribute('data-tags')?.toLowerCase() || '';
-
-      const matchesCategory = currentCategory === 'all' || itemCategory === currentCategory;
-      const matchesSearch = !currentSearch ||
-        title.includes(currentSearch) ||
-        tags.includes(currentSearch);
-
-      featuredPost.style.display = (matchesCategory && matchesSearch) ? '' : 'none';
     }
 
     function renderPagination() {
@@ -260,13 +287,9 @@ const schemas = [blogSchema];
         (item as HTMLElement).style.display = '';
       });
 
-      // Check featured post visibility
-      checkFeaturedVisibility();
-
       // Show/hide empty state
-      const featuredVisible = featuredPost?.style.display !== 'none';
       if (noResults && postsGrid) {
-        if (filteredItems.length === 0 && !featuredVisible) {
+        if (filteredItems.length === 0) {
           postsGrid.classList.add('hidden');
           noResults.classList.remove('hidden');
         } else {

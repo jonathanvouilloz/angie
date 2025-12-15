@@ -1,7 +1,7 @@
 ---
 title: "Gestion de club sportif en Suisse : Pourquoi Excel ne suffit plus en 2025"
 description: "Cotisations impayées, fichiers Excel chaotiques, conformité nLPD : découvrez comment l'automatisation peut soulager les bénévoles de votre club."
-pubDate: 2025-12-10
+pubDate: 2025-11-27
 image:
   url: "/images/blog/automatisation-club-2025.webp"
   alt: "Automatisation pour clubs sportifs en 2025"
