@@ -37,7 +37,7 @@ Cet article, c'est pour toi si tu diriges une PME en Suisse romande et que tu se
 
 ## Où part vraiment le temps ? Les 5 vampires de ta PME
 
-![Les 5 vampires de temps dans les PME - facturation, relances, synchro, emails, reporting](/images/blog/temps-perdu-pme-vampires.png)
+![Les 5 vampires de temps dans les PME - facturation, relances, synchro, emails, reporting](/images/blog/temps-perdu-pme-vampires.webp)
 
 J'ai discuté avec pas mal de dirigeants de PME romandes ces derniers mois. Le constat est toujours le même : ils savent que "ça pourrait être mieux", mais ils n'arrivent pas à mettre le doigt sur où exactement.
 

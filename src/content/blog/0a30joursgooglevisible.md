@@ -26,7 +26,7 @@ C'est exactement ce que je te propose ici.
 
 ## Pourquoi t'es invisible (et ce que ça te coûte vraiment)
 
-Commençons par un constat brutal : environ 10% des commerces genevois n'ont toujours pas de présence en ligne. Et parmi ceux qui en ont une, la majorité reste invisible là où ça compte — les 3 premières positions de Google Maps.
+Commençons par un constat simple : environ 10% des commerces genevois n'ont toujours pas de présence en ligne. Et parmi ceux qui en ont une, la majorité reste invisible là où ça compte — les 3 premières positions de Google Maps.
 
 Parce que oui, quand quelqu'un cherche un commerce "près de moi", il regarde les 3 premiers résultats. Peut-être le 4ème s'il est motivé. Le reste ? Ça n'existe pas.
 

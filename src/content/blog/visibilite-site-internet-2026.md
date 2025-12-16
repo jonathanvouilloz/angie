@@ -118,6 +118,8 @@ Deux semaines après la mise en ligne : **premier contact entrant**. Quelqu'un q
 
 Ce n'est pas spectaculaire. C'est juste logique. Mais c'est un prospect qu'il n'aurait jamais eu autrement. Et c'est le début d'un canal d'acquisition qui tourne tout seul, sans effort supplémentaire.
 
+[Découvrir son site ->](https://lecureux-conseil.ch/)
+
 ### Barber Concept
 
 Barber Concept, c'est un salon de coiffure qui avait besoin de professionnaliser son image. Pas juste pour attirer des clients — pour ça, le bouche-à-oreille fonctionnait déjà — mais pour **structurer leur croissance**.
@@ -127,6 +129,9 @@ On a créé un site qui reflète leur identité de marque. Avec un truc en plus 
 **Résultat ?** Une image de marque cohérente et professionnelle. Un outil pour recevoir des candidatures qualifiées sans passer par les plateformes d'emploi classiques. Et une base solide pour développer leurs franchises, parce que quand tu veux convaincre des partenaires, avoir un site pro ça aide.
 
 Le site n'est pas juste une vitrine. C'est un **outil business**.
+
+[Découvrir leur site ->](https://www.barberconcept.ch/)
+
 
 ### Solène, cheffe d'orchestre
 
@@ -140,6 +145,9 @@ Elle est actuellement en phase d'obtenir un poste, et son site joue un rôle cl�
 > — Solène Derbal, cheffe d'orchestre
 
 Pour les métiers créatifs et les professions libérales, le site web **EST** le CV. C'est la preuve tangible de ce que tu fais et de comment tu le fais.
+
+[Découvrir son site ->](https://solenederbal.com/)
+
 
 ---
 
@@ -202,8 +210,6 @@ Je suis convaincu qu'il vaut mieux **agir imparfaitement que d'attendre la perfe
 Alors voilà ma question : **si quelqu'un te cherche sur Google ce soir, qu'est-ce qu'il trouve ?**
 
 Si la réponse te met mal à l'aise, c'est peut-être le signe qu'il est temps de changer ça.
-
-![Sois là quand on te cherche - Recherche Google](/images/blog/visibilite-2026-google.png)
 
 ---
 

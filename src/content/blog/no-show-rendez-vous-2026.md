@@ -70,7 +70,7 @@ Après avoir observé ce qui fonctionne chez différents praticiens, je vois tro
 
 L'email, on l'a dit, c'est 25-30% d'ouverture. Le SMS, c'est **98% de lecture dans les trois minutes**.
 
-La différence est brutale.
+La différence est folle.
 
 Et il y a mieux encore : WhatsApp. La plateforme permet désormais d'envoyer des messages automatisés via WhatsApp Business. C'est nouveau, c'est en train de se démocratiser, et le taux d'engagement est excellent. Vos clients ont WhatsApp ouvert en permanence. Un message de rappel y a bien plus de chances d'être vu qu'un email perdu dans une boîte de réception surchargée.
 
