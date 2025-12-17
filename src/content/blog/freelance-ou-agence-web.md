@@ -182,7 +182,7 @@ Le plus important ? Bien définir tes besoins avant de chercher un prestataire. 
 
 C'est normal. Chaque projet est unique, et parfois il faut en discuter pour y voir clair.
 
-**Tu as une idée mais tu n'es pas sûr qu'elle vaille un site complet ?** Avant d'investir dans un site, tu peux [tester ton concept](/services/validation-idee) avec une landing page et une campagne ciblée. Réponse en 2 semaines.
+**Tu as une idée mais tu n'es pas sûr qu'elle vaille un site complet ?** Avant d'investir dans un site, tu peux [tester ton concept](/services/validation-idee/) avec une landing page et une campagne ciblée. Réponse en 2 semaines.
 
 Si tu veux qu'on regarde ensemble quelle approche correspond le mieux à ta situation, je te propose un appel découverte de 30 minutes — gratuit et sans engagement.
 

@@ -214,7 +214,7 @@ Si tu préfères déléguer la partie technique — landing page, campagne pub, 
 - Un rapport avec métriques concrètes
 - Un appel de debrief pour interpréter les résultats
 
-[Découvrir le service Test de concept →](/services/validation-idee)
+[Découvrir le service Test de concept →](/services/validation-idee/)
 
 ---
 

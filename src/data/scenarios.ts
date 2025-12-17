@@ -193,7 +193,7 @@ export const serviceSections: ServiceSection[] = [
           'Architecture évolutive pour grandir avec ton activité'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/refonte-site-web'
+        link: '/services/refonte-site-web/'
       },
       {
         id: 'creation-site',
@@ -207,7 +207,7 @@ export const serviceSections: ServiceSection[] = [
           'Évolutif : blog, portfolio, pages supplémentaires si besoin'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/creation-site-web'
+        link: '/services/creation-site-web/'
       },
       {
         id: 'outils-mesure',
@@ -220,7 +220,7 @@ export const serviceSections: ServiceSection[] = [
           'Connexion à tes outils existants (CRM, compta, emails...)'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/outils-sur-mesure'
+        link: '/services/outils-sur-mesure/'
       }
     ],
     ctaText: 'Lancer mon projet web'
@@ -241,7 +241,7 @@ export const serviceSections: ServiceSection[] = [
           'Une info saisie une fois, propagée partout'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/integration-outils'
+        link: '/services/integration-outils/'
       },
       {
         id: 'automatisation-taches',
@@ -254,7 +254,7 @@ export const serviceSections: ServiceSection[] = [
           'Processus de validation simplifiés'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/automatisation'
+        link: '/services/automatisation/'
       }
     ],
     ctaText: 'Automatiser mes process'
@@ -275,7 +275,7 @@ export const serviceSections: ServiceSection[] = [
           'Réponse en 1-2 semaines : ça mord ou pas ?'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/validation-idee'
+        link: '/services/validation-idee/'
       },
       {
         id: 'mvp-rapide',
@@ -288,7 +288,7 @@ export const serviceSections: ServiceSection[] = [
           'Base solide pour continuer le développement'
         ],
         ctaText: 'En savoir plus',
-        link: '/services/developpement-mvp'
+        link: '/services/developpement-mvp/'
       }
     ],
     ctaText: 'Valider mon idée'

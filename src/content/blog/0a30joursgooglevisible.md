@@ -130,7 +130,7 @@ Les avis Google, c'est ton carburant. Plus tu en as (de vrais, pas des faux), pl
 - **Le SMS/WhatsApp de remerciement :** "Merci pour votre visite ! Si vous avez 30 secondes, un petit avis nous aide énormément : [lien]"
 - **Le bon timing :** demande quand le client est content (juste après le repas, en partant du salon). Pas 3 semaines plus tard.
 
-Tu veux pas y penser ? C'est exactement le genre de tâche qu'on peut automatiser. Un client passe en caisse, 2 heures plus tard il reçoit un SMS personnalisé avec le lien pour laisser un avis. Sans que tu lèves le petit doigt. Si ça t'intéresse, [j'en parle sur ma page automatisation](/services/automatisation).
+Tu veux pas y penser ? C'est exactement le genre de tâche qu'on peut automatiser. Un client passe en caisse, 2 heures plus tard il reçoit un SMS personnalisé avec le lien pour laisser un avis. Sans que tu lèves le petit doigt. Si ça t'intéresse, [j'en parle sur ma page automatisation](/services/automatisation/).
 
 **Mesurer ce qui marche :**
 

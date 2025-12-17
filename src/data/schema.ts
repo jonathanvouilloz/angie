@@ -156,7 +156,7 @@ export const servicesListData = {
   "@type": "ItemList",
   "name": "Services Jon Labs",
   "description": "Services de développement web, automatisation et validation d'idées pour entrepreneurs et PME",
-  "url": `${SITE_URL}/services`,
+  "url": `${SITE_URL}/services/`,
   "numberOfItems": 7,
   "itemListElement": [
     {
@@ -165,7 +165,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Création de site web",
-        "url": `${SITE_URL}/services/creation-site-web`
+        "url": `${SITE_URL}/services/creation-site-web/`
       }
     },
     {
@@ -174,7 +174,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Refonte de site web",
-        "url": `${SITE_URL}/services/refonte-site-web`
+        "url": `${SITE_URL}/services/refonte-site-web/`
       }
     },
     {
@@ -183,7 +183,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Outils sur mesure",
-        "url": `${SITE_URL}/services/outils-sur-mesure`
+        "url": `${SITE_URL}/services/outils-sur-mesure/`
       }
     },
     {
@@ -192,7 +192,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Intégration d'outils",
-        "url": `${SITE_URL}/services/integration-outils`
+        "url": `${SITE_URL}/services/integration-outils/`
       }
     },
     {
@@ -201,7 +201,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Automatisation",
-        "url": `${SITE_URL}/services/automatisation`
+        "url": `${SITE_URL}/services/automatisation/`
       }
     },
     {
@@ -210,7 +210,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Validation d'idée",
-        "url": `${SITE_URL}/services/validation-idee`
+        "url": `${SITE_URL}/services/validation-idee/`
       }
     },
     {
@@ -219,7 +219,7 @@ export const servicesListData = {
       "item": {
         "@type": "Service",
         "name": "Développement MVP",
-        "url": `${SITE_URL}/services/developpement-mvp`
+        "url": `${SITE_URL}/services/developpement-mvp/`
       }
     }
   ]
@@ -230,9 +230,9 @@ export const serviceSchemas = {
   "creation-site-web": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/creation-site-web#service`,
+    "@id": `${SITE_URL}/services/creation-site-web/#service`,
     "name": "Création de site web à Genève",
-    "url": `${SITE_URL}/services/creation-site-web`,
+    "url": `${SITE_URL}/services/creation-site-web/`,
     "description": "Création de sites web professionnels pour entrepreneurs et PME en Suisse romande. Sites vitrines modernes, rapides et optimisés pour Google.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],
@@ -251,9 +251,9 @@ export const serviceSchemas = {
   "refonte-site-web": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/refonte-site-web#service`,
+    "@id": `${SITE_URL}/services/refonte-site-web/#service`,
     "name": "Refonte de site web à Genève",
-    "url": `${SITE_URL}/services/refonte-site-web`,
+    "url": `${SITE_URL}/services/refonte-site-web/`,
     "description": "Modernisation de votre site web existant. Design responsive, performances optimisées, référencement Google intégré.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],
@@ -262,9 +262,9 @@ export const serviceSchemas = {
   "outils-sur-mesure": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/outils-sur-mesure#service`,
+    "@id": `${SITE_URL}/services/outils-sur-mesure/#service`,
     "name": "Développement d'outils sur mesure",
-    "url": `${SITE_URL}/services/outils-sur-mesure`,
+    "url": `${SITE_URL}/services/outils-sur-mesure/`,
     "description": "Applications et tableaux de bord adaptés à vos besoins spécifiques. Outils internes, CRM métier, portails clients.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],
@@ -273,9 +273,9 @@ export const serviceSchemas = {
   "integration-outils": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/integration-outils#service`,
+    "@id": `${SITE_URL}/services/integration-outils/#service`,
     "name": "Intégration d'outils et synchronisation",
-    "url": `${SITE_URL}/services/integration-outils`,
+    "url": `${SITE_URL}/services/integration-outils/`,
     "description": "Connectez vos applications pour que les données circulent automatiquement. CRM, comptabilité, emails, Stripe, TWINT.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],
@@ -284,9 +284,9 @@ export const serviceSchemas = {
   "automatisation": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/automatisation#service`,
+    "@id": `${SITE_URL}/services/automatisation/#service`,
     "name": "Automatisation de tâches pour PME",
-    "url": `${SITE_URL}/services/automatisation`,
+    "url": `${SITE_URL}/services/automatisation/`,
     "description": "Récupérez 5-10h par semaine en automatisant vos tâches répétitives. Relances, factures, rapports, notifications.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],
@@ -295,9 +295,9 @@ export const serviceSchemas = {
   "validation-idee": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/validation-idee#service`,
+    "@id": `${SITE_URL}/services/validation-idee/#service`,
     "name": "Validation d'idée business en Suisse",
-    "url": `${SITE_URL}/services/validation-idee`,
+    "url": `${SITE_URL}/services/validation-idee/`,
     "description": "Testez votre idée avant d'investir. Landing page, campagne pub ciblée, métriques concrètes en 1-2 semaines.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],
@@ -306,9 +306,9 @@ export const serviceSchemas = {
   "developpement-mvp": {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/services/developpement-mvp#service`,
+    "@id": `${SITE_URL}/services/developpement-mvp/#service`,
     "name": "Développement MVP à Genève",
-    "url": `${SITE_URL}/services/developpement-mvp`,
+    "url": `${SITE_URL}/services/developpement-mvp/`,
     "description": "Prototype fonctionnel en 2-3 semaines. Partenaire technique pour startups et PME souhaitant tester rapidement leur concept.",
     "provider": { "@id": `${SITE_URL}/#organization` },
     "areaServed": ["Genève", "Vaud", "Suisse Romande"],

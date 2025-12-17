@@ -191,7 +191,7 @@ On commence par l'essentiel : **qui tu es, ce que tu fais, comment te contacter*
 
 Le reste — portfolio, témoignages, blog, pages détaillées — ça vient après, quand tu en ressens le besoin. Un bon site est évolutif. Tu n'es pas obligé de tout avoir dès le jour 1.
 
-Si tu sens que ton site actuel a besoin d'un coup de neuf, jette un œil à ce que je propose en [refonte de site web](/services/refonte-site-web). Et si tu pars de zéro, c'est par là pour la [création de site](/services/creation-site-web).
+Si tu sens que ton site actuel a besoin d'un coup de neuf, jette un œil à ce que je propose en [refonte de site web](/services/refonte-site-web/). Et si tu pars de zéro, c'est par là pour la [création de site](/services/creation-site-web/).
 
 ---
 

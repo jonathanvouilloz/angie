@@ -29,8 +29,8 @@ const seoData = {
 // Schema.org data
 const breadcrumb = getBreadcrumbSchema([
     { name: "Accueil", url: SITE_URL },
-    { name: "Services", url: `${SITE_URL}/services` },
-    { name: "Automatisation", url: `${SITE_URL}/services/automatisation` }
+    { name: "Services", url: `${SITE_URL}/services/` },
+    { name: "Automatisation", url: `${SITE_URL}/services/automatisation/` }
 ]);
 const schemas = [serviceSchemas["automatisation"], breadcrumb];
 
@@ -543,7 +543,7 @@ const projectTypes = [
                 </div>
                 <p class="mt-4 text-center text-sm text-gray-500">
                     La connexion fait circuler les données. L'automatisation <strong>agit à votre place</strong>.
-                    <a href="/services/integration-outils" class="text-[var(--blue)] hover:underline ml-2">
+                    <a href="/services/integration-outils/" class="text-[var(--blue)] hover:underline ml-2">
                         Découvrir le service de connexion d'outils →
                     </a>
                 </p>
@@ -740,7 +740,7 @@ const projectTypes = [
                     <strong>Note :</strong> Je ne pousse pas un outil plutôt qu'un autre. Le choix dépend de votre contexte : complexité du workflow, outils déjà en place, budget, facilité de maintenance future. L'objectif, c'est que ça fonctionne pour vous sur le long terme.
                 </p>
                 <p class="mt-2">
-                    Si vous avez besoin que vos outils communiquent mieux entre eux, c'est aussi possible — <a href="/services/integration-outils" class="text-[var(--blue)] hover:underline">découvrir le service de connexion d'outils</a>.
+                    Si vous avez besoin que vos outils communiquent mieux entre eux, c'est aussi possible — <a href="/services/integration-outils/" class="text-[var(--blue)] hover:underline">découvrir le service de connexion d'outils</a>.
                 </p>
             </div>
         </div>
@@ -1217,7 +1217,7 @@ const projectTypes = [
                     <!-- Not ready yet -->
                     <div class="text-center mt-8 p-4 bg-white border-2 border-dashed border-gray-300">
                         <p class="text-gray-500 text-sm">
-                            <strong>Pas encore prêt ?</strong> Découvrez comment <a href="/services/integration-outils" class="text-[var(--blue)] hover:underline">vos outils peuvent travailler ensemble</a> ou explorez les <a href="/services" class="text-[var(--blue)] hover:underline">autres services</a>.
+                            <strong>Pas encore prêt ?</strong> Découvrez comment <a href="/services/integration-outils/" class="text-[var(--blue)] hover:underline">vos outils peuvent travailler ensemble</a> ou explorez les <a href="/services/" class="text-[var(--blue)] hover:underline">autres services</a>.
                         </p>
                     </div>
                 </div>

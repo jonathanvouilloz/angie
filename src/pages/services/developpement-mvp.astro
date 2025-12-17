@@ -32,8 +32,8 @@ const seoData = {
 // Schema.org data
 const breadcrumb = getBreadcrumbSchema([
     { name: "Accueil", url: SITE_URL },
-    { name: "Services", url: `${SITE_URL}/services` },
-    { name: "Développement MVP", url: `${SITE_URL}/services/developpement-mvp` }
+    { name: "Services", url: `${SITE_URL}/services/` },
+    { name: "Développement MVP", url: `${SITE_URL}/services/developpement-mvp/` }
 ]);
 const schemas = [serviceSchemas["developpement-mvp"], breadcrumb];
 
@@ -719,7 +719,7 @@ const zones = [
                 <p class="text-gray-500 text-sm mb-2">
                     <strong>Pas encore prêt ?</strong> Tu peux d'abord valider ton idée avant de construire quoi que ce soit.
                 </p>
-                <a href="/services/validation-idee" class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline">
+                <a href="/services/validation-idee/" class="inline-flex items-center gap-2 text-[var(--blue)] font-medium hover:underline">
                     <i class="ri-flask-line"></i>
                     Découvrir le service de validation d'idée
                     <i class="ri-arrow-right-line"></i>
