@@ -1,143 +1,242 @@
-Guideline de Style Visuel pour Images d'Articles Jon Labs
-Après analyse des trois images, voici la description détaillée du style à reproduire :
-Style Général
-Aesthetic : Sketchnote / Visual Thinking / Doodle pédagogique
+# Guideline de Style Visuel pour Images d'Articles Jon Labs
 
-Style dessiné à la main, volontairement imparfait et accessible
-Fond blanc ou très clair (beige/crème léger)
-Vibe ludique et éducative, pas corporate
+## Workflow en 3 Phases
 
-Palette de Couleurs (STRICTE)
+Les covers de blog sont generees en 3 etapes pour garantir une orthographe parfaite :
 
-Cyan/Turquoise : #00D9D9 ou similaire (couleur dominante)
-Magenta/Rose vif : #FF00FF ou #E91E8C (accent fort)
-Noir : Pour le texte et contours
-Blanc : Pour les fonds d'éléments
-Pas d'autres couleurs (rester sur ce triptyque cyan-magenta-noir)
+```
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 1 : nano-banana genere le blob SEUL (sans texte)    │
+│     → Utilise src/assets/template-blog-cover.png           │
+│     → Output: personnage blob sur fond #fcfbfc             │
+├─────────────────────────────────────────────────────────────┤
+│  PHASE 2 : Script Sharp ajoute le titre                    │
+│     → node src/scripts/generate-blog-cover.js              │
+│     → Orthographe garantie (texte programmatique)          │
+│     → Output: cover 16:9 en PNG                            │
+├─────────────────────────────────────────────────────────────┤
+│  PHASE 3 : Convertir en WebP et renommer                   │
+│     → npx @aspect-build/squoosh-cli (qualite 80)           │
+│     → Renommer en [slug].webp                              │
+│     → Supprimer le PNG source                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
-Typographie
+---
 
-Police : Style manuscrit/script gras, tout en MAJUSCULES pour les titres
-Hiérarchie :
+## Style General
 
-Titres principaux : TRÈS GROS, gras, noir
-Sous-titres : Moyen, dans cartouches blancs sur fond coloré
-Annotations : Petit, manuscrit, avec flèches
+**Aesthetic** : Minimaliste doodle / Character illustration
 
+- Style dessine a la main, simple et epure
+- Fond blanc propre, sans decorations
+- Vibe mignonne et memorable, inspiree de l'esthetique coreenne
 
+## Palette de Couleurs (STRICTE)
 
-Éléments Décoratifs (À placer dans les coins/espaces vides)
+- **Turquoise** : `#00D9A3` (couleur principale alternee)
+- **Magenta** : `#A300D9` (couleur principale alternee)
+- **Noir** : Pour les contours fins et le texte
+- **Blanc** : Pour le fond
 
-⭐ Étoiles (4-5 branches, style croquis)
-Zigzags (style éclair/scribble)
-Formes géométriques abstraites : triangles, demi-cercles
-Toujours en cyan ou magenta
+**Regle** : Alterner turquoise et magenta entre les articles pour varier visuellement.
 
-Structure de Composition
-Type 1 : Comparaison (VS)
-[Problème/Avant]    VS    [Solution/Après]
-     ☹️                      😊
+## Le Personnage Blob/Ghost
 
-Diviser l'image verticalement en 2 avec ligne centrale
-Gros "VS" au centre, stylisé
-Côté gauche : problématique (icônes négatifs, croix rouges)
-Côté droit : solution (checks verts, sourires)
-Titre principal en bas, souligné cyan + magenta
+### Description
+Un petit personnage blob/fantome mignon avec :
+- Forme arrondie simple (comme un fantome ou une goutte)
+- Lunettes rondes sur le visage
+- Petits yeux en points derriere les lunettes
+- Expression amicale et sympathique
+- Remplissage uni (turquoise ou magenta)
+- Contours noirs fins
 
-Type 2 : Récapitulatif/Checklist
-     [TITRE PRINCIPAL]
-          ___________
-         
-    🧠 Point 1    🔑 Point 2    ➡️ Point 3
+### Style de dessin
+- Hand-drawn doodle
+- Simplicite enfantine
+- Esthetique "Korean cute character"
+- Pas de details complexes
 
-Titre centré en haut, souligné multicolore
-3 colonnes avec icône + texte court
-Carnet/bloc-notes en illustration centrale (optionnel)
+## Layout des Covers
 
-Type 3 : Processus/Étapes
-Étape 1 → Étape 2 → Étape 3
+**Format final : 1920x1080 (16:9)**
 
-Flèches larges entre chaque étape
-Numérotation visible dans cercles colorés
-Titre en haut, souligné
+```
+┌────────────────────────────────────────────────┐
+│                                                │
+│  TITRE DE L'ARTICLE      │     🫧              │
+│  EN 5-8 MOTS             │   (blob)            │
+│  (70% largeur)           │  (30% largeur)      │
+│                                                │
+└────────────────────────────────────────────────┘
+```
 
-Icônes et Illustrations (Style)
-Personnages
+- **Cote gauche (70%)** : Titre en texte noir gras, police Space Grotesk, aligne a gauche
+- **Cote droit (30%)** : Personnage blob avec sa pose
+- **Fond** : #fcfbfc (blanc casse, adapte au blob genere)
 
-Bonhommes bâton simplifiés
-Tête = cercle avec 2 points (yeux) + trait (bouche)
-Corps = trapèze/triangle arrondi turquoise ou magenta
-Bras = traits simples
-Émotions : ☹️ (frustré), 😊 (content), 😐 (neutre), 😡 (en colère)
+---
 
-Objets Tech
+## PHASE 1 : Generation du Blob
 
-Téléphone/Tablet : Rectangle arrondi avec bord noir épais, écran blanc, éléments d'interface simplifiés (rectangles colorés pour boutons)
-Ordinateur : Rectangle + rectangle plus petit en bas (écran + base)
-Calendrier : Grille 7x4 avec X rouges pour les dates annulées
+### Image de Reference
+**Fichier template** : `src/assets/template-blog-cover.png`
 
-Concepts Abstraits
+### Prompt nano-banana (SANS TEXTE)
 
-Argent : Sac avec symbole $ et petites ailes
-Temps : Horloge simplifiée ou sablier
-Check/Validation : ✓ gros dans cercle vert/cyan
-Problème : ❌ ou symbole interdit
-Idée : Ampoule stylisée
+```
+Minimalist doodle illustration, square format, flat design, white background.
 
-Style de Dessin
+A cute simple blob/ghost character with round glasses, drawn with clean [turquoise #00D9A3 OR magenta #A300D9] fill and thin black outlines. The blob has a friendly expression with tiny dot eyes behind round glasses. Style: hand-drawn doodle, childlike simplicity, Korean cute character aesthetic.
 
-Contours noirs épais (2-3px)
-Pas de dégradés, aplats de couleur uniquement
-Légèrement "tremblant" pour effet dessiné main
-Ombres portées décalées (style brutaliste) : shadow: 4px 4px 0 black
+The blob is [ACTION/POSE].
 
-Annotations et Flèches
+Character centered on white background. No text, no decorations. Simple, minimal, memorable.
+```
 
-Flèches : Style croquis, pas droites
-Texte d'annotation : Police plus petite, italique manuscrite
-Pointer vers les éléments importants
-Bulles de pensée pour questions/doutes (style BD)
+### Generation dynamique de la pose
 
-Soulignements de Titre (SIGNATURE VISUELLE)
-Les titres principaux ont TOUJOURS un double soulignement :
+La pose du personnage est generee dynamiquement en fonction du contenu de l'article, pas d'une liste fixe.
 
-Premier trait : cyan
-Deuxième trait (décalé) : magenta
-Style "gribouillé" pas parfaitement droit
+**Workflow :**
+1. Extraire le titre de l'article
+2. Creer un resume court (1-2 phrases) base sur l'intro et les sections H2
+3. Generer une pose unique et descriptive adaptee au contenu
 
-Template Prompt pour Génération Auto
-Style: Hand-drawn sketchnote illustration, white background
-Colors: Cyan (#00D9D9), magenta (#FF00FF), black only
-Layout: [décrire structure: comparison VS / checklist / process]
+**Format de la pose :**
+```
+"[ACTION avec objet optionnel], [EXPRESSION]"
+```
 
-Content:
-- Main title in ALL CAPS: "[TITRE]", with cyan and magenta underlines
-- [Description des éléments gauche/droite ou des points]
-- Decorative elements: stars and zigzags in corners (cyan and magenta)
+**Criteres d'une bonne pose :**
+- Action simple que le blob peut realiser
+- En lien direct avec le sujet de l'article
+- Inclut une expression (looking satisfied, excited, curious, determined, proud, etc.)
+- Evite les poses trop complexes ou irrealisables
 
-Characters: Simple stick figures with emotions
-Icons: [Lister les icônes nécessaires: phone, money, calendar, etc.]
-Style: Bold black outlines, flat colors, slightly wobbly lines, brutalist shadows
+**Exemples de poses generees dynamiquement :**
 
-Annotations: Small handwritten labels with arrows pointing to elements
-Exemples d'Application par Type d'Article
-Article "Automatisation"
+| Contenu de l'article | Pose generee |
+|---------------------|--------------|
+| Article sur les tests MVP et validation d'idees | "holding a small rocket, looking excited and ready to launch" |
+| Article sur l'automatisation d'un club sportif | "juggling small gears and a calendar, looking proud" |
+| Article sur le SEO et la visibilite Google | "peering through a magnifying glass at a star, looking curious" |
+| Article sur les rendez-vous manques (no-shows) | "holding a small clock, looking determined" |
 
-Structure : VS (manuel vs automatisé)
-Gauche : Personnage frustré + fichiers Excel en désordre + horloge
-Droite : Personnage souriant + engrenages connectés + argent qui revient
-Titre : "AUTOMATISATION : [SUJET]"
+---
 
-Article "Création Site Web"
+### Exemples de poses par theme (inspiration)
 
-Structure : VS
-Gauche : "Pas de site" → fantôme + Google avec point d'interrogation
-Droite : Téléphone avec site → Google avec check → clients qui arrivent
-Titre : "[SOLUTION] POUR ÊTRE VISIBLE"
+Ces exemples servent d'inspiration - la pose finale doit etre adaptee au contenu specifique de l'article.
 
-Article "No-Show/RDV"
+| Theme | Exemples de poses |
+|-------|-------------------|
+| Automatisation | "holding a small gear", "surrounded by floating cogs", "pressing a big button" |
+| Dev web | "hugging a tiny laptop", "typing on a floating keyboard", "holding code brackets" |
+| SEO | "holding a magnifying glass", "looking at a shining star", "climbing a chart" |
+| MVP/Validation | "building with blocks", "holding a small rocket", "planting a seed" |
+| General/reflexion | "sitting peacefully, one arm raised thinking", "reading a tiny book" |
+| Probleme resolu | "giving a thumbs up", "celebrating with confetti", "crossing off a checklist" |
 
-Structure : Comparaison + Solution
-Gauche : Calendrier avec X rouges + argent avec des ailes qui s'envole
-Droite : Téléphone avec checks + verrou sécurité + rappels SMS
-Titre : "SÉCURISER VOTRE CA"
+---
+
+## PHASE 2 : Ajout du Titre
+
+### Script Sharp
+
+```bash
+node src/scripts/generate-blog-cover.js "[CHEMIN_BLOB]" "[TITRE]" "public/images/blog/[SLUG].png"
+```
+
+### Exemple
+
+```bash
+node src/scripts/generate-blog-cover.js \
+  "C:/Users/jojo-/Documents/nano-banana-images/blob.png" \
+  "Automatiser son club sportif facilement" \
+  "public/images/blog/automatisation-club-sportif.png"
+```
+
+### Titre
+- **Longueur** : 5 a 8 mots
+- **Objectif** : Resumer l'article de maniere accrocheuse
+- **Style** : Texte noir, gras, police Space Grotesk
+
+> **⚠️ ORTHOGRAPHE :** Le script garantit l'orthographe, mais verifier quand meme le texte passe en parametre !
+
+---
+
+## PHASE 3 : Conversion WebP et Renommage
+
+### Commandes
+
+```bash
+# Convertir en WebP (qualite 80)
+npx @aspect-build/squoosh-cli --webp '{"quality":80}' -d public/images/blog/ public/images/blog/[SLUG]-cover.png
+
+# Renommer en [slug].webp
+mv public/images/blog/[SLUG]-cover.webp public/images/blog/[SLUG].webp
+
+# Supprimer le PNG source
+rm public/images/blog/[SLUG]-cover.png
+```
+
+### Exemple concret
+
+```bash
+npx @aspect-build/squoosh-cli --webp '{"quality":80}' -d public/images/blog/ public/images/blog/valide-idee-business-suisse-cover.png
+mv public/images/blog/valide-idee-business-suisse-cover.webp public/images/blog/valide-idee-business-suisse.webp
+rm public/images/blog/valide-idee-business-suisse-cover.png
+```
+
+### Resultat attendu
+- Fichier final : `public/images/blog/[slug].webp`
+- Taille reduite (~60-80% plus leger que PNG)
+- Qualite visuelle preservee
+
+---
+
+## Exemples d'Application
+
+### Article "Automatisation Club Sportif"
+- **Couleur blob** : Turquoise #00D9A3
+- **Pose** : "holding a small gear, looking satisfied"
+- **Titre** : "Automatiser son club sportif facilement"
+
+### Article "Creer un Site Web"
+- **Couleur blob** : Magenta #A300D9
+- **Pose** : "hugging a tiny laptop"
+- **Titre** : "Votre site web visible sur Google"
+
+### Article "Valider son Idee Business"
+- **Couleur blob** : Turquoise #00D9A3
+- **Pose** : "building with small blocks"
+- **Titre** : "Valider son idee avant de se lancer"
+
+---
+
+## Images In-Article
+
+Pour les images a l'interieur des articles (max 2-3) :
+- Meme style blob/ghost minimaliste
+- Generation nano-banana seule (sans texte)
+- Adapter la pose du personnage au contexte de la section
+- Fond blanc, pas de decorations
+
+---
+
+## Checklist Rapide
+
+- [ ] **Phase 1** : Blob genere sans texte (nano-banana)
+- [ ] **Phase 2** : Titre ajoute via script Sharp
+- [ ] **Phase 3** : Converti en WebP et renomme
+- [ ] PNG source supprime
+- [ ] Orthographe du titre verifiee
+- [ ] Format 16:9 respecte (1920x1080)
+- [ ] Personnage blob avec lunettes rondes
+- [ ] Couleur turquoise OU magenta (alterner)
+- [ ] Titre 5-8 mots, lisible
+- [ ] Fond #fcfbfc (blanc casse)
+- [ ] Pose appropriee au sujet
+- [ ] Fichier final : `public/images/blog/[slug].webp`

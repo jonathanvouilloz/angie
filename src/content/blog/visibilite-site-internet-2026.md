@@ -3,7 +3,7 @@ title: "3.5% : pourquoi chaque indépendant romand devrait avoir un site web en 
 description: "Seuls 3.5% de tes abonnés voient tes posts Instagram. Découvre pourquoi un site web est devenu indispensable pour les indépendants en Suisse romande."
 pubDate: 2025-12-01
 image:
-  url: "/images/blog/visibilite-site-internet-2026.png"
+  url: "/images/blog/visibilite-site-internet-2026.webp"
   alt: "Comparaison visibilité réseaux sociaux vs site web - illustration sketchnote"
 category: "tech"
 tags: ["site-web", "visibilite", "independant", "seo-local", "suisse-romande"]

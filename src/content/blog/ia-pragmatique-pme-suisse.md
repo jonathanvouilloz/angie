@@ -3,7 +3,7 @@ title: "52% des PME romandes utilisent l'IA pour traduire. Voici 5 usages qui ch
 description: "L'IA est partout, mais mal utilisée. Découvrez les quick wins concrets pour PME suisses : workflow, outils conformes LPD, et calcul ROI réaliste."
 pubDate: 2025-12-16
 image:
-  url: "/images/blog/ia-pragmatique-pme-suisse.png"
+  url: "/images/blog/ia-pragmatique-pme-suisse.webp"
   alt: "Illustration sketchnote montrant une Ferrari garée devant une boîte aux lettres - métaphore de l'IA sous-utilisée par les PME"
 category: "tech"
 tags: ["ia", "pme", "suisse-romande", "productivite", "automatisation"]

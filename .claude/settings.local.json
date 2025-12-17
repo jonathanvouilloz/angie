@@ -34,7 +34,11 @@
       "WebFetch(domain:github.com)",
       "Bash(claude mcp list:*)",
       "mcp__nano-banana__edit_image",
-      "Bash(npx sharp-cli:*)"
+      "Bash(npx sharp-cli:*)",
+      "Bash(node src/scripts/generate-blog-cover.js:*)",
+      "Bash(del \"public\\images\\blog\\valide-idee-business-suisse.webp\")",
+      "Bash(rm:*)",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": []

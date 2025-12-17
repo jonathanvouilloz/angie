@@ -19,58 +19,133 @@ Workflow complet pour créer un article à partir d'un fichier markdown brut, av
    - Mots-clés pour les tags
 4. **Générer** le slug depuis le titre (kebab-case, sans accents)
 
-#### Étape 2: Génération d'images via nano-banana MCP
+#### Étape 2: Génération de la cover (workflow en 3 phases)
 
 **Lire** `docs/generateImageForBlog.md` pour le guide de style visuel complet.
 
-**Image hero (principale)** - Utiliser `mcp__nano-banana__generate_image` :
+---
 
-**Format obligatoire : 16:9 (paysage)** - Préciser dans le prompt : "16:9 aspect ratio, widescreen landscape format"
+**PHASE 1 : Générer le blob SEUL (sans texte)**
+
+**Étape 1a : Analyser le contenu pour générer la pose**
+
+Avant de générer l'image, analyser le contenu de l'article pour créer une pose unique et adaptée :
+
+1. **Extraire le titre** de l'article
+2. **Créer un résumé** (1-2 phrases) basé sur l'introduction et les sections H2
+3. **Générer une pose** descriptive en anglais qui :
+   - Décrit une action simple que le blob peut faire
+   - Est en lien direct avec le sujet de l'article
+   - Inclut une expression (looking satisfied, excited, curious, etc.)
+
+**Format de la pose :**
+```
+"[ACTION avec objet optionnel], [EXPRESSION]"
+```
+
+**Exemples de poses générées dynamiquement :**
+
+| Contenu de l'article | Pose générée |
+|---------------------|--------------|
+| Article sur les tests MVP et validation d'idées | "holding a small rocket, looking excited and ready to launch" |
+| Article sur l'automatisation d'un club sportif | "juggling small gears and a calendar, looking proud" |
+| Article sur le SEO et la visibilité Google | "peering through a magnifying glass at a star, looking curious" |
+| Article sur les rendez-vous manqués (no-shows) | "holding a small clock, looking determined" |
+
+**Exemples de poses par thème (inspiration) :**
+
+| Thème | Exemples de poses |
+|-------|-------------------|
+| Automatisation | "holding a small gear", "surrounded by floating cogs" |
+| Dev web | "hugging a tiny laptop", "typing on a floating keyboard" |
+| SEO | "holding a magnifying glass", "looking at a shining star" |
+| MVP/Validation | "building with blocks", "holding a small rocket" |
+| Général/réflexion | "sitting peacefully, one arm raised thinking" |
+| Problème résolu | "giving a thumbs up", "celebrating with confetti" |
+
+---
+
+**Étape 1b : Générer l'image avec nano-banana**
+
+Utiliser `mcp__nano-banana__edit_image` avec le template de référence :
 
 ```
-Style: Hand-drawn sketchnote illustration, white background, 16:9 widescreen landscape format
-Colors: Cyan (#00D9D9), magenta (#FF00FF), black only
-Layout: [TYPE selon analyse - VS/checklist/process]
-
-Content:
-- Main title in ALL CAPS: "[TITRE]", with cyan and magenta double underlines
-- [Description des éléments visuels selon le type]
-- Decorative elements: stars and zigzags in corners (cyan and magenta)
-
-Characters: Simple stick figures with emotions (happy face for solutions, sad for problems)
-Icons: [Icônes pertinentes: phone, calendar, money bag, checkmarks, etc.]
-Style: Bold black outlines (2-3px), flat colors, slightly wobbly hand-drawn lines, brutalist offset shadows (4px 4px black)
-
-Annotations: Small handwritten labels with arrows pointing to key elements
+mcp__nano-banana__edit_image(
+  imagePath: "C:/Users/jojo-/Desktop/angie/src/assets/template-blog-cover.png",
+  prompt: "[PROMPT CI-DESSOUS]"
+)
 ```
 
-**Types de layouts selon l'article :**
+**Prompt pour le blob (SANS TEXTE) :**
+```
+Minimalist doodle illustration, square format, flat design, white background.
 
-| Type | Layout | Éléments |
-|------|--------|----------|
-| Comparaison (VS) | Split vertical avec "VS" au centre | Gauche: problème (☹️), Droite: solution (😊) |
-| Checklist | 3 colonnes avec icônes | Points clés avec emoji/icône + texte court |
-| Processus | Flèches entre étapes | Numéros dans cercles colorés |
+A cute simple blob/ghost character with round glasses, drawn with clean [COULEUR] fill and thin black outlines. The blob has a friendly expression with tiny dot eyes behind round glasses. Style: hand-drawn doodle, childlike simplicity, Korean cute character aesthetic.
+
+The blob is [POSE GÉNÉRÉE À L'ÉTAPE 1a].
+
+Character centered on white background. No text, no decorations. Simple, minimal, memorable.
+```
+
+**Choix de couleur** (alterner pour varier les covers) :
+- Turquoise : `#00D9A3`
+- Magenta : `#A300D9`
+
+**→ Noter le chemin de l'image générée** (ex: `C:/Users/jojo-/Documents/nano-banana-images/edited-2025-xx-xx.png`)
+
+---
+
+**PHASE 2 : Ajouter le titre via script Sharp**
+
+> **⚠️ ORTHOGRAPHE CRITIQUE :** Vérifier l'orthographe du titre AVANT d'exécuter le script. Relire plusieurs fois !
+
+**Titre :** 5-8 mots qui résument l'article de manière accrocheuse.
+
+```bash
+node src/scripts/generate-blog-cover.js "[CHEMIN_BLOB]" "[TITRE]" "public/images/blog/[SLUG]-cover.png"
+```
+
+**Exemple concret :**
+```bash
+node src/scripts/generate-blog-cover.js "C:/Users/jojo-/Documents/nano-banana-images/edited-2025-12-16.png" "Valider son idée business sans Sàrl" "public/images/blog/valide-idee-business-suisse-cover.png"
+```
+
+Le script génère une image 1920x1080 (16:9) avec :
+- Fond : #fcfbfc (adapté au blob)
+- Blob à droite (~40%)
+- Titre à gauche (fontSize 120, padding 120)
+
+---
+
+**PHASE 3 : Convertir en WebP et renommer**
+
+```bash
+# Convertir en WebP (qualité 80)
+npx @aspect-build/squoosh-cli --webp '{"quality":80}' -d public/images/blog/ public/images/blog/[SLUG]-cover.png
+
+# Renommer en [slug].webp
+mv public/images/blog/[SLUG]-cover.webp public/images/blog/[SLUG].webp
+
+# Supprimer le PNG source
+rm public/images/blog/[SLUG]-cover.png
+```
+
+**Exemple concret :**
+```bash
+npx @aspect-build/squoosh-cli --webp '{"quality":80}' -d public/images/blog/ public/images/blog/valide-idee-business-suisse-cover.png
+mv public/images/blog/valide-idee-business-suisse-cover.webp public/images/blog/valide-idee-business-suisse.webp
+rm public/images/blog/valide-idee-business-suisse-cover.png
+```
+
+---
 
 **Images in-article** (max 2-3) :
 - Pour chaque section H2 majeure, évaluer si une image contextuelle aide
-- Utiliser le même style sketchnote
-- Adapter le contenu à la section spécifique
+- Utiliser le même style blob/ghost minimaliste (génération nano-banana seule, sans texte)
+- Adapter la pose du personnage à la section
+- Convertir également en WebP
 
-#### Étape 3: Conversion WebP via Squoosh CLI
-
-Après génération de chaque image :
-
-```bash
-npx @aspect-build/squoosh-cli --webp '{"quality":80}' -d public/images/blog/ [chemin-image.png]
-```
-
-- Qualité : 80 (bon compromis taille/qualité)
-- Destination : `public/images/blog/`
-- Renommer le fichier WebP selon la convention : `[slug].webp` pour l'image hero
-- Supprimer le fichier PNG source après conversion réussie
-
-#### Étape 4: Formatage de l'article
+#### Étape 3: Formatage de l'article
 
 Appliquer les conventions de `docs/guidelines.md` :
 
@@ -124,7 +199,7 @@ Ou découvrir les services :
 [Voir les services →](/services)
 ```
 
-#### Étape 5: Vérification SEO
+#### Étape 4: Vérification SEO
 
 Vérifier automatiquement (inspiré de `.claude/commands/seo.md`) :
 
@@ -137,7 +212,7 @@ Vérifier automatiquement (inspiré de `.claude/commands/seo.md`) :
 - [ ] **Liens internes** : Au moins 1 lien vers /services
 - [ ] **CTA** : Présent en fin d'article
 
-#### Étape 6: Création et rapport final
+#### Étape 5: Création et rapport final
 
 1. **Créer** le fichier `src/content/blog/[slug].md`
 2. **Vérifier** que toutes les images existent dans `public/images/blog/`
