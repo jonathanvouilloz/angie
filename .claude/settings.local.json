@@ -42,7 +42,16 @@
       "Bash(find:*)",
       "WebFetch(domain:jonlabs.ch)",
       "Bash(git show:*)",
-      "Bash(npx pnpm install:*)"
+      "Bash(npx pnpm install:*)",
+      "mcp__nano-banana__configure_gemini_token",
+      "mcp__nano-banana__continue_editing",
+      "Bash(node src/scripts/generate-linkedin-schema.js:*)",
+      "Bash(fc-list)",
+      "Bash(curl:*)",
+      "Bash(unzip:*)",
+      "Bash(fc-cache:*)",
+      "Bash(node:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []

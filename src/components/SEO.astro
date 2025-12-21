@@ -45,10 +45,20 @@ const {
   robots = 'index, follow'
 } = Astro.props;
 
-// Generate canonical URL
-const canonicalURL = canonical
+// Generate canonical URL (without trailing slash, matching trailingSlash: 'never')
+const rawCanonicalURL = canonical
   ? new URL(canonical, Astro.site)
   : new URL(Astro.url.pathname, Astro.site);
+
+// Remove trailing slash except for root path edge case
+let canonicalURL = rawCanonicalURL.href;
+if (canonicalURL.endsWith('/') && rawCanonicalURL.pathname !== '/') {
+  canonicalURL = canonicalURL.slice(0, -1);
+}
+// For homepage, use the site URL without trailing slash
+if (rawCanonicalURL.pathname === '/') {
+  canonicalURL = Astro.site?.href.replace(/\/$/, '') || canonicalURL;
+}
 
 const ogImageURL = new URL(ogImage, Astro.site);
 

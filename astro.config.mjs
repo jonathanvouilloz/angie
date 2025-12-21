@@ -7,6 +7,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jonlabs.ch',
+  trailingSlash: 'never',
   integrations: [sitemap({
     filter: (page) =>
       !page.includes('/cv-pdf') &&
