@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jonlabs.ch/sitemap-index.xml
+Sitemap: https://www.jonlabs.ch/sitemap-index.xml

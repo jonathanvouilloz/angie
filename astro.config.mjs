@@ -6,7 +6,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://jonlabs.ch',
+  site: 'https://www.jonlabs.ch',
   trailingSlash: 'never',
   integrations: [sitemap({
     filter: (page) =>

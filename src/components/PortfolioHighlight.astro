@@ -245,29 +245,9 @@ const projects = [
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Spotlight effect - Desktop only */
-    @media (min-width: 768px) {
-        /* When grid is hovered, dim all cards */
-        .portfolio-grid:hover .project-card {
-            filter: blur(3px);
-            opacity: 0.5;
-            transform: scale(0.96);
-        }
-
-        /* The hovered card gets spotlight */
-        .portfolio-grid:hover .project-card:hover {
-            filter: blur(0);
-            opacity: 1;
-            transform: scale(1.08);
-            z-index: 10;
-        }
-    }
-
-    /* Mobile - simple hover */
-    @media (max-width: 767px) {
-        .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
-        }
+    /* Simple hover effect */
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
     }
 </style>

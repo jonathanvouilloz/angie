@@ -78,6 +78,10 @@ export function initAnimations() {
     });
 
     inView(el, () => {
+      // Éviter le double déclenchement
+      if (el.hasAttribute('data-animated')) return;
+      el.setAttribute('data-animated', 'true');
+
       const delay = parseFloat(el.getAttribute('data-delay') || '0');
       const duration = parseFloat(el.getAttribute('data-duration') || String(defaultConfig.duration));
 
@@ -102,6 +106,10 @@ export function initAnimations() {
     });
 
     inView(container, () => {
+      // Éviter le double déclenchement
+      if (container.hasAttribute('data-animated')) return;
+      container.setAttribute('data-animated', 'true');
+
       const staggerDelay = parseFloat(container.getAttribute('data-stagger-delay') || String(defaultConfig.staggerDelay));
 
       animate(children, animation.final, {
