@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    { "source": "/blog/astro-vs-next", "destination": "/blog", "permanent": true },
+    { "source": "/blog/astro-vs-next/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/automatisation-workflows", "destination": "/blog", "permanent": true },
+    { "source": "/blog/automatisation-workflows/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/guide-complet-astro", "destination": "/blog", "permanent": true },
+    { "source": "/blog/guide-complet-astro/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/design-system-brutalist", "destination": "/blog", "permanent": true },
+    { "source": "/blog/design-system-brutalist/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/gaming-et-productivite", "destination": "/blog", "permanent": true },
+    { "source": "/blog/gaming-et-productivite/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/china-economic-outlook", "destination": "/blog", "permanent": true },
+    { "source": "/blog/china-economic-outlook/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/fiat-currency-history", "destination": "/blog", "permanent": true },
+    { "source": "/blog/fiat-currency-history/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/warren-buffett-seven-rules", "destination": "/blog", "permanent": true },
+    { "source": "/blog/warren-buffett-seven-rules/", "destination": "/blog", "permanent": true },
+    { "source": "/blog/freelance-suisse", "destination": "/blog/freelance-ou-agence-web", "permanent": true },
+    { "source": "/blog/freelance-suisse/", "destination": "/blog/freelance-ou-agence-web", "permanent": true }
+  ]
+}
