@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
   width: 1200,
   height: 627,
-  blobWidth: 600,
+  blobWidth: 400,
   textAreaWidth: 480,
   backgroundColor: '#fcfbfc',
   textColor: '#000000',
@@ -138,12 +138,12 @@ async function generateLinkedInCover(blobImagePath, title, outputPath) {
   const textSvg = generateTextSvg(title);
   const textBuffer = Buffer.from(textSvg);
 
-  // Composite all layers - blob closer to text
+  // Composite all layers - logo on the right with spacing
   const result = await background
     .composite([
       {
         input: transparentBlob,
-        left: CONFIG.textAreaWidth - 20,
+        left: CONFIG.textAreaWidth + 120,
         top: 10
       },
       {
