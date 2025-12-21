@@ -1,0 +1,24 @@
+# Redirections 301 pour les anciens articles de blog supprimes
+# Format: /ancien-chemin /nouveau-chemin CODE
+
+# Articles supprimes -> redirection vers le blog
+/blog/astro-vs-next /blog 301
+/blog/astro-vs-next/ /blog 301
+/blog/automatisation-workflows /blog 301
+/blog/automatisation-workflows/ /blog 301
+/blog/guide-complet-astro /blog 301
+/blog/guide-complet-astro/ /blog 301
+/blog/design-system-brutalist /blog 301
+/blog/design-system-brutalist/ /blog 301
+/blog/gaming-et-productivite /blog 301
+/blog/gaming-et-productivite/ /blog 301
+/blog/china-economic-outlook /blog 301
+/blog/china-economic-outlook/ /blog 301
+/blog/fiat-currency-history /blog 301
+/blog/fiat-currency-history/ /blog 301
+/blog/warren-buffett-seven-rules /blog 301
+/blog/warren-buffett-seven-rules/ /blog 301
+
+# Redirection vers article similaire existant
+/blog/freelance-suisse /blog/freelance-ou-agence-web 301
+/blog/freelance-suisse/ /blog/freelance-ou-agence-web 301

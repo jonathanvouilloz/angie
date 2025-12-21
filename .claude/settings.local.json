@@ -39,7 +39,9 @@
       "Bash(del \"public\\images\\blog\\valide-idee-business-suisse.webp\")",
       "Bash(rm:*)",
       "Bash(del:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:jonlabs.ch)",
+      "Bash(git show:*)"
     ],
     "deny": [],
     "ask": []

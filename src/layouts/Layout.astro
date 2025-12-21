@@ -19,6 +19,7 @@ interface Props {
 		section?: string;
 		tags?: string[];
 	};
+	robots?: string;
 }
 
 const {
@@ -29,7 +30,8 @@ const {
 	schemas,
 	schema,
 	schemaData,
-	article
+	article,
+	robots
 } = Astro.props;
 ---
 
@@ -79,6 +81,7 @@ const {
 			schema={schema}
 			schemaData={schemaData}
 			article={article}
+			robots={robots}
 		/>
 
 		<title>{title}</title>
