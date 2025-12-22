@@ -19,6 +19,16 @@ pnpm-debug.log*
 
 # MCP config (contains API keys)
 .mcp.json
+.nano-banana-config.json
+
+# SSH keys and secrets
+file
+file.pub
+*.pem
+*.key
+id_*
+.env.local
+.env.*.local
 
 # macOS-specific files
 .DS_Store

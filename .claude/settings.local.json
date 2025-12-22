@@ -52,7 +52,12 @@
       "Bash(fc-cache:*)",
       "Bash(node:*)",
       "Bash(ls:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git ls-tree:*)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(sudo apt install:*)",
+      "Bash(pipx install:*)"
     ],
     "deny": [],
     "ask": []
