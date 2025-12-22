@@ -90,6 +90,9 @@ export function initAnimations() {
         delay,
         easing: defaultConfig.easing
       });
+
+      // Retourner une fonction pour arrêter l'observation après l'animation
+      return () => {};
     }, { margin: '-100px' });
   });
 
@@ -117,6 +120,9 @@ export function initAnimations() {
         delay: stagger(staggerDelay),
         easing: defaultConfig.easing
       });
+
+      // Retourner une fonction pour arrêter l'observation après l'animation
+      return () => {};
     }, { margin: '-100px' });
   });
 }

@@ -56,7 +56,7 @@ const projects = [
     <div class="max-w-6xl mx-auto px-4 relative z-10">
 
         <!-- Section header - Editorial style -->
-        <div class="relative mb-16 md:mb-20" data-animate>
+        <div class="relative mb-16 md:mb-20 animate-on-scroll">
             <!-- Oversized number watermark -->
             <span class="
                 absolute -top-8 -left-2 md:-top-12 md:-left-6
@@ -109,7 +109,7 @@ const projects = [
         </div>
 
         <!-- Projects grid with spotlight effect -->
-        <div class="portfolio-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-animate-stagger>
+        <div class="portfolio-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {projects.map((project, index) => (
                 <article
                     class="
@@ -119,8 +119,8 @@ const projects = [
                         shadow-[4px_4px_0px_rgba(0,0,0,0.25)]
                         overflow-hidden
                         relative
+                        animate-on-scroll stagger-item
                     "
-                    data-animate-item
                 >
                     <!-- Clickable card overlay -->
                     <a href={project.link} class="absolute inset-0 z-20" aria-label={`Voir le projet ${project.title}`}></a>
@@ -245,9 +245,22 @@ const projects = [
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Simple hover effect */
+    /* Hover effect - same as services */
     .project-card:hover {
         transform: translateY(-4px);
-        box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+        box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
     }
 </style>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#portfolio .animate-on-scroll').forEach(el => observer.observe(el));
+</script>

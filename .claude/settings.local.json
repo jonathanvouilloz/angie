@@ -57,7 +57,8 @@
       "Bash(pip install:*)",
       "Bash(pip3 install:*)",
       "Bash(sudo apt install:*)",
-      "Bash(pipx install:*)"
+      "Bash(pipx install:*)",
+      "Bash(npm ls:*)"
     ],
     "deny": [],
     "ask": []
