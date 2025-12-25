@@ -243,8 +243,17 @@ const schemaData = {
       };
 
       // Load initial state
+      const isMobile = window.innerWidth < 1280; // xl breakpoint
       const savedState = localStorage.getItem('focusMode');
-      const initialState = savedState === 'true';
+
+      // Default: ON for mobile, OFF for desktop
+      // User preference (savedState) overrides default
+      let initialState;
+      if (savedState !== null) {
+        initialState = savedState === 'true';
+      } else {
+        initialState = isMobile;
+      }
       applyFocusMode(initialState);
 
       // Add event listeners
