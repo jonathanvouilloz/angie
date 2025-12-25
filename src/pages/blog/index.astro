@@ -41,19 +41,19 @@ const schemas = [blogSchema];
 
     <section class="py-8 md:py-12 bg-[var(--main-bg)]">
       <div class="max-w-6xl mx-auto px-4">
-        <!-- Two column layout -->
+        <!-- Two column layout with mobile reordering -->
         <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-6 lg:gap-8">
 
-          <!-- Sidebar -->
-          <BlogSidebar />
+          <!-- Sidebar : 2nd on mobile, 1st column on desktop (spans 2 rows) -->
+          <div class="order-2 lg:order-1 lg:row-span-2">
+            <BlogSidebar />
+          </div>
 
-          <!-- Main content -->
-          <div>
-            <!-- Featured post (large, vertical layout) -->
-            {featuredPost && (
-              <article
-                class="group relative bg-white border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] mb-8"
-              >
+          <!-- Featured post : 1st on mobile, 2nd column row 1 on desktop -->
+          {featuredPost && (
+            <article
+              class="order-1 lg:order-2 group relative bg-white border-2 border-black shadow-[6px_6px_0px_rgba(0,0,0,0.4)] overflow-hidden transition-all duration-300 hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px]"
+            >
                 <a href={`/blog/${featuredPost.slug}/`} class="absolute inset-0 z-10" aria-label={`Lire: ${featuredPost.data.title}`}></a>
 
                 <!-- Featured banner -->
@@ -108,9 +108,11 @@ const schemas = [blogSchema];
                     <i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
                   </div>
                 </div>
-              </article>
-            )}
+            </article>
+          )}
 
+          <!-- Posts section : 3rd on mobile, 2nd column row 2 on desktop -->
+          <div class="order-3 lg:order-3">
             <!-- Section title -->
             <div class="flex items-center gap-3 mb-6">
               <span class="text-xs font-mono uppercase tracking-[0.2em] text-gray-500">
