@@ -139,11 +139,51 @@ rm public/images/blog/valide-idee-business-suisse-cover.png
 
 ---
 
-**Images in-article** (max 2-3) :
-- Pour chaque section H2 majeure, évaluer si une image contextuelle aide
-- Utiliser le même style blob/ghost minimaliste (génération nano-banana seule, sans texte)
-- Adapter la pose du personnage à la section
-- Convertir également en WebP
+#### Étape 2b: Génération des images in-article (max 2-3)
+
+**IMPORTANT** : Utiliser `edit_image` avec le template, PAS `generate_image`.
+
+Pour chaque section H2 majeure nécessitant une illustration :
+
+1. **Générer la pose** adaptée au contenu de la section (même format que pour la cover)
+
+2. **Utiliser `edit_image`** avec le template de référence :
+
+```
+mcp__nano-banana__edit_image(
+  imagePath: "[CHEMIN_PROJET]/src/assets/template-blog-cover.png",
+  prompt: "Minimalist doodle illustration, square format, flat design, white background.
+
+A cute simple blob/ghost character with round glasses, drawn with clean [COULEUR] fill and thin black outlines. The blob has a friendly expression with tiny dot eyes behind round glasses. Style: hand-drawn doodle, childlike simplicity, Korean cute character aesthetic.
+
+The blob is [POSE ADAPTÉE À LA SECTION].
+
+Character centered on white background. No text, no decorations. Simple, minimal, memorable."
+)
+```
+
+3. **Convertir en WebP** :
+```bash
+npx sharp-cli --input [OUTPUT_PATH] --output public/images/blog/[SLUG]-[section].webp --format webp --quality 80
+```
+
+**Alternance des couleurs** (pour créer de la variété visuelle) :
+- Cover : Turquoise #00D9A3
+- Image in-article 1 : Magenta #A300D9
+- Image in-article 2 : Turquoise #00D9A3
+- (alterner si plus d'images)
+
+**Exemples de poses pour sections courantes** :
+
+| Section | Pose suggérée |
+|---------|---------------|
+| Facteurs/critères | "surrounded by floating icons, looking thoughtful" |
+| Mobile/responsive | "holding a smartphone, looking proud" |
+| Processus/étapes | "climbing small steps, looking determined" |
+| Comparaison | "holding a balance scale, looking curious" |
+| Warning/attention | "holding a small warning sign, looking concerned" |
+
+---
 
 #### Étape 3: Formatage de l'article
 

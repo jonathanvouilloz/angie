@@ -24,8 +24,8 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
   width: 1920,
   height: 1080,
-  blobWidth: 600, // Zone pour le blob
-  textAreaWidth: 1150, // Position du blob (plus proche du centre)
+  blobWidth: 900, // Zone pour le blob (agrandi)
+  textAreaWidth: 700, // Position du blob (rapproché du texte)
   backgroundColor: '#fcfbfc',
   textColor: '#000000',
   fontFamily: 'Space Grotesk, Arial, sans-serif',
@@ -119,12 +119,19 @@ async function generateBlogCover(blobImagePath, title, outputPath) {
     }
   });
 
-  // Process blob image - trim whitespace, force white background, resize
+  // Process blob image - trim whitespace, force white background, resize to fill height
   const blobBuffer = await sharp(blobImagePath)
     .trim() // Supprimer l'espace blanc autour du blob
     .flatten({ background: '#fcfbfc' }) // Forcer fond blanc pur
-    .resize(CONFIG.blobWidth, CONFIG.height, {
+    .resize(null, Math.round(CONFIG.height * 0.85), { // 85% de la hauteur
       fit: 'contain',
+      background: { r: 252, g: 251, b: 252, alpha: 1 }
+    })
+    .extend({
+      top: Math.round(CONFIG.height * 0.075),
+      bottom: Math.round(CONFIG.height * 0.075),
+      left: 0,
+      right: 0,
       background: { r: 252, g: 251, b: 252, alpha: 1 }
     })
     .toBuffer();
