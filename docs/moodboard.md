@@ -29,6 +29,6 @@ references:
 
 Identité visuelle **éditoriale minimaliste warm** : fond clair légèrement warm (jamais blanc pur), sans-serif élégante pas ultra-bold, **un seul accent vert `#00D9A3`** (signal : mot-clé, trait, nœud, CTA), formes arrondies sobres et connecteurs fins. Les visuels mélangent photographie photoréaliste DSLR et compositions templates avec overlay typographique net. Jamais de « AI slop », jamais de surcharge, plus de brutalisme ni de jaune.
 
-Blog covers : image de fond statique (`bg-template.png`) + titre texte overlay en Inter Tight. LinkedIn covers : illustration cartoon/absurde via Gemini, format carré 1:1.
+Blog covers (depuis le 2026-07-19) : **illustration éditoriale semi-concrète via le skill `visual`** (gpt-image-2) — statue N&B en signature + ancre concrète qui nomme le sujet + accent mono-teal `#00D9A3`, **sans texte, sans logo**, 16:9. Preset `blog-cover-visual` (`source: visual`) dans `presets.yaml` ; `generate-cover` délègue à `/visual` sur cette source. L'ancien pipeline template (`bg-template.png` + texte overlay) est abandonné (asset supprimé, commit 33bb825). LinkedIn covers : illustration cartoon/absurde via Gemini, format carré 1:1.
 
 > Le volet visuel canonique complet (palette verrouillée, éléments signature, formats) vit dans `bip-jon/docs/moodboard.md`. Ce fichier n'est que la config de génération d'images de la surface jonlabs.ch.

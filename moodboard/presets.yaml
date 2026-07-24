@@ -5,34 +5,28 @@ defaults:
   output_quality: 90
 
 placement_to_preset:
-  cover: blog-cover-template
+  cover: blog-cover-visual
 
 brief_type_to_preset:
-  cover: blog-cover-template
+  cover: blog-cover-visual
 
 presets:
 
-  blog-cover-template:
-    description: "Cover depuis image de fond statique + texte overlay freetype (aucun appel API)"
-    source: template
-    template_image: src/assets/bg-template.png
-    compose_text: true
-    font_file: fonts/InterTight-VariableFont_wght.ttf
-    text_overlay:
-      position: bottom-left
-      title_anchor: bottom
-      title_y_ratio: 0.90
-      gradient: false
-      banner: false
-      rotation: 0
-      uppercase: false
-      shadow: false
-      text_color: "#1a1a1a"
-      font_size_ratio: 0.06    # × largeur image (pas hauteur) — 1920 × 0.06 = 115px
-      font_weight: 700
-      tracking: -0.04
-      line_spacing: 1.1
-      max_title_width_ratio: 0.65
+  # Covers de blog jonlabs = skill `visual` (gpt-image-2), depuis la migration du 2026-07-19.
+  # PAS l'ancien pipeline template/texte-overlay (bg-template.png supprimé, cf. commit 33bb825).
+  # `source: visual` n'est PAS exécuté par generate-images/cli.py : il route vers le skill `visual`
+  # (moteur render.py autonome, marque embarquée). generate-cover DOIT s'arrêter et déléguer à /visual.
+  blog-cover-visual:
+    description: "Cover illustrée semi-concrète via skill `visual` (gpt-image-2, 16:9, sans texte, sans logo)"
+    source: visual
+    skill: visual                       # ← moteur : ~/.claude/skills/visual (render.py)
+    typologie: illustration
+    niveau: semi-concret                 # ancre concrète + statue N&B en signature (cf. moodboard §15b)
+    refs: "illustration/illu2-statue-laptop.png,illustration/illu6-phone-collage.png"
+    size: 1536x1024                      # natif 3:2
+    target: 16x9                         # center-crop → cover plein-cadre (jamais de padding warm)
+    logo: none                           # direction illustration = jamais de logo
+    quality: medium
     output_dir: public/images/blog
     output_naming: "{slug}.webp"
 
