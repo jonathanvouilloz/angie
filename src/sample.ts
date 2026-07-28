@@ -3,7 +3,7 @@ const author = {
     nickname: `Jon Labs`,
     linkedin: `https://www.linkedin.com/in/jonathan-vouilloz-3b5741139/`,
     github: `https://github.com/jonathanvouilloz`,
-    youtube: `https://www.youtube.com/@jonlabs_ia`,
+    youtube: `https://www.youtube.com/@jonvolio`,
     substack: `https://substack.com/@jonvolio`,
     email: `mailto:contact@jonlabs.ch`,
     location: `Genève, Suisse`
