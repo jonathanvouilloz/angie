@@ -270,6 +270,8 @@ Ne commencez pas par les satellites. Commencez par votre propre pilier : le suje
 
 Si vous savez écrire et que vous avez le temps, rédigez vous-même. Si les deux conditions ne sont pas remplies, déléguez. La question du prestataire mérite réflexion : j'ai posé le cadre dans mon article [freelance ou agence : comment choisir](/blog/freelance-ou-agence-web).
 
+Entre les deux, il y a l'outillage : des plateformes de [seo automation](https://www.meeeters.com/seo-automation) prennent en charge la partie mécanique — audit, génération de pages à partir des données mots-clés, netlinking. Ça ne remplace pas votre expertise dans le texte, ça enlève la corvée autour.
+
 ---
 
 ## FAQ
