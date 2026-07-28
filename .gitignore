@@ -73,3 +73,11 @@ src/assets/illustrations/_masters/
 
 # Brouillons LinkedIn
 /linkedin/
+
+# configs MCP locales (ne jamais committer : contiennent des cles)
+.codex/
+.mcp.json
+.nano-banana-config.json
+
+# sorties de pipeline visuel (bannieres, exports) — hors repo
+/outputs/

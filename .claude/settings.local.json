@@ -5,7 +5,7 @@
       "Bash(chmod +x \"C:\\Users\\jojo-\\Desktop\\jonlabs\\.git\\hooks\\pre-commit\")",
       "Bash(npm run build:*)",
       "Skill(example-skills:frontend-design)",
-      "Bash(if not exist \"C:/Users/jojo-/Desktop/noyau/jonlabs/public/fonts\" mkdir \"C:/Users/jojo-/Desktop/noyau/jonlabs/public/fonts\")",
+      "Bash(if not exist \"C:/Users/jojo-/noyau/jonlabs/public/fonts\" mkdir \"C:/Users/jojo-/noyau/jonlabs/public/fonts\")",
       "Bash(copy:*)",
       "Bash(powershell -Command:*)",
       "Bash(if not exist \"C:\\Users\\jojo-\\Desktop\\jonlabs\\src\\data\" mkdir \"C:\\Users\\jojo-\\Desktop\\jonlabs\\src\\data\")",
@@ -63,7 +63,8 @@
       "Skill(gmb-post)",
       "Skill(open-carrusel)",
       "Bash(sed 's/padding:\\\\s*//')",
-      "Bash(sed 's/[[:space:]]*$//')"
+      "Bash(sed 's/[[:space:]]*$//')",
+      "Bash(python *)"
     ],
     "deny": [],
     "ask": []

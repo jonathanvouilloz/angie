@@ -16,7 +16,7 @@ sounds_not_like:
 - Notre approche innovante permet de synergiser vos assets digitaux.
 - En tant qu'expert reconnu du développement web genevois...
 linkedin:
-  cadence: 2-3/semaine
+  cadence: 3-4/semaine, espacés >=48h
   hashtags_max: 3
 ---
 <!-- ⚙️ GENERE par brand/sync.py depuis noyau/brand/ (mappe au schema jonlabs) — NE PAS EDITER ICI. Edite le canon puis relance le sync. -->
