@@ -25,8 +25,6 @@ faqs:
     answer: "Vérification mensuelle des métriques GBP Insights. Mise à jour des horaires chaque trimestre (et avant chaque jour férié). Nouvelles photos : 1 par semaine minimum. Posts : 1 par semaine. Réponse aux avis : dans les 48h après chaque avis reçu."
 ---
 
-# Optimiser sa fiche Google My Business en 2026 : la checklist des 25 points qui font vraiment la différence
-
 Ta fiche Google My Business existe. Elle est vérifiée. Et pourtant, tu n'es pas dans le Top 3 du Local Pack, ces 3 résultats Maps qui captent l'essentiel des clics locaux.
 
 La question n'est pas "est-ce que j'ai une fiche", mais "est-ce que ma fiche envoie les bons signaux aux bons endroits". **Optimiser sa fiche Google My Business** en 2026, c'est travailler plusieurs familles de signaux distinctes, et savoir laquelle passe avant les autres.

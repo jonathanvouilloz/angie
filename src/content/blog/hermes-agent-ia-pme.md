@@ -22,8 +22,6 @@ faqs:
     answer: "Nous Research est une startup américaine spécialisée dans les modèles de langage open source. Connue pour sa série de modèles Hermes LLM, des fine-tunes de haute qualité reconnus dans la communauté open source. La société a levé 65 millions USD et développe Hermes Agent sous licence MIT depuis février 2026."
 ---
 
-# Hermes Agent pour ta PME : ce que c'est, ce que ça fait, et si ça vaut le coup en 2026
-
 En février 2026, **Nous Research** a lancé **Hermes Agent**. En moins de trois mois, l'outil a atteint **61 000 étoiles sur GitHub**. Pour mettre ça en perspective : Make, l'outil de workflow préféré de milliers de PME, a mis dix ans pour atteindre ce niveau de notoriété dans la communauté tech.
 
 La majorité des articles sur Hermes Agent sont en anglais. Écrits par des développeurs, pour des développeurs, avec des commandes CLI, des configurations Docker, des architectures multi-agents. Utile si tu codes. Inutile si tu diriges une fiduciaire à Lausanne ou une agence de communication à Genève.

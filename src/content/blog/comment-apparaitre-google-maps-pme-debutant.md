@@ -24,8 +24,6 @@ faqs:
     answer: "Deux causes probables : soit la vérification n'est pas complète (vérifier dans le dashboard), soit ta fiche est trop récente et/ou trop incomplète pour que Google la priorise. Remplis tous les champs, ajoute des photos, réponds à toutes les questions. Les résultats prennent 4 à 8 semaines à se matérialiser."
 ---
 
-# Comment apparaître sur Google Maps quand on est une PME qui part de zéro
-
 Tu as un commerce, un atelier, un cabinet. Et tu n'apparais pas sur **Google Maps**. Tes concurrents, oui. Toi, non. C'est frustrant, d'autant plus que personne ne t'a jamais expliqué pourquoi ni comment corriger ça.
 
 Ce guide est fait pour toi. Pas de jargon, pas de théorie SEO. Juste ce que tu dois comprendre et faire concrètement pour que ton entreprise apparaisse sur Maps dans les 30 prochains jours. C'est entièrement gratuit, et tu n'as besoin d'aucun outil payant.

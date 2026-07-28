@@ -22,8 +22,6 @@ faqs:
     answer: "Quatre catégories résistent structurellement. Les décisions relationnelles à fort enjeu (gestion de conflit client, négociation commerciale). Les processus ambigus où une réponse humaine 'peut-être' change complètement la suite : aucun workflow déterministe ne gère l'ambiguïté. Les tâches qui nécessitent un jugement contextuel (par exemple, évaluer si un devis correspond vraiment aux besoins du client). Les processus qui changent souvent : les automatiser coûte plus en maintenance qu'ils n'économisent."
 ---
 
-# Automatisation dans ta PME : ce qu'elle apporte vraiment, et ce qu'elle ne peut pas faire
-
 J'ai vu un dirigeant de PME à Genève automatiser son processus de facturation en trois jours. Résultat : il récupère six heures par semaine depuis huit mois sans interruption. J'en ai vu un autre passer deux semaines à construire un workflow Make complexe pour sa newsletter. Il l'a abandonné trois mois plus tard quand son format de contenu a changé. La même technologie, deux résultats opposés.
 
 Ce bilan sur **les avantages et les limites de l'automatisation dans une PME** n'est ni un pitch de vente ni un avertissement alarmiste. C'est l'analyse que tu veux lire avant de te lancer, ou avant d'arrêter quelque chose qui ne tient pas ses promesses. On couvre les avantages réels avec des chiffres en CHF, les **coûts cachés de l'automatisation** que personne ne mentionne, les limites structurelles que même les meilleurs outils ne dépassent pas, et les cas précis où il vaut mieux s'abstenir. Pour une vue d'ensemble, consulte d'abord le [guide complet sur l'automatisation dans ta PME suisse](/blog/automatisation-pme-suisse-guide-complet).

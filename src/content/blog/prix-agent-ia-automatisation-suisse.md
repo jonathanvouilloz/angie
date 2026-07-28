@@ -22,8 +22,6 @@ faqs:
     answer: "Le forfait fixe pour une première expérience : périmètre défini, prix verrouillé, aucune surprise budgétaire. La régie convient mieux ensuite, quand le projet évolue et que de nouveaux cas d'usage s'ajoutent au fil des mois."
 ---
 
-# Combien coûte un agent IA pour ton entreprise ? Les vrais prix en CHF, sans rien cacher
-
 Demande un devis pour un **agent IA** à trois prestataires romands différents. Dans la majorité des cas, tu vas recevoir la même réponse : "ça dépend, contactez-nous pour en discuter." Aucune fourchette, aucun ordre de grandeur, juste un formulaire de contact à remplir avant d'avoir le moindre chiffre.
 
 Ce n'est pas un hasard. C'est une posture commerciale assumée par une bonne partie du marché de l'**automatisation en entreprise**, y compris chez des acteurs qui ciblent activement Genève. Cet article fait l'inverse : des fourchettes réelles, en francs suisses, sans devis caché derrière un appel de qualification.

@@ -22,8 +22,6 @@ faqs:
     answer: "Oui pour les usages individuels du dirigeant. Avec des limites pour le déploiement multi-utilisateurs : gérer plusieurs instances pour une équipe demande une configuration plus avancée. Dans ce cas, Hermes Agent avec son architecture multi-agents est souvent plus adapté."
 ---
 
-# OpenClaw pour une PME suisse : ce que c'est, ce que ça fait, combien ça coûte et si ça vaut le coup
-
 **OpenClaw** a atteint 100 000 étoiles sur GitHub et 2 millions de visiteurs en une semaine lors de son lancement. Pour un outil open source inconnu six mois avant, c'est un signal difficile à ignorer.
 
 La plupart des contenus sur OpenClaw sont en anglais et écrits par des développeurs pour des développeurs. Ce guide est différent. Il est écrit pour un dirigeant de PME romande qui veut une réponse directe : est-ce que c'est quelque chose que je peux utiliser dans mon entreprise, combien ça me coûte en CHF, et en quoi c'est différent de Hermes Agent dont on parle aussi beaucoup ?

@@ -22,8 +22,6 @@ faqs:
     answer: "Les deux sont open source. Hermes Agent est orienté orchestration multi-agents et tâches complexes déléguées. OpenClaw est plus accessible en local, sans infrastructure cloud. Le bon choix dépend de ton cas d'usage et de ta configuration technique."
 ---
 
-# Workflow déterministe ou agent IA autonome : ce que personne n'explique clairement aux dirigeants de PME
-
 Depuis six mois, j'ai au moins une conversation par semaine avec un dirigeant romand qui me pose la même question : « Est-ce que mon Make, c'est pareil qu'un agent IA ? »
 
 La réponse courte : non.

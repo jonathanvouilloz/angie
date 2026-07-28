@@ -23,8 +23,6 @@ faqs:
     answer: "Une fiche supprimée diffère d'une fiche suspendue. Une fiche suspendue existe encore dans les systèmes Google, tu peux faire appel pour la réactiver. Une fiche supprimée nécessite de la recréer depuis le début et de la revérifier. Si tu soupçonnes une suppression abusive par un tiers, le forum GBP Product Experts est le recours approprié."
 ---
 
-# Ta fiche Google My Business est suspendue : voici le protocole complet pour la récupérer
-
 Si ta **fiche Google My Business suspendue** ne s'affiche plus ce matin dans Google Maps ou dans les résultats locaux, tu es au bon endroit. Ce n'est pas une panne Google. C'est une suspension, et il existe une procédure précise pour la récupérer.
 
 Avant de soumettre quoi que ce soit à Google, tu dois poser le bon diagnostic. Une **soft suspension** (fiche masquée, accès au tableau de bord conservé) se traite différemment d'une **hard suspension** (accès partiel ou total perdu). Confondre les deux, c'est perdre des semaines à soumettre le mauvais formulaire.

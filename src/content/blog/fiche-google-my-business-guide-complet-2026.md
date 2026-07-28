@@ -27,8 +27,6 @@ faqs:
     answer: "Non, c'est un mythe. Les backlinks vers la fiche GBP ne transmettent pas de PageRank : GBP n'est pas une page web indexable, c'est une entité dans le Knowledge Graph de Google. Ce qui aide : les backlinks locaux vers ton site web et les citations NAP cohérentes sur les annuaires."
 ---
 
-# Fiche Google My Business en 2026 : tout ce qu'une PME doit vraiment savoir
-
 Ta **fiche Google My Business** est ce qui décide de ta place dans le Local Pack, ces 3 résultats Maps que tout le monde voit avant de scroller. C'est le levier de visibilité locale le plus puissant à ta disposition, et il est gratuit.
 
 Sauf que la plupart des PME le sous-utilisent. Fiche vide, catégorie vague, zéro photo, aucun avis répondu depuis 6 mois. Et elles se demandent pourquoi leurs concurrents apparaissent avant elles sur Maps.

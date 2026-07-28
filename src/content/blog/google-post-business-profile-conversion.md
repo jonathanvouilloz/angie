@@ -27,8 +27,6 @@ faqs:
     answer: "Les causes les plus fréquentes : numéro de téléphone dans le texte ou l'image, image issue d'une banque d'images ou trop couverte de texte, dates vagues pour un Événement. Consulte les Google Business Profile Posts Policy (support.google.com/business/answer/7213077) pour la liste complète des violations."
 ---
 
-# Google Posts sur ta fiche GBP : comment écrire des publications qui font agir, pas juste scroller
-
 **L'essentiel en bref**
 
 - Un Google Post n'est pas un post Instagram. Le lecteur est déjà en mode achat quand il le voit.

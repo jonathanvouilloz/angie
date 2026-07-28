@@ -28,8 +28,6 @@ faqs:
     answer: "Non, et ce n'est pas son but. C'est un cadrage pratique pour un dirigeant non-juriste, pensé pour poser les bonnes questions avant de déployer un agent IA. Pour un cas précis, notamment en secteur réglementé, l'avis d'un spécialiste conformité reste indispensable."
 ---
 
-# IA et nLPD : ce que la conformité suisse change vraiment quand tu automatises avec l'IA
-
 Un dirigeant de fiduciaire lausannoise m'a posé la question il y a quelques semaines : "si je branche un agent IA sur mes dossiers clients, je risque quoi exactement ?" Bonne question, et il n'était pas seul à se la poser. Dès qu'un **agent IA** touche des données qui identifient une personne, la **nLPD** entre dans le jeu, que le dirigeant soit juriste ou pas.
 
 Petite précision avant d'aller plus loin : cet article n'est pas un conseil juridique. C'est un cadrage pratique pour un dirigeant non-juriste, à valider avec un spécialiste conformité pour un cas précis. Pour la vue d'ensemble sur l'automatisation en PME, le [guide complet sur l'automatisation dans ta PME suisse](/blog/automatisation-pme-suisse-guide-complet) pose les bases générales ; ici, on se concentre sur la question spécifique de la **protection des données et de l'IA en Suisse**.

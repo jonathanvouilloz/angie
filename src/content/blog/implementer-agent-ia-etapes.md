@@ -22,8 +22,6 @@ faqs:
     answer: "Non. Traiter plusieurs cas d'usage en parallèle dilue l'attention du référent interne et complique le suivi des bugs. Un déploiement séquentiel, un cas d'usage après l'autre, avance plus vite au final qu'un déploiement simultané mal suivi."
 ---
 
-# Déployer un agent IA dans ton entreprise : la feuille de route semaine par semaine
-
 Déployer un **agent IA** prend 8 semaines quand le projet est cadré correctement, pas 6 mois de comité de pilotage. La méthode se découpe en 4 phases de 2 semaines : cadrage, construction, référent interne, généralisation à l'équipe.
 
 Ce découpage n'a rien d'arbitraire. Il vient d'une constante observée sur le terrain, en Suisse romande comme ailleurs : les projets qui traînent sont ceux qui sautent l'étape de cadrage ou qui empilent une gouvernance trop lourde pour une **structure de 1 à 15 personnes**. Ceux qui avancent vite suivent un rythme simple, avec un seul cas d'usage à la fois.

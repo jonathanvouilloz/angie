@@ -29,8 +29,6 @@ faqs:
     answer: "Oui, si tu collectes des données via formulaire, newsletter ou tracking analytics. La nLPD impose une politique de confidentialité spécifique, des bases légales claires pour le traitement, et des obligations de transparence qui ne sont pas identiques au RGPD. Un prestataire qui ignore cette différence te met juridiquement à risque."
 ---
 
-# Spécialiste en développement web suisse : comment choisir (sans te faire avoir)
-
 Tu tapes ta requête sur Google et tu te retrouves face à des pages d'agences génériques, des annuaires, et des prestataires parisiens qui ont ajouté "Suisse" dans leur title pour capter tes clics.
 
 Le marché du **développement web en Suisse romande** est opaque. Les prix ne sont jamais affichés. Les références sont souvent des screenshots de sites lambdas. La différence entre un dev quelconque et un vrai **spécialiste du développement web en Suisse** (quelqu'un qui connaît ce marché de l'intérieur) se paie cher si tu te trompes.

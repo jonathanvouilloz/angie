@@ -25,8 +25,6 @@ faqs:
     answer: "Depuis le dashboard GBP, Informations, Catégorie principale, modifier. Le changement est immédiat mais ses effets sur le ranking prennent 1 à 3 semaines à se matérialiser. Google observe la cohérence entre ta catégorie et le contenu de ton site avant de valider le nouveau positionnement."
 ---
 
-# Comment créer sa fiche Google My Business en 2026 : les 7 étapes dans l'ordre
-
 **Créer une fiche Google My Business** prend moins d'une heure. La faire bien, de sorte qu'elle ranke dès le départ et n'ait pas besoin d'être refaite dans 6 mois, demande de comprendre pourquoi chaque étape compte.
 
 La plupart des guides te donnent le "quoi". Celui-ci te donne aussi le "pourquoi". Parce que le choix de ta catégorie principale ou la distinction adresse/zone de service ne sont pas des détails administratifs : ce sont des décisions de ranking qui affecteront ta visibilité pendant des années.

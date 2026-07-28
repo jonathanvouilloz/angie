@@ -24,8 +24,6 @@ faqs:
     answer: "Non, mais ça aide. Tu peux avoir une fiche en 'zone de service' (sans adresse publique) et quand même apparaître dans le pack local. Sans adresse physique vérifiable, Google te classera souvent moins bien que les concurrents avec une adresse confirmée, à tout le reste égal. Si tu travailles depuis ton domicile et que tu ne veux pas publier ton adresse, définis une zone de service précise et compense par une stratégie avis très active."
 ---
 
-# Pourquoi ton concurrent est dans le top 3 Google Maps et pas toi
-
 Tu as une fiche Google. Tu as des photos. Tu as même quelques avis. Mais ton concurrent s'affiche en premier dès qu'un client potentiel tape ton métier suivi de ta ville, et toi tu es introuvable. Pas page 2 : invisible.
 
 Ce n'est pas de la chance. **Le référencement sur Google Maps** obéit à trois facteurs précis que Google documente officiellement. Les comprendre, et surtout les hiérarchiser par levier d'action réel, c'est ce qui sépare une fiche qui dort d'une fiche qui génère des appels chaque semaine.

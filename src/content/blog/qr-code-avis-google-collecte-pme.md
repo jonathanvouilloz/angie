@@ -25,8 +25,6 @@ faqs:
     answer: "Non. Le QR code sur comptoir est la première brique, mais sans relance active (SMS/email post-prestation), sans sondage filtrant et sans process systématique, le QR code reste décoratif. Il faut combiner les supports physiques et les relances numériques pour construire une vraie machine à avis."
 ---
 
-# QR code avis Google : comment construire une vraie machine à avis pour ta PME
-
 Si tu affiches un QR code sur ton comptoir sans rien changer d'autre, tu récolteras peut-être 3 avis supplémentaires par mois. Pas assez pour ranker. La vraie question n'est pas "comment créer un QR code pour les avis Google" : c'est "comment construire un système qui fait tourner la collecte d'avis en autonomie, sans inciter illégalement, et sans harceler tes clients".
 
 Cet article te donne le système complet : **QR code pour les avis Google**, supports physiques, modèles SMS/email prêts à copier, et la technique du sondage filtrant que personne ne documente.
