@@ -90,6 +90,6 @@ Notes thématiques (style Obsidian) consultées par les clusters comme matière 
 
 ## Pour aller au-delà
 
-- **Knowledge transverse** (specs de projets parallèles, idées, devis client one-shot) → vault Obsidian (`~/Documents/Obsidian Vault/`) via `/inbox`
+- **Knowledge transverse** (specs de projets parallèles, idées, devis client one-shot) → vault Obsidian (`~/noyau/cerveau/`) via `/inbox`
 - **Snapshots SEO** (DataForSEO, SERP, GSC) → `.seo-data/` à la racine du repo, archivés vers Obsidian via `/seo-archive`
 - **Briefs SEO en cours** → `src/content/blog/.briefs/` (workflow `/seo-brief` → `/seo-write`)
