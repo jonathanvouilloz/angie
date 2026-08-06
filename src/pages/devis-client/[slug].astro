@@ -39,7 +39,7 @@ const dateFormat = new Intl.DateTimeFormat('fr-CH', {
 
 const {
   hero, audit, offers, showComparison, timeline, advice, proof, constat,
-  roi, portfolio, postponed, disclaimer, comparison, options, legal
+  roi, portfolio, postponed, disclaimer, comparison, options, legal, onboarding
 } = entry.data;
 
 // `proof` accepte une preuve unique ou plusieurs. On normalise.
@@ -455,6 +455,21 @@ const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMessage)}`
       </section>
     )}
 
+    {entry.data.status === 'accepted' && onboarding && (
+      <section class="co-sec co-pad dv-onboarding" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+        <p class="co-eyebrow">Prochaine étape</p>
+        <div class="dv-onboarding-inner">
+          <div>
+            <h2>Préparons <span class="co-ser">votre projet.</span></h2>
+            <p>{onboarding.description ?? 'Répondez au questionnaire à votre rythme. Vos réponses sont sauvegardées automatiquement.'}</p>
+          </div>
+          <a href={onboarding.url} class="co-btn dv-onboarding-btn" rel="nofollow noreferrer">
+            {onboarding.label} <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+      </section>
+    )}
+
     <!-- CTA final -->
     <section class="co-cta dv-cta">
       <span class="co-x tl"></span><span class="co-x tr"></span>
@@ -547,6 +562,16 @@ const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMessage)}`
   .dv-lock-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,168,125,.15); }
   .dv-lock-btn { justify-content: center; border: 0; cursor: pointer; font-family: inherit; }
   .dv-lock-err { margin: 0; font-size: 13px; color: var(--dv-bad); display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+
+  .dv-onboarding { background: var(--ink); color: var(--bg); }
+  .dv-onboarding-inner { display: grid; gap: 28px; align-items: end; }
+  .dv-onboarding h2 { margin: var(--space-eyebrow) 0 12px; }
+  .dv-onboarding p:not(.co-eyebrow) { margin: 0; max-width: 62ch; color: color-mix(in srgb, var(--bg) 72%, transparent); line-height: 1.65; }
+  .dv-onboarding-btn { width: fit-content; background: var(--accent); color: var(--ink); }
+
+  @media (min-width: 760px) {
+    .dv-onboarding-inner { grid-template-columns: minmax(0, 1fr) auto; }
+  }
 
   /* ── En-tête document ── */
   .dv-head {

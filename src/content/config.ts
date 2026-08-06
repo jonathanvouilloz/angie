@@ -277,6 +277,20 @@ const devisCollection = defineCollection({
     // Prochaines étapes
     nextSteps: z.array(z.string()).optional(),
 
+    // Étape post-devis. Le lien opaque peut être publié après acceptation ;
+    // le code d'accès reste transmis séparément et n'est jamais stocké ici.
+    onboarding: z.object({
+      url: z.string().url().refine((value) => {
+        const onboardingUrl = new URL(value);
+        return onboardingUrl.protocol === 'https:' && (
+          onboardingUrl.hostname === 'jonlabs.ch'
+          || onboardingUrl.hostname.endsWith('.jonlabs.ch')
+        );
+      }, 'L’URL onboarding doit utiliser HTTPS sur jonlabs.ch.'),
+      label: z.string().default('Commencer mon onboarding'),
+      description: z.string().optional(),
+    }).optional(),
+
     // Pistes à discuter — annexe rendue après le prix. Rien n'y est engagé : ce sont
     // les sujets qui dépendent de l'existant du client et se diagnostiquent au call.
     // `price` reste optionnel : la plupart n'ont volontairement pas de montant.
