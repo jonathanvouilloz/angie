@@ -44,7 +44,7 @@ docs/               # Documentation projet — voir docs/README.md
 
 - `index`, `about`, `contact`, `tarifs`, `mentions-legales`, `cv`, `hermes`
 - `services` + `services/*` (creation-site-web, refonte-site-web, developpement-mvp, automatisation, integration-outils, outils-sur-mesure, validation-idee, gestion-fiche-google, formation-ia-equipe, referencement-local, developpeur-webflow, developpeur-wordpress, developpement-application-mobile)
-- Pages géo/métiers dynamiques : `consultant-ia/[ville]`, `developpement-web/[ville]`, `metiers/[metier]`
+- Pages géo/métiers dynamiques : `consultant-ia/[ville]`, `developpement-web/[ville]`, `services/developpement-application-mobile/[ville]`, `metiers/[metier]`
 - `blog/` + `blog/[slug]` + `blog/tag/[tag]`, hubs piliers `guides/[slug]`
 - `portfolio` + `portfolio/[slug]`
 - `outils/` (checklists PDF, dashboard Reddit), `devis-client/[slug]`

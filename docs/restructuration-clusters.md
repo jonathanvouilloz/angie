@@ -9,7 +9,7 @@
 | # | Cluster | Périmètre sémantique | Page pilier cible |
 |---|---------|----------------------|-------------------|
 | **C1** | Développement application custom | apps métier/entreprise, logiciel sur-mesure, MVP, **automatisation & IA appliquée** (agents, workflows) | `/services/developpement-mvp` → à promouvoir en vrai pilier « app sur-mesure » |
-| **C2** | Développement application mobile | iOS, Android, natif, hybride, Flutter/React Native, PWA, budget/prix app | ❌ **n'existe pas encore** — à créer |
+| **C2** | Développement application mobile | iOS, Android, natif, hybride, Flutter/React Native, PWA, budget/prix app | ✅ `/services/developpement-application-mobile` + route géo `/[ville]` (GE, VD) |
 | **C3** | Création web + référencement | sites vitrine/sur-mesure, refonte, SEO local, GEO/visibilité IA, (GMB ?) | `/services/referencement-local` (indexée) + landing création web |
 
 ## Légende des verdicts
@@ -46,12 +46,29 @@
 
 ## C2 — Développement application mobile
 
-> Cluster **fraîchement produit** (epic mobile clôturé) — 10 articles, tous programmés juillet → 0 imp est normal.
 > ✅ **Pilier service créé le 2026-06-25** : `/services/developpement-application-mobile` (nav + footer sitewide, schema Service, CTA repointé).
+>
+> 🔄 **Restructuré le 2026-08-06** (commit `c3c1c30`, epic `docs/features/silo-mobile-agence.md`).
+> Le cluster a maintenant de la vraie data : le pilier fait **1 972 imp / 1 clic / pos 28.9** sur
+> 28 jours, c'est la 1re page du site en impressions. Trois corrections structurelles :
+> 1. **Hiérarchie d'intent posée.** Le pilier tient le transactionnel (générique + tech +
+>    « Suisse romande »), les pages géo prennent l'exact-match ville, le blog reste
+>    informationnel. Avant, `developper-application-mobile-suisse` doublait le pilier sur ses
+>    propres requêtes commerciales (pos 7-10 vs 25-35) — il a été spécialisé sur l'informationnel.
+> 2. **Route géo ouverte** : `/services/developpement-application-mobile/{geneve,lausanne}`.
+>    Bulle et Fribourg mesurées (204 imp, pos 31-50) mais **non créées** — légitimité locale non
+>    revendiquée dans le repo, arbitrage Jonathan en attente.
+> 3. **Maillage montant fermé** : 8 articles → pilier (il n'en recevait qu'un sur 18).
+>
+> Cadrage éditorial : le terme « agence » est présent partout mais **comme ce dont on est
+> l'alternative**, jamais comme revendication d'identité (le site se présente ailleurs comme
+> développeur freelance). Détail → le feature file.
 
 | Page | Statut | Verdict |
 |------|--------|---------|
-| `/blog/developper-application-mobile-suisse` | 🗓️ 30.06 | 🟢 futur hub du cluster |
+| `/services/developpement-application-mobile/geneve` | ✅ créé 06.08 | 🟢 exact-match GE — profil Android / React Native |
+| `/services/developpement-application-mobile/lausanne` | ✅ créé 06.08 | 🟢 exact-match VD — profil iOS / TestFlight |
+| `/blog/developper-application-mobile-suisse` | 🟢 publié | 🔵 **hub informationnel** — plus le hub transactionnel du cluster (rôle repris par le pilier), transfère l'autorité via 2 ancres sémantiques |
 | `/blog/prix-application-mobile-suisse` | 🗓️ 03.07 | 🟢 |
 | `/blog/flutter-vs-react-native-pme` | 🗓️ 10.07 | 🟢 |
 | `/blog/application-mobile-ou-pwa` | 🗓️ 14.07 | 🟢 |
