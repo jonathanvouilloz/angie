@@ -112,6 +112,8 @@ Flutter a atteint un niveau de maturité où la différence de rendu visuel et d
 
 Le natif n'est pas mauvais. Il est sur-dimensionné pour la grande majorité des projets. Choisir le natif pour une app B2B interne ou un MVP, c'est payer pour une Porsche quand une voiture fiable suffit.
 
+C'est aussi ce que je livre par défaut quand on me confie un [développement d'applications mobiles cross-platform](/services/developpement-application-mobile) : une seule codebase, les deux stores, et un budget de maintenance au lieu de deux.
+
 Le guide complet sur le [développement d'une application mobile en Suisse](/blog/developper-application-mobile-suisse) reprend ces critères dans le contexte du marché romand, avec les fourchettes de prix et les questions à poser à ton prestataire.
 
 ---

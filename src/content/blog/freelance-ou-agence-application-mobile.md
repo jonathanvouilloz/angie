@@ -119,6 +119,8 @@ Voici la grille directe selon ta situation :
 
 Si tu es dans la zone 10 000–25 000 CHF, la décision tourne autour d'un seul facteur : est-ce que tu as des specs détaillées, ou est-ce que le produit va évoluer en cours de route ? Avec des specs floues, un freelance en itérations rapides est plus efficace qu'une agence qui facture chaque changement de scope.
 
+Quand c'est moi qui prends le projet, le cadre est celui décrit sur ma page [développeur d'application mobile en Suisse romande](/services/developpement-application-mobile) : forfait annoncé d'avance, jalons liés aux livrables, code et accès qui restent à ton nom.
+
 Pour les projets MVP en Suisse, les étapes et le budget type sont détaillés sur la [page service développement MVP](/services/developpement-mvp).
 
 ---
@@ -129,7 +131,7 @@ Ces questions s'adressent autant à une agence qu'à un freelance. Un prestatair
 
 1. **Peux-tu me montrer 2–3 apps en production que tu as développées ?** Pas un portfolio Figma, des apps téléchargeables sur l'App Store ou le Play Store.
 
-2. **Quelle techno tu utilises et pourquoi pour mon cas ?** La réponse doit être argumentée selon tes contraintes (budget, performances, équipe future). "Je fais tout en Flutter" sans justification n'est pas une réponse.
+2. **Quelle techno tu utilises et pourquoi pour mon cas ?** La réponse doit être argumentée selon tes contraintes (budget, performances, équipe future). "Je fais tout en Flutter" sans justification n'est pas une réponse. Pour juger ce qu'on te répond, le [comparatif Flutter vs React Native pour les PME](/blog/flutter-vs-react-native-pme) donne les critères qui comptent.
 
 3. **Comment tu gères les mises à jour obligatoires iOS/Android ?** Est-ce inclus dans le contrat initial ? Facturé à l'heure ? Un prestataire qui n'y a pas pensé n'a pas l'expérience des apps en production longue durée.
 

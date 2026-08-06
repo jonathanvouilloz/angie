@@ -94,7 +94,7 @@ Dans la majorité des cas que je rencontre chez des PME romandes, la réponse es
 
 **Outil utilisé moins d'une fois par semaine.** C'est le cas de la majorité des outils B2B internes : portail RH, extranet client, système de réservation mensuelle. Une PWA (Progressive Web App) répond à ce besoin, avec la même expérience visuelle qu'une app, accessible depuis le navigateur, sans passer par l'App Store ou le Google Play Store.
 
-La PWA est le compromis intelligent pour 60 à 70 % des demandes que je reçois. Elle coûte **4 à 8 fois moins cher** qu'une app native tout en couvrant 90 % des fonctionnalités attendues.
+La PWA est le compromis intelligent pour 60 à 70 % des demandes que je reçois. Elle coûte **4 à 8 fois moins cher** qu'une app native tout en couvrant 90 % des fonctionnalités attendues. Là où elle bloque vraiment (Bluetooth, NFC, notifications push iOS sans installation préalable), le [comparatif application mobile ou PWA](/blog/application-mobile-ou-pwa) donne les critères de bascule.
 
 Pour comprendre en détail les différences techniques entre les deux approches, le [guide complet sur le développement d'application mobile en Suisse](/blog/developper-application-mobile-suisse) couvre les cas limite avec des exemples concrets.
 
@@ -142,7 +142,7 @@ La règle des 2 sur 3 : si tu peux répondre "oui" à au moins 2 de ces élémen
 
 Si tu coches 0 ou 1 seul critère : commence par une PWA ou un site responsive. Tu économises entre 10 000 et 40 000 CHF, tu valides l'usage réel, et tu pourras migrer vers une app native si les chiffres le justifient, avec un cahier des charges beaucoup plus solide.
 
-Si tu coches 2 ou 3 : une app mobile est probablement le bon investissement. La prochaine étape est de définir le périmètre fonctionnel précis et de [chiffrer le budget de développement](/blog/prix-application-mobile-suisse).
+Si tu coches 2 ou 3 : une app mobile est probablement le bon investissement. La prochaine étape est de définir le périmètre fonctionnel précis et de [chiffrer le budget de développement](/blog/prix-application-mobile-suisse). C'est par là que commence mon [développement d'application mobile pour PME](/services/developpement-application-mobile) : on fige ce que l'app doit faire avant d'écrire du code, pas l'inverse.
 
 ---
 

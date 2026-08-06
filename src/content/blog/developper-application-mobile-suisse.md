@@ -1,7 +1,7 @@
 ---
-title: "Application mobile en Suisse : guide complet 2026"
+title: "Avant de commander une app mobile : guide PME romande 2026"
 h1: "Tout ce qu'une PME romande doit savoir avant de commander une application mobile"
-description: "Coûts réels en CHF, technologies, délais, prestataires : le guide mobile pour PME romandes avant de signer un devis. Pragmatique, local, chiffré."
+description: "Coûts en CHF, technologies, délais, erreurs fréquentes : comprendre un projet d'application mobile avant de décider. Guide PME de Suisse romande."
 pubDate: 2026-06-29
 author: "Jon"
 image:
@@ -26,13 +26,13 @@ faqs:
     answer: "C'est même la façon recommandée de procéder. Un MVP bien ciblé (5 à 10 fonctionnalités essentielles, un seul flux utilisateur core) permet de tester le concept avec de vrais utilisateurs avant d'investir dans les fonctionnalités secondaires. D'après mon expérience sur les projets PME romands, les fonctionnalités les plus utilisées sont rarement celles qu'on avait mises en priorité initiale. Mieux vaut découvrir ça à 3 000 CHF qu'à 15 000 CHF."
 ---
 
-Tu envisages de **développer une application mobile en Suisse** pour ton entreprise. Avant de signer quoi que ce soit, tu veux comprendre ce que ça implique vraiment : combien ça coûte, combien de temps ça prend, et si ça vaut la peine ou si une autre solution ferait le travail pour moins cher.
+Tu te demandes si ton entreprise a vraiment besoin d'une **application mobile**, et ce que ça implique avant de t'engager : combien ça coûte, combien de temps ça prend, et si une solution plus légère ferait le travail pour moins cher.
 
-Ce guide répond à ces questions avec des chiffres en CHF tirés du marché romand et mon expérience sur des projets réels. Pas de promesses marketing, pas de jargon technique inutile.
+Ce guide répond à ces questions avec des chiffres en CHF tirés du marché romand et mon expérience sur des projets réels. Pas de promesses marketing, pas de jargon technique inutile. Il explique, il ne vend rien : si tu as déjà tranché et que tu cherches un prestataire, la page [développement d'application mobile pour PME romandes](/services/developpement-application-mobile) dit ce que je fais et à quelles conditions.
 
 > **L'essentiel en bref**
 >
-> - Le **développement d'une application mobile en Suisse** coûte entre 2 000 et 15 000 CHF selon la complexité, en forfait à prix fixe annoncé d'avance.
+> - Le budget d'une **application mobile** pour une PME romande va de 2 000 à 15 000 CHF selon la complexité du projet.
 > - Une app native iOS/Android n'est pas toujours la meilleure réponse : pour beaucoup de PME, une PWA ou un site responsive suffit et coûte 60 à 80% moins cher.
 > - Flutter et React Native permettent de cibler iOS et Android avec un seul code, environ 40 à 50% moins cher qu'une app native, pour 80% des fonctionnalités.
 > - Un projet mobile réaliste prend de 3 à 6 mois du cadrage au lancement sur les stores.
@@ -103,7 +103,7 @@ La publication est suivie d'un suivi post-lancement de 2 à 4 semaines : correct
 
 ---
 
-## Technologies disponibles pour développer votre application mobile
+## Quelle technologie pour quel besoin : natif, Flutter, React Native ou PWA
 
 Pour une PME, le choix technologique se résume à une question de budget et de cas d'usage. Voici un tableau lisible sans formation technique.
 
@@ -125,7 +125,7 @@ Pour comprendre les nuances entre ces approches : [Flutter vs React Native : leq
 
 ## Budget indicatif en CHF : fourchettes honnêtes par type de projet
 
-**Le prix d'une application mobile en Suisse** varie entre 2 000 et 15 000 CHF selon la complexité du projet, en forfait à prix fixe. Ces montants restent sous ceux des agences pour trois raisons : je travaille en solo (pas de marge commerciale ni de chef de projet à financer), sans junior sur ton projet, et avec un **développement accéléré par IA** qui compresse tout le code répétitif (CRUD, tests, intégrations standard). Repère concret : une agence suisse facture une app métier 25 000 à 50 000 CHF ; je la livre entre 5 000 et 10 000 CHF. Voici les fourchettes que je pratique en 2026.
+Un projet mobile de PME se situe entre 2 000 et 15 000 CHF selon sa complexité. La question utile n'est pas « quel est le prix moyen » (elle n'a pas de réponse), mais pourquoi deux devis pour la même app peuvent être aussi éloignés. Ce que tu paies, c'est d'abord une structure. Une agence suisse facture une app métier 25 000 à 50 000 CHF parce qu'elle finance une équipe, un chef de projet et une marge commerciale. Un indépendant qui travaille seul, sans junior sur le projet, et qui laisse l'IA compresser le code répétitif (CRUD, tests, intégrations standard), tombe entre 5 000 et 10 000 CHF pour le même périmètre. Voici les fourchettes que je pratique en 2026.
 
 | Type de projet | Fourchette CHF | Délai estimé |
 |---|---|---|
@@ -169,17 +169,11 @@ Un prestataire qui ne peut pas répondre clairement à ces quatre points : passe
 
 ---
 
-## Ce que fait Jon Labs pour votre application mobile
+## Deux angles morts que personne ne te signale au cadrage
 
-Je développe des **applications mobiles à Genève et en Suisse romande** pour des PME qui ont besoin d'un outil fonctionnel, pas d'un prototype bancal ou d'une app générique.
+**Le périmètre du premier devis est presque toujours trop large.** La majorité des projets PME que je vois n'ont pas besoin d'une app à 15 000 CHF au premier tour. Un MVP entre 2 000 et 5 000 CHF met l'idée devant de vrais utilisateurs, et c'est eux qui disent quelles fonctionnalités méritent le reste du budget. Commander tout d'un coup revient à payer des écrans que personne n'ouvrira.
 
-Mon process : cadrage gratuit (30 min d'appel pour qualifier le projet et identifier le bon périmètre), devis fixe (pas de régie ni de "ça dépend", tu sais exactement ce que tu paies avant de signer), livraison avec publication sur les stores incluse.
-
-Je travaille en Flutter et React Native. La majorité des projets PME que j'accompagne n'ont pas besoin d'une app à 15 000 CHF. Un MVP bien ciblé entre 2 000 et 5 000 CHF teste le concept et génère des retours utilisateurs réels avant d'investir davantage.
-
-Ce qui me différencie d'un développeur mobile pur : les intégrations font partie du périmètre standard. CRM, outils d'automatisation, API externes (paiement, logistique, RH), je les intègre directement, sans devoir passer par un deuxième prestataire. Pour les projets PME, ça simplifie considérablement le pilotage.
-
-[Discuter de votre projet mobile](/services/developpement-application-mobile), cadrage gratuit, sans engagement.
+**Les intégrations arrivent toujours, et rarement au bon moment.** Une app métier finit presque systématiquement par devoir parler à un CRM, un outil de facturation ou une API externe (paiement, logistique, RH). Si ton prestataire ne fait que du mobile, ces intégrations tombent en fin de projet, avec un deuxième intervenant et un deuxième devis. Demande au cadrage qui les prend en charge, pas à la livraison.
 
 ---
 
@@ -209,11 +203,11 @@ C'est même la façon recommandée de procéder. Un MVP bien ciblé (5 à 10 fon
 
 ## Conclusion
 
-**Développer une application mobile en Suisse** est un investissement sérieux. Pas une dépense à prendre à la légère, pas quelque chose à repousser indéfiniment non plus. Si ton cas d'usage justifie une app (utilisation intensive, hors-ligne, accès hardware ou notifications push), les solutions hybrides comme Flutter ou React Native offrent aujourd'hui un rapport résultat/budget très solide pour une PME.
+Une application mobile reste un investissement sérieux. Pas une dépense à prendre à la légère, pas quelque chose à repousser indéfiniment non plus. Si ton cas d'usage la justifie (utilisation intensive, hors-ligne, accès hardware ou notifications push), les approches hybrides comme Flutter ou React Native offrent aujourd'hui un rapport résultat/budget très solide pour une PME.
 
-Si tu es au stade de l'exploration ("est-ce que j'ai besoin d'une app ou pas ?"), le cadrage gratuit que je propose répond à cette question en 30 minutes, sans engagement. C'est le point de départ le plus utile avant de contacter plusieurs prestataires et de comparer des devis qui ne parlent pas du même périmètre.
+Si tu es encore au stade « est-ce que j'ai besoin d'une app ou pas ? », la réponse tient en deux questions : ton cas d'usage a-t-il besoin du hardware du téléphone, et l'outil sera-t-il ouvert plusieurs fois par jour ? Deux non, et un site mobile bien conçu fera le travail pour une fraction du budget.
 
-[**Discuter de votre projet mobile →**](/services/developpement-application-mobile)
+Si tu es passé à l'étape d'après et que tu compares des prestataires, le détail de la prestation (périmètre, process, publication sur les stores, tarifs) est sur la page [développement d'application mobile pour PME et startups romandes](/services/developpement-application-mobile).
 
 ---
 

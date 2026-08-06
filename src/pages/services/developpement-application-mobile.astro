@@ -20,8 +20,8 @@ import { getBreadcrumbSchema } from '../../lib/seo';
 
 // SEO Data
 const seoData = {
-    title: "Développement d'application mobile à Genève",
-    description: "Développeur freelance à Genève : applications mobiles iOS et Android pour PME et startups romandes. Natif, Flutter, React Native ou PWA. Devis en CHF."
+    title: "Application mobile en Suisse romande, sans agence",
+    description: "Développement d'application mobile à Genève, Lausanne et en Suisse romande — l'alternative à l'agence : iOS, Android, Flutter, React Native. Devis en CHF."
 };
 
 // Schema.org data
@@ -172,6 +172,20 @@ const clusterGroups = [
     }
 ];
 
+// Pages géo — déclinaisons locales du pilier (pattern hub → géo)
+const geoPages = [
+    {
+        nom: "Application mobile à Genève",
+        description: "La page locale Genève : PME, startups et indépendants du canton, cadrage sur place et publication sur les stores.",
+        href: "/services/developpement-application-mobile/geneve"
+    },
+    {
+        nom: "Application mobile à Lausanne",
+        description: "Développement d'applications iOS et Android pour les entreprises de la région lausannoise et du canton de Vaud.",
+        href: "/services/developpement-application-mobile/lausanne"
+    }
+];
+
 // FAQs
 const faqs = [
     {
@@ -224,15 +238,18 @@ const zones = [
             <div class="am-hero-grid">
                 <div class="am-hero-copy">
                     <h1 class="am-hero-title" data-animate data-delay="0.1">
-                        Ton application mobile iOS &amp; Android, <span class="co-ser">développée à Genève.</span>
+                        Ton application mobile iOS &amp; Android, <span class="co-ser">sans passer par une agence.</span>
                     </h1>
                     <p class="am-hero-sub" data-animate data-delay="0.15">
-                        Pensée pour tes utilisateurs, pas pour une agence.
+                        La solidité d'une agence, sans le tunnel à trois couches.
                     </p>
                     <p class="am-hero-lead" data-animate data-delay="0.2">
                         PME, startup ou indépendant : tu n'as pas besoin d'un tunnel de 6 mois à 60 000 CHF.
-                        Tu as besoin d'un <strong>développeur mobile à Genève et en Suisse romande</strong> qui code ton app,
+                        Tu as besoin de quelqu'un qui tranche honnêtement entre <strong>natif et hybride</strong>,
+                        code ton <strong>application iOS et Android</strong> en <strong>Flutter ou React Native</strong>,
                         la publie sur les stores et te dit la vérité sur ce qu'il te faut vraiment.
+                        Basé à <strong>Genève</strong>, je travaille avec des entreprises de
+                        <strong>Lausanne, Fribourg et toute la Suisse romande</strong>.
                     </p>
                     <div class="am-hero-btns" data-animate data-delay="0.3">
                         <a href="https://cal.com/jonathan-vouilloz/appel-de-bienvenue" target="_blank" rel="noopener noreferrer" class="co-btn"><i class="ri-smartphone-line"></i> Discuter de mon app</a>
@@ -298,6 +315,12 @@ const zones = [
                     Mon approche est l'inverse : on identifie le cœur de ton app, on le sort vite et bien sur
                     iOS et Android, et on enrichit ensuite — seulement si tes utilisateurs suivent.
                 </p>
+                <p class="am-story-text">
+                    Et parfois la bonne réponse n'est pas une app du tout : j'ai comparé
+                    <a href="/blog/application-mobile-ou-pwa" class="am-inline">application mobile et PWA</a>
+                    et détaillé <a href="/blog/application-mobile-pme-suisse" class="am-inline">ce qu'une app apporte vraiment à une PME</a>.
+                    Lis-les avant de signer quoi que ce soit.
+                </p>
                 <div class="am-story-accent">
                     <p>Une bonne app mobile, c'est d'abord une bonne décision : quoi construire, et surtout quoi ne pas construire.</p>
                 </div>
@@ -310,6 +333,9 @@ const zones = [
             <h2 style="margin-top:var(--space-eyebrow);">Comment ça se passe ?</h2>
             <p class="co-mut" style="margin-top:var(--space-title-lead);max-width:60ch;line-height:1.6;">
                 Pas de tunnel de développement. Tu testes ton app sur ton téléphone <strong>à chaque étape</strong>.
+                On tranche d'abord la technique — <a href="/blog/application-native-vs-hybride" class="am-inline">natif ou hybride</a>,
+                puis <a href="/blog/flutter-vs-react-native-pme" class="am-inline">Flutter ou React Native</a> —
+                avant d'écrire la première ligne de code.
             </p>
 
             <div class="am-steps" data-animate-stagger>
@@ -364,6 +390,12 @@ const zones = [
                     <a href="/portfolio" class="am-inline">réalisations</a>.
                 </p>
             </div>
+
+            <p class="am-note-inline">
+                Une app qui ne parle à rien reste un gadget. J'ai montré comment
+                <a href="/blog/application-mobile-automatisation-pme" class="am-inline">brancher une application mobile sur les automatisations d'une PME</a>
+                — agenda, facturation, CRM.
+            </p>
         </section>
 
         <!-- ══ 04 · INVESTISSEMENT ══ -->
@@ -388,6 +420,8 @@ const zones = [
                 <p class="am-note-inline">
                     Pour te faire une idée des fourchettes, lis mon guide sur le
                     <a href="/blog/prix-application-mobile-suisse" class="am-inline">prix d'une application mobile en Suisse</a>.
+                    Si tu démarres par une première version, j'ai chiffré à part
+                    <a href="/blog/budget-mvp-application-mobile" class="am-inline">le budget d'un MVP mobile</a>.
                 </p>
             </div>
 
@@ -459,7 +493,8 @@ const zones = [
                 <span class="co-x tl"></span><span class="co-x tr"></span>
                 <span class="co-x bl"></span><span class="co-x br"></span>
                 <p class="am-about-text">Je suis <strong>Jonathan</strong>, développeur et créateur de solutions digitales basé à Genève.</p>
-                <p class="am-about-text">Je ne suis pas une agence avec 15 commerciaux et des juniors qui font le travail. Je suis <strong>ton partenaire technique direct</strong> — celui qui va coder ton application, la publier sur les stores, et t'aider à trancher quand il faut faire des choix.</p>
+                <p class="am-about-text">Tu retrouves ce qu'une bonne agence apporte — cadrage, méthode, publication sur les stores, suivi — mais sans les commerciaux ni les juniors entre toi et le code. Je suis <strong>ton partenaire technique direct</strong> : celui qui code ton application, la publie, et t'aide à trancher quand il faut faire des choix.</p>
+                <p class="am-about-text">Tu hésites encore sur le format ? J'ai posé les critères dans mon comparatif <a href="/blog/freelance-ou-agence-application-mobile" class="am-inline">freelance ou agence pour une application mobile</a>.</p>
                 <p class="am-about-text">Mon approche : <strong>action plutôt que perfection</strong>. Une app utile entre les mains de tes utilisateurs vaut mieux qu'une roadmap parfaite qui ne sort jamais.</p>
                 <p class="am-about-text">J'ai accompagné des entrepreneurs romands, des startups en phase d'amorçage et des PME suisses qui avaient besoin d'outiller leur activité — sans exploser leur budget.</p>
                 <a href="/about" class="am-about-link">
@@ -506,6 +541,22 @@ const zones = [
                         <i class="ri-information-line"></i> Les échanges se font en personne ou en visio selon tes préférences.
                     </p>
                 </div>
+            </div>
+
+            <h3 class="am-local-h3" style="margin-top:40px;">Pages locales</h3>
+            <p class="co-mut" style="max-width:60ch;line-height:1.6;font-size:14.5px;">
+                Le contexte n'est pas le même d'une ville à l'autre. Deux pages détaillent le service là où
+                la demande est la plus forte.
+            </p>
+            <div class="am-grid am-grid--2" data-animate-stagger>
+                {geoPages.map((geo) => (
+                    <a href={geo.href} class="am-card co-frame co-frame--reveal" data-animate-item>
+                        <i class="ri-map-pin-fill am-card-icon" aria-hidden="true"></i>
+                        <h4 class="am-card-title">{geo.nom}</h4>
+                        <p class="am-card-text">{geo.description}</p>
+                        <span class="am-geo-more">Voir la page <i class="ri-arrow-right-line"></i></span>
+                    </a>
+                ))}
             </div>
         </section>
 
@@ -670,6 +721,9 @@ const zones = [
     .am-zone i { color: var(--muted); font-size: 18px; }
     .am-zone--primary { border-color: var(--accent); background: rgba(0,168,125,0.05); }
     .am-zone--primary i { color: var(--accent); }
+    .am-geo-more { margin-top: auto; padding-top: 4px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent); }
+    .am-geo-more i { transition: transform .18s ease-out; }
+    .am-card:hover .am-geo-more i { transform: translateX(3px); }
 
     /* ── Responsive ── */
     @media (max-width: 960px) {
@@ -683,6 +737,6 @@ const zones = [
         .am-step { grid-template-columns: 44px 1fr; gap: 14px; }
     }
     @media (prefers-reduced-motion: reduce) {
-        .am-card, .am-res-link, .am-res-link i, .am-faq summary i, .am-hero-btns .co-btn i, .am-about-link i:last-child { transition: none; }
+        .am-card, .am-res-link, .am-res-link i, .am-faq summary i, .am-hero-btns .co-btn i, .am-about-link i:last-child, .am-geo-more i { transition: none; }
     }
 </style>

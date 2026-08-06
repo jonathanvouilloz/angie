@@ -88,7 +88,7 @@ React Native n'est pas un mauvais choix. C'est le bon choix dans des contextes p
 
 **Expo** (sur React Native) : idéal pour un MVP ou un prototype rapide. Expo simplifie la configuration initiale et accélère les premiers déploiements. Limite : certaines fonctionnalités natives avancées nécessitent de sortir du mode géré (*eject*), ce qui complexifie la maintenance ensuite.
 
-**PWA (Progressive Web App)** : si ton app n'a pas besoin d'être sur les stores Apple et Google, et que les utilisateurs y accèdent via leur navigateur, une PWA peut suffire. C'est souvent sous-estimé pour des outils internes, des portails B2B ou des apps légères. Coût généralement 2 à 3 fois inférieur à une app mobile native ou cross-platform.
+**PWA (Progressive Web App)** : si ton app n'a pas besoin d'être sur les stores Apple et Google, et que les utilisateurs y accèdent via leur navigateur, une PWA peut suffire. C'est souvent sous-estimé pour des outils internes, des portails B2B ou des apps légères. Coût généralement 2 à 3 fois inférieur à une app mobile native ou cross-platform. Les critères pour trancher sont détaillés dans l'article [application mobile ou PWA](/blog/application-mobile-ou-pwa).
 
 **App native pure (Swift pour iOS + Kotlin pour Android)** : uniquement si tes besoins sont très spécifiques (réalité augmentée, jeux, accès matériel poussé) ou si les performances sont absolument critiques. Compte environ 2 fois plus cher qu'une app cross-platform, car il faut maintenir deux codebases distinctes.
 
@@ -103,6 +103,8 @@ Voici pourquoi : Flutter livre un rendu visuel plus propre, une maintenance plus
 React Native reste excellent. Si tu as une équipe JavaScript en interne, ou si ton prestataire actuel travaille déjà en React Native avec une base de code existante, reste sur RN. Changer de framework pour changer n'a aucun sens économique.
 
 Mais si tu pars de zéro et que tu cherches le meilleur rapport performance / coût de maintenance / rendu visuel : Flutter est le choix que je recommande à mes clients depuis 2024.
+
+Cela dit, le framework se tranche en général en une conversation. Le vrai travail commence après : c'est ce que couvre mon offre de [développement mobile en Suisse romande](/services/developpement-application-mobile), du périmètre au backend, des tests sur devices jusqu'à la mise en production sur les stores.
 
 Pour aller plus loin sur les questions à poser avant de lancer ton projet, le [guide complet sur le développement d'application mobile en Suisse](/blog/developper-application-mobile-suisse) couvre les étapes clés, de la définition du scope au choix du prestataire.
 

@@ -148,6 +148,8 @@ Ne pas attendre la livraison pour parler d'intégration. Dès la phase de cahier
 
 Un développeur qui hésite sur ces questions, ou pire, qui dit que ce n'est pas nécessaire, c'est un signal d'alerte. **L'enfermement propriétaire** est le scénario le plus coûteux à long terme : tu te retrouves dépendant d'un prestataire unique pour chaque modification, chaque intégration, chaque évolution.
 
+Sur les projets que je prends en [développement d'application mobile sur mesure](/services/developpement-application-mobile), l'API et les webhooks sont posés pendant le cadrage, avant la première ligne de code. C'est ce qui rend les intégrations presque triviales six mois plus tard.
+
 Pour les critères techniques à valider avant de choisir ton prestataire, le [guide sur le développement d'application mobile en Suisse](/blog/developper-application-mobile-suisse) couvre ces aspects en détail.
 
 ---

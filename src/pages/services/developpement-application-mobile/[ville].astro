@@ -1,0 +1,571 @@
+---
+// Agence application mobile à {ville} — page programmatique (silo géo mobile).
+// Design system blueprint : primitives .co-*, filets hairline, crosshairs, accent teal
+// unique, Inter Tight × Instrument Serif. Namespace scopé .vam-*.
+// Gabarit de référence : src/pages/consultant-ia/[ville].astro.
+//
+// ANTI-CANNIBALISATION : le pilier /services/developpement-application-mobile tient
+// le générique + tech (« agence de développement d'application mobile en Suisse
+// romande »). Cette route prend l'EXACT-MATCH ville, via `metaTitle` / `h1` définis
+// PAR VILLE dans src/data/villes-mobile.ts — donc distincts du pilier ET entre eux.
+//
+// SCHEMA : les helpers de src/data/schema.ts et src/lib/seo.ts sont IMPORTÉS, jamais
+// modifiés. Le Service géo est construit ici avec un @id propre à l'URL de la page
+// (pas de collision avec serviceSchemas["developpement-application-mobile"], qui reste
+// l'entité du pilier). L'enregistrement centralisé se fait en aval.
+
+import "../../../styles/global.css";
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+
+import { getWebPageSchema, getBreadcrumbSchema, getFAQPageSchema } from "../../../lib/seo";
+import { SITE_URL, localBusinessData } from "../../../data/schema";
+import { villesMobile, getVoisinesMobile, type VilleMobileData } from "../../../data/villes-mobile";
+
+// ============================================
+// STATIC PATHS — programmatic SEO (silo géo mobile)
+// ============================================
+export async function getStaticPaths() {
+  return villesMobile.map((ville) => ({
+    params: { ville: ville.slug },
+    props: { ville },
+  }));
+}
+
+interface Props {
+  ville: VilleMobileData;
+}
+
+const { ville } = Astro.props;
+
+// ============================================
+// SEO META — uniques par ville (champs metaTitle / metaDescription)
+// ============================================
+const pageUrl = `${SITE_URL}/services/developpement-application-mobile/${ville.slug}`;
+const pageTitle = ville.metaTitle;
+const pageDescription = ville.metaDescription;
+
+// ============================================
+// SCHEMA.ORG — Service (géo) + LocalBusiness + Breadcrumb (+ WebPage / FAQ)
+// ============================================
+const webPageSchema = getWebPageSchema({
+  url: pageUrl,
+  name: pageTitle,
+  description: pageDescription,
+});
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: "Accueil", url: SITE_URL },
+  { name: "Services", url: `${SITE_URL}/services` },
+  {
+    name: "Développement application mobile",
+    url: `${SITE_URL}/services/developpement-application-mobile`,
+  },
+  { name: ville.nom, url: pageUrl },
+]);
+
+// Service scopé à la ville — @id dérivé de l'URL, distinct de l'entité du pilier.
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  name: `Développement d'application mobile à ${ville.nom} — iOS et Android`,
+  url: pageUrl,
+  description: pageDescription,
+  provider: { "@id": `${SITE_URL}/#organization` },
+  areaServed: {
+    "@type": "City",
+    name: ville.nom,
+    containedInPlace: {
+      "@type": "AdministrativeArea",
+      name: `Canton de ${ville.canton}`,
+    },
+  },
+  serviceType: "Développement application mobile",
+  isPartOf: { "@id": `${SITE_URL}/services/developpement-application-mobile/#service` },
+};
+
+const faqSchema = getFAQPageSchema(ville.faqs);
+
+const schemas = [webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, localBusinessData];
+
+// ============================================
+// MAILLAGE — ville latérale
+// ============================================
+const voisines = getVoisinesMobile(ville);
+
+// Découpe la preuve locale ("a · b · c") pour la trust line
+const preuves = ville.preuveLocale.split("·").map((p) => p.trim()).filter(Boolean);
+
+// Icônes cyclées pour les cartes cas d'usage
+const casIcons = [
+  "ri-smartphone-line",
+  "ri-store-2-line",
+  "ri-notification-3-line",
+  "ri-shield-keyhole-line",
+  "ri-wifi-off-line",
+  "ri-calendar-check-line",
+];
+
+// ============================================
+// MÉTHODE — constante partagée (jamais dupliquée en data, cf. doctrine silo IA)
+// ============================================
+const methode = [
+  {
+    step: "1",
+    title: "Cadrage",
+    description:
+      "On tranche ce que l'app doit vraiment faire, sur quelles plateformes, et avec quel choix technique — natif, hybride ou PWA. Les questions de données et d'hébergement se règlent ici, pas à la livraison.",
+  },
+  {
+    step: "2",
+    title: "Construction",
+    description:
+      "Je développe par itérations courtes. Tu testes des versions réelles sur ton téléphone au fil du projet, pas seulement à la fin. Tu n'as pas besoin de lire le code, juste de dire ce qui va ou pas.",
+  },
+  {
+    step: "3",
+    title: "Lancement",
+    description:
+      "Publication sur l'App Store et le Google Play Store : comptes développeurs, fiches, captures, questionnaires de confidentialité, revue. L'app est publiée à ton nom, avec une documentation de passation.",
+  },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} schemas={schemas}>
+  <Header />
+
+  <main class="co-root">
+
+    <!-- ══ HERO LOCAL ══ -->
+    <section class="co-sec co-pad co-hero vam-hero" style="padding:64px var(--sec-pad-x) var(--sec-pad-y);">
+
+      <h1 class="vam-hero-title" data-animate data-delay="0.1">
+        {ville.h1} <span class="co-ser">{ville.nom}</span>
+      </h1>
+
+      <p class="vam-hero-lead" data-animate data-delay="0.2">
+        {ville.angleHero}
+      </p>
+
+      <div class="vam-hero-btns" data-animate data-delay="0.3">
+        <a href="/contact" class="co-btn"><i class="ri-mail-send-line"></i> Parler de ton projet d'app</a>
+        <a href="/services/developpement-application-mobile" class="co-btn co-btn--ghost">
+          Le service complet <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <div class="vam-hero-trust" data-animate data-delay="0.4">
+        {preuves.map((p) => (
+          <span><i class="ri-checkbox-circle-line"></i> {p}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 01 · CONTEXTE LOCAL ══ -->
+    <section id="contexte" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">01 — Contexte local</p>
+      <h2 style="margin-top:var(--space-eyebrow);">
+        Développer une app mobile à <span class="co-ser">{ville.nom}</span>, concrètement
+      </h2>
+      <p class="co-mut" style="margin-top:var(--space-title-lead);max-width:64ch;line-height:1.6;">
+        {ville.description}
+      </p>
+
+      <div class="vam-context co-frame" data-animate>
+        <span class="co-x tl"></span><span class="co-x tr"></span>
+        <span class="co-x bl"></span><span class="co-x br"></span>
+        <h3 class="vam-context-title"><i class="ri-building-line"></i> Tissu économique de {ville.nomComplet}</h3>
+        <p class="vam-context-text">{ville.contexteEconomique}</p>
+      </div>
+
+      <h3 class="vam-sub-label">Secteurs dominants à {ville.nom}</h3>
+      <div class="vam-grid vam-grid--2" data-animate-stagger>
+        {ville.secteursDominants.map((secteur, idx) => (
+          <div class="vam-sector" data-animate-item>
+            <span class="vam-sector-num co-index">{String(idx + 1).padStart(2, '0')}</span>
+            <p class="vam-card-text">{secteur}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 02 · PLATEFORME (le différenciateur local) ══ -->
+    <section id="plateforme" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">02 — iOS ou Android</p>
+      <h2 style="margin-top:var(--space-eyebrow);">
+        À {ville.nom} : <span class="co-ser">{ville.plateforme.label}</span>
+      </h2>
+
+      <div class="vam-plateforme co-frame" data-animate>
+        <span class="co-x tl"></span><span class="co-x tr"></span>
+        <span class="co-x bl"></span><span class="co-x br"></span>
+        <i class="ri-smartphone-line vam-plateforme-icon" aria-hidden="true"></i>
+        <p class="vam-plateforme-text">{ville.plateforme.explication}</p>
+      </div>
+    </section>
+
+    <!-- ══ 03 · CAS D'USAGE ══ -->
+    <section id="cas-usage" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">03 — Cas d'usage</p>
+      <h2 style="margin-top:var(--space-eyebrow);">
+        Ce qu'une app change dans les métiers de <span class="co-ser">{ville.nom}</span>
+      </h2>
+      <p class="co-mut" style="margin-top:var(--space-title-lead);max-width:62ch;line-height:1.6;">
+        Pas une liste de fonctionnalités génériques. Des applications branchées sur des métiers
+        réellement présents dans le bassin de {ville.nom}, secteur par secteur.
+      </p>
+
+      <div class="vam-grid vam-grid--3" data-animate-stagger>
+        {ville.casUsageMobile.map((item, idx) => (
+          <div class="vam-card co-frame co-frame--reveal" data-animate-item>
+            <i class={`${casIcons[idx % casIcons.length]} vam-card-icon`} aria-hidden="true"></i>
+            <h3 class="vam-card-title">{item.secteur}</h3>
+            <p class="vam-card-text">{item.cas}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 04 · CHOIX TECHNIQUE ══ -->
+    <section id="technos" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">04 — Choix technique</p>
+      <h2 style="margin-top:var(--space-eyebrow);">Les technos qui ont du sens ici</h2>
+      <p class="co-mut" style="margin-top:var(--space-title-lead);max-width:62ch;line-height:1.6;">
+        Le bon choix technique dépend de ton usage réel, pas de la mode. Voilà ce qui revient le plus
+        souvent sur les projets {ville.nom === 'Genève' ? 'genevois' : 'lausannois'}.
+      </p>
+
+      <div class="vam-grid vam-grid--3" data-animate-stagger>
+        {ville.technos.map((techno) => (
+          <div class="vam-card co-frame co-frame--reveal" data-animate-item>
+            <i class="ri-code-box-line vam-card-icon" aria-hidden="true"></i>
+            <h3 class="vam-card-title">{techno.nom}</h3>
+            <p class="vam-card-text">{techno.pourquoi}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 05 · BLOCAGES ══ -->
+    <section id="blocages" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">05 — Blocages</p>
+      <h2 style="margin-top:var(--space-eyebrow);">Les <span class="co-ser">blocages</span> que je vois à {ville.nom}</h2>
+      <p class="co-mut" style="margin-top:var(--space-title-lead);max-width:60ch;line-height:1.6;">
+        Si tu te reconnais dans l'un de ces points, le problème n'est probablement pas technique.
+      </p>
+
+      <div class="vam-grid vam-grid--2" data-animate-stagger>
+        {ville.pains.map((pain) => (
+          <div class="vam-pain co-frame co-frame--reveal" data-animate-item>
+            <i class="ri-alert-line vam-pain-icon" aria-hidden="true"></i>
+            <p class="vam-card-text">{pain}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 06 · MÉTHODE ══ -->
+    <section id="methode" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">06 — Méthode</p>
+      <h2 style="margin-top:var(--space-eyebrow);">Du cadrage à la publication sur les stores</h2>
+
+      <div class="vam-grid vam-grid--3" data-animate-stagger>
+        {methode.map((etape) => (
+          <div class="vam-step co-frame co-frame--reveal" data-animate-item>
+            <span class="vam-step-num co-index">{etape.step}</span>
+            <h3 class="vam-card-title">{etape.title}</h3>
+            <p class="vam-card-text">{etape.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 07 · POUR QUI ══ -->
+    <section id="pour-qui" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">07 — Pour qui</p>
+      <h2 style="margin-top:var(--space-eyebrow);">À qui je m'adresse à {ville.nom}</h2>
+
+      <div class="vam-chips" data-animate>
+        {ville.publicCible.map((p) => (
+          <span class="vam-chip"><i class="ri-check-line"></i> {p}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- ══ 08 · FAQ (accordéon natif <details>, zéro JS) ══ -->
+    <section id="faq" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">08 — FAQ</p>
+      <h2 style="margin-top:var(--space-eyebrow);">Questions fréquentes ({ville.nom})</h2>
+      <p class="co-mut" style="margin-top:var(--space-title-lead);max-width:62ch;line-height:1.6;">
+        Ce que les entreprises de {ville.nom} me demandent avant de lancer une application.
+      </p>
+
+      <div class="vam-faq">
+        {ville.faqs.map((faq, index) => (
+          <details open={index === 0}>
+            <summary>
+              {faq.question}
+              <i class="ri-arrow-down-s-line" aria-hidden="true"></i>
+            </summary>
+            <p class="vam-faq-answer">{faq.answer}</p>
+          </details>
+        ))}
+
+        <p class="co-mut" style="margin-top:24px;">
+          Une autre question sur ton app à {ville.nom} ?
+          <a href="/contact" class="vam-inline">Écris-moi</a>, je réponds sous 24h.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ 09 · ALLER PLUS LOIN (maillage montant / latéral / descendant) ══ -->
+    <section id="aller-plus-loin" class="co-sec co-pad" style="padding:var(--sec-pad-y) var(--sec-pad-x);">
+      <p class="co-eyebrow">09 — Aller plus loin</p>
+      <h2 style="margin-top:var(--space-eyebrow);">Pour creuser le sujet</h2>
+
+      <!-- Maillage MONTANT — page pilier -->
+      <div class="vam-pilier co-frame" data-animate>
+        <span class="co-x tl"></span><span class="co-x tr"></span>
+        <span class="co-x bl"></span><span class="co-x br"></span>
+        <div class="vam-pilier-copy">
+          <span class="co-badge co-badge--solid">Page pilier</span>
+          <h3 class="vam-pilier-title">Tout sur le développement d'application mobile</h3>
+          <p class="vam-card-text">
+            La page de référence sur le <strong>développement d'application mobile en Suisse romande</strong> :
+            méthode complète, natif vs hybride vs PWA, publication sur les stores, ce qui fait varier
+            le budget. Le point de départ avant d'attaquer un projet.
+          </p>
+        </div>
+        <a href="/services/developpement-application-mobile" class="co-btn vam-pilier-btn">
+          Voir la page pilier <i class="ri-arrow-right-line"></i>
+        </a>
+      </div>
+
+      <!-- Maillage LATÉRAL — autre ville -->
+      {voisines.length > 0 && (
+        <div class="vam-block">
+          <h3 class="vam-sub-label">Autres villes où j'interviens</h3>
+          <div class="vam-grid vam-grid--2" data-animate-stagger>
+            {voisines.map((v) => (
+              <a
+                href={`/services/developpement-application-mobile/${v.slug}`}
+                class="vam-link-card co-frame co-frame--reveal"
+                data-animate-item
+              >
+                <div class="vam-link-head">
+                  <i class="ri-map-pin-fill vam-card-icon" aria-hidden="true"></i>
+                  <span class="vam-link-meta">Canton de {v.canton}</span>
+                </div>
+                <h3 class="vam-card-title">Application mobile à {v.nom}</h3>
+                <p class="vam-card-text">{v.angleHero}</p>
+                <span class="vam-link-cta">Voir la page <i class="ri-arrow-right-line"></i></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Maillage DESCENDANT — articles du cluster mobile -->
+      <div class="vam-block">
+        <h3 class="vam-sub-label">À lire avant de te lancer</h3>
+        <div class="vam-grid vam-grid--3" data-animate-stagger>
+          {ville.articles.map((article) => (
+            <a href={article.href} class="vam-link-card co-frame co-frame--reveal" data-animate-item>
+              <i class={`${article.icon} vam-card-icon`} aria-hidden="true"></i>
+              <h3 class="vam-card-title">{article.title}</h3>
+              <p class="vam-card-text">{article.description}</p>
+              <span class="vam-link-cta">Lire l'article <i class="ri-arrow-right-line"></i></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA FINAL (primitive .co-cta) ══ -->
+    <section class="co-cta">
+      <span class="co-x tl"></span><span class="co-x tr"></span>
+      <span class="co-x bl"></span><span class="co-x br"></span>
+      <div class="co-cta-inner">
+        <h2 class="co-cta-title">Ton application mobile à <span class="co-ser">{ville.nom}</span></h2>
+        <p class="co-cta-lead">
+          Premier échange gratuit, sans engagement. On regarde ce que ton app doit vraiment faire,
+          sur quelles plateformes, et je te dis franchement si une application est le bon outil.
+          Réponse sous 24h.
+        </p>
+        <div class="co-cta-btns">
+          <a href="/contact" class="co-btn co-cta-btn"><i class="ri-mail-send-line"></i> Demander un devis app</a>
+          <a href="mailto:hello@jonlabs.ch" class="co-btn co-cta-btn--ghost"><i class="ri-mail-line"></i> hello@jonlabs.ch</a>
+        </div>
+        <div class="co-cta-trust">
+          <span><i class="ri-time-line"></i> Réponse sous 24h</span>
+          <span><i class="ri-calendar-line"></i> Lun-Ven, 9h-18h (CET)</span>
+          <span><i class="ri-money-cny-circle-line"></i> Facturation en CHF</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  /* ══ APPLICATION MOBILE · [ville] — styles .vam-* (namespace scopé, corps .co-root) ══ */
+
+  /* ── Hero ── */
+  .vam-hero-title { font-size: clamp(2.2rem, 5.4vw, 3.4rem); margin-top: 22px; max-width: 18ch; }
+  .co-root .vam-hero-lead { margin-top: 18px; max-width: 56ch; font-size: 1.1rem; line-height: 1.65; color: var(--muted); }
+  .vam-hero-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .vam-hero-btns .co-btn i { transition: transform .18s ease-out; }
+  .vam-hero-btns .co-btn:hover i { transform: translateX(2px); }
+  .vam-hero-trust { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; font-size: 13.5px; color: var(--muted); }
+  .vam-hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
+  .vam-hero-trust i { color: var(--accent); }
+
+  /* ── Sous-titre de bloc ── */
+  .vam-sub-label {
+    margin-top: 40px; margin-bottom: 4px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── Grilles ── */
+  .vam-grid { display: grid; gap: 16px; margin-top: 20px; }
+  .vam-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .vam-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+  /* ── Cartes génériques ── */
+  .vam-card {
+    position: relative; display: flex; flex-direction: column; gap: 10px; padding: var(--pad-card);
+    background: var(--surface); border: 1px solid var(--line-2);
+    transition: box-shadow .18s ease-out, transform .18s ease-out;
+  }
+  .vam-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,22,26,.07); }
+  .vam-card-icon { font-size: 24px; color: var(--accent); line-height: 1; }
+  .vam-card-title { font-size: 1.1rem; }
+  .vam-card-text { font-size: 14px; line-height: 1.55; color: var(--muted); }
+  .vam-card-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ── Secteurs dominants (carte numérotée) ── */
+  .vam-sector {
+    display: grid; grid-template-columns: 40px 1fr; align-items: center; gap: 16px;
+    padding: 18px 20px; background: var(--surface); border: 1px solid var(--line-2);
+  }
+  .vam-sector-num {
+    display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+    border: 1px solid var(--accent); color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+
+  /* ── Contexte économique (encart) ── */
+  .vam-context { position: relative; margin-top: 28px; padding: var(--pad-encart); background: var(--surface); border: 1px solid var(--line-2); }
+  .vam-context-title { font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; }
+  .vam-context-title i { color: var(--accent); }
+  .co-root .vam-context-text { margin-top: 14px; font-size: 14.5px; line-height: 1.65; color: var(--muted); max-width: 74ch; }
+
+  /* ── Plateforme dominante (encart différenciateur) ── */
+  .vam-plateforme {
+    position: relative; display: flex; align-items: flex-start; gap: 18px;
+    margin-top: 28px; padding: var(--pad-encart);
+    background: var(--surface); border: 1px solid var(--line-2);
+  }
+  .vam-plateforme-icon { font-size: 28px; color: var(--accent); flex: none; line-height: 1; }
+  .co-root .vam-plateforme-text { font-size: 14.5px; line-height: 1.65; color: var(--muted); max-width: 72ch; }
+
+  /* ── Méthode (étapes numérotées) ── */
+  .vam-step {
+    position: relative; display: flex; flex-direction: column; gap: 10px; padding: var(--pad-card);
+    background: var(--surface); border: 1px solid var(--line-2);
+    transition: box-shadow .18s ease-out, transform .18s ease-out;
+  }
+  .vam-step:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,22,26,.07); }
+  .vam-step-num {
+    display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+    border: 1px solid var(--accent); color: var(--accent); font-size: 14px; font-weight: 700;
+  }
+
+  /* ── Blocages (pains) ── */
+  .vam-pain {
+    position: relative; display: flex; align-items: flex-start; gap: 14px; padding: 22px 24px;
+    background: var(--surface); border: 1px solid var(--line-2);
+    transition: box-shadow .18s ease-out, transform .18s ease-out;
+  }
+  .vam-pain:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,22,26,.07); }
+  .vam-pain-icon { font-size: 22px; color: var(--accent); flex: none; margin-top: 1px; }
+
+  /* ── Chips public cible ── */
+  .vam-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .vam-chip {
+    display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; font-size: 14px;
+    background: var(--surface); border: 1px solid var(--line-2); color: var(--ink);
+  }
+  .vam-chip i { color: var(--accent); }
+
+  /* ── FAQ (accordéon natif <details> — smooth via ::details-content, zéro JS) ── */
+  .vam-faq { margin-top: var(--space-block); border-top: 1px solid var(--line); max-width: 86ch; }
+  .vam-faq details { border-bottom: 1px solid var(--line); }
+  .vam-faq summary {
+    list-style: none; cursor: pointer; padding: 20px 0;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink);
+  }
+  .vam-faq summary::-webkit-details-marker { display: none; }
+  .vam-faq summary i { transition: transform .2s ease-out; color: var(--muted); font-size: 22px; flex: none; }
+  .vam-faq details[open] summary i { transform: rotate(180deg); }
+  .co-root .vam-faq-answer { padding: 0 0 22px; color: var(--muted); line-height: 1.6; max-width: 68ch; }
+  .vam-faq details::details-content {
+    block-size: 0; overflow: hidden;
+    transition: block-size .28s ease-out, content-visibility .28s ease-out allow-discrete;
+  }
+  .vam-faq details[open]::details-content { block-size: auto; }
+
+  .vam-inline { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; }
+  .vam-inline:hover { color: var(--ink); }
+
+  /* ── Maillage ── */
+  .vam-block { margin-top: 12px; }
+  .vam-pilier {
+    position: relative; display: flex; align-items: center; justify-content: space-between;
+    gap: 28px; margin-top: 28px; padding: 32px 36px;
+    background: var(--surface); border: 1px solid var(--accent); box-shadow: 0 0 0 1px var(--accent);
+  }
+  .vam-pilier-copy { display: flex; flex-direction: column; gap: 12px; max-width: 62ch; }
+  .vam-pilier-title { font-size: 1.4rem; }
+  .vam-pilier-btn { flex: none; white-space: nowrap; }
+  .vam-pilier-btn i { transition: transform .18s ease-out; }
+  .vam-pilier-btn:hover i { transform: translateX(3px); }
+
+  .vam-link-card {
+    position: relative; display: flex; flex-direction: column; gap: 10px; padding: var(--pad-card);
+    background: var(--surface); border: 1px solid var(--line-2);
+    transition: box-shadow .18s ease-out, transform .18s ease-out;
+  }
+  .vam-link-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,22,26,.07); }
+  .vam-link-head { display: flex; align-items: center; justify-content: space-between; }
+  .vam-link-meta { font-size: 12px; color: var(--muted); }
+  .vam-link-cta {
+    margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 13.5px; font-weight: 600; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .vam-link-cta i { transition: transform .18s ease-out; }
+  .vam-link-card:hover .vam-link-cta i { transform: translateX(3px); }
+
+  /* ── Anchor scroll offset ── */
+  .co-root section[id] { scroll-margin-top: 100px; }
+
+  /* ── Responsive (mobile-first : la base ci-dessus est desktop-cadrée, on dégrade) ── */
+  @media (max-width: 960px) {
+    .vam-grid--3 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .vam-grid--2, .vam-grid--3 { grid-template-columns: 1fr; }
+    .vam-plateforme { flex-direction: column; gap: 14px; }
+    .vam-pilier { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 22px; }
+    .vam-pilier-btn { width: 100%; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vam-card, .vam-step, .vam-pain, .vam-link-card, .vam-faq summary i,
+    .vam-hero-btns .co-btn i, .vam-pilier-btn i, .vam-link-cta i { transition: none; }
+  }
+</style>

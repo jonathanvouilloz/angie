@@ -70,13 +70,15 @@ Voici mes forfaits réels pour le marché suisse en 2026. Ce sont des prix fixes
 | **App métier complète** | Authentification, synchronisation, back-office léger, règles métier | 5 000 – 10 000 CHF |
 | **Marketplace / app complexe** | Deux types d'utilisateurs, paiements, back-office admin, API propre | dès 15 000 CHF |
 
-**MVP (2 000–5 000 CHF)** : l'objectif ici est de valider une hypothèse produit, pas de livrer un produit fini. Périmètre réduit à 3–5 écrans clés, une seule plateforme (souvent iOS pour le marché premium), pas de back-office. Un MVP bien cadré se développe en 2 à 4 semaines. C'est le meilleur moyen de vérifier que tes utilisateurs se servent réellement de l'app avant d'investir davantage.
+**MVP (2 000–5 000 CHF)** : l'objectif ici est de valider une hypothèse produit, pas de livrer un produit fini. Périmètre réduit à 3–5 écrans clés, une seule plateforme (souvent iOS pour le marché premium), pas de back-office. Un MVP bien cadré se développe en 2 à 4 semaines. C'est le meilleur moyen de vérifier que tes utilisateurs se servent réellement de l'app avant d'investir davantage. L'article sur le [budget d'un MVP d'application mobile](/blog/budget-mvp-application-mobile) détaille ce qui rentre dans cette enveloppe et ce qui n'y rentre pas.
 
 **App vitrine / utilitaire simple (3 500–8 500 CHF)** : c'est l'équivalent mobile d'un site vitrine. Quelques écrans, un catalogue de produits, des formulaires de contact, ou un petit outil autonome. Pas de backend complexe. Idéal pour un restaurant, un artisan ou une boutique qui veut sa présence mobile. En cross-platform Flutter, on tient le bas de la fourchette. Avec design sur mesure, on monte vers le haut.
 
 **App métier complète (5 000–10 000 CHF)** : c'est le territoire des outils internes et des apps de gestion. Technicien terrain qui envoie des rapports depuis son smartphone, commercial qui consulte son CRM, logisticien qui suit ses livraisons. L'authentification, la synchronisation et les règles métier poussent le budget vers le haut de la fourchette dès que le backend se complexifie.
 
 **Marketplace / app complexe (dès 15 000 CHF)** : dès que tu as deux types d'utilisateurs (acheteur / vendeur, patient / médecin, client / prestataire), le périmètre s'élargit nettement. Le back-office admin, la gestion des paiements, les notifications, les profils, les avis : compte au minimum 15 000 CHF, et davantage pour un produit commercialisable complet. Sur ce type de projet, on commence presque toujours par un MVP pour dégrossir avant d'engager le budget complet.
+
+Ce que chaque forfait couvre exactement, du cadrage à la mise en ligne sur les deux stores, est détaillé sur ma page [développement d'application mobile iOS et Android](/services/developpement-application-mobile).
 
 ---
 
@@ -96,7 +98,7 @@ Une agence suisse facture une app métier 25 000 à 50 000 CHF, là où je la li
 - **Pas de junior qui apprend sur ton projet.** C'est moi qui conçois, code et livre.
 - **Développement accéléré par IA.** J'utilise l'IA pour compresser la partie répétitive du code (CRUD, tests, intégrations standard, boilerplate). Ce qui prenait des semaines en prend quelques jours, et cette économie de temps se répercute directement sur le prix.
 
-La contrepartie d'un solo : la disponibilité est variable (un freelance bien occupé a quelques semaines de délai) et il n'y a pas de structure qui prend le relais en cas d'absence. Pour un projet à fort enjeu de structure et de garanties contractuelles lourdes, une agence reste pertinente. Pour une PME qui veut une app solide à budget maîtrisé, le forfait solo est presque toujours le meilleur rapport.
+La contrepartie d'un solo : la disponibilité est variable (un freelance bien occupé a quelques semaines de délai) et il n'y a pas de structure qui prend le relais en cas d'absence. Pour un projet à fort enjeu de structure et de garanties contractuelles lourdes, une agence reste pertinente. Pour une PME qui veut une app solide à budget maîtrisé, le forfait solo est presque toujours le meilleur rapport. Le guide [freelance ou agence pour une application mobile](/blog/freelance-ou-agence-application-mobile) pose la grille complète, avantages et limites des deux côtés.
 
 ### Et l'offshore ?
 

@@ -119,6 +119,8 @@ Tout ce qui est "nice to have" sort du MVP. Pas de négociation.
 
 Avec ce document d'une page, n'importe quel développeur peut te donner une estimation fiable en moins d'une heure d'échange. Sans ça, les estimations seront larges et tu paieras l'incertitude.
 
+C'est exactement ce que je demande avant de chiffrer un [développement d'application mobile au forfait](/services/developpement-application-mobile). Sans ce document, je ne peux annoncer qu'une fourchette, et une fourchette ne t'engage à rien.
+
 Pour comprendre comment ce processus s'inscrit dans un projet plus large, l'article sur [l'application mobile pour les PME suisses](/blog/application-mobile-pme-suisse) donne le contexte décisionnel complet.
 
 ---

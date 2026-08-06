@@ -143,6 +143,8 @@ La grille de lecture :
 
 La bonne stratégie que je recommande souvent : commencer par une PWA, valider le produit avec de vrais utilisateurs, puis migrer vers une app native si la croissance le justifie. Ça évite de brûler 15 000 CHF sur une app que personne n'utilise.
 
+Si la grille te renvoie vers le natif, l'étape d'après est de figer le périmètre et de [faire développer une app iOS et Android](/services/developpement-application-mobile) sur une base de code unique, plutôt que de repartir sur deux chantiers séparés.
+
 Pour aller plus loin sur les étapes de développement et les budgets réels, le [guide complet sur le développement d'application mobile en Suisse](/blog/developper-application-mobile-suisse) détaille chaque phase et les fourchettes de prix du marché.
 
 Si tu veux une fourchette tarifaire précise selon ton contexte, consulte aussi l'article sur le [prix d'une application mobile en Suisse](/blog/prix-application-mobile-suisse).
