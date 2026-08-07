@@ -10,6 +10,7 @@
 | Chantier SEO IA (consultant IA) | docs/planSEOIA.md | EN ATTENTE (Phase 1-2 ✅, Phase 3 à venir) |
 | Refonte piliers micro-intentions / AIO | docs/features/refonte-piliers-micro-intentions.md | EN COURS (Lots A & B ✅ **poussés** — reste CTR blog + C maillage + D/E/F gated) |
 | **Silo mobile « agence application mobile »** | docs/features/silo-mobile-agence.md | **PHASES 0+1 SHIPPÉES** (06.08, `c3c1c30` poussé) — reste mesure S+4 (~03.09) |
+| **Villes frontalières — CTR + e-commerce** | docs/features/villes-frontalieres-ctr.md | **LIVRÉ** (07.08) — reste mesure S+4 (~04.09) |
 
 ## Reprendre ici
 **Silo mobile** — Phases 0 (pilier repositionné, guide différencié, 8 articles maillés) et 1

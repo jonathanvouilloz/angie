@@ -8,6 +8,17 @@ export interface VilleFAQ {
   answer: string;
 }
 
+/** Bloc « vendre en ligne » — intention e-commerce, ancrée dans le tissu local.
+ *  Aucun fait inventé : les éléments cités (Stripe, TWINT, gestion des stocks,
+ *  sur devis, seuils Webflow Ecommerce, délai 4-6 semaines) proviennent
+ *  exclusivement de /services/creation-site-web et /services/developpeur-webflow. */
+export interface VilleEcommerce {
+  /** 2 phrases : pourquoi la vente en ligne se pose DANS CETTE VILLE */
+  intro: string;
+  /** 3 points concrets (offre réelle, seuils, arbitrage outil) */
+  points: string[];
+}
+
 export interface VilleData {
   /** slug utilisé en URL : /developpement-web/{slug} */
   slug: string;
@@ -41,6 +52,27 @@ export interface VilleData {
   angleHero: string;
   /** slugs des villes proches pour maillage interne */
   voisines: string[];
+
+  // ── SEO par ville (alignés sur la demande réelle mesurée en GSC) ──────────
+  // Avant : title/description générés centralement dans [ville].astro → 5 metas
+  // quasi identiques, 1'210 impressions et 0 clic sur 4 semaines. Chaque ville
+  // porte désormais SES requêtes. Le suffixe « | Jonlabs » est réapposé par
+  // Layout.astro : `metaTitle` doit rester ≤ 60 car. suffixe compris.
+  //
+  // Cadrage « agence » : les requêtes contiennent « agence », Jon Labs n'en est
+  // pas une. Le terme est donc utilisé comme ce dont on est l'ALTERNATIVE,
+  // jamais comme revendication d'identité (même règle que le silo mobile,
+  // cf. src/data/villes-mobile.ts). Formulation différente par ville pour ne pas
+  // servir cinq fois la même phrase en SERP.
+  /** title complet de la page (≤ 60 car., suffixe marque compris) */
+  metaTitle?: string;
+  /** meta description unique et locale (≤ 158 car.) */
+  metaDescription?: string;
+  /** amorce du H1, avant le nom de ville en Instrument Serif.
+   *  Fallback : « Développeur web sur mesure à ». */
+  h1Lead?: string;
+  /** bloc e-commerce local (intention totalement absente des pages avant ce jour) */
+  ecommerce?: VilleEcommerce;
 }
 
 export const villesFrontalieres: VilleData[] = [
@@ -92,11 +124,33 @@ export const villesFrontalieres: VilleData[] = [
       {
         question: "Tu travailles avec quelles entreprises à Annemasse ?",
         answer: "Le profil typique de mes clients du Genevois français : PME entre 3 et 50 personnes, commerces installés, professions libérales et indépendants frontaliers. Pas de très grosses structures industrielles avec service informatique interne, pas non plus de microsites à 500 EUR. Le ticket d'entrée se situe autour de 1'500 EUR pour un site vitrine et grimpe selon la complexité (e-commerce, multilingue, espace client, intégrations métier)."
+      },
+      {
+        question: "Je tiens un commerce à Annemasse, comment je passe à la vente en ligne ?",
+        answer: "On commence par regarder ton catalogue, pas l'outil. Si tu vends moins d'une centaine de références sans variantes compliquées, une boutique Webflow Ecommerce avec paiement Stripe fait le travail et tu la gères toi-même après la formation. Dès qu'on parle de click & collect entre le magasin du centre et un stock déporté, d'abonnements ou de tailles × couleurs × stocks, Webflow bloque : on part alors sur une boutique sur-mesure ou une intégration adaptée. Dans les deux cas la boutique est chiffrée sur devis, et une boutique demande plutôt 4 à 6 semaines qu'un simple site vitrine."
+      },
+      {
+        question: "Je cherche une agence web à Annemasse — tu corresponds ?",
+        answer: "Non, et autant le dire tout de suite : je suis développeur freelance, pas une agence. Il n'y a ni commercial, ni chef de projet, ni équipe de trois personnes derrière moi. Tu parles directement à celui qui écrit le code et qui livre. Ce que tu perds : une structure capable d'absorber dix chantiers en parallèle. Ce que tu gagnes : une décision prise dans la journée, un seul interlocuteur du devis à la mise en ligne, et un budget qui ne finance pas des bureaux."
       }
     ],
     motCleSEO: 'développement web Annemasse',
     angleHero: "Sites pro pour PME, commerces et indépendants frontaliers, à 15 minutes de Genève centre.",
-    voisines: ['gaillard', 'ville-la-grand', 'saint-julien-en-genevois']
+    voisines: ['gaillard', 'ville-la-grand', 'saint-julien-en-genevois'],
+
+    metaTitle: 'Boutique en ligne et site web à Annemasse | Jonlabs',
+    metaDescription:
+      "L'alternative à l'agence pour ouvrir ta boutique en ligne ou refaire ton site à Annemasse : freelance à 15 min de Genève, devis en EUR ou en CHF.",
+    h1Lead: 'Boutique en ligne et site web à',
+    ecommerce: {
+      intro:
+        "Les commerces du centre d'Annemasse servent déjà une clientèle qui traverse la frontière tous les jours, dans les deux sens. Une boutique en ligne prolonge la vitrine physique et le rayon d'action au-delà du Léman Express — elle ne la remplace pas.",
+      points: [
+        "Boutique en ligne, paiement sécurisé (Stripe, TWINT) et gestion des stocks : chiffré sur devis, selon le catalogue.",
+        "Moins de 100 produits, peu de variantes, marché suisse ou zone unique : Webflow Ecommerce suffit largement.",
+        "Click & collect, abonnements, tailles × couleurs × stocks : Webflow montre ses limites, on passe au sur-mesure.",
+      ],
+    },
   },
   {
     slug: 'gaillard',
@@ -146,11 +200,33 @@ export const villesFrontalieres: VilleData[] = [
       {
         question: "Les clients suisses qui visitent Gaillard cherchent quoi en ligne ?",
         answer: "D'après mes propres clients gaillardes : essentiellement les horaires, les prix en CHF, les places de parking et les conditions de paiement (CB suisse acceptée ? TWINT ?). C'est court, c'est pragmatique, et c'est rarement bien fait sur les sites de PME locales. Un site qui répond à ces 4 questions dès le hero capte une part disproportionnée de la clientèle transfrontalière."
+      },
+      {
+        question: "Ma boutique en ligne doit encaisser des Suisses et des Français, c'est possible ?",
+        answer: "Oui, mais c'est précisément ce qui décide de l'outil. Webflow Ecommerce est parfait tant que tu restes sur un catalogue simple, une zone unique et un paiement par carte via Stripe. À Gaillard, la moitié de la clientèle arrive de Moillesulaz : dès que tu veux TWINT, un affichage en deux monnaies ou des règles de TVA différentes des deux côtés, Webflow atteint sa limite. On bascule alors sur une boutique sur-mesure ou une intégration adaptée (Stripe, Snipcart, solution headless), avec gestion des stocks — le tout chiffré sur devis plutôt qu'au forfait."
+      },
+      {
+        question: "Freelance ou agence web pour un projet à Gaillard ?",
+        answer: "Je ne suis pas une agence, donc la comparaison est simple : chez moi il n'y a personne entre toi et le code. Pas de commercial pour prendre le brief, pas de chef de projet pour le retransmettre. Sur un site de commerce ou d'artisan gaillard, ça se voit surtout sur le rythme : une question posée le matin est arbitrée l'après-midi, et je peux passer sur place — la douane est à cinq minutes. Si ton projet demande une équipe pluridisciplinaire à plein temps pendant six mois, une agence sera plus adaptée, et je te le dirai."
       }
     ],
     motCleSEO: 'développement web Gaillard',
     angleHero: "Sites optimisés pour la clientèle franco-suisse, à 5 minutes de la douane de Moillesulaz.",
-    voisines: ['annemasse', 'ville-la-grand', 'saint-julien-en-genevois']
+    voisines: ['annemasse', 'ville-la-grand', 'saint-julien-en-genevois'],
+
+    metaTitle: 'Site web et e-commerce à Gaillard, sans agence | Jonlabs',
+    metaDescription:
+      "En direct avec le développeur, sans agence entre nous : site vitrine, boutique en ligne et refonte à Gaillard, à 5 km de Genève. Devis en EUR ou en CHF.",
+    h1Lead: 'Développement web et boutique en ligne à',
+    ecommerce: {
+      intro:
+        "À Gaillard, une boutique en ligne encaisse par définition des deux côtés de la douane. Le choix de l'outil ne se joue donc pas sur le design mais sur le paiement : carte, TWINT, double affichage CHF/EUR, TVA française ou pas.",
+      points: [
+        "Catalogue simple, zone unique, paiement par carte via Stripe : Webflow Ecommerce fait le travail.",
+        "TWINT ou moyens de paiement suisses spécifiques, multi-devises, règles de TVA croisées : Webflow ne suit plus.",
+        "Dans ce cas, boutique sur-mesure ou intégration (Stripe, Snipcart, headless), avec gestion des stocks — sur devis.",
+      ],
+    },
   },
   {
     slug: 'ville-la-grand',
@@ -200,11 +276,33 @@ export const villesFrontalieres: VilleData[] = [
       {
         question: "Vous gérez l'hébergement et le nom de domaine depuis la France ?",
         answer: "Oui. Pour les clients de Ville-la-Grand, j'utilise généralement un nom de domaine en .fr (ou .com selon ton activité) et un hébergement Vercel ou Cloudflare avec serveurs européens — tu restes en conformité RGPD sans effort. Si tu as déjà un domaine chez OVH ou Gandi, je peux récupérer la main et migrer proprement le site sans interruption ni perte de SEO."
+      },
+      {
+        question: "On est en B2B dans la zone Borly, la vente en ligne a-t-elle un sens pour nous ?",
+        answer: "Souvent oui, mais pas sous la forme qu'on imagine. Les PME B2B de Ville-la-Grand vendent rarement des palettes en ligne ; en revanche elles vendent très bien des prestations, des formations ou des produits digitaux — et ça, c'est exactement le terrain où une boutique légère fonctionne : catalogue restreint, paiement par carte via Stripe, aucune logistique. On peut aussi s'arrêter à un catalogue produits consultable avec demande de devis, sans encaissement. La boutique est chiffrée sur devis, avec gestion des stocks quand il y a du stock à gérer."
+      },
+      {
+        question: "Vaut-il mieux passer par une agence web pour une PME de Ville-la-Grand ?",
+        answer: "Tout dépend de ce que tu cherches vraiment. Je suis développeur freelance, pas une agence : pas d'équipe pluridisciplinaire, pas de service commercial, pas de facturation pour le temps passé à coordonner en interne. Sur un site corporate de PME B2B — présentation des activités, formulaire qualifié, parfois espace client ou intégration CRM — cette structure intermédiaire ne sert pas à grand-chose : elle rallonge les allers-retours. Tu traites en direct avec celui qui construit, et la zone Borly est à quatorze minutes de chez moi."
       }
     ],
     motCleSEO: 'développement web Ville-la-Grand',
     angleHero: "Sites corporate pour PME des zones d'activité Mont Blanc et Borly, à deux pas de Thônex.",
-    voisines: ['annemasse', 'gaillard', 'saint-julien-en-genevois']
+    voisines: ['annemasse', 'gaillard', 'saint-julien-en-genevois'],
+
+    metaTitle: 'Création de site internet à Ville-la-Grand | Jonlabs',
+    metaDescription:
+      "Sans intermédiaire ni agence : création de site internet, site corporate B2B et vente en ligne pour les PME des zones Mont Blanc et Borly, à Ville-la-Grand.",
+    h1Lead: 'Création de site internet à',
+    ecommerce: {
+      intro:
+        "Les zones Mont Blanc et Borly concentrent du B2B : services aux entreprises, industrie légère, négoce. La vente en ligne y prend rarement la forme d'un grand magasin — plutôt celle d'un catalogue propre, ou d'une caisse pour des prestations et des formations.",
+      points: [
+        "Vente de services, de formations ou de produits digitaux : catalogue restreint et paiement Stripe, sans logistique.",
+        "Catalogue produits consultable avec demande de devis, quand l'encaissement en ligne n'a pas de sens en B2B.",
+        "Boutique complète avec gestion des stocks et paiement sécurisé (Stripe, TWINT) : chiffrée sur devis.",
+      ],
+    },
   },
   {
     slug: 'saint-julien-en-genevois',
@@ -254,11 +352,33 @@ export const villesFrontalieres: VilleData[] = [
       {
         question: "Combien coûte un site corporate pour une PME industrielle à Saint-Julien ?",
         answer: "La fourchette typique pour une PME industrielle de 10 à 50 personnes : CHF 4'000 à CHF 8'000 (équivalent EUR 4'150 à 8'300). Ça inclut un site sur-mesure de 8 à 15 pages, un blog ou actualités, un formulaire de contact qualifié, l'optimisation SEO de base et la mise en ligne. Les options qui font monter le devis : multilingue, espace client, intégration CRM/ERP, certifications spécifiques au secteur."
+      },
+      {
+        question: "Je veux créer une boutique en ligne à Saint-Julien, tu fais ça ?",
+        answer: "Oui, et la première question que je pose porte sur le catalogue, pas sur la plateforme. Un commerce du centre-ville ou de la zone Cervonnex avec quelques dizaines de références, peu de variantes et un paiement par carte via Stripe tient très bien sur Webflow Ecommerce — tu gères ensuite tes produits toi-même. Une PME industrielle avec un catalogue lourd, des variantes croisées ou des règles de TVA différentes selon le pays sort du cadre : on part sur une boutique sur-mesure ou une intégration. La boutique est chiffrée sur devis, et il faut compter 4 à 6 semaines plutôt que les 3 à 4 d'un site vitrine."
+      },
+      {
+        question: "Agence de création de site ou freelance à Saint-Julien ?",
+        answer: "Soyons clairs : je suis développeur freelance, pas une agence, et Saint-Julien est le marché le plus concurrentiel du Genevois français sur ce terrain. La différence tient au nombre de personnes entre toi et le code. Chez un prestataire structuré, le brief passe par un commercial puis par un chef de projet ; ici tu le donnes à celui qui va le développer. Pour une étude notariale, un cabinet ou une PME pharma qui a des contraintes de confidentialité, ça veut aussi dire une seule personne à qui confier tes documents, pas une chaîne."
       }
     ],
     motCleSEO: 'développement web Saint-Julien-en-Genevois',
     angleHero: "Sites corporate exigeants pour PME pharma, industrielles et professions réglementées du sud genevois.",
-    voisines: ['annemasse', 'gaillard', 'la-roche-sur-foron']
+    voisines: ['annemasse', 'gaillard', 'la-roche-sur-foron'],
+
+    metaTitle: 'Création site internet et e-commerce Saint-Julien | Jonlabs',
+    metaDescription:
+      "Freelance, pas une agence : création de site internet, boutique en ligne et référencement local à Saint-Julien-en-Genevois, à 11 km de Genève. CHF ou EUR.",
+    h1Lead: 'Création de site internet et e-commerce à',
+    ecommerce: {
+      intro:
+        "Entre les commerces du centre, la zone de Cervonnex et les PME industrielles qui présentent un catalogue, la vente en ligne ne veut pas dire la même chose selon qui la demande à Saint-Julien. L'outil se choisit après le catalogue, jamais avant.",
+      points: [
+        "Quelques dizaines de références, peu de variantes, paiement Stripe : Webflow Ecommerce et tu gères tes produits seul.",
+        "Catalogue lourd, variantes croisées, multi-devises ou TVA internationale : boutique sur-mesure ou intégration.",
+        "Boutique chiffrée sur devis, avec gestion des stocks et paiement sécurisé (Stripe, TWINT) — compter 4 à 6 semaines.",
+      ],
+    },
   },
   {
     slug: 'la-roche-sur-foron',
@@ -308,11 +428,33 @@ export const villesFrontalieres: VilleData[] = [
       {
         question: "Tu as déjà travaillé avec des entreprises de la vallée de l'Arve ?",
         answer: "Oui, sur des projets de refonte pour PME industrielles. Le profil typique : 20-80 personnes, exportant en Suisse, en Allemagne et parfois aux US, avec un site existant qui ne reflète plus le niveau réel de l'entreprise. Le défi technique est rarement la complexité, c'est plutôt la mise à jour du contenu (catalogues produits, certifications ISO, références clients) et la maintenance dans le temps. Je livre toujours avec une formation pour que ton équipe puisse mettre à jour le site sans dépendre de moi."
+      },
+      {
+        question: "Vendre en ligne depuis La Roche-sur-Foron, ça vaut le coup ?",
+        answer: "Ça dépend de ce que tu vends. Pour une entreprise de décolletage, la vente directe a rarement du sens : ce qui rapporte, c'est un catalogue produits consultable, avec les certifications et une demande de devis, pas un panier. Pour un commerce du centre médiéval avec un positionnement de niche — créateurs, gastronomie, produits du terroir — la boutique en ligne capte la clientèle suisse qui passe une fois puis recommande depuis chez elle : catalogue simple, paiement par carte via Stripe, ça tient sur Webflow Ecommerce. Au-delà (variantes complexes, multi-entrepôts, abonnements), on passe au sur-mesure. Dans tous les cas, sur devis."
+      },
+      {
+        question: "Il n'y a pas d'agence web à La Roche, tu remplaces quoi exactement ?",
+        answer: "Pas une agence — un développeur freelance qui travaille en direct. Concrètement, tu n'as ni interlocuteur commercial ni chef de projet, tu as la personne qui écrit ton site. Vu la distance (25 km, 30 minutes de voiture ou 40 en Léman Express), on travaille surtout à distance : un déplacement pour le brief, un pour la livraison et la formation, le reste en visio. C'est aussi ce qui évite de facturer des trajets et une structure dont ton projet n'a pas besoin."
       }
     ],
     motCleSEO: 'développement web La Roche-sur-Foron',
     angleHero: "Refonte de sites pour PME industrielles, artisans et commerces du Faucigny, accessible en Léman Express.",
-    voisines: ['annemasse', 'saint-julien-en-genevois', 'ville-la-grand']
+    voisines: ['annemasse', 'saint-julien-en-genevois', 'ville-la-grand'],
+
+    metaTitle: 'Développement web freelance à La Roche-sur-Foron | Jonlabs',
+    metaDescription:
+      "Un développeur en direct plutôt qu'une agence : refonte de site, développement web et boutique en ligne pour les PME du Faucigny, à 25 km de Genève.",
+    h1Lead: 'Développement web et refonte de site à',
+    ecommerce: {
+      intro:
+        "Dans le Faucigny, la vente en ligne prend deux formes très différentes : un catalogue produits industriel qu'on consulte avant de demander un devis, et la boutique d'un commerce de niche qui prolonge la visite d'un client suisse de passage.",
+      points: [
+        "Catalogue produits avec certifications et demande de devis, quand le panier n'a pas de sens en industrie.",
+        "Commerce de niche, catalogue simple et paiement Stripe : Webflow Ecommerce suffit, tu gères tes produits ensuite.",
+        "Variantes complexes, multi-entrepôts ou abonnements : boutique sur-mesure ou intégration, chiffrée sur devis.",
+      ],
+    },
   }
 ];
 

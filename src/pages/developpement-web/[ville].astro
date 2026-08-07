@@ -47,16 +47,23 @@ const { ville } = Astro.props;
 // SEO META
 // ============================================
 const pageUrl = `${SITE_URL}/developpement-web/${ville.slug}`;
+// Metas : par ville d'abord (data/villes-frontalieres.ts), alignées sur les requêtes
+// réellement mesurées en GSC. Le fallback généré ci-dessous reste en filet pour toute
+// ville ajoutée sans metas propres.
 // Title : on adapte la longueur pour passer sous 60 chars sur les noms longs
 const titleLong = `Développeur web ${ville.nom} — sites sur-mesure | Jonlabs`;
-const pageTitle = titleLong.length <= 60
+const titleFallback = titleLong.length <= 60
   ? titleLong
   : `Développeur web ${ville.nom} | Jonlabs`;
+const pageTitle = ville.metaTitle ?? titleFallback;
 // Description : version compacte si nom de ville long pour rester sous 160 chars
 const descLong = `Développement web sur mesure à ${ville.nom} (${ville.distanceGeneve} de Genève). Sites pro, refonte, MVP. Tarifs CHF/EUR transparents, freelance basé à Genève.`;
-const pageDescription = descLong.length <= 158
+const descFallback = descLong.length <= 158
   ? descLong
   : `Développeur web freelance pour ${ville.nom} (${ville.distanceGeneve} de Genève). Sites sur-mesure, refonte, MVP. Tarifs CHF/EUR. Basé à Genève.`;
+const pageDescription = ville.metaDescription ?? descFallback;
+// H1 : amorce par ville (cohérente avec le title), fallback générique.
+const h1Lead = ville.h1Lead ?? 'Développeur web sur mesure à';
 
 // ============================================
 // SCHEMA.ORG
@@ -91,6 +98,13 @@ const services = [
     title: "Création de site web",
     description: `Site vitrine sur-mesure pour PME et indépendants de ${ville.nom}. Design unique, performance Google, livré en 3-4 semaines.`,
     price: "Dès CHF 1'490 / EUR 1'550",
+    href: "/services/creation-site-web"
+  },
+  {
+    icon: "ri-shopping-bag-3-line",
+    title: "Boutique en ligne",
+    description: `Vendre depuis ${ville.nom} : catalogue, paiement sécurisé (Stripe, TWINT), gestion des stocks et fonctionnalités sur-mesure.`,
+    price: "Sur devis",
     href: "/services/creation-site-web"
   },
   {
@@ -186,11 +200,11 @@ const blogArticles = [
       <div class="dwv-hero-inner">
 
         <h1 class="dwv-hero-title" data-animate data-delay="0.1">
-          Développeur web sur mesure à <span class="co-ser">{ville.nom}</span>
+          {h1Lead} <span class="co-ser">{ville.nom}</span>
         </h1>
 
         <p class="dwv-hero-lead" data-animate data-delay="0.2">
-          {ville.angleHero} Devis transparent en <strong>CHF ou EUR</strong>, freelance basé à <strong>Genève</strong>.
+          {ville.angleHero} Un freelance, pas une agence : tu parles directement à celui qui code. Devis transparent en <strong>CHF ou EUR</strong>, basé à <strong>Genève</strong>.
         </p>
 
         <div class="dwv-hero-btns" data-animate data-delay="0.3">
@@ -240,7 +254,7 @@ const blogArticles = [
       <p class="co-eyebrow" data-animate>02 — Services</p>
       <h2 style="margin-top:var(--space-eyebrow);" data-animate>Services adaptés au tissu de {ville.nom}</h2>
       <p class="co-mut" data-animate style="margin-top:var(--space-title-lead);max-width:62ch;line-height:1.6;">
-        Du <strong>créateur de site web {ville.nom}</strong> au développement d'outils internes — toute la chaîne, un seul interlocuteur.
+        Du <strong>créateur de site web {ville.nom}</strong> à la <strong>boutique en ligne</strong> et aux outils internes : la même chaîne qu'en agence, mais en direct avec la personne qui code.
       </p>
 
       <!-- Public cible -->
@@ -274,6 +288,25 @@ const blogArticles = [
           <p class="dwv-service-text">Automatisation, validation d'idée, intégrations…</p>
         </a>
       </div>
+
+      <!-- Vendre en ligne (encart cadré, contenu par ville) -->
+      {ville.ecommerce && (
+        <div class="dwv-ecom co-frame" data-animate>
+          <span class="co-x tl"></span><span class="co-x tr"></span>
+          <span class="co-x bl"></span><span class="co-x br"></span>
+          <h3 class="dwv-ecom-title"><i class="ri-shopping-bag-3-line"></i> Vendre en ligne depuis {ville.nom}</h3>
+          <p>{ville.ecommerce.intro}</p>
+          <ul class="co-list co-list--check dwv-ecom-list">
+            {ville.ecommerce.points.map((point) => (
+              <li><i class="ri-check-line"></i><span>{point}</span></li>
+            ))}
+          </ul>
+          <p class="dwv-ecom-note">
+            La grille de décision complète est sur la page <a href="/services/developpeur-webflow" class="dwv-inline">boutique Webflow</a> ;
+            pour un catalogue ou un paiement qui sortent du cadre, on part sur une <a href="/services/creation-site-web" class="dwv-inline">boutique sur-mesure</a>.
+          </p>
+        </div>
+      )}
 
       <!-- Exemples de projets (encart cadré) -->
       <div class="dwv-examples co-frame" data-animate>
@@ -497,12 +530,17 @@ const blogArticles = [
   .dwv-grid--2 { grid-template-columns: repeat(2, 1fr); }
   .dwv-grid--3 { grid-template-columns: repeat(3, 1fr); }
 
-  /* ── Encarts cadrés (contexte économique / exemples) ── */
-  .dwv-context, .dwv-examples { position: relative; margin-top: 28px; padding: var(--pad-encart); background: var(--surface); border: 1px solid var(--line-2); }
-  .dwv-context-title, .dwv-examples-title { font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .dwv-context-title i, .dwv-examples-title i { color: var(--accent); }
-  .co-root .dwv-context p { font-size: 14.5px; line-height: 1.65; color: var(--muted); }
+  /* ── Encarts cadrés (contexte économique / e-commerce / exemples) ── */
+  .dwv-context, .dwv-ecom, .dwv-examples { position: relative; margin-top: 28px; padding: var(--pad-encart); background: var(--surface); border: 1px solid var(--line-2); }
+  .dwv-context-title, .dwv-ecom-title, .dwv-examples-title { font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .dwv-context-title i, .dwv-ecom-title i, .dwv-examples-title i { color: var(--accent); }
+  .co-root .dwv-context p, .co-root .dwv-ecom p { font-size: 14.5px; line-height: 1.65; color: var(--muted); }
   .dwv-examples .co-list li { font-size: 14.5px; }
+
+  /* ── Encart e-commerce ── */
+  .dwv-ecom-list { margin-top: 16px; gap: 10px; }
+  .dwv-ecom-list li { font-size: 14.5px; line-height: 1.5; }
+  .co-root .dwv-ecom-note { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13.5px; }
 
   /* ── Spécificités (cartes numérotées) ── */
   .dwv-spec { position: relative; display: flex; align-items: flex-start; gap: 16px; padding: 22px; background: var(--surface); border: 1px solid var(--line-2); transition: box-shadow .18s ease-out, transform .18s ease-out; }
