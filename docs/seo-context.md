@@ -144,3 +144,35 @@ cta_map:
 - Paul Vengeons tente de capter le marché suisse depuis Paris → opportunité de le détrôner avec un ancrage terrain réel
 - Louis Descamps est la référence de cadence à atteindre (~1 article/mois) dans un premier temps
 - **hgnn.io (Gauthier Huguenin) est la menace IA frontale** : il occupe déjà "consultant IA Genève" en transfrontalier. Riposte = un cluster IA dédié avec notre ancrage suisse réel comme différenciant (voir `docs/planSEOIA.md`). Reprendre son template de pages Métiers et ses pages produit Hermès/OpenClaw, mais avec prix CHF transparents et preuves chiffrées (ce qu'il n'a pas).
+
+---
+
+## Indexation — les deux canaux, et ce qu'ils acceptent
+
+> Posé le 2026-08-07 (article `rapport-seo-mensuel-que-doit-il-contenir`).
+
+**IndexNow (Bing, Yandex, Naver, Seznam) — actif.**
+Clé : `3a3dcfca6e988b8f78c69950c17b0800`, fichier de vérification à la racine du domaine
+(`public/3a3dcfca6e988b8f78c69950c17b0800.txt`). La clé est publique par construction : c'est
+le fichier hébergé qui fait preuve de propriété. **Ne jamais en régénérer une seconde** — une
+clé suffit pour tout le domaine, et un ping avec une clé non hébergée est rejeté.
+
+Ping après publication d'une URL :
+
+```bash
+curl -X POST "https://api.indexnow.org/indexnow" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{"host":"www.jonlabs.ch","key":"3a3dcfca6e988b8f78c69950c17b0800",
+       "keyLocation":"https://www.jonlabs.ch/3a3dcfca6e988b8f78c69950c17b0800.txt",
+       "urlList":["https://www.jonlabs.ch/blog/<slug>"]}'
+```
+
+Réponse attendue : **HTTP 202** (accepté). Le ping se fait *après* déploiement, jamais avant :
+les moteurs viennent chercher l'URL, une 404 grille le ping.
+
+**Google — pas d'API pour un article.**
+L'Indexing API est officiellement réservée à `JobPosting` et `BroadcastEvent`. Le cockpit
+`seo-stats` le refuse explicitement en amont de tout appel réseau (garde IDX-008,
+`src/lib/server/indexing-eligibility.ts`). Pour un article, la voie Google est **sitemap +
+maillage interne + canonical + qualité**, et au besoin une **demande manuelle** dans la Search
+Console (Inspection de l'URL → « Demander une indexation »). Ce geste-là reste sur Jonathan.
