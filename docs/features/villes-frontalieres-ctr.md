@@ -3,6 +3,25 @@
 > Ouvert et livré le 2026-08-07. Suite directe du rapport d'état du 06.08.
 > Source data : `.seo-data/gsc-villes-frontalieres.json` (GSC 2026-07-09 → 2026-08-05, 28 j).
 
+## État session 2026-08-07
+
+**Fait :**
+- `metaTitle` / `metaDescription` / `h1Lead` / `ecommerce` par ville dans `villes-frontalieres.ts`, consommés par `[ville].astro` avec la génération centrale en fallback
+- Les 5 titles sont alignés sur l'axe réel de chaque ville (Annemasse titrée « boutique en ligne » = sa quasi-seule requête)
+- Intention e-commerce ouverte : 6e carte de service, encart local par ville, 1 FAQ e-commerce par ville — tous les faits sourcés dans `creation-site-web` et `developpeur-webflow`
+- Cadrage « agence » : 5 formulations différentes, aucune revendication d'identité
+
+**Prochain :** mesure à S+4 (~2026-09-04), dans la même session que celle du silo mobile. Re-run `/seo-gsc --page-filter developpement-web/` et comparer à la baseline plus bas. N'importe quel clic > 0 est un gain.
+
+**Pièges :**
+- Ne pas recentraliser les metas : le fallback générique produisait des metas quasi jumelles sur 5 pages, c'est la cause n°2 du problème
+- Ne pas étendre « sans agence » à d'autres pages — 8 pages du site portent déjà le terme, la variété des formulations est délibérée
+- Tout ajout e-commerce doit rester sourcé sur les pages services ; ne jamais créer de prix ou de délai
+
+**Commit :** `c794c06` feat(seo): villes frontalières — metas par ville + ouverture e-commerce
+
+---
+
 ## Objectif
 
 Les 5 pages `/developpement-web/[ville]` sont bien classées et ne rapportent rien. Le title

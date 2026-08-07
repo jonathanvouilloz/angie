@@ -4,6 +4,27 @@
 > Source de vérité data : `.seo-data/gsc-2026-08-06.json`, `.seo-data/gsc-pilier-mobile.json`,
 > `.seo-data/canniba-2026-08-06.json` (période GSC 2026-07-08 → 2026-08-04, 28 jours).
 
+## État session 2026-08-06
+
+**Fait :**
+- Pilier `/services/developpement-application-mobile` repositionné (title, H1, lead, hero, 7 liens descendants + 2 vers les géo)
+- Guide `developper-application-mobile-suisse` spécialisé sur l'informationnel, ses 2 ancres vers le pilier portent la sémantique commerciale
+- Maillage montant fermé : 8 articles → pilier (il n'en recevait qu'un sur 18), 10 ancres uniques
+- Route géo créée : `src/data/villes-mobile.ts` + `[ville].astro` → `/geneve` et `/lausanne`, contenu réellement local
+- Correctif éditorial : la revendication « Agence application mobile » a été rejetée et remplacée par le cadrage « alternative à l'agence » sur les 3 routes
+
+**Prochain :** mesure à S+4 (~2026-09-03). Re-run `/seo-gsc` et `/seo-cannibalisation` sur `sc-domain:jonlabs.ch`, comparer à la baseline plus bas. Le pilier doit être passé devant le guide sur `développement application mobile suisse` et `création application mobile suisse`.
+
+**Pièges :**
+- Bulle et Fribourg (204 imp, pos 31-50) volontairement non créées — légitimité locale non revendiquée dans le repo, arbitrage Jonathan requis avant de générer du contexte local
+- Ne pas rebrancher les pages géo au méga-menu/footer : décision `d247cc7` du 10.07, maillage éditorial uniquement
+- Ne pas faire cibler les requêtes « agence app native / hybride » par les articles comparatifs — elles sont transactionnelles et appartiennent au pilier, c'est ce qui avait créé la hiérarchie inversée
+- Le guide n'a plus de CTA de conversion direct (choix assumé, réversible)
+
+**Commit :** `c3c1c30` feat(seo): silo mobile — pilier repositionné, route géo GE/VD, maillage fermé
+
+---
+
 ## Objectif
 
 `/services/developpement-application-mobile` est la **1re page du site en impressions** et ne
