@@ -66,7 +66,7 @@ Un site qui n'a pas été mis à jour depuis un an envoie un signal clair à Goo
 Si tu copies-colles la même structure en changeant juste le titre et deux mots, Google voit un site squelette. Tes pages « services » doivent chacune raconter quelque chose de différent : contexte, méthode, livrable, cas concret, prix indicatif.
 
 **6. Tu n'as aucun blog, aucune ressource, aucune FAQ publique.**
-Zéro contenu qui aide le visiteur à comprendre ton métier avant de te contacter. Tu te prives de 80 % des requêtes que les gens tapent avant d'acheter (« comment ça se passe », « combien ça coûte », « quelle différence entre »). C'est aussi la cause numéro un d'**un site web qui ne convertit pas** : le visiteur arrive, ne trouve pas de réponse, repart.
+Zéro contenu qui aide le visiteur à comprendre ton métier avant de te contacter. Et quand ce contenu existe mais que rien ne pointe vers lui, le résultat est le même : c'est tout le sujet du [maillage interne](/blog/maillage-interne-site-web). Tu te prives de 80 % des requêtes que les gens tapent avant d'acheter (« comment ça se passe », « combien ça coûte », « quelle différence entre »). C'est aussi la cause numéro un d'**un site web qui ne convertit pas** : le visiteur arrive, ne trouve pas de réponse, repart.
 
 ### Technique (signes 7 à 9)
 

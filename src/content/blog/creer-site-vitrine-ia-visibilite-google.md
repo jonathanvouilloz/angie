@@ -76,7 +76,7 @@ Les outils IA génèrent du code, pas une stratégie technique. Ce qu'ils négli
 
 - **Performance** : un site lent, Google le pénalise. L'utilisateur part.
 - **Accessibilité** : les balises sémantiques, le contraste, la navigation clavier... tout ce qui rend un site utilisable par tous.
-- **SEO technique** : les meta tags, le schema markup, la structure des headings, le maillage interne, le sitemap... tout ce que Google utilise pour comprendre ton contenu.
+- **SEO technique** : les meta tags, le schema markup, la structure des headings, [le maillage interne](/blog/maillage-interne-site-web), le sitemap... tout ce que Google utilise pour comprendre ton contenu.
 - **Dette technique** : le code généré par IA est souvent verbeux, mal structuré, difficile à maintenir. Invisible aujourd'hui, coûteux demain.
 
 ---
