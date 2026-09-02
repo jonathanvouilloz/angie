@@ -1,7 +1,7 @@
 ---
-title: "Spécialiste développement web suisse : comment bien choisir"
+title: "Spécialiste développement web Suisse : 5 critères"
 h1: "Choisir un spécialiste en développement web en Suisse : les 5 critères qui comptent vraiment"
-description: "Freelance ou agence ? Tarifs, 5 critères concrets, pièges courants : le guide terrain pour choisir un spécialiste en développement web en Suisse."
+description: "Freelance ou agence, tarifs romands, pièges courants : les 5 critères pour choisir un spécialiste en développement web en Suisse sans se tromper."
 pubDate: 2026-04-25
 updatedDate: 2026-05-06
 image:

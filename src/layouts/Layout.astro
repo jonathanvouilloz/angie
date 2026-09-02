@@ -41,9 +41,16 @@ const {
 // (Jon Labs / Jonlabs / Jon Labs Genève, séparée par | – — -) puis ré-appose la
 // marque canonique. Idempotent, s'applique à toutes les pages passant par ce Layout
 // (y compris blog & guides, sans marque à la source).
+//
+// Le suffixe est CONDITIONNEL : " | Jonlabs" coûte 10 caractères, et Google tronque
+// le titre en SERP autour de 60. Quand les deux ne tiennent pas ensemble, c'est le
+// contenu du titre qui gagne — un titre coupé au milieu d'un mot coûte plus de clics
+// que l'absence de marque. Budget : 50 caractères à la source (50 + 10 = 60).
 const BRAND = "Jonlabs";
+const BRAND_SUFFIX_MAX_BASE = 50;
 const baseTitle = title.replace(/\s*[|–—-]\s*Jon\s?Labs(?:\s+Genève)?\s*$/i, "").trim();
-const fullTitle = `${baseTitle} | ${BRAND}`;
+const fullTitle =
+	baseTitle.length <= BRAND_SUFFIX_MAX_BASE ? `${baseTitle} | ${BRAND}` : baseTitle;
 ---
 
 <!doctype html>

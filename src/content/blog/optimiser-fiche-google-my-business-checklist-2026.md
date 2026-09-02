@@ -1,5 +1,5 @@
 ---
-title: "Optimiser fiche Google My Business : checklist 25 points 2026"
+title: "Optimiser sa fiche Google My Business : 25 points"
 h1: "Optimiser sa fiche Google My Business : la checklist de 25 points à appliquer en 2026"
 description: "Checklist 25 points pour optimiser ta fiche Google My Business en 2026 : identite, photos, avis, posts, attributs, maillage fiche-site. Ce qui ranke vraiment."
 pubDate: 2026-05-14

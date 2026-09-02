@@ -1,7 +1,7 @@
 ---
-title: "App mobile pour PME suisse : en avez-vous vraiment besoin ?"
+title: "Application mobile en entreprise : utile ou pas ?"
 h1: "Application mobile pour PME : vaut-il vraiment le coup d'investir ?"
-description: "80 % des PME suisses n'ont pas besoin d'une app native. Guide pour décider honnêtement, avec exemples chiffrés en CHF."
+description: "Une application mobile en entreprise coûte cher et ne sert pas toujours. Les cas où elle se justifie, ceux où une PWA suffit, chiffrés en CHF."
 pubDate: 2026-07-06
 author: "Jon"
 image:

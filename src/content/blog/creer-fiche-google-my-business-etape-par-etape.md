@@ -1,5 +1,5 @@
 ---
-title: "Créer fiche Google My Business : guide étape par étape 2026"
+title: "Créer une fiche Google My Business : guide 2026"
 h1: "Créer sa fiche Google My Business étape par étape : le guide complet pour 2026"
 description: "Créer ta fiche Google My Business en 7 étapes : catégorie, adresse, vérification vidéo, NAP. Le guide 2026 qui explique le pourquoi derrière chaque choix."
 pubDate: 2026-05-12

@@ -1,5 +1,5 @@
 ---
-title: "654 heures par an : le temps que les PME romandes perdent en admin"
+title: "654 heures par an perdues en admin dans les PME"
 h1: "654 heures perdues chaque année : combien l'administratif coûte vraiment aux PME romandes"
 description: "Où votre PME perd du temps en admin et 3 automatisations rapides pour récupérer des heures chaque semaine. Guide pratique Suisse romande."
 pubDate: 2025-12-15

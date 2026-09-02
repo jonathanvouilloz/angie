@@ -3,7 +3,9 @@ import { defineCollection, z } from 'astro:content';
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
+    // Title SEO. Plafond dur à 60 : au-delà, Google tronque en SERP. Sous 50, Layout.astro
+    // ajoute en plus le suffixe " | Jonlabs" (10 car.) ; entre 51 et 60 le titre sort nu.
+    title: z.string().max(60),
     // H1 on-page, distinct du title SEO (formulation naturelle, peut dépasser 60 car.). Fallback sur title si absent.
     h1: z.string().optional(),
     description: z.string().max(160),
@@ -33,7 +35,8 @@ const blogCollection = defineCollection({
 const pagesCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
+    // Title SEO — même plafond que la collection blog, cf. commentaire plus haut.
+    title: z.string().max(60),
     // H1 on-page, distinct du title SEO. Fallback sur title si absent.
     h1: z.string().optional(),
     description: z.string().max(160),

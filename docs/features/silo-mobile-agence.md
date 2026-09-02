@@ -4,6 +4,54 @@
 > Source de vérité data : `.seo-data/gsc-2026-08-06.json`, `.seo-data/gsc-pilier-mobile.json`,
 > `.seo-data/canniba-2026-08-06.json` (période GSC 2026-07-08 → 2026-08-04, 28 jours).
 
+## État session 2026-09-02 — lecture S+2 et gel du pilier
+
+**Ce n'est pas encore la mesure S+4.** La fenêtre du chantier est 06.08 → 03.09 et GSC accuse
+~8 jours de retard : la dernière semaine complète en base est **17→23.08**. Ce qui suit est
+donc une lecture à S+2, faite sur les deux seules semaines entièrement postérieures à
+l'intervention (10→16 et 17→23.08). Elle suffit à trancher un point, pas à clore la Phase 3.
+
+**Ce qui a marché** (position moyenne, baseline 06.08 → S+2) :
+
+| Requête | Baseline | S+2 |
+|---|---|---|
+| création application mobile suisse (pilier) | 35.2 | **21.3** |
+| développement application suisse (pilier) | 26 | **18.7** |
+| agence application mobile lausanne | 31.4 | **24.0** |
+| agence app hybride flutter | 20.4 | **17.0** |
+| agence application mobile genève | 15.6 | **12.0** |
+| création application mobile genève | 15.4 | **13.0** |
+| développement app android genève | 16.8 | **15.4** |
+
+**Ce qui a échoué** — la requête phare. `développement application mobile suisse` : le pilier
+est passé de **25 à 32.1** pendant que le guide blog tient **10.1** (baseline 9.9). Même
+schéma sur `développement mobile hybride suisse` : guide 8.3, pilier 32.7. La hiérarchie
+d'intent ne s'est pas inversée, elle s'est creusée dans le mauvais sens.
+
+**Le vrai mur reste le CTR, et il n'est pas dans ce chantier.** Le pilier capte ~1 400
+impressions / 2 semaines à position moyenne **25.7** pour **0 clic**. Sur ses requêtes Genève
+il est à 12-17, c'est-à-dire page 2 : réécrire son snippet n'y changerait rien, le levier est
+le classement. C'est pourquoi les 6 propositions `refresh_plan` du hub qui visent le pilier
+ont été renvoyées en révision plutôt qu'approuvées
+(→ `cerveau/10-Projets/jonlabs/monitoring/2026-09-02-triage-propositions-hub.md`).
+
+**Décision prise le 02.09 — inversion du ciblage, exécution différée.** Le générique
+« …suisse » reste au guide blog ; le pilier est recentré sur « agence + ville ». Pas de 301.
+Détail et alternatives écartées → `docs/DECISIONS.md`, entrée du 2026-09-02.
+
+**Gel.** `/services/developpement-application-mobile` et ses pages géo ne sont **pas touchés
+avant le 05.09** : les modifier avant la fin de la fenêtre S+4 rendrait la mesure de ce
+chantier ininterprétable.
+
+**Prochain — le 05.09, quand la fenêtre 06.08 → 03.09 est complète :**
+1. Relire la mesure S+4 contre la baseline figée plus bas (à ne pas modifier).
+2. Écrire le verdict de la Phase 3 ici.
+3. Exécuter l'inversion : title / H1 / lead du pilier recentrés sur « agence application
+   mobile {Genève, Lausanne, Suisse romande} ». Respecter la décision du 07.08 — « agence »
+   reste ce dont Jon Labs est l'alternative, jamais une revendication d'identité.
+
+---
+
 ## État session 2026-08-06
 
 **Fait :**

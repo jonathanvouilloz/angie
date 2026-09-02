@@ -1,7 +1,7 @@
 ---
-title: "Apparaître dans les IA en 2026 : 6 moteurs + outils GEO"
+title: "Apparaître dans les IA en 2026 : 6 moteurs GEO"
 h1: "Apparaître dans les réponses des IA en 2026 : les 6 moteurs à viser et les outils GEO"
-description: "GEO 2026 : les 6 moteurs IA comparés, les meilleurs outils pour suivre ta visibilité et l'optimiser, plus un plan d'action concret en 30 jours."
+description: "Les 6 moteurs IA à viser en 2026, les outils pour suivre ta visibilité, et un plan d'action GEO en 30 jours pour être cité dans leurs réponses."
 pubDate: 2026-04-14
 updatedDate: 2026-05-27
 image:

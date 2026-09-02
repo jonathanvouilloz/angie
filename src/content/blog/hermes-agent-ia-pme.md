@@ -1,7 +1,7 @@
 ---
-title: "Hermes Agent pour PME : guide 2026 + prix CHF"
+title: "Hermes Agent : c'est quoi et comment l'utiliser"
 h1: "Hermes Agent pour PME : à quoi sert cet agent IA, comment l'utiliser et combien ça coûte"
-description: "Hermes Agent par Nous Research, agent IA autonome open source. Cas d'usage PME romande, coûts en CHF, comparaison OpenClaw, regard terrain honnête."
+description: "Hermes Agent, l'agent IA open source de Nous Research : ce qu'il fait vraiment, comment le lancer, ses limites et son coût réel en PME."
 pubDate: 2026-04-30
 image:
   url: "/images/blog/hermes-agent-ia-pme.webp"
