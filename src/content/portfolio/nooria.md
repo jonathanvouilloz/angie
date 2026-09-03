@@ -16,7 +16,7 @@ project:
 
 heroImage:
   url: "/images/portfolio/nooria/hero.webp"
-  alt: "Nooria — un parent et son enfant regardent une carte d'archipel"
+  alt: "Page d'accueil de Nooria : des conversations qui font grandir la réflexion de votre enfant"
 
 tags:
   - "Expo"
@@ -112,11 +112,11 @@ learnings:
 
 resultImages:
   - url: "/images/portfolio/nooria/captures-1.webp"
-    alt: "Écran d'accueil Nooria et vue de l'archipel des îles"
-    caption: "Reprise d'aventure et archipel : le parent choisit le thème du jour."
+    alt: "Écran d'accueil Nooria et carnet de bord des missions terminées"
+    caption: "Reprise d'aventure et carnet de bord — les visuels publiés sur l'App Store."
   - url: "/images/portfolio/nooria/captures-2.webp"
-    alt: "Carnet de bord Nooria et guide parental"
-    caption: "Carnet de bord des missions terminées et guide de facilitation pour le parent."
+    alt: "Guide de facilitation pour le parent et archipel complet des îles Nooria"
+    caption: "Guide de facilitation côté parent, et l'archipel complet des îles."
 ---
 
 > Une image, une situation, une question. Cinq à dix minutes pour que l'enfant explique ce qu'il pense — et que le parent l'écoute sans corriger.

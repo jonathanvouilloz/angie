@@ -115,7 +115,7 @@ export const mainNav: NavSection[] = [
     },
   },
   {
-    label: 'Cas clients',
+    label: 'Réalisations',
     href: '/portfolio',
     type: 'flat',
   },
